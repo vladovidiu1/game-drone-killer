@@ -1,0 +1,437 @@
+{
+  "version": 1,
+  "field": [
+    0,
+    88,
+    955,
+    560
+  ],
+  "types": {
+    "outpost": {
+      "file": "environment/outpost_alpha.png",
+      "props": [
+        "radar",
+        "crates",
+        "sandbags"
+      ]
+    },
+    "village": {
+      "file": "environment/settlements_atlas.png",
+      "props": [
+        "house",
+        "trees",
+        "sandbags"
+      ],
+      "region": [
+        0,
+        0,
+        768,
+        512
+      ]
+    },
+    "depot": {
+      "file": "environment/settlements_atlas.png",
+      "props": [
+        "crates",
+        "generator",
+        "radar"
+      ],
+      "region": [
+        768,
+        0,
+        768,
+        512
+      ]
+    },
+    "bridge": {
+      "file": "environment/settlements_atlas.png",
+      "props": [
+        "sandbags",
+        "crates",
+        "radar"
+      ],
+      "region": [
+        0,
+        512,
+        768,
+        512
+      ],
+      "no_props": [
+        [
+          0,
+          160,
+          955,
+          310
+        ]
+      ]
+    },
+    "urban": {
+      "file": "environment/settlements_atlas.png",
+      "props": [
+        "sandbags",
+        "crates",
+        "generator"
+      ],
+      "region": [
+        768,
+        512,
+        768,
+        512
+      ]
+    },
+    "forest": {
+      "file": "environment/frontiers_atlas.png",
+      "props": [
+        "trees",
+        "sandbags",
+        "radar"
+      ],
+      "region": [
+        0,
+        0,
+        768,
+        512
+      ]
+    },
+    "industrial": {
+      "file": "environment/frontiers_atlas.png",
+      "props": [
+        "generator",
+        "crates",
+        "radar"
+      ],
+      "region": [
+        768,
+        0,
+        768,
+        512
+      ]
+    },
+    "ruins": {
+      "file": "environment/frontiers_atlas.png",
+      "props": [
+        "generator",
+        "sandbags",
+        "crates"
+      ],
+      "region": [
+        0,
+        512,
+        768,
+        512
+      ]
+    },
+    "airbase": {
+      "file": "environment/frontiers_atlas.png",
+      "props": [
+        "radar",
+        "crates",
+        "sandbags"
+      ],
+      "region": [
+        768,
+        512,
+        768,
+        512
+      ]
+    },
+    "fortress": {
+      "file": "environment/strongholds_atlas.png",
+      "props": [
+        "generator",
+        "radar",
+        "sandbags"
+      ],
+      "region": [
+        0,
+        0,
+        768,
+        512
+      ]
+    },
+    "highway": {
+      "file": "environment/strongholds_atlas.png",
+      "props": [
+        "sandbags",
+        "crates",
+        "trees"
+      ],
+      "region": [
+        768,
+        0,
+        768,
+        512
+      ]
+    },
+    "harbor": {
+      "file": "environment/strongholds_atlas.png",
+      "props": [
+        "crates",
+        "generator",
+        "radar"
+      ],
+      "region": [
+        0,
+        512,
+        768,
+        512
+      ],
+      "no_props": [
+        [
+          0,
+          88,
+          215,
+          560
+        ]
+      ]
+    },
+    "power": {
+      "file": "environment/strongholds_atlas.png",
+      "props": [
+        "generator",
+        "radar",
+        "crates"
+      ],
+      "region": [
+        768,
+        512,
+        768,
+        512
+      ]
+    }
+  },
+  "profiles": {
+    "day": {
+      "tint": "fff3df",
+      "exposure": 1.0,
+      "shadow": [
+        9,
+        12
+      ],
+      "particles": 8,
+      "haze": 0.0,
+      "label": "Warm daylight"
+    },
+    "sunset": {
+      "tint": "ffc18a",
+      "exposure": 0.92,
+      "shadow": [
+        25,
+        19
+      ],
+      "particles": 12,
+      "haze": 0.025,
+      "label": "Low sun / long shadows"
+    },
+    "night": {
+      "tint": "809fce",
+      "exposure": 0.67,
+      "shadow": [
+        7,
+        9
+      ],
+      "particles": 8,
+      "haze": 0.025,
+      "label": "Night watch / searchlights"
+    },
+    "storm": {
+      "tint": "a5b7c9",
+      "exposure": 0.79,
+      "shadow": [
+        4,
+        5
+      ],
+      "particles": 32,
+      "haze": 0.07,
+      "label": "Wind / rainfall"
+    },
+    "smoke": {
+      "tint": "d5b79b",
+      "exposure": 0.85,
+      "shadow": [
+        10,
+        13
+      ],
+      "particles": 20,
+      "haze": 0.06,
+      "label": "Battlefield smoke / embers"
+    }
+  },
+  "missions": {
+    "1": {
+      "type": "outpost",
+      "profile": "day",
+      "seed": 7237,
+      "identity": "Remote garrison",
+      "accent": "ac7b55"
+    },
+    "2": {
+      "type": "village",
+      "profile": "sunset",
+      "seed": 7374,
+      "identity": "Red Hill homesteads",
+      "accent": "ac7b55"
+    },
+    "3": {
+      "type": "depot",
+      "profile": "day",
+      "seed": 7511,
+      "identity": "East loading yards",
+      "accent": "ac7b55"
+    },
+    "4": {
+      "type": "bridge",
+      "profile": "storm",
+      "seed": 7648,
+      "identity": "Broken river crossing",
+      "accent": "ac7b55"
+    },
+    "5": {
+      "type": "urban",
+      "profile": "smoke",
+      "seed": 7785,
+      "identity": "Greyford town square",
+      "accent": "ac7b55"
+    },
+    "6": {
+      "type": "power",
+      "profile": "night",
+      "seed": 7922,
+      "identity": "Northern grid",
+      "accent": "ac7b55"
+    },
+    "7": {
+      "type": "bridge",
+      "profile": "sunset",
+      "seed": 8059,
+      "identity": "Riverside approaches",
+      "accent": "ac7b55"
+    },
+    "8": {
+      "type": "highway",
+      "profile": "day",
+      "seed": 8196,
+      "identity": "Iron transit corridor",
+      "accent": "ac7b55"
+    },
+    "9": {
+      "type": "airbase",
+      "profile": "night",
+      "seed": 8333,
+      "identity": "Falcon flight line",
+      "accent": "ac7b55"
+    },
+    "10": {
+      "type": "urban",
+      "profile": "night",
+      "seed": 8470,
+      "identity": "Asterian civic center",
+      "accent": "ac7b55"
+    },
+    "11": {
+      "type": "ruins",
+      "profile": "smoke",
+      "seed": 8607,
+      "identity": "Western destruction",
+      "accent": "ac7b55"
+    },
+    "12": {
+      "type": "highway",
+      "profile": "sunset",
+      "seed": 8744,
+      "identity": "Liberation convoy road",
+      "accent": "ac7b55"
+    },
+    "13": {
+      "type": "forest",
+      "profile": "storm",
+      "seed": 8881,
+      "identity": "Black Ridge switchbacks",
+      "accent": "ac7b55"
+    },
+    "14": {
+      "type": "fortress",
+      "profile": "day",
+      "seed": 9018,
+      "identity": "Border bastion",
+      "accent": "ac7b55"
+    },
+    "15": {
+      "type": "fortress",
+      "profile": "sunset",
+      "seed": 9155,
+      "identity": "Last border gates",
+      "accent": "ac7b55"
+    },
+    "16": {
+      "type": "forest",
+      "profile": "night",
+      "seed": 9292,
+      "identity": "Varkon treeline",
+      "accent": "8e6f69"
+    },
+    "17": {
+      "type": "forest",
+      "profile": "day",
+      "seed": 9429,
+      "identity": "Steel Valley pass",
+      "accent": "8e6f69"
+    },
+    "18": {
+      "type": "industrial",
+      "profile": "night",
+      "seed": 9566,
+      "identity": "Assembly line",
+      "accent": "8e6f69"
+    },
+    "19": {
+      "type": "harbor",
+      "profile": "storm",
+      "seed": 9703,
+      "identity": "Red Harbor quays",
+      "accent": "8e6f69"
+    },
+    "20": {
+      "type": "industrial",
+      "profile": "smoke",
+      "seed": 9840,
+      "identity": "Citadel furnaces",
+      "accent": "8e6f69"
+    },
+    "21": {
+      "type": "ruins",
+      "profile": "storm",
+      "seed": 9977,
+      "identity": "Deadlands crater field",
+      "accent": "8e6f69"
+    },
+    "22": {
+      "type": "fortress",
+      "profile": "night",
+      "seed": 10114,
+      "identity": "Defense ring",
+      "accent": "8e6f69"
+    },
+    "23": {
+      "type": "urban",
+      "profile": "sunset",
+      "seed": 10251,
+      "identity": "Command district",
+      "accent": "8e6f69"
+    },
+    "24": {
+      "type": "ruins",
+      "profile": "sunset",
+      "seed": 10388,
+      "identity": "Capital siege grounds",
+      "accent": "8e6f69"
+    },
+    "25": {
+      "type": "fortress",
+      "profile": "smoke",
+      "seed": 10525,
+      "identity": "Hive reactor perimeter",
+      "accent": "8e6f69"
+    }
+  }
+}

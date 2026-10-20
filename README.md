@@ -226,4 +226,10 @@ The project is configured for landscape Android and Compatibility rendering, but
 
 ## Intentionally unfinished
 
-All 25 missions and the campaign finale are implemented. Final human difficulty tuning, authored production art/music, selling/relocating defenses, full accessibility/localization, signed Android exports, device profiling and release packaging remain future work. G1 artwork and remaining procedural art are integrated production candidates; unique support/boss art and environment kits beyond Outpost Alpha still require an artist pass. Generated audio remains a development asset. No APK is included; this source project opens directly in Godot.
+All 25 missions and the campaign finale are implemented. Final human difficulty tuning, authored production art/music, selling/relocating defenses, full accessibility/localization, signed Android exports, device profiling and release packaging remain future work. G1/G2 artwork is integrated candidate art. All 25 missions now use the illustrated environment library; unique support/boss art, further environment refinements and final art approval remain outstanding. Generated audio remains a development asset. No APK is included; this source project opens directly in Godot.
+
+## G2 battlefield environments
+
+All 25 missions now use 13 illustrated terrain kits with layered props and day, sunset, night, storm or smoke atmosphere. The first five have distinct outpost, village, depot, bridge and urban layouts. Existing routes, placement slots, spawns and combat rules remain unchanged. Settings → **Reduced environment effects** disables animated rain/haze/embers/searchlight sweeps on the next deployment while keeping terrain and defense readability.
+
+See [environment architecture, performance budgets and asset replacement specifications](docs/ENVIRONMENTS.md), [native gameplay gallery](docs/environments/README.md), and [VISUAL_STYLE.md](VISUAL_STYLE.md). Run `tests/environment_capture.tscn` with a real display and isolated saves for native captures; the normal headless suite includes all 25 environment/resource/clearance and preference-persistence checks. Physical Android profiling remains required.

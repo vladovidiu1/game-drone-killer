@@ -122,6 +122,195 @@
         310
       ],
       "scale": 1
+    },
+    "terrain_outpost": {
+      "file": "environment/outpost_alpha.png"
+    },
+    "terrain_village": {
+      "file": "environment/settlements_atlas.png",
+      "region": [
+        0,
+        0,
+        768,
+        512
+      ]
+    },
+    "terrain_depot": {
+      "file": "environment/settlements_atlas.png",
+      "region": [
+        768,
+        0,
+        768,
+        512
+      ]
+    },
+    "terrain_bridge": {
+      "file": "environment/settlements_atlas.png",
+      "region": [
+        0,
+        512,
+        768,
+        512
+      ]
+    },
+    "terrain_urban": {
+      "file": "environment/settlements_atlas.png",
+      "region": [
+        768,
+        512,
+        768,
+        512
+      ]
+    },
+    "terrain_forest": {
+      "file": "environment/frontiers_atlas.png",
+      "region": [
+        0,
+        0,
+        768,
+        512
+      ]
+    },
+    "terrain_industrial": {
+      "file": "environment/frontiers_atlas.png",
+      "region": [
+        768,
+        0,
+        768,
+        512
+      ]
+    },
+    "terrain_ruins": {
+      "file": "environment/frontiers_atlas.png",
+      "region": [
+        0,
+        512,
+        768,
+        512
+      ]
+    },
+    "terrain_airbase": {
+      "file": "environment/frontiers_atlas.png",
+      "region": [
+        768,
+        512,
+        768,
+        512
+      ]
+    },
+    "terrain_fortress": {
+      "file": "environment/strongholds_atlas.png",
+      "region": [
+        0,
+        0,
+        768,
+        512
+      ]
+    },
+    "terrain_highway": {
+      "file": "environment/strongholds_atlas.png",
+      "region": [
+        768,
+        0,
+        768,
+        512
+      ]
+    },
+    "terrain_harbor": {
+      "file": "environment/strongholds_atlas.png",
+      "region": [
+        0,
+        512,
+        768,
+        512
+      ]
+    },
+    "terrain_power": {
+      "file": "environment/strongholds_atlas.png",
+      "region": [
+        768,
+        512,
+        768,
+        512
+      ]
+    },
+    "prop_radar": {
+      "file": "environment/props_atlas.png",
+      "region": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ]
+    },
+    "prop_crates": {
+      "file": "environment/props_atlas.png",
+      "region": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ]
+    },
+    "prop_sandbags": {
+      "file": "environment/props_atlas.png",
+      "region": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ]
+    },
+    "prop_trees": {
+      "file": "environment/props_atlas.png",
+      "region": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ]
+    },
+    "prop_house": {
+      "file": "environment/props_atlas.png",
+      "region": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ]
+    },
+    "prop_generator": {
+      "file": "environment/props_atlas.png",
+      "region": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ]
     }
   },
   "enemy_aliases": {

@@ -4,7 +4,7 @@ const PATH := "user://campaign.json"
 const SETTINGS_PATH := "user://settings.json"
 const VERSION := 3
 const FLOORS := [1,5,10,15,20]
-const DEFAULT_SETTINGS := {"volume":0.6,"muted":false,"reduced_motion":false}
+const DEFAULT_SETTINGS := {"volume":0.6,"muted":false,"reduced_motion":false,"reduced_environment_effects":false}
 var catalog: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/progression.json"))
 var state: Dictionary = {}
 var settings: Dictionary = DEFAULT_SETTINGS.duplicate()
@@ -95,13 +95,13 @@ func validate_settings(value: Variant) -> Dictionary:
    return {}
   source = value.settings
  # Legacy settings were an unwrapped dictionary.
- if not source.has("volume") and not source.has("muted") and not source.has("reduced_motion"):
+ if not source.has("volume") and not source.has("muted") and not source.has("reduced_motion") and not source.has("reduced_environment_effects"):
   return {}
  var result := DEFAULT_SETTINGS.duplicate()
  var volume: Variant = source.get("volume")
  if (volume is int or volume is float) and is_finite(float(volume)):
   result.volume = clampf(float(volume),0.0,1.0)
- for key in ["muted","reduced_motion"]:
+ for key in ["muted","reduced_motion","reduced_environment_effects"]:
   if source.get(key) is bool:
    result[key] = source[key]
  return result

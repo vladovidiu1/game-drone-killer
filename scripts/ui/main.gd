@@ -202,6 +202,16 @@ func _settings() -> void:
   SaveManager.save_settings())
  col.add_child(mute)
  col.add_child(UI.button("Test sound",func(): AudioManager.cue(true)))
+ var reduced := UI.button("Reduced environment effects",func(): pass)
+ reduced.toggle_mode = true
+ reduced.button_pressed = bool(SaveManager.settings.get("reduced_environment_effects",false))
+ reduced.text = "Reduced environment effects: "+("ON" if reduced.button_pressed else "OFF")
+ reduced.toggled.connect(func(value: bool):
+  reduced.text = "Reduced environment effects: "+("ON" if value else "OFF")
+  SaveManager.settings.reduced_environment_effects = value
+  SaveManager.save_settings())
+ col.add_child(reduced)
+ col.add_child(UI.label("Disables rain, moving haze, embers and light sweeps. Applied next mission.",16))
  _spacer(col)
  col.add_child(UI.button("Main menu",_menu))
  _save_error(col)

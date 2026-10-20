@@ -20,3 +20,5 @@ Fonts are distributed unmodified with their original notices:
 - DejaVu Sans Mono: Bitstream Vera / DejaVu font licenses and notices, preserved in `ui/fonts/DejaVu-LICENSE.txt`.
 
 The game loads local files only. No generation service, font CDN, account or API key is used at runtime.
+
+G2 adds three original terrain atlases and one original transparent prop atlas under the same generated-project-output terms described above. IDs and integration status are recorded in `source/environment_sources.json`, `source/GENERATION.md` and `manifest.json`. New environment JSON, shaders, SVG utility layers and generators are project-authored sources under the project's MIT license. No licensed third-party game environments were used.

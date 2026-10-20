@@ -17,3 +17,18 @@ The faint alpha fringes and baked highlights are generated source characteristic
 Project-authored editable vector resources are reproducible with `python tools/generate_visual_vectors.py`; theme resources with `python tools/build_visual_theme.py`. These scripts use Python's standard library and never call a generation service. They do not overwrite reviewed catalog bindings or generated PNGs. `environment/command_bunker.svg` is retained as an editable construction reference, not the active bunker artwork.
 
 Font sources: https://github.com/google/fonts/tree/main/ofl/barlow and https://github.com/google/fonts/tree/main/ofl/barlowcondensed. The bundled DejaVu font is from the execution environment's Debian font distribution, with its full license notices included. All fonts are local at runtime.
+
+## G2 environment generation — 2026-10-20
+
+Four original image-generation requests supplied the new environment sources. The prompts requested modern military sci-fi materials, near-overhead orthographic 2.5D framing, upper-left daylight, down-right soft shadows, quiet open centers, detailed perimeter architecture, no units/turrets/UI/text/logos and no third-party reference artwork. These are original project outputs subject to the applicable OpenAI terms; no external asset pack, account, API key or runtime generation is required. Final production art approval remains outstanding.
+
+| File | Original output | Layout/content |
+| --- | --- | --- |
+| `environment/settlements_atlas.png` | `exec-e4075b3b-f782-486c-b136-7cef4388697a` | 1536×1024 RGB; four 768×512 quadrants: village, supply depot, damaged bridge, urban district |
+| `environment/frontiers_atlas.png` | `exec-8f111bc8-6c87-4cea-a030-95f79ed800b1` | 1536×1024 RGB; four quadrants: forest/mountain clearing, industrial facility, ruined city, military airbase |
+| `environment/strongholds_atlas.png` | `exec-cb521a6e-49a2-4249-934a-76d49dc0e62d` | 1536×1024 RGB; four quadrants: enemy fortress, highway, harbor, power station |
+| `environment/props_atlas.png` | `exec-83554f56-85f7-4981-b117-6d227ff83edf` | 1536×1024 RGBA, transparent; six 512×512 cells: radar, cargo, sandbags, trees, house, damaged generator |
+
+The PNG sources were copied unmodified from image-generation outputs. Regions are bound using Godot AtlasTexture; no script removes backgrounds, paints pixels or composites the screenshots. The prop sheet was explicitly generated with transparency and its alpha was checked. The prop perspective is somewhat steeper than the terrain plate; supplemental props are kept small and require final perspective/scale review. Detailed terrain includes prepainted shadows; runtime grading is deliberately limited instead of pretending to relight baked artwork physically.
+
+The warm/cool grading shader, light pools, searchlight cones, smoke wisps, contact shadows and raised emplacement decks are locally authored editable CanvasItem/SVG presentation resources. They are utility lighting/detail layers, not represented as commissioned raster paintings. Their source generators and provenance are listed in the manifest. Native screenshots in `docs/environments` come directly from Godot's viewport with real waves and projectiles; they are not generated game screenshots.

@@ -40,4 +40,12 @@
 - `scripts/visual/unit_visual.gd` receives presentation state only. Do not move damage, targeting, input ownership or timers into artwork code. Visual state must never alter collision or stat tuning.
 - Keep Compatibility-safe shaders, local fonts and license notices, PNG transparency and tracked `.import` settings. Review actual rendered output; do not call a headless dummy-renderer run visual validation.
 - Preserve uniform battlefield scale across aspect ratios and native safe-area UI. Run visual-resource checks with the full suite; use `tests/visual_capture.tscn` with a real display/renderer and isolated data for native captures.
-- Shared drone silhouettes, SVG support heads and legacy environments remain explicitly interim until their dedicated art is approved. Document replacements instead of presenting them as finished unique artwork.
+- Shared drone silhouettes, SVG support heads remain explicitly interim until their dedicated art is approved. Document replacements instead of presenting them as finished unique artwork.
+
+## Environment presentation
+
+- G2 visual assignments live in `assets/environment/library.json`; keep them separate from mission gameplay conditions and geometry. Follow `docs/ENVIRONMENTS.md`.
+- Terrain bindings remain in `assets/visual_catalog.json`. Load terrain per battle lifetime, bypassing the permanent global texture cache; never preload every map into the deployed mission.
+- Clip decor/atmosphere to `(0,88,955,560)` beneath actors and HUD; keep Controls mouse-ignoring. Enforce slot/path/base/water exclusions for tall props.
+- All environment animation consumes `battle_view.tick` simulation time. Preserve reduced-effects settings validation and the static-terrain fallback.
+- Run environment tests/fresh-process settings verification with the full suite, and inspect real native captures after environment changes. Gallery PNGs are documentation, excluded from Godot import.

@@ -1,5 +1,7 @@
 # G1 visual validation and native capture gallery
 
+This is the historical G1 report. G2 supersedes the environment portion with [illustrated environments for all 25 territories](ENVIRONMENTS.md) and [new native captures](environments/README.md). The G1 counts/images below remain the results of that earlier increment.
+
 Godot 4.6.3 stable native import/startup and `./tests/run_checks.sh` completed with **4665 assertions and zero failures**. The runner isolated saves and rejected script errors, engine errors and ObjectDB leak warnings. The new visual suite contributes 245 resource, binding, transparency, theme, shader-state and effect-lifecycle checks.
 
 | Suite | Assertions |
@@ -52,7 +54,7 @@ Dedicated external artwork still needed:
 - Five unique chapter-boss assets with phase/damage and ability animation variants; gameplay cores/telegraphs remain functional.
 - Dedicated rendered Missile/Laser/EMP heads and standalone Heavy AA; the first three currently use explicitly interim authored SVGs, while Heavy AA shares the primary head.
 - Rotor/damage animation sheets and final EMP/laser/overclock/impact effects with approved continuity.
-- Terrain/prop kits for missions 2–25, whose original procedural environments remain.
+- Terrain/prop kits for missions 2–25 were outstanding at G1; G2 now integrates 13 illustrated kits across all 25 missions, pending final art approval.
 - Optional matching albedo/normal assets if a later device-reviewed dynamic lighting pass is commissioned. No artificial normal maps are presented as finished here.
 
 Exact dimensions, pivots, frame/timing requirements and replacement workflow are in [VISUAL_STYLE.md](../VISUAL_STYLE.md). Replacement artwork can change visual bindings without rewriting gameplay.

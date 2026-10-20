@@ -1,0 +1,6 @@
+from pathlib import Path
+s=['<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">','<defs><linearGradient id="steel" x2=".7" y2="1"><stop stop-color="#667078"/><stop offset=".45" stop-color="#424e58"/><stop offset="1" stop-color="#29343d"/></linearGradient></defs>','<rect x="0" y="21" width="17" height="97" rx="8" fill="#45535d" stroke="#89969d"/><rect x="110" y="21" width="17" height="97" rx="8" fill="#34424c" stroke="#78858b"/>','<path d="M21 22h88l12 13v73l-14 13H23l-13-13V35z" fill="#111b24" opacity=".6"/>','<path d="M18 14h88l12 13v73l-14 13H20L7 100V27z" fill="url(#steel)" stroke="#7a8386" stroke-width="2"/>','<path d="M23 23h77l10 11v60l-11 10H26L15 94V35z" fill="#303b43" stroke="#1d262d" stroke-width="2"/>']
+for y in range(31,100,8): s.append(f'<path d="M23 {y}h77" stroke="#586067" stroke-opacity=".5"/>')
+for x,y in [(18,25),(106,25),(18,99),(106,99)]:s.append(f'<circle cx="{x}" cy="{y}" r="3" fill="#141c23" stroke="#839092"/><path d="M{x-1} {y}h2" stroke="#a4a9a8"/>')
+s.append('<path d="M47 17h29M47 109h29" stroke="#c7aa65" stroke-width="3"/><path d="M9 48v23M116 48v23" stroke="#37b7e5" stroke-width="2" opacity=".5"/></svg>')
+(Path(__file__).resolve().parents[1]/'assets/environment/emplacement_deck.svg').write_text(''.join(s))

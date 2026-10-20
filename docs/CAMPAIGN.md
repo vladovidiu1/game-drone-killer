@@ -32,7 +32,7 @@ Task 5 extends the existing native Godot hybrid battle. `data/definitions.json` 
 | 24. Capital Siege | capital / clear | 8 / 8 / 4 | 730 | Escort waves |
 | 25. The Hive Core | hive / interference | 8 / 8 / 4 | 650 | The Hive Core |
 
-Each territory has its own location/story, layout, landmarks, gate positions, slot arrangement and wave recipes. Recipes vary escort composition, entry lanes and intervals. Terrain palettes and procedural landmarks distinguish farms, bridge/river/harbor, runway/highway, mountains, city blocks and factory/power/hive structures. These are development visuals, not final authored art.
+Each territory has its own location/story, layout, landmarks, gate positions, slot arrangement and wave recipes. Recipes vary escort composition, entry lanes and intervals. G2 now supplies illustrated terrain/prop kits and atmospheric variants for every territory; see [the environment library](ENVIRONMENTS.md). The original campaign validation below predates that visual pass.
 
 ## Combat pressure and counters
 
@@ -89,4 +89,4 @@ These runs establish valid data, connected completion, affordable progression an
 
 All 25 missions require human difficulty/aim/reload testing, particularly opening economies in 4–6, boss readability in 5/10/15/20/25, dust in 13/21, carrier density in chapter 4 and grid outages in 22/25. Check the 3–7 minute target at 1x with ordinary preparation; early starts and 2x deliberately shorten it.
 
-No physical Android device, signed APK, graphical play session, audible playback, cutout/aspect-ratio hardware check or mid-range-device 60 FPS measurement was available. The procedural drawing/UI and audio need those separate acceptance passes before release.
+No physical Android device, signed APK, graphical play session, audible playback, cutout/aspect-ratio hardware check or mid-range-device 60 FPS measurement was available. G1/G2 subsequently verified native Linux Compatibility rendering; see their visual reports. Physical Android acceptance and audible output still need separate passes before release.

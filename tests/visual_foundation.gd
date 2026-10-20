@@ -32,7 +32,7 @@ func run() -> void:
  for index in 6:
   var frame := ASSETS.explosion_frame(index)
   check(frame.get_width() == 512 and frame.get_height() == 512,"Explosion uses six correctly sliced frames")
- for path in ["drones/combat_atlas.png","effects/explosion_atlas.png","environment/command_bunker.png"]:
+ for path in ["drones/combat_atlas.png","effects/explosion_atlas.png","environment/command_bunker.png","environment/props_atlas.png"]:
   var image := ASSETS.texture(path).get_image()
   check(image.get_pixel(0,0).a < 0.01,"Alpha artwork has transparent corners; no opaque backing")
  var theme := UI.theme()

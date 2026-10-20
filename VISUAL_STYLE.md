@@ -1,4 +1,6 @@
-# DRONE KILLER: FRONTLINE — visual foundation G1
+# DRONE KILLER: FRONTLINE — visual foundation G1 / environments G2
+
+G2 extends the existing foundation with [13 reusable battlefield kits, 5 atmosphere profiles and all 25 mission bindings](docs/ENVIRONMENTS.md). The native G2 gallery is in [docs/environments](docs/environments/README.md).
 
 G1 establishes a modern military science-fiction 2.5D art system in the existing Godot game. The native main menu and Outpost Alpha demonstrate the new direction. All 25 missions, manual control, automatic defenses, research, currencies, enemy abilities, saves and frontline rules remain operational. This increment supplies generated artwork candidates and a reusable production pipeline; final art approval and device profiling remain outstanding.
 
@@ -29,7 +31,7 @@ PNG unit art is prelit. Its highlights rotate with the 2D sprite; it is a baked-
 
 ```
 assets/
-  environment/   terrain plate and command bunker
+  environment/   terrain atlases, props, atmosphere vectors and command bunker
   drones/        shared six-object rendered combat atlas
   turrets/       placement pad and editable support-weapon SVGs
   projectiles/   tracer and missile sprites
@@ -46,7 +48,7 @@ assets/
 
 The six-object source sheet has non-ideal generated padding. `visual_catalog.json` stores explicit regions, image-space breech pivots and scale. Turret art points up in the source; presentation adds `PI/2` to the existing +X barrel rotation. Manual recoil uses the existing simulated value. All six automatic weapon types have bindings. Shield/EMP/Bomber/Sniper/Carrier/Stealth and bosses currently reuse a base drone silhouette plus their existing semantic overlays; these are explicitly shared art, not completed unique designs.
 
-Texture imports use lossless RGBA, alpha-border correction and mipmaps for the five large PNGs. Unit sprites use linear filtering with mipmaps; atlas filter clipping prevents neighboring objects leaking across a region. UI vectors and fonts remain crisp native resources. Track `.import` settings and `.gd.uid` identities, never `.godot/` caches.
+Texture imports use lossless RGBA, alpha-border correction and mipmaps for the large PNGs. Unit sprites use linear filtering with mipmaps; atlas filter clipping prevents neighboring objects leaking across a region. UI vectors and fonts remain crisp native resources. Track `.import` settings and `.gd.uid` identities, never `.godot/` caches.
 
 ## UI system
 
@@ -63,7 +65,7 @@ Compatibility/GLES3 remains the configured desktop/mobile renderer. The two unsh
 
 Use baked soft shadows instead of runtime Light2D/shadow passes for this prelit asset set. Explosion frames advance from the existing simulation-driven effect age over 0.65s; impact sparks use 0.15s, construction rings 0.45s. EMP and phase changes use a separate tinted 0.65s tactical pulse, preserving their meaning without a full-field fireball. Muzzle flash/recoil, rotor overlays, projectiles and effects freeze with combat pause. Effects retain the 96-entry cap; textures and frame regions are shared. UI tweens are independent of battle time. Ordinary EMP/Overclock effects retain their established gameplay cues; dedicated finished art remains a future replacement.
 
-Five 1536×1024 RGBA PNGs cost approximately 40 MiB of GPU texture storage with complete mip chains before fonts, vectors, framebuffer and driver overhead. This is a budget estimate, not a device measurement. No dynamic light or screen-copy pass is introduced. Target under 64 MiB for the visual texture set and profile actual frame time, overdraw, thermal behavior and memory on Android before claiming 60 FPS. Consider atlas packing/downsize or device compression only after visual/device review; do not enable unsupported compression blindly.
+Five 1536×1024 RGBA PNGs cost approximately 40 MiB of GPU texture storage with complete mip chains before fonts, vectors, framebuffer and driver overhead. This is a budget estimate, not a device measurement. No dynamic light or screen-copy pass is introduced. G2 loads terrain sheets by scene lifetime rather than accumulating the complete library; its typical large-texture estimate is 48 MiB. Target under 64 MiB for the visual texture set and profile actual frame time, overdraw, thermal behavior and memory on Android before claiming 60 FPS. Consider atlas packing/downsize or device compression only after visual/device review; do not enable unsupported compression blindly.
 
 ## Exact replacement specifications
 
@@ -80,10 +82,10 @@ Approved artwork can replace existing filenames with matching dimensions/regions
 | Five chapter bosses | 1024×1024 RGBA each, three phase damage states, up to 8 frames per ability | Anchor/weakpoint coordinates remain data-driven; preserve the visible cyan core at the actual hittable position |
 | Explosion replacement | Six 512×512 RGBA frames, 3×2 atlas 1536×1024, equal padding, no labels | Ignition→fire→smoke in 0.65s, center-pivot, consistent ground contact and size |
 | EMP/laser/overclock/impact pack | 256×256 or 512×512 RGBA with declared frame counts and timing | Must fit current simulated duration/radius and preserve threat telegraphs; restrained additive energy only |
-| Other 24 environments | 1536×1024 RGB terrain plates plus transparent prop atlases | Preserve each mission's existing paths/slots/bunker coordinates; rural, bridge, power, city, industrial, fortress, harbor and hive kits |
+| Environment art refinement | Existing three 1536×1024 four-map atlases, one six-cell prop atlas; or update explicit regions | All 25 now use G2 illustrated terrain; refine perspective/scale and optionally supply bespoke Hive/territory architecture without moving paths/slots |
 | Optional true lighting | Matching albedo + tangent-space normal RGBA at identical dimensions/pivots; flat normal `(128,128,255)` | Artist must state normal convention. Validate Godot CanvasTexture/DirectionalLight2D/PointLight2D on GLES3 before use; remove baked highlights first |
 
-The current generated PNGs and authored UI are integrated candidates, not evidence of final production approval. Unique support/boss art, the three SVG support heads, standalone Heavy AA, phase/rotor sheets, 24 environment kits and dedicated energy effects still require external artist creation or a later approved generation pass. The previous geometric environment presentation remains for missions 2–25. This work does not label those environments finished.
+The current generated PNGs and authored UI are integrated candidates, not evidence of final production approval. Unique support/boss art, the three SVG support heads, standalone Heavy AA, phase/rotor sheets and dedicated energy effects still require external artist creation or a later approved generation pass. G2 replaces the former geometric terrain for all 25 missions with 13 illustrated kits, shared props and atmosphere. These are integrated generated candidates awaiting final art approval, rather than 25 unique commissioned paintings. See the G2 guide for its replacement specifications, quality setting and current memory budget.
 
 ## Verification and captures
 
@@ -97,4 +99,4 @@ Use a separate temporary data directory: the capture scene deliberately starts a
 
 Linux OpenGL/llvmpipe captures are checked in under `docs/visuals/`. Physical Android appearance, physical multitouch, audible playback, cutout hardware, FPS, memory and battery/thermal behavior still require device validation. Generated art should receive art-direction and commercial-clearance review before release.
 
-For an Android export, include all resources and include `data/*.json`, `assets/*.json`, `assets/ASSET_LICENSE.md` and `assets/ui/fonts/*.txt` as non-resource files if the preset filters them. Keep dynamic atlas/catalog dependencies and font notices in the package. Export templates/SDK/signing and a physical device build remain separate validation steps.
+For an Android export, include all resources and include `data/*.json`, `assets/*.json`, `assets/environment/*.json`, `assets/ASSET_LICENSE.md` and `assets/ui/fonts/*.txt` as non-resource files if the preset filters them. Keep dynamic atlas/catalog dependencies and font notices in the package. Export templates/SDK/signing and a physical device build remain separate validation steps.

@@ -1,0 +1,26 @@
+{
+  "settlements_atlas.png": {
+    "output": "exec-e4075b3b-f782-486c-b136-7cef4388697a",
+    "purpose": "Village, depot, damaged bridge and urban terrain",
+    "panels": 4,
+    "status": "Integrated original G2 generated candidate; final art approval pending"
+  },
+  "frontiers_atlas.png": {
+    "output": "exec-8f111bc8-6c87-4cea-a030-95f79ed800b1",
+    "purpose": "Forest, industrial, ruined city and airbase terrain",
+    "panels": 4,
+    "status": "Integrated original G2 generated candidate; final art approval pending"
+  },
+  "strongholds_atlas.png": {
+    "output": "exec-cb521a6e-49a2-4249-934a-76d49dc0e62d",
+    "purpose": "Fortress, highway, harbor and power station terrain",
+    "panels": 4,
+    "status": "Integrated original G2 generated candidate; final art approval pending"
+  },
+  "props_atlas.png": {
+    "output": "exec-83554f56-85f7-4981-b117-6d227ff83edf",
+    "purpose": "Radar, cargo, sandbags, trees, rural house and generator props",
+    "panels": 6,
+    "status": "Integrated original six-object G2 generated candidate; final art approval pending"
+  }
+}
