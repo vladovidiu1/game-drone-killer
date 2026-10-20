@@ -82,13 +82,9 @@ func _draw() -> void:
  if disabled_remaining > 0:
   draw_arc(Vector2.ZERO,33,0,TAU,32,Color("ba9aff"),4)
   draw_string(ThemeDB.fallback_font,Vector2(-25,-38),"OFF %.1fs" % disabled_remaining,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("ddbbff"))
- draw_texture_rect(ASSETS.texture("turrets/placement_pad.svg"),Rect2(-35,-35,70,70),false)
  if is_instance_valid(art):
   art.sync(barrel_angle+PI/2,0.0,false,disabled_remaining > 0)
- if muzzle > 0 and kind not in ["laser","emp_tower"]:
-  draw_set_transform(Vector2.ZERO,barrel_angle)
-  draw_texture_rect(ASSETS.texture("effects/muzzle_flash.svg"),Rect2(28,-13,42,26),false,Color(1,1,1,muzzle/0.08))
-  draw_set_transform(Vector2.ZERO)
+ preload("res://scripts/visual/weapon_effects.gd").flash(self,kind,barrel_angle,clampf(muzzle/.08,0,1))
  if kind == "laser" and muzzle > 0 and is_instance_valid(target) and not target.ended:
   draw_line(Vector2.ZERO,target.position-position,Color(color,0.3),7)
   draw_line(Vector2.ZERO,target.position-position,color,2)

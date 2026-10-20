@@ -5,13 +5,19 @@ const BODY_FONT := preload("res://assets/ui/fonts/Barlow-Regular.ttf")
 @onready var battle: Node2D = get_parent()
 var effects: Array[Dictionary] = []
 var base_flash := 0.0
+var destruction := preload("res://scripts/visual/destruction_batch.gd").new()
 
 var environment: Control
+var telemetry: Node2D
 
 func _ready() -> void:
  environment = preload("res://scripts/visual/battle_environment.gd").new()
  environment.setup(battle.mission_data)
  add_child(environment)
+ telemetry = preload("res://scripts/visual/boss_telemetry.gd").new()
+ telemetry.battle = battle
+ telemetry.z_index = 2
+ add_child(telemetry)
  # Stable integration anchor retained for G1 tooling, now backed by the library.
  if battle.mission_id == 1:
   environment.name = "OutpostTerrain"
@@ -23,12 +29,24 @@ func effect(point: Vector2, kind: String, radius: float, tint: Color) -> void:
  queue_redraw()
 
 func tick(delta: float) -> void:
+ preload("res://scripts/visual/combat_visuals.gd").advance(battle,delta)
  environment.tick(delta)
+ telemetry.queue_redraw()
+ destruction.tick(delta)
  base_flash = maxf(0.0,base_flash-delta)
  for i in range(effects.size()-1,-1,-1):
   effects[i].age += delta
   if effects[i].age >= float(effects[i].duration):
    effects.remove_at(i)
+ queue_redraw()
+
+func tick_outro(delta: float) -> void:
+ telemetry.queue_redraw()
+ destruction.tick(delta)
+ for index in range(effects.size()-1,-1,-1):
+  effects[index].age += delta
+  if effects[index].age >= float(effects[index].duration):
+   effects.remove_at(index)
  queue_redraw()
 
 func text(at: Vector2, value: String, color: Color, font_size: int = 16) -> void:
@@ -104,23 +122,15 @@ func _draw() -> void:
    for direction in [Vector2(1,1),Vector2(1,-1)]:
     var offset: Vector2 = direction*float(item.radius)*(0.4+fraction)
     draw_line(item.point-offset,item.point+offset,Color(1,0.85,0.63,1-fraction),2*(1-fraction))
+ destruction.draw(self)
  var condition: Dictionary = battle.mission_data.get("environment",{})
  if condition.get("kind") == "dust":
   text(Vector2(38,167),"DUST: AUTOMATIC RANGE -13% / MANUAL CANNON UNAFFECTED",Color("e7c58c"),13)
  var warning: float = battle.environment_warning()
  if warning > 0:
   text(Vector2(280,190),"GRID SURGE IN %.1fs / MANUAL CANNON REMAINS ONLINE" % warning,Color("f7ad7a"),16)
- for enemy in battle.drones.get_children():
-  if not enemy.ended and enemy.brain != null and enemy.brain.boss:
-   var definition: Dictionary = CampaignManager.enemies[battle.mission_data.boss]
-   draw_rect(Rect2(250,174,470,84),Color(0.03,0.07,0.12,0.88))
-   text(Vector2(265,190),str(definition.name).to_upper()+" / "+str(enemy.brain.settings().name),enemy.tint,14)
-   text(Vector2(270,248),"SIEGE CAPACITOR: %.0fs • BREAK THE CORE" % maxf(0,float(enemy.brain.data.overload_after)-enemy.brain.elapsed),Color("ffad83"),14)
-   draw_rect(Rect2(270,200,430,10),Color("101d2a"))
-   draw_rect(Rect2(270,200,430*enemy.health/enemy.maximum_health,10),enemy.tint)
-   text(Vector2(270,230),"%.0f / %.0f HP • AIM AT CYAN CORE" % [enemy.health,enemy.maximum_health],Color("a9eeee"),13)
  if battle.build_mode:
   text(Vector2(42,550),"TACTICAL BUILD • 0.25x",Color("f6c777"),18)
- if battle.paused:
+ if battle.paused and not battle.finished:
   draw_rect(Rect2(0,88,950,560),Color(0.02,0.07,0.1,0.4))
   text(Vector2(440,350),"PAUSED",Color("e1eeee"),32)

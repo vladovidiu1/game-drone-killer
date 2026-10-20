@@ -1,6 +1,6 @@
 # G1 visual validation and native capture gallery
 
-This is the historical G1 report. G2 supersedes the environment portion with [illustrated environments for all 25 territories](ENVIRONMENTS.md) and [new native captures](environments/README.md). The G1 counts/images below remain the results of that earlier increment.
+This is the historical G1 report. G2 supersedes the environment portion with [illustrated environments for all 25 territories](ENVIRONMENTS.md) and [new native captures](environments/README.md). G3 also supersedes the shared unit art with [distinct drones, bosses and weapons](UNIT_VISUALS.md). The G1 counts/images and remaining-work list below remain historical results of that earlier increment.
 
 Godot 4.6.3 stable native import/startup and `./tests/run_checks.sh` completed with **4665 assertions and zero failures**. The runner isolated saves and rejected script errors, engine errors and ObjectDB leak warnings. The new visual suite contributes 245 resource, binding, transparency, theme, shader-state and effect-lifecycle checks.
 

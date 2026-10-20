@@ -22,3 +22,5 @@ Fonts are distributed unmodified with their original notices:
 The game loads local files only. No generation service, font CDN, account or API key is used at runtime.
 
 G2 adds three original terrain atlases and one original transparent prop atlas under the same generated-project-output terms described above. IDs and integration status are recorded in `source/environment_sources.json`, `source/GENERATION.md` and `manifest.json`. New environment JSON, shaders, SVG utility layers and generators are project-authored sources under the project's MIT license. No licensed third-party game environments were used.
+
+G3 adds five original transparent enemy/boss/weapon/component atlases under the same generated-project-output terms above. IDs and import/source dimensions are in `source/unit_sources.json`, `source/GENERATION.md` and the manifest. New GDScript presentation controllers and shader additions are project-authored code. No third-party drone, weapon or franchise designs were supplied as references.

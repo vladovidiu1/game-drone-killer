@@ -2,112 +2,275 @@
   "version": 1,
   "sprites": {
     "drone_scout": {
-      "file": "drones/combat_atlas.png",
-      "region": [
+      "file": "drones/line_atlas.png",
+      "source_region": [
         0,
         0,
         512,
-        435
+        480
+      ],
+      "region": [
+        0.0,
+        0.0,
+        256.0,
+        240.0
       ],
       "pivot": [
-        256,
-        230
+        125.0,
+        125.0
       ],
-      "scale": 0.14
+      "scale": 0.26,
+      "rotors": [
+        [
+          55.0,
+          70.0,
+          26.5
+        ],
+        [
+          192.0,
+          70.0,
+          26.5
+        ],
+        [
+          53.0,
+          172.5,
+          26.5
+        ],
+        [
+          193.0,
+          172.5,
+          26.5
+        ]
+      ]
     },
     "drone_assault": {
-      "file": "drones/combat_atlas.png",
-      "region": [
+      "file": "drones/line_atlas.png",
+      "source_region": [
         512,
         0,
         512,
-        435
+        480
+      ],
+      "region": [
+        256.0,
+        0.0,
+        256.0,
+        240.0
       ],
       "pivot": [
-        256,
-        230
+        128.0,
+        122.5
       ],
-      "scale": 0.14
+      "scale": 0.26,
+      "rotors": [
+        [
+          45.5,
+          97.0,
+          32.5
+        ],
+        [
+          210.0,
+          97.0,
+          32.5
+        ]
+      ]
     },
     "drone_heavy": {
-      "file": "drones/combat_atlas.png",
-      "region": [
+      "file": "drones/line_atlas.png",
+      "source_region": [
         1024,
         0,
         512,
-        435
+        480
+      ],
+      "region": [
+        512.0,
+        0.0,
+        256.0,
+        240.0
       ],
       "pivot": [
-        256,
-        230
+        135.0,
+        120.0
       ],
-      "scale": 0.14
+      "scale": 0.26,
+      "rotors": [
+        [
+          92.0,
+          36.5,
+          22.0
+        ],
+        [
+          183.5,
+          36.5,
+          22.0
+        ],
+        [
+          50.0,
+          109.0,
+          22.5
+        ],
+        [
+          224.0,
+          110.0,
+          22.5
+        ],
+        [
+          85.0,
+          187.5,
+          23.0
+        ],
+        [
+          189.0,
+          187.0,
+          23.0
+        ]
+      ]
     },
     "gun_machine": {
-      "file": "drones/combat_atlas.png",
-      "region": [
+      "file": "turrets/weapons_atlas.png",
+      "source_region": [
         0,
-        500,
+        0,
         512,
-        524
+        512
+      ],
+      "region": [
+        0.0,
+        0.0,
+        256.0,
+        256.0
       ],
       "pivot": [
-        256,
-        350
+        132.5,
+        189.0
       ],
-      "scale": 0.12
+      "scale": 0.2,
+      "weapon": true,
+      "recoil": 1.8,
+      "muzzle_forward": 29,
+      "muzzle_lateral": 6
     },
     "gun_cannon": {
-      "file": "drones/combat_atlas.png",
+      "file": "turrets/weapons_atlas.png",
+      "source_region": [
+        512,
+        0,
+        512,
+        512
+      ],
       "region": [
-        512,
-        435,
-        512,
-        589
+        256.0,
+        0.0,
+        256.0,
+        256.0
       ],
       "pivot": [
-        256,
-        425
+        128.0,
+        188.5
       ],
-      "scale": 0.08
+      "scale": 0.2,
+      "weapon": true,
+      "recoil": 4.0,
+      "muzzle_forward": 32,
+      "muzzle_lateral": 0
     },
     "gun_primary": {
-      "file": "drones/combat_atlas.png",
+      "file": "turrets/sentinel_atlas.png",
+      "source_region": [
+        100,
+        330,
+        380,
+        240
+      ],
       "region": [
-        1024,
-        435,
-        512,
-        589
+        50.0,
+        165.0,
+        190.0,
+        120.0
       ],
       "pivot": [
-        256,
-        425
+        93.5,
+        52.5
       ],
-      "scale": 0.086
+      "scale": 0.184,
+      "weapon": true,
+      "recoil": 5.0,
+      "scale_x": 0.36,
+      "muzzle_forward": 38,
+      "muzzle_lateral": 9
     },
     "gun_missile": {
-      "file": "turrets/missile_head.svg",
-      "pivot": [
-        64,
-        79
+      "file": "turrets/weapons_atlas.png",
+      "source_region": [
+        1024,
+        0,
+        512,
+        496
       ],
-      "scale": 0.54
+      "region": [
+        512.0,
+        0.0,
+        256.0,
+        248.0
+      ],
+      "pivot": [
+        128.0,
+        177.5
+      ],
+      "scale": 0.2,
+      "weapon": true,
+      "recoil": 2.0,
+      "muzzle_forward": 18,
+      "muzzle_lateral": 12
     },
     "gun_laser": {
-      "file": "turrets/laser_head.svg",
-      "pivot": [
-        64,
-        79
+      "file": "turrets/weapons_atlas.png",
+      "source_region": [
+        0,
+        512,
+        512,
+        512
       ],
-      "scale": 0.54
+      "region": [
+        0.0,
+        256.0,
+        256.0,
+        256.0
+      ],
+      "pivot": [
+        132.5,
+        169.0
+      ],
+      "scale": 0.2,
+      "weapon": true,
+      "recoil": 0.2,
+      "muzzle_forward": 30,
+      "muzzle_lateral": 0
     },
     "gun_emp": {
-      "file": "turrets/emp_head.svg",
-      "pivot": [
-        64,
-        79
+      "file": "turrets/weapons_atlas.png",
+      "source_region": [
+        512,
+        512,
+        512,
+        512
       ],
-      "scale": 0.54
+      "region": [
+        256.0,
+        256.0,
+        256.0,
+        256.0
+      ],
+      "pivot": [
+        128.0,
+        151.0
+      ],
+      "scale": 0.2,
+      "weapon": true,
+      "recoil": 0.1,
+      "muzzle_forward": 24,
+      "muzzle_lateral": 0
     },
     "command_bunker": {
       "file": "environment/command_bunker.png",
@@ -311,17 +474,756 @@
         256,
         256
       ]
+    },
+    "drone_shield": {
+      "file": "drones/line_atlas.png",
+      "source_region": [
+        0,
+        480,
+        512,
+        544
+      ],
+      "region": [
+        0.0,
+        240.0,
+        256.0,
+        272.0
+      ],
+      "pivot": [
+        126.5,
+        131.5
+      ],
+      "scale": 0.26,
+      "rotors": [
+        [
+          125.5,
+          51.0,
+          34.5
+        ],
+        [
+          55.0,
+          169.5,
+          35.5
+        ],
+        [
+          198.0,
+          169.5,
+          35.5
+        ]
+      ]
+    },
+    "drone_emp": {
+      "file": "drones/line_atlas.png",
+      "source_region": [
+        512,
+        480,
+        512,
+        544
+      ],
+      "region": [
+        256.0,
+        240.0,
+        256.0,
+        272.0
+      ],
+      "pivot": [
+        128.0,
+        140.0
+      ],
+      "scale": 0.26,
+      "rotors": [
+        [
+          48.0,
+          135.5,
+          28.5
+        ],
+        [
+          208.5,
+          136.0,
+          28.5
+        ]
+      ]
+    },
+    "drone_bomber": {
+      "file": "drones/line_atlas.png",
+      "source_region": [
+        1024,
+        480,
+        512,
+        544
+      ],
+      "region": [
+        512.0,
+        240.0,
+        256.0,
+        272.0
+      ],
+      "pivot": [
+        128.0,
+        130.0
+      ],
+      "scale": 0.26,
+      "rotors": [
+        [
+          55.5,
+          54.0,
+          26.5
+        ],
+        [
+          206.5,
+          54.0,
+          26.5
+        ],
+        [
+          45.5,
+          178.5,
+          28.5
+        ],
+        [
+          213.0,
+          179.5,
+          28.5
+        ]
+      ]
+    },
+    "drone_sniper": {
+      "file": "drones/specialists_atlas.png",
+      "source_region": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "region": [
+        0.0,
+        0.0,
+        256.0,
+        256.0
+      ],
+      "pivot": [
+        128.0,
+        140.0
+      ],
+      "scale": 0.26,
+      "facing": 3.141592653589793,
+      "rotors": [
+        [
+          89.0,
+          126.0,
+          13.0
+        ],
+        [
+          168.5,
+          126.0,
+          13.0
+        ],
+        [
+          89.0,
+          203.0,
+          13.0
+        ],
+        [
+          168.5,
+          203.0,
+          13.0
+        ]
+      ]
+    },
+    "drone_carrier": {
+      "file": "drones/specialists_atlas.png",
+      "source_region": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "region": [
+        256.0,
+        0.0,
+        256.0,
+        256.0
+      ],
+      "pivot": [
+        128.0,
+        135.0
+      ],
+      "scale": 0.26,
+      "rotors": [
+        [
+          28.0,
+          75.0,
+          20.5
+        ],
+        [
+          28.0,
+          148.0,
+          20.5
+        ],
+        [
+          28.0,
+          217.0,
+          20.5
+        ],
+        [
+          228.0,
+          75.0,
+          20.5
+        ],
+        [
+          228.0,
+          148.0,
+          20.5
+        ],
+        [
+          228.0,
+          217.0,
+          20.5
+        ]
+      ]
+    },
+    "drone_stealth": {
+      "file": "drones/specialists_atlas.png",
+      "source_region": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "region": [
+        512.0,
+        0.0,
+        256.0,
+        256.0
+      ],
+      "pivot": [
+        128.0,
+        150.0
+      ],
+      "scale": 0.26,
+      "facing": 3.141592653589793,
+      "engines": [
+        [
+          106.0,
+          222.0,
+          17.5
+        ],
+        [
+          151.0,
+          222.0,
+          17.5
+        ]
+      ]
+    },
+    "rotor_blade": {
+      "file": "drones/specialists_atlas.png",
+      "source_region": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "region": [
+        0.0,
+        256.0,
+        256.0,
+        256.0
+      ],
+      "pivot": [
+        125.5,
+        133.5
+      ],
+      "scale": 0.26
+    },
+    "jet_exhaust": {
+      "file": "drones/specialists_atlas.png",
+      "source_region": [
+        612,
+        564,
+        310,
+        420
+      ],
+      "region": [
+        306.0,
+        282.0,
+        155.0,
+        210.0
+      ],
+      "pivot": [
+        77.5,
+        10.0
+      ],
+      "scale": 0.26
+    },
+    "wreck_fragment": {
+      "file": "drones/specialists_atlas.png",
+      "source_region": [
+        1040,
+        544,
+        496,
+        480
+      ],
+      "region": [
+        520.0,
+        272.0,
+        248.0,
+        240.0
+      ],
+      "pivot": [
+        124.0,
+        120.0
+      ],
+      "scale": 0.26
+    },
+    "boss_assault_carrier": {
+      "file": "drones/bosses_atlas.png",
+      "source_region": [
+        0,
+        0,
+        544,
+        480
+      ],
+      "region": [
+        0.0,
+        0.0,
+        272.0,
+        240.0
+      ],
+      "pivot": [
+        137.0,
+        132.0
+      ],
+      "scale": 0.3,
+      "rotors": [
+        [
+          71.5,
+          58.0,
+          16.0
+        ],
+        [
+          201.0,
+          58.0,
+          16.0
+        ],
+        [
+          71.5,
+          178.5,
+          16.5
+        ],
+        [
+          200.5,
+          178.5,
+          16.5
+        ]
+      ],
+      "weapons": [
+        [
+          35.0,
+          134.5,
+          19.0
+        ],
+        [
+          237.0,
+          134.5,
+          19.0
+        ]
+      ],
+      "boss": true
+    },
+    "boss_emp_warship": {
+      "file": "drones/bosses_atlas.png",
+      "source_region": [
+        570,
+        0,
+        454,
+        480
+      ],
+      "region": [
+        285.0,
+        0.0,
+        227.0,
+        240.0
+      ],
+      "pivot": [
+        99.0,
+        126.5
+      ],
+      "scale": 0.3,
+      "engines": [
+        [
+          50.0,
+          209.5,
+          21.5
+        ],
+        [
+          126.5,
+          209.5,
+          21.5
+        ]
+      ],
+      "weapons": [
+        [
+          41.0,
+          127.5,
+          14.5
+        ],
+        [
+          152.5,
+          127.5,
+          14.5
+        ]
+      ],
+      "boss": true
+    },
+    "boss_border_guardian": {
+      "file": "drones/bosses_atlas.png",
+      "source_region": [
+        1030,
+        0,
+        506,
+        480
+      ],
+      "region": [
+        515.0,
+        0.0,
+        253.0,
+        240.0
+      ],
+      "pivot": [
+        125.0,
+        144.5
+      ],
+      "scale": 0.3,
+      "rotors": [
+        [
+          77.0,
+          51.5,
+          15.5
+        ],
+        [
+          173.5,
+          51.5,
+          15.5
+        ],
+        [
+          58.0,
+          168.0,
+          15.5
+        ],
+        [
+          188.0,
+          168.0,
+          15.5
+        ],
+        [
+          85.5,
+          200.5,
+          15.5
+        ],
+        [
+          163.5,
+          200.5,
+          15.5
+        ]
+      ],
+      "weapons": [
+        [
+          32.5,
+          123.5,
+          22.5
+        ],
+        [
+          223.0,
+          123.5,
+          22.5
+        ]
+      ],
+      "boss": true
+    },
+    "boss_factory_ship": {
+      "file": "drones/bosses_atlas.png",
+      "source_region": [
+        0,
+        480,
+        512,
+        544
+      ],
+      "region": [
+        0.0,
+        240.0,
+        256.0,
+        272.0
+      ],
+      "pivot": [
+        128.0,
+        145.5
+      ],
+      "scale": 0.3,
+      "rotors": [
+        [
+          36.0,
+          53.0,
+          17.0
+        ],
+        [
+          233.0,
+          53.0,
+          17.0
+        ],
+        [
+          30.0,
+          201.0,
+          17.5
+        ],
+        [
+          235.0,
+          201.0,
+          17.5
+        ]
+      ],
+      "weapons": [
+        [
+          60.0,
+          119.5,
+          12.5
+        ],
+        [
+          203.5,
+          119.5,
+          12.5
+        ]
+      ],
+      "boss": true
+    },
+    "boss_hive_core": {
+      "file": "drones/bosses_atlas.png",
+      "source_region": [
+        512,
+        480,
+        536,
+        544
+      ],
+      "region": [
+        256.0,
+        240.0,
+        268.0,
+        272.0
+      ],
+      "pivot": [
+        133.0,
+        82.5
+      ],
+      "scale": 0.3,
+      "rotors": [
+        [
+          58.5,
+          58.5,
+          16.0
+        ],
+        [
+          198.0,
+          58.5,
+          16.0
+        ],
+        [
+          20.0,
+          115.0,
+          17.0
+        ],
+        [
+          238.0,
+          115.0,
+          17.0
+        ],
+        [
+          59.0,
+          192.0,
+          17.0
+        ],
+        [
+          200.5,
+          192.0,
+          17.0
+        ]
+      ],
+      "weapons": [
+        [
+          59.0,
+          109.0,
+          17.5
+        ],
+        [
+          205.0,
+          109.0,
+          17.5
+        ]
+      ],
+      "boss": true
+    },
+    "boss_gun": {
+      "file": "drones/bosses_atlas.png",
+      "source_region": [
+        1080,
+        480,
+        456,
+        544
+      ],
+      "region": [
+        540.0,
+        240.0,
+        228.0,
+        272.0
+      ],
+      "pivot": [
+        99.5,
+        185.0
+      ],
+      "scale": 0.26
+    },
+    "gun_heavy_aa": {
+      "file": "turrets/weapons_atlas.png",
+      "source_region": [
+        1024,
+        496,
+        512,
+        528
+      ],
+      "region": [
+        512.0,
+        248.0,
+        256.0,
+        264.0
+      ],
+      "pivot": [
+        128.0,
+        199.5
+      ],
+      "scale": 0.2,
+      "weapon": true,
+      "recoil": 5.0,
+      "muzzle_forward": 39,
+      "muzzle_lateral": 5
+    },
+    "primary_barrels": {
+      "file": "turrets/sentinel_atlas.png",
+      "source_region": [
+        1134,
+        0,
+        310,
+        422
+      ],
+      "region": [
+        567.0,
+        0.0,
+        155.0,
+        211.0
+      ],
+      "pivot": [
+        62.5,
+        217.5
+      ],
+      "scale": 0.26
+    },
+    "primary_base": {
+      "file": "turrets/sentinel_atlas.png",
+      "source_region": [
+        512,
+        80,
+        520,
+        480
+      ],
+      "region": [
+        256.0,
+        40.0,
+        260.0,
+        240.0
+      ],
+      "pivot": [
+        130.0,
+        120.0
+      ],
+      "scale": 0.26
+    },
+    "secondary_base": {
+      "file": "turrets/sentinel_atlas.png",
+      "source_region": [
+        64,
+        576,
+        448,
+        416
+      ],
+      "region": [
+        32.0,
+        288.0,
+        224.0,
+        208.0
+      ],
+      "pivot": [
+        112.0,
+        104.0
+      ],
+      "scale": 0.26
+    },
+    "upgrade_collar": {
+      "file": "turrets/sentinel_atlas.png",
+      "source_region": [
+        520,
+        560,
+        500,
+        440
+      ],
+      "region": [
+        260.0,
+        280.0,
+        250.0,
+        220.0
+      ],
+      "pivot": [
+        125.0,
+        110.0
+      ],
+      "scale": 0.26
+    },
+    "magazine_cassette": {
+      "file": "turrets/sentinel_atlas.png",
+      "source_region": [
+        1080,
+        560,
+        400,
+        440
+      ],
+      "region": [
+        540.0,
+        280.0,
+        200.0,
+        220.0
+      ],
+      "pivot": [
+        100.0,
+        110.0
+      ],
+      "scale": 0.26
     }
   },
   "enemy_aliases": {
     "Scout Drone": "drone_scout",
     "Assault Drone": "drone_assault",
-    "Heavy Drone": "drone_heavy"
+    "Heavy Drone": "drone_heavy",
+    "Shield Drone": "drone_shield",
+    "EMP Drone": "drone_emp",
+    "Bomber Drone": "drone_bomber",
+    "Sniper Drone": "drone_sniper",
+    "Carrier Drone": "drone_carrier",
+    "Stealth Drone": "drone_stealth",
+    "Heavy Assault Carrier": "boss_assault_carrier",
+    "EMP Warship": "boss_emp_warship",
+    "Armored Border Guardian": "boss_border_guardian",
+    "Drone Factory Command Ship": "boss_factory_ship",
+    "The Hive Core": "boss_hive_core"
   },
   "turret_aliases": {
     "machine_gun": "gun_machine",
     "cannon": "gun_cannon",
-    "heavy_aa": "gun_primary",
+    "heavy_aa": "gun_heavy_aa",
     "missile": "gun_missile",
     "laser": "gun_laser",
     "emp_tower": "gun_emp"

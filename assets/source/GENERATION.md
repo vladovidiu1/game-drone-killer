@@ -32,3 +32,19 @@ Four original image-generation requests supplied the new environment sources. Th
 The PNG sources were copied unmodified from image-generation outputs. Regions are bound using Godot AtlasTexture; no script removes backgrounds, paints pixels or composites the screenshots. The prop sheet was explicitly generated with transparency and its alpha was checked. The prop perspective is somewhat steeper than the terrain plate; supplemental props are kept small and require final perspective/scale review. Detailed terrain includes prepainted shadows; runtime grading is deliberately limited instead of pretending to relight baked artwork physically.
 
 The warm/cool grading shader, light pools, searchlight cones, smoke wisps, contact shadows and raised emplacement decks are locally authored editable CanvasItem/SVG presentation resources. They are utility lighting/detail layers, not represented as commissioned raster paintings. Their source generators and provenance are listed in the manifest. Native screenshots in `docs/environments` come directly from Godot's viewport with real waves and projectiles; they are not generated game screenshots.
+
+## G3 unit generation — 2026-10-20
+
+Five original transparent 1536×1024 outputs were requested as 3×2 isolated object atlases: near-overhead orthographic military sci-fi, physically plausible weathered steel, upper-left diffuse light, mechanical components, red hostile or cyan friendly lamps, no UI/text/logos and no third-party references. These are original generated candidates under the same applicable OpenAI terms noted above. No generation service or account is used by the shipped game.
+
+| File | Output | Content |
+| --- | --- | --- |
+| `drones/line_atlas.png` | `exec-a08514a4-9625-4b33-a036-b9999c1d43f7` | Six unique line/support drone bodies |
+| `drones/specialists_atlas.png` | `exec-b8907fc4-a8e7-42cd-9476-72d93af8c93a` | Sniper, Carrier, Stealth, rotor, exhaust and debris |
+| `drones/bosses_atlas.png` | `exec-24d33cd7-e310-42bf-b7fa-68389e59f1c0` | Five unique chapter bosses and detachable gun |
+| `turrets/weapons_atlas.png` | `exec-f8ccb52e-d815-4998-bcd1-53a773d13a13` | Six distinct automatic rotating weapon heads |
+| `turrets/sentinel_atlas.png` | `exec-2db81b9b-996e-40c8-a8d5-557e55e0e5b8` | Primary cannon breech/barrels, fixed bearings, armor and magazine |
+
+PNG pixels were copied unmodified from generation output. Godot's standard texture importer intentionally downsizes these sources to 768×512 with mipmaps for mobile; this is recorded separately from source resolution. AtlasTexture regions isolate each object and the primary's breech/barrels. Generated padding is not uniform; measured source rectangles and pivots are checked in. Body materials and simulation-driven transforms supply damage, hovering, rotors, mechanical reload/recoil and armor opening; no raster animation frames are claimed. Camera angle/padding/part alignment still benefit from final art-direction review. Old G1 shared bodies and SVG heads remain reference sources and are not active enemy/weapon bindings.
+
+All unit source IDs, import dimensions and status are machine-readable in `assets/source/unit_sources.json`. `tools/build_unit_catalog.py` rebuilds bindings and metadata only; it never changes gameplay or paints raster pixels. Captures in `docs/units` are real Godot viewport frames, with controlled visual fixtures labeled as such; they are not generated images of the game.

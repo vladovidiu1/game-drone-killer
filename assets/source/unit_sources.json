@@ -1,0 +1,52 @@
+{
+  "drones/line_atlas.png": {
+    "output": "exec-a08514a4-9625-4b33-a036-b9999c1d43f7",
+    "purpose": "Scout, Assault, Heavy, Shield, EMP and Bomber",
+    "panels": 6,
+    "import_dimensions": [
+      768,
+      512
+    ],
+    "status": "Integrated original G3 generated candidate; native animation review; final art approval pending"
+  },
+  "drones/specialists_atlas.png": {
+    "output": "exec-b8907fc4-a8e7-42cd-9476-72d93af8c93a",
+    "purpose": "Sniper, Carrier, Stealth and isolated rotor/exhaust/debris",
+    "panels": 6,
+    "import_dimensions": [
+      768,
+      512
+    ],
+    "status": "Integrated original G3 generated candidate; native animation review; final art approval pending"
+  },
+  "drones/bosses_atlas.png": {
+    "output": "exec-24d33cd7-e310-42bf-b7fa-68389e59f1c0",
+    "purpose": "Five unique chapter bosses and articulated cannon module",
+    "panels": 6,
+    "import_dimensions": [
+      768,
+      512
+    ],
+    "status": "Integrated original G3 generated candidate; native animation review; final art approval pending"
+  },
+  "turrets/weapons_atlas.png": {
+    "output": "exec-f8ccb52e-d815-4998-bcd1-53a773d13a13",
+    "purpose": "Six distinct automatic weapon heads",
+    "panels": 6,
+    "import_dimensions": [
+      768,
+      512
+    ],
+    "status": "Integrated original G3 generated candidate; native animation review; final art approval pending"
+  },
+  "turrets/sentinel_atlas.png": {
+    "output": "exec-2db81b9b-996e-40c8-a8d5-557e55e0e5b8",
+    "purpose": "Sentinel primary breech/barrels, two bases, armor and autoloader",
+    "panels": 6,
+    "import_dimensions": [
+      768,
+      512
+    ],
+    "status": "Integrated original G3 generated candidate; native animation review; final art approval pending"
+  }
+}

@@ -40,7 +40,7 @@
 - `scripts/visual/unit_visual.gd` receives presentation state only. Do not move damage, targeting, input ownership or timers into artwork code. Visual state must never alter collision or stat tuning.
 - Keep Compatibility-safe shaders, local fonts and license notices, PNG transparency and tracked `.import` settings. Review actual rendered output; do not call a headless dummy-renderer run visual validation.
 - Preserve uniform battlefield scale across aspect ratios and native safe-area UI. Run visual-resource checks with the full suite; use `tests/visual_capture.tscn` with a real display/renderer and isolated data for native captures.
-- Shared drone silhouettes, SVG support heads remain explicitly interim until their dedicated art is approved. Document replacements instead of presenting them as finished unique artwork.
+- G3 replaces shared drone/boss silhouettes and interim SVG heads with dedicated original raster bindings. The old G1 sources are reference-only. Document generated-candidate status and any remaining art refinements honestly.
 
 ## Environment presentation
 
@@ -49,3 +49,11 @@
 - Clip decor/atmosphere to `(0,88,955,560)` beneath actors and HUD; keep Controls mouse-ignoring. Enforce slot/path/base/water exclusions for tall props.
 - All environment animation consumes `battle_view.tick` simulation time. Preserve reduced-effects settings validation and the static-terrain fallback.
 - Run environment tests/fresh-process settings verification with the full suite, and inspect real native captures after environment changes. Gallery PNGs are documentation, excluded from Godot import.
+
+## G3 unit presentation
+
+- Follow `docs/UNIT_VISUALS.md`. All animation receives the shared simulated delta through `combat_visuals.gd`/`battle_view.tick`; keep UnitVisual free of targeting, damage, firing, save writes and independent processing.
+- Preserve the five G3 atlases' 768px mobile import limit. Catalog regions/pivots use imported coordinates; `source_region` retains the original 1536×1024 coordinates. Rebuild with `tools/build_unit_catalog.py` and regenerate the manifest after source changes.
+- Fixed bearings, rotating heads, sliding primary barrels and boss armor are visual-only. Keep the actual manual angle, projectile origin/collision, boss weakpoint and controller positions unchanged.
+- Detached destruction snapshots have no enemy references/physics and stay capped at 12. Terminal boss outros start only after the existing result transaction succeeds; they must never re-award outcomes or resume combat. Preserve Continue/Esc/Android Back skip.
+- Run `tests/unit_visuals.tscn` through the full runner, and `tests/run_native_capture.sh` with a real display for all-archetype render checks. Label staged visual fixtures; distinguish them from full campaign combat and Android performance measurements.

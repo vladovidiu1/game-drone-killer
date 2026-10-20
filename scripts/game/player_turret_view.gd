@@ -12,13 +12,9 @@ func _draw() -> void:
  if cannon.definition.is_empty():
   return
  var tint := Color(str(cannon.ammunition().color))
- draw_texture_rect(ASSETS.texture("turrets/placement_pad.svg"),Rect2(-38,-38,76,76),false)
  if is_instance_valid(art):
   art.sync(cannon.barrel_angle+PI/2,0.0,false,false,cannon.recoil)
- draw_set_transform(Vector2.ZERO,cannon.barrel_angle)
- if cannon.muzzle_flash > 0:
-  draw_texture_rect(ASSETS.texture("effects/muzzle_flash.svg"),Rect2(33,-15,47,30),false,Color(1,1,1,cannon.muzzle_flash/0.065))
- draw_set_transform(Vector2.ZERO)
+ preload("res://scripts/visual/weapon_effects.gd").flash(self,"primary",cannon.barrel_angle,clampf(cannon.muzzle_flash/.065,0,1),tint)
  # Crosshair belongs to the player cannon, independent of turret selection.
  var crosshair: Vector2 = cannon.aim_point-cannon.position
  var color := (Color("ff6c7e") if cannon.last_critical else Color("fff1a0")) if cannon.hit_confirm > 0 else tint

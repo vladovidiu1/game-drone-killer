@@ -8,6 +8,7 @@ var battle: Node2D
 var screen := ""
 var hud: Control
 var result_data: Dictionary = {}
+var outro: Control
 
 func _ready() -> void:
  theme = UI.theme()
@@ -45,6 +46,9 @@ func _resize() -> void:
   battle.position = (size-Vector2(1280,720)*battle.scale)*0.5
 
 func _clear(next: String) -> void:
+ if is_instance_valid(outro):
+  outro.queue_free()
+  outro = null
  screen = next
  background.set_screen(next)
  for child in content.get_children():
@@ -273,6 +277,19 @@ func _results(victory: bool, stats: Dictionary, id: int, token: String) -> void:
  _show_results.call_deferred(victory,int(outcome.reward),result_data)
 
 func _show_results(victory: bool, reward: int, stats: Dictionary) -> void:
+ if victory and is_instance_valid(battle) and battle.finished and not battle.view.destruction.wrecks.is_empty():
+  var has_boss := false
+  for wreck in battle.view.destruction.wrecks:
+   has_boss = has_boss or bool(wreck.boss)
+  if has_boss:
+   screen = "debrief"
+   if is_instance_valid(hud):
+    hud.pause_button.visible = false
+    hud.speed_button.visible = false
+   outro = preload("res://scripts/ui/combat_outro.gd").new()
+   add_child(outro)
+   outro.setup(battle.view)
+   await outro.completed
  _clear("results")
  var col := _column()
  var outcome: Dictionary = stats.campaign
@@ -306,6 +323,9 @@ func _show_results(victory: bool, reward: int, stats: Dictionary) -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
  if event.is_action_pressed("ui_cancel"):
+  if screen == "debrief" and is_instance_valid(outro):
+   outro.finish()
+   return
   if screen == "game":
    _pause()
   else:
@@ -313,6 +333,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _notification(what: int) -> void:
  if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+  if screen == "debrief" and is_instance_valid(outro):
+   outro.finish()
+   return
   if screen == "game":
    _pause()
   else:

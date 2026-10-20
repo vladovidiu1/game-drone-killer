@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-20",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "checks": 5983,
+  "failures": 0,
+  "suites": [
+    {
+      "suite": "COMBAT",
+      "checks": 40,
+      "failures": 0
+    },
+    {
+      "suite": "HYBRID",
+      "checks": 55,
+      "failures": 0
+    },
+    {
+      "suite": "SMOKE",
+      "checks": 42,
+      "failures": 0
+    },
+    {
+      "suite": "SMOKE",
+      "checks": 4,
+      "failures": 0
+    },
+    {
+      "suite": "SAVE/RULES",
+      "checks": 38,
+      "failures": 0
+    },
+    {
+      "suite": "CAMPAIGN",
+      "checks": 43,
+      "failures": 0
+    },
+    {
+      "suite": "CAMPAIGN",
+      "checks": 5,
+      "failures": 0
+    },
+    {
+      "suite": "RESEARCH",
+      "checks": 186,
+      "failures": 0
+    },
+    {
+      "suite": "RESEARCH",
+      "checks": 4,
+      "failures": 0
+    },
+    {
+      "suite": "VISUAL FOUNDATION",
+      "checks": 390,
+      "failures": 0
+    },
+    {
+      "suite": "UNIT VISUALS",
+      "checks": 195,
+      "failures": 0
+    },
+    {
+      "suite": "ENVIRONMENTS",
+      "checks": 976,
+      "failures": 0
+    },
+    {
+      "suite": "ENVIRONMENTS",
+      "checks": 2,
+      "failures": 0
+    },
+    {
+      "suite": "CATALOG",
+      "checks": 3689,
+      "failures": 0
+    },
+    {
+      "suite": "ENEMY AI",
+      "checks": 88,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "checks": 184,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "checks": 31,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "checks": 11,
+      "failures": 0
+    }
+  ],
+  "combat_records_unchanged": 30,
+  "unchanged_gameplay_sha256": {
+    "data/definitions.json": "cf9c3d814b3063a4b132e76be7b5084e75e8585b91bae493608503f9fb749716",
+    "data/progression.json": "86ecd0d8d1509bf086abd43d6872761649373934fdca0b6a4696202af1db8bae",
+    "scripts/game/enemy_brain.gd": "b0eea4c32d3c05abeedf2312632f4700ac48bee9e8dac6e0ae94b6185ecff0ac",
+    "scripts/game/player_turret.gd": "24204cfe4cc118bc3915f64fb9191cf44b580547eedb8d27a4d8b51a98c69343"
+  },
+  "native_renderer": "X11 / OpenGL 4.5 Compatibility / Mesa llvmpipe 25.0.7",
+  "fixture_captures": 27,
+  "normal_wave_captures": 5,
+  "draw_calls_min": 19.0,
+  "draw_calls_max": 192.0,
+  "physical_android_tested": false,
+  "estimated_unit_gpu_mib": 10,
+  "visual_manifest_sha256": "64e4f53d4b021cfc06529d65c589728b64ddda3ff03d7d1bc06ae2e7598236f8"
+}

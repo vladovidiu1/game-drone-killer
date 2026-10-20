@@ -226,10 +226,16 @@ The project is configured for landscape Android and Compatibility rendering, but
 
 ## Intentionally unfinished
 
-All 25 missions and the campaign finale are implemented. Final human difficulty tuning, authored production art/music, selling/relocating defenses, full accessibility/localization, signed Android exports, device profiling and release packaging remain future work. G1/G2 artwork is integrated candidate art. All 25 missions now use the illustrated environment library; unique support/boss art, further environment refinements and final art approval remain outstanding. Generated audio remains a development asset. No APK is included; this source project opens directly in Godot.
+All 25 missions and the campaign finale are implemented. Final human difficulty tuning, authored production art/music, selling/relocating defenses, full accessibility/localization, signed Android exports, device profiling and release packaging remain future work. G1/G2/G3 artwork is integrated candidate art. All 25 missions now use the illustrated environment library; further artist refinements and final art approval remain outstanding. G3 now supplies distinct support/boss/weapon bodies for all archetypes. Generated audio remains a development asset. No APK is included; this source project opens directly in Godot.
 
 ## G2 battlefield environments
 
 All 25 missions now use 13 illustrated terrain kits with layered props and day, sunset, night, storm or smoke atmosphere. The first five have distinct outpost, village, depot, bridge and urban layouts. Existing routes, placement slots, spawns and combat rules remain unchanged. Settings → **Reduced environment effects** disables animated rain/haze/embers/searchlight sweeps on the next deployment while keeping terrain and defense readability.
 
 See [environment architecture, performance budgets and asset replacement specifications](docs/ENVIRONMENTS.md), [native gameplay gallery](docs/environments/README.md), and [VISUAL_STYLE.md](VISUAL_STYLE.md). Run `tests/environment_capture.tscn` with a real display and isolated saves for native captures; the normal headless suite includes all 25 environment/resource/clearance and preference-persistence checks. Physical Android profiling remains required.
+
+## G3 drone and weapon visuals
+
+All nine drones, five bosses, six automatic weapons and the primary cannon now have distinct detailed raster artwork. Shared presentation components animate propulsion, hovering, damage, boss armor, recoil, reload/autoloader and cosmetic heat; real upgrade/research snapshots add armor. Enemy removal/rewards stay immediate. A skippable terminal boss destruction sequence appears after the campaign result has been saved.
+
+See [art/animation architecture and budgets](docs/UNIT_VISUALS.md), [native gallery and validation](docs/units/README.md), and source bindings in `assets/visual_catalog.json`. `./tests/run_native_capture.sh /tmp/frontline-g3-captures` exercises every archetype using labeled native gameplay fixtures and rejects engine errors. Godot imports the five full-resolution G3 atlases at half size for mobile; keep their tracked import settings. Physical Android profiling and final art approval remain separate work.

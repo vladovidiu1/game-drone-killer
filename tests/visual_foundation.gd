@@ -28,7 +28,8 @@ func run() -> void:
   check(texture != null and texture.get_width() > 0 and texture.get_height() > 0,"Sprite binding loads: "+str(id))
   if texture is AtlasTexture:
    check(Rect2(Vector2.ZERO,texture.atlas.get_size()).encloses(texture.region) and texture.filter_clip,"Atlas region stays within its shared source")
- check(ASSETS.sprite("drone_scout").atlas == ASSETS.sprite("gun_cannon").atlas,"Drone/weapon frames share the single GPU atlas")
+ check(ASSETS.sprite("drone_scout").atlas == ASSETS.sprite("drone_heavy").atlas,"Standard drones share the new GPU atlas")
+ check(ASSETS.sprite("gun_machine").atlas == ASSETS.sprite("gun_cannon").atlas,"Automatic weapon heads share their dedicated GPU atlas")
  for index in 6:
   var frame := ASSETS.explosion_frame(index)
   check(frame.get_width() == 512 and frame.get_height() == 512,"Explosion uses six correctly sliced frames")

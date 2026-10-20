@@ -176,6 +176,7 @@ func _destroyed(reward: int, enemy: Node2D) -> void:
  kills += 1
  credits += reward
  earned += reward
+ view.destruction.snapshot(enemy)
  view.effect(enemy.position,"blast",32,enemy.tint)
  status_changed.emit()
 

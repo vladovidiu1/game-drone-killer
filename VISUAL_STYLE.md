@@ -1,4 +1,6 @@
-# DRONE KILLER: FRONTLINE — visual foundation G1 / environments G2
+# DRONE KILLER: FRONTLINE — G1 / environments G2 / units G3
+
+G3 adds [distinct unit artwork and reusable combat animation](docs/UNIT_VISUALS.md) for all 14 enemies and 7 weapons. See [native G3 captures and validation](docs/units/README.md).
 
 G2 extends the existing foundation with [13 reusable battlefield kits, 5 atmosphere profiles and all 25 mission bindings](docs/ENVIRONMENTS.md). The native G2 gallery is in [docs/environments](docs/environments/README.md).
 
@@ -32,8 +34,8 @@ PNG unit art is prelit. Its highlights rotate with the 2D sprite; it is a baked-
 ```
 assets/
   environment/   terrain atlases, props, atmosphere vectors and command bunker
-  drones/        shared six-object rendered combat atlas
-  turrets/       placement pad and editable support-weapon SVGs
+  drones/        G3 line/specialist/boss atlases; G1 sheet retained as reference
+  turrets/       G3 weapon/primary modular atlases; pads and legacy SVG references
   projectiles/   tracer and missile sprites
   effects/       six-frame explosion, soft shadow and muzzle flash
   ui/            theme, button surfaces, badge, icons, bundled fonts
@@ -46,7 +48,7 @@ assets/
 
 `manifest.json` records each asset filename, purpose, dimensions, frames, art direction, source, license, integration status and SHA-256. `scripts/visual/visual_assets.gd` caches textures and AtlasTexture regions. `unit_visual.gd` composes shadow/body sprites and receives visual state from the existing controllers; it never acquires a target, fires, deals damage or advances simulation time. Sprite material instances keep hit/cloak/suppression state independent.
 
-The six-object source sheet has non-ideal generated padding. `visual_catalog.json` stores explicit regions, image-space breech pivots and scale. Turret art points up in the source; presentation adds `PI/2` to the existing +X barrel rotation. Manual recoil uses the existing simulated value. All six automatic weapon types have bindings. Shield/EMP/Bomber/Sniper/Carrier/Stealth and bosses currently reuse a base drone silhouette plus their existing semantic overlays; these are explicitly shared art, not completed unique designs.
+G3 uses five detailed source atlases with explicit imported regions, pivots, rotor/engine mounts, weapon mounts and muzzle FX anchors. Every enemy and weapon has a distinct binding; no support/boss silhouette fallback is used by current definitions. Original source coordinates are also recorded. Source art remains prelit and some generated padding/perspective is imperfect, so final art-direction review remains required. Godot imports the five G3 sheets at 768×512 while preserving unmodified 1536×1024 source PNGs. The nine drones and five bosses receive transform-based propulsion/hover/damage animation; weapons use separate fixed bearings, rotating heads, recoil, upgrade armor and a modular primary autoloader/barrel assembly. See the G3 guide for ownership, phase/destruction timing and replacement specs.
 
 Texture imports use lossless RGBA, alpha-border correction and mipmaps for the large PNGs. Unit sprites use linear filtering with mipmaps; atlas filter clipping prevents neighboring objects leaking across a region. UI vectors and fonts remain crisp native resources. Track `.import` settings and `.gd.uid` identities, never `.godot/` caches.
 
@@ -61,11 +63,11 @@ Texture imports use lossless RGBA, alpha-border correction and mipmaps for the l
 
 ## Rendering and VFX
 
-Compatibility/GLES3 remains the configured desktop/mobile renderer. The two unshaded CanvasItem shaders use ordinary color operations only. They need no screen texture, depth buffer, compute, glow, SDF occlusion or renderer-specific feature. Surface shading supplies a restrained damage flash, suppression desaturation and cloak opacity. Terrain grading adds a static cool-edge vignette beneath gameplay/UI; it is not a full-screen post-process.
+Compatibility/GLES3 remains the configured desktop/mobile renderer. The unshaded CanvasItem shaders use ordinary color operations only. They need no screen texture, depth buffer, compute, glow, SDF occlusion or renderer-specific feature. Surface shading supplies a restrained damage flash, suppression desaturation and cloak opacity. Terrain grading adds a static cool-edge vignette beneath gameplay/UI; it is not a full-screen post-process.
 
-Use baked soft shadows instead of runtime Light2D/shadow passes for this prelit asset set. Explosion frames advance from the existing simulation-driven effect age over 0.65s; impact sparks use 0.15s, construction rings 0.45s. EMP and phase changes use a separate tinted 0.65s tactical pulse, preserving their meaning without a full-field fireball. Muzzle flash/recoil, rotor overlays, projectiles and effects freeze with combat pause. Effects retain the 96-entry cap; textures and frame regions are shared. UI tweens are independent of battle time. Ordinary EMP/Overclock effects retain their established gameplay cues; dedicated finished art remains a future replacement.
+Use baked soft shadows instead of runtime Light2D/shadow passes for this prelit asset set. Explosion frames advance from the existing simulation-driven effect age over 0.65s; impact sparks use 0.15s, construction rings 0.45s. EMP and phase changes use a separate tinted 0.65s tactical pulse, preserving their meaning without a full-field fireball. Muzzle flash/recoil, rotor overlays, projectiles and effects freeze with combat pause. Effects retain the 96-entry cap; textures and frame regions are shared. UI tweens are independent of battle time. G3 adds a 12-wreck detached destruction batch and a skippable terminal boss outro after the result transaction succeeds; combat stays finished and rewards cannot repeat. Ordinary EMP/Overclock effects retain their established gameplay cues; dedicated finished art remains a future replacement.
 
-Five 1536×1024 RGBA PNGs cost approximately 40 MiB of GPU texture storage with complete mip chains before fonts, vectors, framebuffer and driver overhead. This is a budget estimate, not a device measurement. No dynamic light or screen-copy pass is introduced. G2 loads terrain sheets by scene lifetime rather than accumulating the complete library; its typical large-texture estimate is 48 MiB. Target under 64 MiB for the visual texture set and profile actual frame time, overdraw, thermal behavior and memory on Android before claiming 60 FPS. Consider atlas packing/downsize or device compression only after visual/device review; do not enable unsupported compression blindly.
+The original G1 set of five 1536×1024 RGBA PNGs costs approximately 40 MiB of GPU texture storage with complete mip chains before fonts, vectors, framebuffer and driver overhead. This is a budget estimate, not a device measurement. No dynamic light or screen-copy pass is introduced. G2 loads terrain sheets by scene lifetime rather than accumulating the complete library; its typical large-texture estimate is 48 MiB. G3 replaces the old 8 MiB active combat sheet with about 10 MiB of imported unit sheets, bringing the typical large-texture estimate to roughly 50 MiB. Target under 64 MiB for the visual texture set and profile actual frame time, overdraw, thermal behavior and memory on Android before claiming 60 FPS. Consider atlas packing/downsize or device compression only after visual/device review; do not enable unsupported compression blindly.
 
 ## Exact replacement specifications
 
@@ -75,17 +77,17 @@ Approved artwork can replace existing filenames with matching dimensions/regions
 | --- | --- | --- |
 | Menu key art | 1920×1080 or larger 16:9 RGB PNG/WebP; no text/UI; quiet left 42% | Aspect-cover full screen; right-side cannon must survive wider/taller crops |
 | Outpost terrain | 1536×1024 RGB, no actors or baked placement circles; upper-left diffuse light | Drawn into the existing 955×560 field, center clear; verify terrain texture scale against units |
-| Primary/MG/Cannon replacement sheet | Six 512×512 RGBA cells in a 1536×1024 atlas; at least 48px transparent gutters | Drones center around `(256,256)`; weapon rotation pivot/breech `(256,350)`; barrel points up; supply measured muzzle tip for visual scale alignment |
-| Missile/Laser/EMP/Heavy AA heads | Separate 512×512 RGBA each, up-facing, distinct silhouette/material detail; transparent padding | Publish explicit breech pivot and scale so muzzle lies 32–38 world units forward; current SVG/shared Heavy AA are interim art |
+| G3 automatic and primary refinement | Preserve 1536×1024 transparent source sheets, 768×512 imports, or explicitly update bindings | `source_region`, imported `region`/`pivot` and muzzle FX anchors are measured in the current catalog; primary tip must align with the existing 38-unit gameplay muzzle |
+| Missile/Laser/EMP/Heavy AA refinement | Current 1536×1024 six-object G3 automatic-head sheet; independent transparent objects | G3 supplies distinct heads; preserve declared axes/scales and remeasure muzzle FX anchors if artwork changes |
 | Command bunker | 1280×400 RGBA, low broad roof, no gun; roof mounting pivot `(640,180)`; no baked UI | Display roughly 320×100 near the existing bunker; align the roof mount under manual cannon `(560,605)` without moving gameplay |
-| Shield/EMP/Bomber/Sniper/Carrier/Stealth | 512×512 RGBA per archetype, strong differing silhouette; 4 rotor frames and optional damage variants | Keep body collision readability around the existing 18×size radius; artist must label pivot/scale, not alter hit rules |
-| Five chapter bosses | 1024×1024 RGBA each, three phase damage states, up to 8 frames per ability | Anchor/weakpoint coordinates remain data-driven; preserve the visible cyan core at the actual hittable position |
+| All nine drone refinements | Current two G3 1536×1024 transparent source atlases; optional authored rotor/damage frame sheets | Keep declared rotor/engine axes and body readability around the existing 18×size radius; source rotors/wings remain decorative beyond the physical body |
+| Five chapter boss refinements | Current 1536×1024 G3 boss/component sheet; optional artist-authored phase/demolition frame sheets | Keep source pivots, articulated armor boundaries and painted core aligned with the original actual weakpoint; never move its collision to fit art |
 | Explosion replacement | Six 512×512 RGBA frames, 3×2 atlas 1536×1024, equal padding, no labels | Ignition→fire→smoke in 0.65s, center-pivot, consistent ground contact and size |
 | EMP/laser/overclock/impact pack | 256×256 or 512×512 RGBA with declared frame counts and timing | Must fit current simulated duration/radius and preserve threat telegraphs; restrained additive energy only |
 | Environment art refinement | Existing three 1536×1024 four-map atlases, one six-cell prop atlas; or update explicit regions | All 25 now use G2 illustrated terrain; refine perspective/scale and optionally supply bespoke Hive/territory architecture without moving paths/slots |
 | Optional true lighting | Matching albedo + tangent-space normal RGBA at identical dimensions/pivots; flat normal `(128,128,255)` | Artist must state normal convention. Validate Godot CanvasTexture/DirectionalLight2D/PointLight2D on GLES3 before use; remove baked highlights first |
 
-The current generated PNGs and authored UI are integrated candidates, not evidence of final production approval. Unique support/boss art, the three SVG support heads, standalone Heavy AA, phase/rotor sheets and dedicated energy effects still require external artist creation or a later approved generation pass. G2 replaces the former geometric terrain for all 25 missions with 13 illustrated kits, shared props and atmosphere. These are integrated generated candidates awaiting final art approval, rather than 25 unique commissioned paintings. See the G2 guide for its replacement specifications, quality setting and current memory budget.
+The current generated PNGs and authored UI are integrated candidates, not evidence of final production approval. G3 now supplies distinct support/boss/weapon art and reusable transform animation. Polished authored raster rotor/damage/phase sheets, dedicated energy effects, perspective/scale refinement and optional matched normal maps remain future art work; no shared placeholder body is hidden behind these specifications. G2 replaces the former geometric terrain for all 25 missions with 13 illustrated kits, shared props and atmosphere. These are integrated generated candidates awaiting final art approval, rather than 25 unique commissioned paintings. See the G2 and G3 guides for current replacement specifications, quality settings and residency estimates. The legacy six-object sheet and SVG support heads remain reference assets, not active unit visuals.
 
 ## Verification and captures
 

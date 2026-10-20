@@ -13,11 +13,16 @@ var manual := false
 var range_remaining := 0.0
 var armor_multiplier := 1.0
 var critical := false
+# Presentation snapshots only; never used for hit, movement or damage decisions.
+var visual_kind := "standard"
+var visual_origin := Vector2.ZERO
 
 func configure(owner_battle: Node2D, turret: Node2D, victim: Node2D) -> void:
  battle = owner_battle
  target = victim
+ visual_kind = turret.kind
  position = turret.position
+ visual_origin = position
  destination = victim.position
  damage = turret.damage_value()
  speed = float(turret.definition.projectile_speed)
@@ -35,6 +40,7 @@ func configure_manual(owner_battle: Node2D, heading: Vector2) -> void:
  damage = cannon.damage_value()
  speed = float(data.projectile_speed)
  range_remaining = maxf(0.0,float(data.range)-float(data.muzzle_offset))
+ visual_kind = cannon.ammunition_type
  var profile: Dictionary = cannon.ammunition()
  tint = Color(str(profile.color))
  armor_multiplier = float(profile.armor_multiplier)
@@ -123,10 +129,17 @@ func retire() -> void:
  queue_free()
 
 func _draw() -> void:
+ if not manual and position.distance_to(visual_origin) < 25:
+  return
  var assets := preload("res://scripts/visual/visual_assets.gd")
  draw_set_transform(Vector2.ZERO,direction.angle())
  if splash_radius > 0 and not manual:
   draw_texture_rect(assets.texture("projectiles/missile.svg"),Rect2(-19,-6,32,12),false)
  else:
-  draw_texture_rect(assets.texture("projectiles/tracer.svg"),Rect2(-32,-3,36,6),false,tint.lightened(0.25) if manual else Color("e3caa1"))
+  var length := 54.0 if manual and visual_kind == "armor_piercing" else 25.0 if manual and visual_kind == "explosive" else 36.0
+  var width := 9.0 if manual and visual_kind == "explosive" else 7.0 if visual_kind in ["cannon","heavy_aa"] else 5.0
+  draw_texture_rect(assets.texture("projectiles/tracer.svg"),Rect2(-length+4,-width*.5,length,width),false,tint.lightened(.25) if manual else Color("e3caa1"))
+  if manual and visual_kind == "armor_piercing":
+   draw_line(Vector2(-39,-3),Vector2(-12,-3),Color(tint,.5),1)
+   draw_line(Vector2(-39,3),Vector2(-12,3),Color(tint,.5),1)
  draw_set_transform(Vector2.ZERO)

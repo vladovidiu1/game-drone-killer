@@ -19,6 +19,26 @@
       "sha256": "6e694cab36fbaadd52a1c6c35ff850573e4bd32db4d748456c6f42cd754cb310"
     },
     {
+      "filename": "drones/bosses_atlas.png",
+      "purpose": "Five unique chapter bosses and articulated cannon module",
+      "required_dimensions": [
+        768,
+        512
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Independent G3 objects, transform-animated at runtime; not raster animation frames",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "OpenAI image generation, original prompt; output exec-24d33cd7-e310-42bf-b7fa-68389e59f1c0; assets/source/GENERATION.md",
+      "license": "Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated original G3 generated candidate; native animation review; final art approval pending",
+      "sha256": "5115d316fb2adfd5c2c334402663b8748e162ceb1748a81f2fbee90214160084",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "atlas_cells": 6
+    },
+    {
       "filename": "drones/combat_atlas.png",
       "purpose": "Shared Scout/Assault/Heavy and MG/Cannon/Primary art",
       "required_dimensions": [
@@ -30,8 +50,48 @@
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
       "source_or_generation_method": "OpenAI image generation, original prompt; output exec-74e5acd9-f126-4fc0-b63b-ad034baf298f; assets/source/GENERATION.md",
       "license": "Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md",
-      "integration_status": "Integrated six-object atlas; explicit reviewed regions/pivots",
+      "integration_status": "Legacy G1 reference only; all runtime enemy/weapon aliases use G3 artwork",
       "sha256": "859f9d436540c30daec65b81407b46e58004c3fbb6e64b35623e667a04751c24",
+      "atlas_cells": 6
+    },
+    {
+      "filename": "drones/line_atlas.png",
+      "purpose": "Scout, Assault, Heavy, Shield, EMP and Bomber",
+      "required_dimensions": [
+        768,
+        512
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Independent G3 objects, transform-animated at runtime; not raster animation frames",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "OpenAI image generation, original prompt; output exec-a08514a4-9625-4b33-a036-b9999c1d43f7; assets/source/GENERATION.md",
+      "license": "Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated original G3 generated candidate; native animation review; final art approval pending",
+      "sha256": "0dbc0398bed7921b4d4bb0b2038bc93d7024ef82184426955d19c33e51502e4c",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "atlas_cells": 6
+    },
+    {
+      "filename": "drones/specialists_atlas.png",
+      "purpose": "Sniper, Carrier, Stealth and isolated rotor/exhaust/debris",
+      "required_dimensions": [
+        768,
+        512
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Independent G3 objects, transform-animated at runtime; not raster animation frames",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "OpenAI image generation, original prompt; output exec-b8907fc4-a8e7-42cd-9476-72d93af8c93a; assets/source/GENERATION.md",
+      "license": "Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated original G3 generated candidate; native animation review; final art approval pending",
+      "sha256": "9ef69826ad9d3d57f0f8c116be98862f10f3ddc8afe365f579c2ae25a4fc040d",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
       "atlas_cells": 6
     },
     {
@@ -147,7 +207,7 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
       "sha256": "633d14eebc38aff9744072a96969349eec481e71045fd5448c49505f91457e36"
@@ -297,7 +357,7 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
       "sha256": "bd7453bb66170631bac8b5c530352fca6f56fd0bce4c24385dbcef759c42b655"
@@ -309,10 +369,10 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
-      "sha256": "1fbb437e0b27a62417c6c7be4b8adfb6e38a42a5c3cbd941eb4b2fdd063beb67"
+      "sha256": "c5cb7e28b4a72d280f3874e4d6a31b4aec2ae949740d0bbf359431d3c4e63495"
     },
     {
       "filename": "source/environment_sources.json",
@@ -321,10 +381,22 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
       "sha256": "de0721a3dc8031b98e2cef2d0839fb7d151d5f00d0045785f1b55886eccb00c0"
+    },
+    {
+      "filename": "source/unit_sources.json",
+      "purpose": "unit sources",
+      "required_dimensions": null,
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "Authored locally for G1/G2/G3; editable source in repository",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "b87d304b06fc2bfcf67d3449267c72633921766b932db0c5ddf0bb862fc52136"
     },
     {
       "filename": "turrets/emp_head.svg",
@@ -338,7 +410,7 @@
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
       "source_or_generation_method": "tools/generate_visual_vectors.py",
       "license": "MIT; assets/ASSET_LICENSE.md",
-      "integration_status": "Integrated interim authored vector; dedicated rendered weapon art required",
+      "integration_status": "Legacy G1 reference only; G3 uses rendered weapon atlas",
       "sha256": "263352767c62dd78fe723bd8e0a3999845f18af5af883c68782a8c74b6bd3650"
     },
     {
@@ -353,7 +425,7 @@
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
       "source_or_generation_method": "tools/generate_visual_vectors.py",
       "license": "MIT; assets/ASSET_LICENSE.md",
-      "integration_status": "Integrated interim authored vector; dedicated rendered weapon art required",
+      "integration_status": "Legacy G1 reference only; G3 uses rendered weapon atlas",
       "sha256": "78559bf27715b9e26867e53be4be0cdfe11f962d740a57ad9833c05527b373b6"
     },
     {
@@ -368,7 +440,7 @@
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
       "source_or_generation_method": "tools/generate_visual_vectors.py",
       "license": "MIT; assets/ASSET_LICENSE.md",
-      "integration_status": "Integrated interim authored vector; dedicated rendered weapon art required",
+      "integration_status": "Legacy G1 reference only; G3 uses rendered weapon atlas",
       "sha256": "86eee5cd1e9d96d5bdd4694b9299acd2edc6fdc6727967b4f7270704f5533b91"
     },
     {
@@ -385,6 +457,46 @@
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
       "sha256": "097f39a4ca41a93218f3bc256457826ed6264f6f51d6936e27f5224fcd1ced90"
+    },
+    {
+      "filename": "turrets/sentinel_atlas.png",
+      "purpose": "Sentinel primary breech/barrels, two bases, armor and autoloader",
+      "required_dimensions": [
+        768,
+        512
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Independent G3 objects, transform-animated at runtime; not raster animation frames",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "OpenAI image generation, original prompt; output exec-2db81b9b-996e-40c8-a8d5-557e55e0e5b8; assets/source/GENERATION.md",
+      "license": "Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated original G3 generated candidate; native animation review; final art approval pending",
+      "sha256": "941d5a56cb11ae23507a544b86c4b6da7dc27600d91852b01317775eadb8bd55",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "atlas_cells": 6
+    },
+    {
+      "filename": "turrets/weapons_atlas.png",
+      "purpose": "Six distinct automatic weapon heads",
+      "required_dimensions": [
+        768,
+        512
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Independent G3 objects, transform-animated at runtime; not raster animation frames",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "OpenAI image generation, original prompt; output exec-f8ccb52e-d815-4998-bcd1-53a773d13a13; assets/source/GENERATION.md",
+      "license": "Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated original G3 generated candidate; native animation review; final art approval pending",
+      "sha256": "bc6aa1ff7a4e064c5c533b5790629620c886decf9b8ba4152d02399d05385d25",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "atlas_cells": 6
     },
     {
       "filename": "ui/button_disabled.svg",
@@ -711,10 +823,10 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
-      "sha256": "d9c81dc07c1bb2d779b5d5876f4c4b37d679dd16fa4150d409289bcd3a826d09"
+      "sha256": "48245bb648e372f85660833af35285cacb592ab86f409aa0063c25af93fe3622"
     }
   ]
 }
