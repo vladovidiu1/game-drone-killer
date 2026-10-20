@@ -24,6 +24,8 @@ func can_play(id: int) -> bool:
 
 func territory_state(id: int) -> String:
  var frontline := int(SaveManager.state.get("frontline",1))
+ if id == 25 and bool(SaveManager.state.get("campaign_complete",false)):
+  return "CONTROLLED"
  if id == frontline:
   return "CONTESTED FRONTLINE"
  return "CONTROLLED" if id < frontline else "ENEMY / LOCKED"
@@ -54,6 +56,8 @@ func resolve(victory: bool, mission_id: int, run_id: String, stats: Dictionary =
   record.last_outcome = "victory"
   SaveManager.state.wins += 1
   SaveManager.state.credits += reward
+  if mission_id == 25:
+   SaveManager.state.campaign_complete = true
   if mission_id == before:
    SaveManager.state.frontline = mini(25,before+1)
   if mission_id in [5,10,15,20] and not SaveManager.state.checkpoints.has(mission_id):
@@ -64,6 +68,8 @@ func resolve(victory: bool, mission_id: int, run_id: String, stats: Dictionary =
   record.defeats += 1
   record.last_outcome = "defeat"
   SaveManager.state.frontline = maxi(int(SaveManager.state.checkpoint),before-1)
+ if int(SaveManager.state.frontline) < 25:
+  SaveManager.state.campaign_complete = false
  SaveManager.state.records[str(mission_id)] = record
  SaveManager.state.highest = maxi(int(SaveManager.state.highest),int(SaveManager.state.frontline))
  var objective_reward := EconomyManager.grant_objectives() if victory else 0
@@ -79,6 +85,8 @@ func resolve(victory: bool, mission_id: int, run_id: String, stats: Dictionary =
   message = "Checkpoint holds at %02d. No territory lost." % after
  else:
   message = "Replay defeated. Active frontline remains %02d." % after
+ if victory and not str(mission(mission_id).get("narrative","")).is_empty():
+  message += "\n"+str(mission(mission_id).narrative)
  var result := {"run_id":run_id,"mission_id":mission_id,"victory":victory,"reward":reward+objective_reward,"mission_reward":reward,"objective_reward":objective_reward,"from":before,"to":after,"message":message}
  SaveManager.state.last_result = result
  SaveManager.state.active_run = {}

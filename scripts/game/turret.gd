@@ -9,6 +9,10 @@ var target: Node2D
 var barrel_angle := -PI/2
 var muzzle := 0.0
 var shots_fired := 0
+var disabled_remaining := 0.0
+
+func apply_disable(duration: float) -> void:
+ disabled_remaining = maxf(disabled_remaining,duration)
 
 func configure(owner_battle: Node2D, type: String) -> void:
  battle = owner_battle
@@ -19,7 +23,7 @@ func damage_value() -> float:
  return float(definition.damage) * pow(float(CampaignManager.combat.upgrade_damage_multiplier),level-1) * (1.0 + int(SaveManager.state.get("damage_level",0))*float(CampaignManager.combat.permanent_damage_step)) * (1.0+EconomyManager.modifier("turret_damage",battle.research_levels))
 
 func range_value() -> float:
- return (float(definition.range) + (level-1)*float(CampaignManager.combat.upgrade_range_step))*(1.0+EconomyManager.modifier("turret_range",battle.research_levels))
+ return (float(definition.range) + (level-1)*float(CampaignManager.combat.upgrade_range_step))*(1.0+EconomyManager.modifier("turret_range",battle.research_levels))*battle.visibility_multiplier()
 
 func fire_rate_value() -> float:
  return float(definition.fire_rate)*(1.0+EconomyManager.modifier("turret_rate",battle.research_levels))*battle.abilities.fire_multiplier()
@@ -28,6 +32,12 @@ func upgrade_cost() -> int:
  return int(ceil(float(definition.cost)*float(CampaignManager.combat.upgrade_cost_multiplier)*level))
 
 func tick(delta: float) -> void:
+ disabled_remaining = maxf(0.0,disabled_remaining-delta)
+ if disabled_remaining > 0:
+  target = null
+  muzzle = 0.0
+  queue_redraw()
+  return
  muzzle = maxf(0.0,muzzle-delta)
  cooldown = maxf(-delta,cooldown-delta)
  target = acquire_target()
@@ -56,7 +66,7 @@ func acquire_target() -> Node2D:
  # Closest to the base by remaining path distance; spawn ID breaks ties.
  var selected: Node2D = null
  for enemy in battle.drones.get_children():
-  if enemy.ended or position.distance_squared_to(enemy.position) > range_value()*range_value():
+  if enemy.ended or not enemy.automatically_targetable() or position.distance_squared_to(enemy.position) > range_value()*range_value():
    continue
   if selected == null or enemy.distance_remaining < selected.distance_remaining or (is_equal_approx(enemy.distance_remaining,selected.distance_remaining) and enemy.spawn_id < selected.spawn_id):
    selected = enemy
@@ -64,6 +74,9 @@ func acquire_target() -> Node2D:
 
 func _draw() -> void:
  var color := Color(str(definition.get("color","65e0c0")))
+ if disabled_remaining > 0:
+  draw_arc(Vector2.ZERO,33,0,TAU,32,Color("ba9aff"),4)
+  draw_string(ThemeDB.fallback_font,Vector2(-25,-38),"OFF %.1fs" % disabled_remaining,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("ddbbff"))
  draw_circle(Vector2(0,8),30,Color(0,0,0,0.35))
  draw_circle(Vector2.ZERO,27,Color("14222e"))
  draw_arc(Vector2.ZERO,26,0,TAU,24,color.darkened(0.45),3)

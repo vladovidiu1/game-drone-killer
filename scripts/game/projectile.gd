@@ -44,6 +44,12 @@ func configure_manual(owner_battle: Node2D, heading: Vector2) -> void:
   damage *= float(data.critical_multiplier)
  lifetime = float(CampaignManager.combat.projectile_lifetime)
 
+func precision_point(enemy: Node2D) -> Vector2:
+ if manual and enemy.brain != null and enemy.brain.boss:
+  # Test the swept ray through the body, rather than only its outer collision edge.
+  return Geometry2D.get_closest_point_to_segment(enemy.brain.weakpoint(),position-direction*100,position+direction*100)
+ return destination
+
 func damage_for(enemy: Node2D) -> float:
  return damage*(armor_multiplier if enemy.armored else 1.0)
 

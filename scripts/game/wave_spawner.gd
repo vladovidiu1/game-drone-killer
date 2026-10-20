@@ -9,7 +9,7 @@ var build_time := 12.0
 var timer := 0.0
 var intermission := true
 var finished := false
-var pending: Array[String] = []
+var pending: Array[Dictionary] = []
 var cursor := 0
 var total_spawned := 0
 var path_count := 1
@@ -38,7 +38,19 @@ func start_early() -> bool:
  pending.clear()
  for group in waves[wave].groups:
   for count in int(group.count):
-   pending.append(str(group.enemy))
+   pending.append({"enemy":str(group.enemy),"path":int(group.get("path",-1)),"formation":str(group.get("formation","column"))})
+ if str(waves[wave].get("deployment","sequential")) == "escort":
+  var ordered: Array[Dictionary] = []
+  var groups: Array = waves[wave].groups.duplicate(true)
+  groups.reverse()
+  var remaining := pending.size()
+  while remaining > 0:
+   for group in groups:
+    if int(group.count) > 0:
+     ordered.append({"enemy":str(group.enemy),"path":int(group.get("path",-1)),"formation":str(group.get("formation","column"))})
+     group.count = int(group.count)-1
+     remaining -= 1
+  pending = ordered
  cursor = 0
  timer = 0.0
  intermission = false
@@ -57,9 +69,14 @@ func tick(delta: float, living_enemies: int) -> void:
  var spawned_this_tick := false
  while cursor < pending.size() and timer <= 0:
   spawned_this_tick = true
-  var kind := pending[cursor]
+  var entry := pending[cursor]
+  var kind := str(entry.enemy)
   cursor += 1
-  var path_index := total_spawned % path_count
+  var path_index := int(entry.path) if int(entry.path) >= 0 else total_spawned % path_count
+  if str(entry.formation) == "pincer":
+   path_index = 0 if total_spawned%2 == 0 else path_count-1
+  elif str(entry.formation) == "fan":
+   path_index = (total_spawned/3) % path_count
   total_spawned += 1
   timer += float(waves[wave].interval)
   spawn_requested.emit(kind,path_index)

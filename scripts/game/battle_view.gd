@@ -26,6 +26,7 @@ func _draw() -> void:
  var terrain: Dictionary = battle.mission_data.get("terrain",{})
  draw_rect(Rect2(0,88,955,560),Color(str(terrain.get("ground","1c343a"))))
  draw_landmarks(str(terrain.get("kind","dry")))
+ draw_sector_details(terrain)
  for i in 70:
   var point := Vector2(25+fmod(i*139.0,900),125+fmod(i*97.0,480))
   draw_circle(point,3+(i%4),Color("294147"))
@@ -94,6 +95,22 @@ func _draw() -> void:
    draw_arc(item.point,float(item.radius)*(0.5+fraction),0,TAU,32,tint,2)
   else:
    draw_circle(item.point,float(item.radius)*(1-fraction),tint)
+ var condition: Dictionary = battle.mission_data.get("environment",{})
+ if condition.get("kind") == "dust":
+  draw_rect(Rect2(0,88,950,560),Color(0.8,0.65,0.4,0.08))
+  text(Vector2(38,167),"DUST: AUTOMATIC RANGE -13% / MANUAL CANNON UNAFFECTED",Color("e7c58c"),13)
+ var warning: float = battle.environment_warning()
+ if warning > 0:
+  text(Vector2(280,190),"GRID SURGE IN %.1fs / MANUAL CANNON REMAINS ONLINE" % warning,Color("f7ad7a"),16)
+ for enemy in battle.drones.get_children():
+  if not enemy.ended and enemy.brain != null and enemy.brain.boss:
+   var definition: Dictionary = CampaignManager.enemies[battle.mission_data.boss]
+   draw_rect(Rect2(250,174,470,84),Color(0.03,0.07,0.12,0.88))
+   text(Vector2(265,190),str(definition.name).to_upper()+" / "+str(enemy.brain.settings().name),enemy.tint,14)
+   text(Vector2(270,248),"SIEGE CAPACITOR: %.0fs • BREAK THE CORE" % maxf(0,float(enemy.brain.data.overload_after)-enemy.brain.elapsed),Color("ffad83"),14)
+   draw_rect(Rect2(270,200,430,10),Color("101d2a"))
+   draw_rect(Rect2(270,200,430*enemy.health/enemy.maximum_health,10),enemy.tint)
+   text(Vector2(270,230),"%.0f / %.0f HP • AIM AT CYAN CORE" % [enemy.health,enemy.maximum_health],Color("a9eeee"),13)
  if battle.build_mode:
   text(Vector2(42,550),"TACTICAL BUILD • 0.25x",Color("f6c777"),18)
  if battle.paused:
@@ -128,3 +145,40 @@ func draw_landmarks(kind: String) -> void:
     draw_line(origin+Vector2(i*18,0),origin+Vector2(i*18+16,0),Color("b2a27b"),2)
   draw_rect(Rect2(155,165,100,48),Color("616b5e"))
   draw_line(Vector2(155,165),Vector2(255,165),Color("a3ad8d"),3)
+
+func draw_sector_details(terrain: Dictionary) -> void:
+ var kind := str(terrain.get("kind","dry"))
+ if kind in ["river","bridge","harbor"]:
+  draw_rect(Rect2(35,310,880,85),Color("214958"))
+  for y in range(318,390,15):
+   draw_line(Vector2(35,y),Vector2(915,y),Color("3b6975"),2)
+  for x in [270,700]:
+   draw_rect(Rect2(x,290,95,130),Color("6b7170"))
+ elif kind in ["highway","airbase"]:
+  draw_rect(Rect2(65,205,835,95),Color("303d46"))
+  for x in range(80,900,60):
+   draw_rect(Rect2(x,249,30,4),Color("a4ae9c"))
+ elif kind in ["ridge","valley","deadlands"]:
+  for x in [80,780]:
+   draw_colored_polygon(PackedVector2Array([Vector2(x,170),Vector2(x+110,250),Vector2(x+80,450),Vector2(x-35,390)]),Color("514c49"))
+ elif kind in ["capital","metro","ruins"]:
+  for x in [95,785]:
+   for y in [190,420]:
+    draw_rect(Rect2(x+8,y+8,100,115),Color("14212d"))
+    draw_rect(Rect2(x,y,100,115),Color("536173"))
+    for row in 4:
+     for column in 3:
+      draw_rect(Rect2(x+12+column*28,y+12+row*24,12,11),Color("9baaad"))
+ elif kind in ["hive","factory","power","fortress"]:
+  for x in [110,815]:
+   draw_circle(Vector2(x,290),55,Color("273342"))
+   draw_arc(Vector2(x,290),48,0,TAU,12,Color("9b6988") if kind == "hive" else Color("8ca3a3"),6)
+   draw_line(Vector2(x,345),Vector2(x,490),Color("65767d"),12)
+ for item in terrain.get("landmarks",[]):
+  var rect: Array = item.rect
+  var shape := Rect2(float(rect[0]),float(rect[1]),float(rect[2]),float(rect[3]))
+  draw_rect(Rect2(shape.position+Vector2(7,9),shape.size),Color(0,0,0,0.25))
+  draw_rect(shape,Color("4b5d66"))
+  draw_rect(shape.grow(-7),Color("354955"))
+  for x in range(int(shape.position.x)+10,int(shape.end.x)-8,20):
+   draw_line(Vector2(x,shape.position.y+7),Vector2(x,shape.end.y-7),Color("6c7c81"),2)

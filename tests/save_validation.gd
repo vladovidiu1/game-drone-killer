@@ -76,9 +76,7 @@ func run() -> void:
  raw_write(SaveManager.SETTINGS_PATH,"{bad")
  SaveManager.reload_from_disk()
  check(is_equal_approx(float(SaveManager.settings.volume),0.2),"settings corruption also recovers its backup")
- # Exercise rules through the real transaction service; future missions remain unavailable in normal play.
- for id in range(4,22):
-  CampaignManager.missions[id-1].playable = true
+ # Synthetic transaction fixtures complement the full 25-mission real-combat suite.
  SaveManager.new_campaign()
  SaveManager.state.damage_level = 2
  SaveManager.state.credits = 500
@@ -118,8 +116,6 @@ func run() -> void:
  check(CampaignManager.resolve(true,20,retry_token).is_empty() and SaveManager.state == retained,"failed result write rolls back progression and leaves attempt retryable")
  DirAccess.remove_absolute(SaveManager.PATH+".tmp")
  check(not CampaignManager.resolve(true,20,retry_token).is_empty() and SaveManager.last_error.is_empty(),"retrying after write recovery completes the original result once")
- for id in range(4,22):
-  CampaignManager.missions[id-1].playable = false
  SaveManager.new_campaign()
  print("SAVE/RULES: %d checks, %d failures" % [checks,failures])
  get_tree().quit(1 if failures else 0)

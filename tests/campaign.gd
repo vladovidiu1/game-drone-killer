@@ -120,9 +120,9 @@ func run() -> void:
  SaveManager.reload_from_disk()
  check(SaveManager.state.frontline == 3 and CampaignManager.can_play(3),"reloaded reconquest unlocks mission 3 again")
  await fight(3,true)
- check(SaveManager.state.frontline == 4 and SaveManager.state.highest == 4,"all three playable missions link to mission 4 development frontier")
+ check(SaveManager.state.frontline == 4 and SaveManager.state.highest == 4,"first three missions link to playable Broken Bridge")
  check(SaveManager.state.credits == 630 and SaveManager.state.records["3"].best_health > 0,"depot victory grants reward and records best base health")
- check(not CampaignManager.can_play(4) and CampaignManager.can_play(1) and CampaignManager.can_play(3),"future content stays unavailable while controlled missions are replayable")
+ check(CampaignManager.can_play(4) and CampaignManager.can_play(1) and CampaignManager.can_play(3),"new frontline and controlled missions are playable")
  var message: String = SaveManager.state.last_result.message
  app._map()
  await get_tree().process_frame

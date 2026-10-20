@@ -19,7 +19,7 @@
 - Campaign schema is version 3. Preserve v1/v2 migration and validated `.bak` recovery. Settings remain independent of campaign reset. Validate types before converting untrusted JSON.
 - Results require the matching persisted deployment token. Rewards, mission records, token consumption and territorial state must be one saved transaction; stale/duplicate results must do nothing.
 - Defeat gives no reward and retreats the current frontline by one, bounded by the highest secured floor. Floors are 1 initially and completed missions 5, 10, 15 and 20 (never 6/11/16/21). Highest reached and permanent upgrades never decrease on defeat.
-- Mission IDs 1–3 are playable. Gate deployment by current frontline, not highest-ever reach. Replay wins cannot advance beyond their territory; replay defeats obey the standard retreat rule.
+- Mission IDs 1–25 are playable. Enemy abilities and boss phases are shared through `enemy_brain.gd`; only data varies between territories. Optional `campaign_complete` extends schema v3 and must be validated against a mission 25 victory record. Gate deployment by current frontline, not highest-ever reach. Replay wins cannot advance beyond their territory; replay defeats obey the standard retreat rule.
 - Run the campaign and recovery suites along with combat checks. Distinguish actual full-mission combat validation from synthetic future-checkpoint rule fixtures.
 
 ## GitHub publication preference

@@ -1,6 +1,6 @@
 # DRONE KILLER: FRONTLINE
 
-A native Godot 4 game foundation for an offline Android-first defense campaign. Command Sentinel-7 against the Varkon Empire in Asteria. Task 4 adds permanent research, three primary ammunition types, six automatic turret designs, tactical abilities and a tabbed Arsenal to the three-mission hybrid campaign.
+A native Godot 4 game foundation for an offline Android-first defense campaign. Command Sentinel-7 against the Varkon Empire in Asteria. All 25 campaign territories are playable. Five chapter bosses, shield/EMP/sniper/carrier/stealth behaviors, environmental pressure and a persistent finale extend the existing manual cannon, six automatic defenses, ammunition, research and tactical abilities. See [campaign design and validation](docs/CAMPAIGN.md).
 
 ## Download
 
@@ -17,7 +17,7 @@ Use **Godot 4.6.3 stable**, standard GDScript edition. No plugins, external asse
 3. Choose **New Campaign → 01 Outpost Alpha → Start Mission**.
 4. Click or touch a glowing build slot, then choose Machine Gun, Cannon, or Missile Launcher in the sidebar. Turrets fire automatically. Select an existing turret to upgrade it.
 5. Aim the primary cannon with the mouse and hold left click over the battlefield to fire; press **R** to reload. On Android, drag a finger in the left aiming area and hold the large **FIRE** button on the right with another finger.
-6. Survive all mission waves while keeping the base above 0 HP. Outpost Alpha starts with 500 battle credits and 1000 base HP. Drone bounties fund more defenses. Use **Start wave early** to skip the 12-second build phase; **1x / 2x speed** controls combat speed.
+6. Survive all mission waves while keeping the base above 0 HP. Outpost Alpha starts with 500 battle credits and 1000 base HP. Drone bounties fund more defenses. Use **Start wave early** to skip the preparation countdown; **1x / 2x speed** controls combat speed.
 
 Command-line desktop startup from the repository root:
 
@@ -26,7 +26,7 @@ godot --path . --editor
 godot --path .
 ```
 
-After victory, use **Next: [mission]** or the campaign map to read the next briefing and deploy. After defeat, use **Retry [returned territory]** to defend the retreated frontline. All three missions are played from the same project.
+After victory, use **Next: [mission]** or the campaign map to read the next briefing and deploy. After defeat, use **Retry [returned territory]** to defend the retreated frontline. All 25 missions use the same reusable battle scene.
 
 New Campaign requires confirmation when replacing an existing save. Continue is disabled until a campaign exists. Escape / Android Back pauses a battle and returns to the main menu from other screens. Losing focus pauses the battle; press Resume after returning. Aborting counts as defeat.
 
@@ -34,7 +34,7 @@ New Campaign requires confirmation when replacing an existing save. Continue is 
 
 - Compatibility renderer; 1280×720 reference canvas, expanding aspect layout, landscape orientation, mobile safe-area margins, scrollable campaign chapter rows.
 - Main menu, campaign map, mission briefing, gameplay HUD, pause/resume, results, Arsenal, and persistent volume/mute settings.
-- 25 inspectable territories grouped into the five requested chapters. Controlled, contested, enemy/locked, and secured checkpoint states use labels and colors.
+- 25 playable territories grouped into the five requested chapters. Controlled, contested, enemy/locked, and secured checkpoint states use labels and colors.
 - Mission 1, **Outpost Alpha**: 51 enemies across five waves, entering from the top along three configurable paths toward the base at the bottom. Five fixed turret slots, automated target acquisition, rotating barrels, real projectiles, missile splash damage, health bars, muzzle flashes, hit flashes, explosions, selected range/target indicators and base damage feedback.
 - Machine Gun: 100 credits, 10 damage, 4 shots/s, 240 range. Cannon: 200 credits, 55 damage, 0.8 shots/s, 260 range. Missile Launcher: 350 credits, 80 damage, 0.5 shots/s, 300 range, 75 splash radius.
 - Scout: 40 HP, 120 units/s, 25 base damage, 10-credit bounty. Assault: 100 HP, 75 units/s, 50 base damage, 20-credit bounty. Heavy: 300 HP, 40 units/s, 100 base damage, 60-credit bounty.
@@ -110,6 +110,7 @@ The Veteran Commander objective grants 150 War Credits once at five victories; s
 | `scripts/core/economy_manager.gd` | Transactional War Credit research/unlocks, legacy bonuses, effective stats and objective grants |
 | `scripts/core/audio_manager.gd` | Audio settings and generated result cues |
 | `scripts/game/battle.gd` | Fixed-step battle orchestration, battle credits, placement, impacts, outcome signals |
+| `scripts/game/enemy_brain.gd` | Shared shield auras, EMP/sniper telegraphs, carrier launches, stealth cycles, boss phases/weakpoints and siege attacks |
 | `scripts/game/tactical_abilities.gd` | Battle-credit activations, cooldowns, disable pulses and shared Overclock timing |
 | `data/progression.json` | Upgrade coefficients/costs, unlocks, ammunition, tactical abilities and once-only objectives |
 | `scripts/ui/arsenal.gd` | Four research tabs, effective stats and guarded purchase confirmations |
@@ -145,13 +146,13 @@ Save files are `user://campaign.json` and `user://settings.json`, outside the ch
 
 Each briefing contains its fictional location, story, enemy intelligence, preparation advice, reward and mission record. **Start Mission** is enabled only for playable territories at or behind the current frontline. Mission 3 adds seven mixed waves and multiple Heavy/Assault groups late in the mission. All layouts, waves, briefings, colors and rewards are in `data/definitions.json`.
 
-New campaigns begin with frontline/highest/checkpoint floor 1. A frontline victory controls that territory and advances one index. Defeat retreats one index, bounded by the latest secured checkpoint, and makes the returned territory contested. The highest reached index, mission records, credits, upgrades and settings survive retreat. Win mission 5 / 10 / 15 / 20 to secure **that completed mission** as a permanent floor. For example: win 5 → frontline 6, floor 5; lose 6 → frontline 5; lose 5 → still 5. Checkpoints are available in the progression rules; missions 4–25 are not yet playable encounters.
+New campaigns begin with frontline/highest/checkpoint floor 1. A frontline victory controls that territory and advances one index. Defeat retreats one index, bounded by the latest secured checkpoint, and makes the returned territory contested. The highest reached index, mission records, credits, upgrades and settings survive retreat. Win mission 5 / 10 / 15 / 20 to secure **that completed mission** as a permanent floor. For example: win 5 → frontline 6, floor 5; lose 6 → frontline 5; lose 5 → still 5. Each checkpoint is earned by defeating its chapter boss in an actual playable encounter.
 
-The map derives control from the active frontline, independently of historical completion: blue below the frontline, orange contested frontline, red enemy/locked beyond it, and ◆ on secured checkpoints. A previously reached territory beyond the retreated frontline must be reconquered before deployment is enabled again. Result and map messages explicitly name territory gained/lost. After winning mission 3 the frontier is 4, with missions 1–3 replayable and mission 4 clearly marked in development.
+The map derives control from the active frontline, independently of historical completion: blue below the frontline, orange contested frontline, red enemy/locked beyond it, and ◆ on secured checkpoints. A previously reached territory beyond the retreated frontline must be reconquered before deployment is enabled again. Result and map messages explicitly name territory gained/lost. After winning mission 3, Broken Bridge becomes the playable frontline. Completing The Hive Core marks territory 25 controlled and shows the liberation ending. A subsequent replay defeat still follows the normal retreat rule and clears the active liberation flag; historical victories remain in records.
 
 Every deployment receives a unique persisted attempt token. Only its matching result may update records, rewards, frontline, highest and checkpoints. The outcome and consumed token are saved together; duplicate, mismatched and stale events are rejected, including after reload. Replaying a controlled mission is a new paid attempt, not a duplicate event, and cannot advance past that mission. Defeats, including replay defeats, follow the same checkpoint-bounded retreat rule and grant no rewards.
 
-Campaign schema v3 stores `frontline`, `highest`, `checkpoints`, derived `checkpoint`, `credits`, `damage_level`, `wins`, `records`, `active_run` and `last_result`. Per-mission records include victory/defeat counts, best remaining base HP and cumulative rewards. Research levels, weapon/ammunition unlocks, equipped ammunition and claimed objectives are added without resetting campaign data. Settings have an independent versioned wrapper with validated volume and boolean preferences. Schema v1 saves retain their credits/upgrades/wins, gain a highest-reached index, and migrate old chapter-start floors 6/11/16/21 to completed-mission floors 5/10/15/20. Schema v2 upgrades directly to v3 with zero new research, preserving legacy bonuses, records, balances and checkpoints. Schema v1 lacked detailed per-mission records; new outcomes populate them.
+Campaign schema v3 stores `frontline`, `highest`, `checkpoints`, derived `checkpoint`, `credits`, `damage_level`, `wins`, `records`, `active_run` and `last_result`. Per-mission records include victory/defeat counts, best remaining base HP and cumulative rewards. Research levels, weapon/ammunition unlocks, equipped ammunition and claimed objectives are added without resetting campaign data. The optional `campaign_complete` v3 field defaults false for older saves; validation requires frontline 25 plus an actual mission 25 victory record. Defeat below 25 clears it. Settings have an independent versioned wrapper with validated volume and boolean preferences. Schema v1 saves retain their credits/upgrades/wins, gain a highest-reached index, and migrate old chapter-start floors 6/11/16/21 to completed-mission floors 5/10/15/20. Schema v2 upgrades directly to v3 with zero new research, preserving legacy bonuses, records, balances and checkpoints. Schema v1 lacked detailed per-mission records; new outcomes populate them.
 
 Writes serialize to a temporary file, flush and validate it, preserve the previous valid file as `.bak`, then replace the primary file. A malformed primary recovers its validated backup. Missing files use safe defaults; if both campaign copies are invalid, Continue is disabled and a recovery notice appears. Unknown schemas are not interpreted as current data. Invalid originals are archived as `.invalid-*` before a subsequent successful replacement. Upgrades and results roll back in memory if persistence fails; a result save failure offers retry. A running battle is not restored after closing the app; the next deployment starts fresh with a new token.
 
@@ -165,7 +166,7 @@ The top-down camera and all automatic defenses are retained; the Arsenal section
 - The primary **never automatically targets or fires**. No accessibility auto-fire option is enabled or implemented. Primary projectiles follow the barrel direction at firing time and may miss; automatic turrets retain their existing target acquisition, homing projectiles, upgrades and splash damage.
 - Empty magazines reload automatically. A held FIRE resumes after reload; releasing FIRE prevents the restart. Ammo count, reload text/progress and the ring around the gun show its state. Pause freezes reload/projectiles and clears held input, requiring a fresh press after resume. Retry creates a full magazine and clears all input/reload/projectile state.
 
-Nominal primary damage is 90 DPS while firing and about 75 DPS including reload time, before misses and permanent upgrades. Finite range, straight shots, three entry lanes and reload vulnerability reward aimed bursts and secondary coverage. Mission 1 remains introductory; missions 2–3 add approach pressure and late armor groups, while missions 4–25 remain in development. Headless tests prove a complete hybrid victory and preserve automatic-only victory and unattended defeat coverage; they do not establish Android handling or final campaign difficulty.
+Nominal primary damage is 90 DPS while firing and about 75 DPS including reload time, before misses and permanent upgrades. Finite range, straight shots, three entry lanes and reload vulnerability reward aimed bursts and secondary coverage. Mission 1 remains introductory; subsequent chapters introduce escort formations, electronic warfare, cloaking, ranged suppression and boss cores. Boss hull plating greatly reduces automatic damage; accurate manual core hits bypass it. A visible siege-capacitor deadline limits prolonged boss fights. Headless tests prove a complete hybrid victory and preserve automatic-only victory and unattended defeat coverage; they do not establish Android handling or final campaign difficulty.
 
 ## Mission 1 waves and battle economy
 
@@ -177,13 +178,13 @@ Nominal primary damage is 90 DPS while firing and about 75 DPS including reload 
 | 4 | 12 Scouts + 5 Assaults |
 | 5 | 8 Assaults + 1 Heavy |
 
-All three missions have a 12-second build phase before each wave. Clear all active drones before the next build phase begins. Early start never overlaps active waves. The HUD's remaining enemy count includes pending spawns plus living enemies for the current wave (or the upcoming wave during a build phase).
+Missions 1–3 offer 27 seconds before each wave; missions 4–25 offer 22 seconds. Normal preparation targets 3–7 minute deployments at 1x. Early starts and 2x shorten wall-clock duration. Clear all active drones before the next build phase begins. Early start never overlaps active waves. The HUD's remaining enemy count includes pending spawns plus living enemies for the current wave (or the upcoming wave during a build phase).
 
 Bounties are **temporary battle credits**, as are turret purchases and upgrades. They reset on retry and are shown separately in results. Campaign rewards remain **permanent credits** for Arsenal: +120 / +180 / +250 on victory, **zero** on defeat. The earlier defeat-salvage reward is removed to follow the campaign rules. Existing saves and permanent upgrades migrate to schema v3.
 
 For an opening strategy, place Machine Guns on slots 1 and 3 and a Cannon on slot 2. Use bounties for more turrets or upgrades. Leaving the primary idle and every slot empty will lose the base. Manual fire can cover gaps in automatic defenses, but only covers one direction at a time.
 
-All simulation components consume the same locally scaled fixed-physics delta; 2x speed does not alter global engine time or menu behavior. Pausing stops movement, firing, projectiles, effects and wave timers; the UI remains interactive. No object pool has been introduced for the current five-to-seven turrets and wave sizes. Effects are capped at 96 and expire after 0.45 simulation seconds; expired/consumed projectiles and ended drones are removed. Profile before introducing a pool.
+All simulation components consume the same locally scaled fixed-physics delta; 2x speed does not alter global engine time or menu behavior. Pausing stops movement, firing, projectiles, effects and wave timers; the UI remains interactive. No object pool has been introduced for the current five-to-eight turrets and bounded wave sizes. Effects are capped at 96 and expire after 0.45 simulation seconds; expired/consumed projectiles and ended drones are removed. Profile before introducing a pool.
 
 ## Validation
 
@@ -193,11 +194,17 @@ Run from the repository root on Linux with Godot, Bash, GNU timeout, and ripgrep
 ./tests/run_checks.sh
 ```
 
-Each engine invocation has a 60-second watchdog. The runner imports the project, starts its entry scene for 120 frames, runs combat/hybrid/UI checks, exercises campaign rules and corrupt-save recovery, then plays the complete campaign sequence with real attacks and separate-process save checks. Saves use a temporary XDG directory, so tests do not overwrite a player's campaign. It preserves process failure status and rejects Godot error logs even when the engine exits with zero.
+The runner uses isolated temporary XDG saves, checks exit status and rejects script/engine errors even after a zero exit. The default watchdog is 60 seconds per engine process, extended to 180 for the 25-mission simulation and 90 for comparative simulations. It imports the native project and runs startup, combat, hybrid input, UI, corrupt-save/migration, research and campaign checks.
 
-Coverage includes menus, all map nodes, locked deployment, actual mouse and two-finger touch input propagation through the HUD, reference-layout bounds, purchase/upgrade rules, target priority, range, single-hit damage, missile area damage, wave counts, pause, 2x simulation speed, full five-wave victories using purchased defenses alone and combined manual/automatic attacks, magazine depletion, timed and partial reload, straight-projectile misses/range, pause/retry input cleanup, natural defeat through drone breaches, rewards, purchases, permanent upgrades, checkpoint retreat, replay progression bounds, and fresh-process persistence. Combat uses fixed simulation time to finish quickly; it is not a performance benchmark.
+The original suites retain mouse/two-finger input propagation, ammunition, single-use hits, splash, autonomous targeting, purchases, tactical slow time, pause, 2x speed, reload, research transactions, checkpoint retreat and fresh-process persistence. Added suites validate every territory/reference/phase, exercise enemy abilities and all five bosses, and play missions 1–25 through ordinary combat with earned research/battle funds. They then lose/reconquer the final frontier and verify the completed save in a fresh process. Separate endgame simulations compare automatic-only and manual-only defenses with the hybrid result. Synthetic phase and transaction fixtures are distinguished from these full battles.
 
-The runner also checks every research level, unlock requirements, purchase confirmation/idempotency, every resulting stat, ammunition consumption and armor/splash/critical damage, new turrets, ability costs/cooldowns, tactical time scaling, multi-touch scrolling and schema v3 fresh-process restoration. The original 227 assertions remain in the suite; research adds 186 behavioral checks plus 4 fresh-process checks (417 total). The campaign integration run covers new campaign → win 1 → win 2 → lose 3 → return to 2 → win 2 again → reload → win 3. It builds/upgrades with the actual mission budget and bounties, fires ordinary projectiles, and loses through natural drone breaches. Checkpoint 5/10/15/20 tests exercise the transaction service with temporary future-mission availability; they do not claim those future combat encounters exist. Graphical inspection, audible output, physical multitouch, Android exports, and the 60 FPS target have **not** been verified on a device.
+To retain machine-readable balance output after the runner removes its temporary saves:
+
+```sh
+FRONTLINE_REPORT_DIR=/tmp/frontline-reports ./tests/run_checks.sh
+```
+
+Results and interpretation are in [docs/CAMPAIGN.md](docs/CAMPAIGN.md); committed JSON reports describe the tested revision. Assisted aim, immediate purchases and exact simulation timing are not human playtesting. They demonstrate completion/economy and catch regressions; they do not establish final difficulty, graphical polish, physical multitouch, audible output, Android exports or stable 60 FPS.
 
 Manual device checks: test 16:9 and tall landscape displays, cutout margins, left-thumb aim plus right-thumb FIRE, aiming while using build/upgrade controls, firing across reloads, release outside the FIRE button, app background/resume, muted result cues, replacing a campaign, and a full win/loss loop. Measure frame time on a mid-range Android device before claiming stable 60 FPS.
 
@@ -207,4 +214,4 @@ The project is configured for landscape Android and Compatibility rendering, but
 
 ## Intentionally unfinished
 
-Missions 4–25 contain metadata and clearly labeled development/locked screens. Additional mission-specific weapons, selling/relocating turrets, additional mission environments, campaign finale, final art, music, full accessibility/localization, signed Android builds, device profiling, and a commercial release pipeline are future tasks. This is a playable combat increment, not a release-ready 25-mission game.
+All 25 missions and the campaign finale are implemented. Final human difficulty tuning, authored production art/music, selling/relocating defenses, full accessibility/localization, signed Android exports, device profiling and release packaging remain future work. The procedural art and generated audio are playable development assets. No APK is included; this source project opens directly in Godot.

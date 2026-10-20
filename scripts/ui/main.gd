@@ -91,7 +91,7 @@ func _menu() -> void:
  if not OS.has_feature("mobile"):
   tools.add_child(UI.button("Exit",func(): get_tree().quit()))
  _spacer(col)
- col.add_child(UI.label("OFFLINE CAMPAIGN   •   TASK 4 BUILD   •   MISSIONS 01–03 AVAILABLE",16,UI.MUTED))
+ col.add_child(UI.label("OFFLINE CAMPAIGN   •   25 MISSIONS   •   5 CHAPTER BOSSES",16,UI.MUTED))
  _save_error(col)
 
 func _save_error(col: VBoxContainer) -> void:
@@ -145,6 +145,8 @@ func _map() -> void:
    var id := chapter*5+offset+1
    var mission := CampaignManager.mission(id)
    var status := CampaignManager.territory_state(id)
+   if mission.has("boss"):
+    status += " • BOSS"
    if not bool(mission.playable):
     status += " • DEV"
    if SaveManager.state.get("checkpoints",[1]).has(id):
@@ -152,7 +154,7 @@ func _map() -> void:
    var btn := UI.button("%02d  %s\n%s" % [id,mission.name,status],_briefing.bind(id),Vector2(0,60))
    btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
    btn.add_theme_font_size_override("font_size",14)
-   var tint := Color("62baff") if id < frontline else (Color("f9ad52") if id == frontline else Color("ed7778"))
+   var tint := Color("62baff") if status.begins_with("CONTROLLED") else (Color("f9ad52") if id == frontline else Color("ed7778"))
    btn.add_theme_color_override("font_color",tint)
    row.add_child(btn)
  var nav := HBoxContainer.new()
@@ -275,7 +277,7 @@ func _show_results(victory: bool, reward: int, stats: Dictionary) -> void:
  var col := _column()
  var outcome: Dictionary = stats.campaign
  var id := int(outcome.mission_id)
- _header(col,"TERRITORY SECURED" if victory else "DEFENSE LOST",str(CampaignManager.mission(id).name))
+ _header(col,("ASTERIA LIBERATED" if id == 25 else "TERRITORY SECURED") if victory else "DEFENSE LOST",str(CampaignManager.mission(id).name))
  var feedback := UI.label(str(outcome.message),23,UI.CYAN)
  feedback.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  col.add_child(feedback)
@@ -287,10 +289,12 @@ func _show_results(victory: bool, reward: int, stats: Dictionary) -> void:
   col.add_child(UI.label("Includes +%d War Credits for a completed campaign objective." % int(outcome.objective_reward),18,UI.CYAN))
  _spacer(col)
  var next := int(SaveManager.state.frontline)
- if CampaignManager.can_play(next):
+ if victory and id == 25:
+  col.add_child(UI.label("CAMPAIGN COMPLETE • All five chapters cleared. Replay from the map.",20,UI.CYAN))
+ elif CampaignManager.can_play(next):
   col.add_child(UI.button(("Next: " if victory else "Retry ")+str(CampaignManager.mission(next).name),_briefing.bind(next)))
  else:
-  col.add_child(UI.label("Missions 1–3 secured. Mission %02d is in development; earlier missions remain replayable." % next,18,UI.MUTED))
+  col.add_child(UI.label("Mission %02d is locked. Reconquer the current frontline to advance." % next,18,UI.MUTED))
  var nav := HBoxContainer.new()
  nav.add_theme_constant_override("separation",10)
  col.add_child(nav)

@@ -59,7 +59,7 @@ func run() -> void:
  check(buttons(app).size() == 27, "25 interactive map nodes and navigation")
  app._briefing(25)
  await get_tree().process_frame
- check(buttons(app).size() == 1, "development mission cannot deploy")
+ check(buttons(app).size() == 2 and buttons(app)[0].disabled, "future mission is playable content but remains frontline-locked")
  app._settings()
  await get_tree().process_frame
  check(app.screen == "settings", "settings screen opens")

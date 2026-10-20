@@ -36,6 +36,31 @@ var spawn_identity := 0
 var refresh_timer := 0.0
 var shots_fired := 0
 var impacts := 0
+var elapsed := 0.0
+var enemy_actions := 0
+var weakpoint_hits := 0
+var support_spawned := 0
+var environmental_pulses := 0
+
+func visibility_multiplier() -> float:
+ return float(mission_data.get("environment",{}).get("range_multiplier",1.0))
+
+func environment_warning() -> float:
+ var condition: Dictionary = mission_data.get("environment",{})
+ if condition.get("kind", "clear") != "interference":
+  return 0.0
+ var remaining := float(condition.period)-fmod(elapsed,float(condition.period))
+ return remaining if remaining <= float(condition.warning) else 0.0
+
+func tick_environment(delta: float) -> void:
+ var condition: Dictionary = mission_data.get("environment",{})
+ var before := elapsed
+ elapsed += delta
+ if condition.get("kind", "clear") == "interference" and int(elapsed/float(condition.period)) > int(before/float(condition.period)):
+  environmental_pulses += 1
+  for turret in turrets.get_children():
+   turret.apply_disable(float(condition.duration))
+  view.effect(Vector2(560,400),"blast",300,Color("9a96ff"))
 
 func _ready() -> void:
  mission_data = CampaignManager.mission(mission_id)
@@ -83,6 +108,7 @@ func _physics_process(delta: float) -> void:
 func simulate(delta: float) -> void:
  if paused or finished:
   return
+ tick_environment(delta)
  abilities.tick(delta)
  spawner.tick(delta,living_count())
  for enemy in drones.get_children():
@@ -114,11 +140,25 @@ func spawn_enemy(kind: String, path_index: int = 0) -> Node2D:
  var enemy = DRONE.instantiate()
  spawn_identity += 1
  enemy.configure(CampaignManager.enemies[kind],mission_data.paths[path_index % mission_data.paths.size()],spawn_identity)
+ enemy.speed *= float(mission_data.get("speed_multiplier",1.0))
+ enemy.brain = preload("res://scripts/game/enemy_brain.gd").new()
+ enemy.brain.configure(enemy,self,CampaignManager.enemies[kind])
  enemy.breached.connect(_breached)
  enemy.destroyed.connect(_destroyed.bind(enemy))
  enemy.damaged.connect(func(at: Vector2): view.effect(at,"hit",12,Color("fff3be")))
  drones.add_child(enemy)
  return enemy
+
+func spawn_support(kind: String, parent_unit: Node2D) -> Node2D:
+ var child := spawn_enemy(kind,0)
+ child.is_support = true
+ child.reward = int(child.reward/2.0)
+ child.route.assign([parent_unit.position,Vector2(parent_unit.position.x,minf(550,maxf(450,parent_unit.position.y+30))),Vector2(560,600)])
+ child.position = parent_unit.position+Vector2((support_spawned%3-1)*25,15)
+ child.waypoint = 1
+ child.distance_remaining = child.position.distance_to(child.route[1])+child.route[1].distance_to(child.route[2])
+ support_spawned += 1
+ return child
 
 func _breached(damage: int) -> void:
  if finished:
@@ -209,11 +249,11 @@ func resolve_impact(projectile: Node2D) -> void:
   view.effect(projectile.destination,"blast",projectile.splash_radius,projectile.tint)
   for enemy in drones.get_children():
    if not enemy.ended and enemy.position.distance_squared_to(projectile.destination) <= projectile.splash_radius*projectile.splash_radius:
-    enemy.hit(projectile.damage_for(enemy))
+    enemy.hit(projectile.damage_for(enemy),projectile.manual and enemy == projectile.target,projectile.armor_multiplier > 1.0,projectile.precision_point(enemy))
     if projectile.manual:
      player_turret.notify_hit(projectile.critical)
  elif is_instance_valid(projectile.target) and not projectile.target.ended:
-  projectile.target.hit(projectile.damage_for(projectile.target))
+  projectile.target.hit(projectile.damage_for(projectile.target),projectile.manual,projectile.armor_multiplier > 1.0,projectile.precision_point(projectile.target))
   if projectile.manual:
    player_turret.notify_hit(projectile.critical)
 
@@ -263,4 +303,4 @@ func _finish(victory: bool) -> void:
   return
  finished = true
  set_paused(true)
- completed.emit(victory,{"mission_id":mission_id,"run_id":run_id,"victory":victory,"kills":kills,"health":health,"waves":spawner.wave+1,"earned":earned,"shots":shots_fired,"manual_shots":player_turret.shots_fired,"manual_hits":player_turret.hits})
+ completed.emit(victory,{"mission_id":mission_id,"run_id":run_id,"victory":victory,"kills":kills,"health":health,"waves":spawner.wave+1,"earned":earned,"shots":shots_fired,"manual_shots":player_turret.shots_fired,"manual_hits":player_turret.hits,"seconds":elapsed,"enemy_actions":enemy_actions,"weakpoint_hits":weakpoint_hits})
