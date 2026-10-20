@@ -123,11 +123,10 @@ func retire() -> void:
  queue_free()
 
 func _draw() -> void:
- if splash_radius > 0:
-  draw_line(-direction*18,Vector2.ZERO,Color(1,0.7,0.3,0.5),5)
-  draw_circle(Vector2.ZERO,5,tint)
-  draw_circle(-direction*7,3,Color("fff2cc"))
+ var assets := preload("res://scripts/visual/visual_assets.gd")
+ draw_set_transform(Vector2.ZERO,direction.angle())
+ if splash_radius > 0 and not manual:
+  draw_texture_rect(assets.texture("projectiles/missile.svg"),Rect2(-19,-6,32,12),false)
  else:
-  draw_line(-direction*(30 if manual else 12),direction*3,tint,3 if damage < 40 else 6)
-  if manual:
-   draw_circle(Vector2.ZERO,2.5,Color("f1fbff"))
+  draw_texture_rect(assets.texture("projectiles/tracer.svg"),Rect2(-32,-3,36,6),false,tint.lightened(0.25) if manual else Color("e3caa1"))
+ draw_set_transform(Vector2.ZERO)

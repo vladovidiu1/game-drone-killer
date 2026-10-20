@@ -1,10 +1,16 @@
 extends RefCounted
-const CYAN := Color("65dce1")
-const MUTED := Color("94adbc")
+const CYAN := Color("37B7E5")
+const WHITE := Color("E9F0F6")
+const ORANGE := Color("FF9C42")
+const HEADING := preload("res://assets/ui/fonts/BarlowCondensed-Bold.ttf")
+const MONO := preload("res://assets/ui/fonts/DejaVuSansMono.ttf")
+const MUTED := Color("98acbb")
 
-static func label(text: String, size: int = 20, color: Color = Color.WHITE) -> Label:
+static func label(text: String, size: int = 20, color: Color = WHITE) -> Label:
  var node := Label.new()
  node.text = text
+ if size >= 28:
+  node.add_theme_font_override("font",HEADING)
  node.add_theme_font_size_override("font_size", size)
  node.add_theme_color_override("font_color", color)
  return node
@@ -18,22 +24,7 @@ static func button(text: String, action: Callable, minimum: Vector2 = Vector2(21
  return node
 
 static func theme() -> Theme:
- var result := Theme.new()
- result.default_font_size = 20
- for state in ["normal","hover","pressed","disabled","focus"]:
-  var box := StyleBoxFlat.new()
-  box.bg_color = Color("1c3546") if state == "normal" else Color("285065")
-  if state == "disabled":
-   box.bg_color = Color("182631")
-  box.border_color = Color("345566") if state != "focus" else CYAN
-  box.set_border_width_all(2 if state == "focus" else 1)
-  box.set_corner_radius_all(6)
-  box.content_margin_left = 16
-  box.content_margin_right = 16
-  result.set_stylebox(state,"Button",box)
- result.set_color("font_color","Button",Color("e3f0f4"))
- result.set_color("font_disabled_color","Button",Color("697f8d"))
- return result
+ return preload("res://assets/ui/frontline_theme.tres")
 
 static func prepare_confirmation(dialog: ConfirmationDialog) -> void:
  # Engine-created dialog buttons also need native touch when mouse emulation is off.

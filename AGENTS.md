@@ -33,3 +33,11 @@
 - Research is applied before battle starts. Snapshot shot ammunition/critical damage at firing time, never refill magazines when switching ammunition, and retain autonomous secondary targeting.
 - Tactical build mode uses a single panel at 0.25x effective simulation speed; closing or pausing restores the prior chosen speed. Every cooldown/status/projectile/reload consumes the same simulated delta. Touch swipes inside a shop must scroll without purchasing.
 - Run `tests/research.tscn` and its fresh-process verification in addition to the existing full suite. Physical Android performance/audio remain separate validation work.
+
+## Visual foundation
+
+- Follow `VISUAL_STYLE.md`. Keep art bindings/regions/pivots in `assets/visual_catalog.json` and inventory/provenance in `assets/manifest.json`; regenerate the latter with `python tools/build_asset_manifest.py` after asset changes.
+- `scripts/visual/unit_visual.gd` receives presentation state only. Do not move damage, targeting, input ownership or timers into artwork code. Visual state must never alter collision or stat tuning.
+- Keep Compatibility-safe shaders, local fonts and license notices, PNG transparency and tracked `.import` settings. Review actual rendered output; do not call a headless dummy-renderer run visual validation.
+- Preserve uniform battlefield scale across aspect ratios and native safe-area UI. Run visual-resource checks with the full suite; use `tests/visual_capture.tscn` with a real display/renderer and isolated data for native captures.
+- Shared drone silhouettes, SVG support heads and legacy environments remain explicitly interim until their dedicated art is approved. Document replacements instead of presenting them as finished unique artwork.

@@ -1,100 +1,118 @@
 extends Node2D
 # Presentation only; battle owns simulation state and advances this view's effects.
+const ASSETS := preload("res://scripts/visual/visual_assets.gd")
+const BODY_FONT := preload("res://assets/ui/fonts/Barlow-Regular.ttf")
 @onready var battle: Node2D = get_parent()
 var effects: Array[Dictionary] = []
 var base_flash := 0.0
 
+func _ready() -> void:
+ if int(battle.mission_id) == 1:
+  var plate := Sprite2D.new()
+  plate.name = "OutpostTerrain"
+  plate.texture = ASSETS.texture("environment/outpost_alpha.png")
+  plate.centered = false
+  plate.position = Vector2(0,88)
+  plate.scale = Vector2(955,560)/plate.texture.get_size()
+  plate.show_behind_parent = true
+  var grade := ShaderMaterial.new()
+  grade.shader = preload("res://assets/shaders/terrain_grade.gdshader")
+  plate.material = grade
+  add_child(plate)
+
 func effect(point: Vector2, kind: String, radius: float, tint: Color) -> void:
  if effects.size() >= int(CampaignManager.combat.effect_limit):
   effects.pop_front()
- effects.append({"point":point,"kind":kind,"radius":radius,"tint":tint,"age":0.0})
+ effects.append({"point":point,"kind":kind,"radius":radius,"tint":tint,"age":0.0,"duration":0.65 if kind in ["blast","pulse"] else 0.15 if kind == "hit" else 0.45})
  queue_redraw()
 
 func tick(delta: float) -> void:
  base_flash = maxf(0.0,base_flash-delta)
  for i in range(effects.size()-1,-1,-1):
   effects[i].age += delta
-  if effects[i].age >= 0.45:
+  if effects[i].age >= float(effects[i].duration):
    effects.remove_at(i)
  queue_redraw()
 
 func text(at: Vector2, value: String, color: Color, font_size: int = 16) -> void:
- draw_string(ThemeDB.fallback_font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,color)
+ draw_string(BODY_FONT,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,color)
 
 func _draw() -> void:
- draw_rect(Rect2(0,0,1280,720),Color("152730"))
  var terrain: Dictionary = battle.mission_data.get("terrain",{})
- draw_rect(Rect2(0,88,955,560),Color(str(terrain.get("ground","1c343a"))))
- draw_landmarks(str(terrain.get("kind","dry")))
- draw_sector_details(terrain)
- for i in 70:
-  var point := Vector2(25+fmod(i*139.0,900),125+fmod(i*97.0,480))
-  draw_circle(point,3+(i%4),Color("294147"))
- for x in range(0,960,48):
-  draw_line(Vector2(x,90),Vector2(x,648),Color(0.5,0.7,0.7,0.035))
- for y in range(100,650,48):
-  draw_line(Vector2(0,y),Vector2(950,y),Color(0.5,0.7,0.7,0.035))
+ if battle.mission_id == 1:
+  draw_rect(Rect2(0,0,1280,88),Color("151B24"))
+  draw_rect(Rect2(955,88,325,560),Color("151B24"))
+  draw_rect(Rect2(0,648,1280,72),Color("151B24"))
+ else:
+  draw_rect(Rect2(0,0,1280,720),Color("151B24"))
+  draw_rect(Rect2(0,88,955,560),Color(str(terrain.get("ground","303D4C"))))
+  draw_landmarks(str(terrain.get("kind","dry")))
+  draw_sector_details(terrain)
  if not is_instance_valid(battle) or battle.mission_data.is_empty():
   return
  for path in battle.mission_data.paths:
   var line := PackedVector2Array()
   for point in path:
    line.append(Vector2(float(point[0]),float(point[1])))
-  draw_polyline(line,Color(str(terrain.get("edge","0f222b"))),66,true)
-  draw_polyline(line,Color(str(terrain.get("road","35484b"))),54,true)
-  draw_polyline(line,Color("526365"),2,true)
+  if battle.mission_id == 1:
+   draw_polyline(line,Color(0.15,0.2,0.25,0.09),42,true)
+   draw_polyline(line,Color(0.83,0.78,0.64,0.32),1.5,true)
+  else:
+   draw_polyline(line,Color(str(terrain.get("edge","0f222b"))),66,true)
+   draw_polyline(line,Color(str(terrain.get("road","35484b"))),54,true)
+   draw_polyline(line,Color("526365"),2,true)
   var entry: Vector2 = line[0]
   var heading := (line[1]-line[0]).angle()-PI/2
   draw_set_transform(entry,heading)
   draw_line(Vector2(-28,0),Vector2(28,0),Color("ee8f71"),3)
   draw_colored_polygon(PackedVector2Array([Vector2(-8,9),Vector2(8,9),Vector2(0,19)]),Color("ee8f71"))
   draw_set_transform(Vector2.ZERO)
- text(Vector2(38,118),str(terrain.get("label","VARKON AIR CORRIDORS")),Color("c1917f"),14)
- text(Vector2(38,142),"%s / %02d" % [str(battle.mission_data.name).to_upper(),int(battle.mission_id)],Color("88adaf"),18)
+ draw_rect(Rect2(26,98,320,54),Color(0.05,0.075,0.1,0.85))
+ text(Vector2(38,118),str(terrain.get("label","VARKON AIR CORRIDORS")),Color("98acbb"),14)
+ text(Vector2(38,142),"%s / %02d" % [str(battle.mission_data.name).to_upper(),int(battle.mission_id)],Color("E9F0F6"),18)
  for index in battle.slots.size():
   var point: Vector2 = battle.slots[index]
   var chosen: bool = index == battle.selected_slot
-  var color := Color("71e5cd") if chosen else Color("547a80")
-  draw_circle(point+Vector2(0,8),38,Color(0,0,0,0.2))
-  draw_circle(point,35,Color("1b2d37"))
-  draw_arc(point,35,0,TAU,36,color,3 if chosen else 2)
+  var color := Color("37B7E5") if chosen else Color("9ca59e")
+  draw_texture_rect(ASSETS.texture("turrets/placement_pad.svg"),Rect2(point-Vector2(40,40),Vector2(80,80)),false)
+  if chosen:
+   draw_arc(point,39,0,TAU,40,color,2)
   if battle.placed[index] == null:
    draw_line(point+Vector2(-11,0),point+Vector2(11,0),color,3)
    draw_line(point+Vector2(0,-11),point+Vector2(0,11),color,3)
-  text(point+Vector2(-4,53),str(index+1),color,14)
+  draw_rect(Rect2(point+Vector2(-33,-29),Vector2(14,17)),Color("151B24"))
+  text(point+Vector2(-30,-16),str(index+1),Color("E9F0F6"),13)
   if chosen and battle.placed[index] != null:
    var turret: Node2D = battle.placed[index]
-   draw_circle(point,turret.range_value(),Color(0.4,0.9,0.8,0.04))
-   draw_arc(point,turret.range_value(),0,TAU,80,Color(0.4,0.9,0.8,0.28),1.5)
+   draw_circle(point,turret.range_value(),Color(0.216,0.718,0.898,0.05))
+   draw_arc(point,turret.range_value(),0,TAU,80,Color(0.216,0.718,0.898,0.3),1.5)
    if is_instance_valid(turret.target) and not turret.target.ended:
     var target: Vector2 = turret.target.position
     draw_arc(target,25,0,TAU,24,Color("f5cf83"),1.5)
  # Base bunker at the bottom of the approach lanes.
- draw_rect(Rect2(418,588,284,52),Color(0,0,0,0.3))
- draw_rect(Rect2(430,573,260,56),Color("354b5c"))
- draw_rect(Rect2(440,566,240,44),Color("ff796b") if base_flash > 0 else Color("536e7b"))
- for x in range(450,680,32):
-  draw_rect(Rect2(x,571,16,8),Color("a2c9ca"))
+ draw_texture_rect(ASSETS.sprite("command_bunker"),Rect2(400,564,320,86),false,Color(1,0.6,0.5) if base_flash > 0 else Color.WHITE)
  text(Vector2(442,621),"S-7",Color("d9eeee"),14)
  draw_rect(Rect2(430,635,260,6),Color("0b1b23"))
- draw_rect(Rect2(430,635,260*float(battle.health)/float(battle.max_health),6),Color("69dfba"))
- # A left-thumb guide does not intercept input or cover a placement slot.
- text(Vector2(42,580),"LEFT: DRAG TO AIM",Color("6b999f"),15)
- text(Vector2(42,602),"MOUSE: AIM + HOLD LMB / R: RELOAD",Color("6b999f"),12)
+ draw_rect(Rect2(430,635,260*float(battle.health)/float(battle.max_health),6),Color("37B7E5"))
  for item in effects:
-  var fraction: float = float(item.age)/0.45
+  var fraction: float = float(item.age)/float(item.duration)
   var tint: Color = item.tint
   tint.a = 1.0-fraction
   if item.kind == "blast":
-   draw_circle(item.point,float(item.radius)*fraction,Color(tint,0.18*(1-fraction)))
-   draw_arc(item.point,float(item.radius)*fraction,0,TAU,24,tint,3*(1-fraction)+1)
-   for j in 6:
-    var direction := Vector2.from_angle(j*TAU/6)
-    draw_line(item.point+direction*fraction*float(item.radius)*0.5,item.point+direction*fraction*float(item.radius),tint,2)
+   var frame := ASSETS.explosion_frame(mini(5,int(fraction*6)))
+   var diameter := maxf(28.0,float(item.radius)*2.5)
+   draw_texture_rect(ASSETS.texture("effects/soft_shadow.svg"),Rect2(item.point-Vector2(diameter*.5,diameter*.15),Vector2(diameter,diameter*.4)),false,Color(1,1,1,1-fraction))
+   draw_texture_rect(frame,Rect2(item.point-Vector2.ONE*diameter*.5,Vector2.ONE*diameter),false,Color(1,1,1,1.0-smoothstep(0.6,1.0,fraction)))
+  elif item.kind == "pulse":
+   var radius: float = float(item.radius)*fraction
+   draw_arc(item.point,radius,0,TAU,64,tint,2.5*(1-fraction)+0.5)
+   draw_arc(item.point,radius*.78,0,TAU,48,Color(tint,tint.a*.35),1)
   elif item.kind == "build":
    draw_arc(item.point,float(item.radius)*(0.5+fraction),0,TAU,32,tint,2)
   else:
-   draw_circle(item.point,float(item.radius)*(1-fraction),tint)
+   for direction in [Vector2(1,1),Vector2(1,-1)]:
+    var offset: Vector2 = direction*float(item.radius)*(0.4+fraction)
+    draw_line(item.point-offset,item.point+offset,Color(1,0.85,0.63,1-fraction),2*(1-fraction))
  var condition: Dictionary = battle.mission_data.get("environment",{})
  if condition.get("kind") == "dust":
   draw_rect(Rect2(0,88,950,560),Color(0.8,0.65,0.4,0.08))

@@ -33,7 +33,7 @@ func tick(delta: float) -> bool:
     next_phase = index
   if next_phase != phase_index:
    phase_index = next_phase
-   battle.view.effect(enemy.position,"blast",95,enemy.tint)
+   battle.view.effect(enemy.position,"pulse",95,enemy.tint)
    cooldown = minf(cooldown,2.0)
   if enemy.position.distance_to(anchor()) > 4:
    var active_delta := maxf(0.0,delta-enemy.disable_remaining)
@@ -95,7 +95,7 @@ func execute(config: Dictionary) -> void:
   for turret in battle.turrets.get_children():
    if boss or turret == target:
     turret.apply_disable(float(config.disable_time))
-  battle.view.effect(enemy.position,"blast",boss_range(),Color("ada3ff"))
+  battle.view.effect(enemy.position,"pulse",boss_range(),Color("ada3ff"))
  elif attack == "sniper":
   if is_instance_valid(target):
    target.apply_disable(float(config.disable_time))

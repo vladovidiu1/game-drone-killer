@@ -3,6 +3,7 @@ signal abort_requested
 const UI := preload("res://scripts/ui/ui_kit.gd")
 var battle: Node2D
 var readout: Label
+var base_bar: ProgressBar
 var pause_button: Button
 var speed_button: Button
 var wave_button: Button
@@ -28,9 +29,18 @@ func setup(simulation: Node2D) -> void:
  top.mouse_filter = Control.MOUSE_FILTER_IGNORE
  top.add_theme_constant_override("separation",8)
  add_child(top)
- readout = UI.label("",17,UI.CYAN)
- readout.size_flags_horizontal = Control.SIZE_EXPAND_FILL
- top.add_child(readout)
+ var telemetry := VBoxContainer.new()
+ telemetry.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ telemetry.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ top.add_child(telemetry)
+ readout = UI.label("",16,UI.WHITE)
+ readout.add_theme_font_override("font",UI.MONO)
+ telemetry.add_child(readout)
+ base_bar = ProgressBar.new()
+ base_bar.show_percentage = false
+ base_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ base_bar.custom_minimum_size.y = 5
+ telemetry.add_child(base_bar)
  pause_button = UI.button("Pause",func(): battle.set_paused(not battle.paused),Vector2(110,50))
  speed_button = UI.button("1x speed",func(): battle.toggle_speed(),Vector2(130,50))
  top.add_child(pause_button)
@@ -45,13 +55,6 @@ func setup(simulation: Node2D) -> void:
  middle.add_child(field)
  side_panel = PanelContainer.new()
  side_panel.custom_minimum_size.x = 300
- var style := StyleBoxFlat.new()
- style.bg_color = Color("101f2c")
- style.border_color = Color("345565")
- style.set_border_width_all(1)
- style.set_corner_radius_all(8)
- style.set_content_margin_all(10)
- side_panel.add_theme_stylebox_override("panel",style)
  middle.add_child(side_panel)
  var stack := VBoxContainer.new()
  stack.add_theme_constant_override("separation",6)
@@ -116,7 +119,7 @@ func setup(simulation: Node2D) -> void:
  bottom.mouse_filter = Control.MOUSE_FILTER_IGNORE
  add_child(bottom)
  bottom.add_child(UI.button("Abort mission",func(): abort_requested.emit(),Vector2(170,46)))
- bottom.add_child(UI.label("   LEFT DRAG: AIM • HOLD FIRE • BUILD MODE: 0.25x",16,UI.MUTED))
+ bottom.add_child(UI.label("   LEFT DRAG: AIM • HOLD FIRE • BUILD: 0.25x" if OS.has_feature("mobile") else "   AIM + HOLD LMB • R: RELOAD • BUILD: 0.25x",16,UI.MUTED))
  battle.player_controls.ui_hit_test = blocks_pointer
  battle.status_changed.connect(refresh)
  battle.selection_changed.connect(refresh)
@@ -131,6 +134,7 @@ func _ability(id: String) -> void:
 func refresh() -> void:
  if not is_instance_valid(battle):
   return
+ base_bar.value = 100.0*battle.health/battle.max_health
  var spawner: Node = battle.spawner
  var wave_number: int = mini(spawner.wave+2 if spawner.intermission else spawner.wave+1,spawner.waves.size())
  readout.text = "BASE %d/%d | WAVE %d/%d | ENEMIES %d | BATTLE CREDITS %d" % [battle.health,battle.max_health,wave_number,spawner.waves.size(),spawner.remaining_to_spawn()+battle.living_count(),battle.credits]

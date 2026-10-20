@@ -2,6 +2,7 @@ extends Control
 const UI := preload("res://scripts/ui/ui_kit.gd")
 const BATTLE := preload("res://scenes/gameplay.tscn")
 const BATTLE_HUD := preload("res://scripts/ui/battle_hud.gd")
+var background: Control
 var content: MarginContainer
 var battle: Node2D
 var screen := ""
@@ -10,7 +11,7 @@ var result_data: Dictionary = {}
 
 func _ready() -> void:
  theme = UI.theme()
- var background := Control.new()
+ background = Control.new()
  background.set_script(preload("res://scripts/ui/backdrop.gd"))
  background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
  add_child(background)
@@ -40,10 +41,12 @@ func _resize() -> void:
  content.add_theme_constant_override("margin_right",int(margins.z))
  content.add_theme_constant_override("margin_bottom",int(margins.w))
  if is_instance_valid(battle):
-  battle.scale = size / Vector2(1280,720)
+  battle.scale = Vector2.ONE*minf(size.x/1280.0,size.y/720.0)
+  battle.position = (size-Vector2(1280,720)*battle.scale)*0.5
 
 func _clear(next: String) -> void:
  screen = next
+ background.set_screen(next)
  for child in content.get_children():
   content.remove_child(child)
   child.queue_free()
@@ -71,32 +74,19 @@ func _spacer(column: BoxContainer) -> void:
 
 func _menu() -> void:
  _clear("menu")
- var col := _column()
- _header(col,"DRONE KILLER: FRONTLINE","The Varkon Empire invades Asteria. Take back the frontline.")
- _spacer(col)
- col.add_child(UI.label("01 / THE INVASION",18,UI.CYAN))
- col.add_child(UI.label("Command Sentinel-7",28))
- var row := HBoxContainer.new()
- row.add_theme_constant_override("separation",12)
- col.add_child(row)
- row.add_child(UI.button("New Campaign",_confirm_new))
- var resume := UI.button("Continue Campaign",_map)
- resume.disabled = not SaveManager.has_campaign()
- row.add_child(resume)
- var tools := HBoxContainer.new()
- tools.add_theme_constant_override("separation",12)
- col.add_child(tools)
- tools.add_child(UI.button("Arsenal",_arsenal))
- tools.add_child(UI.button("Settings",_settings))
- if not OS.has_feature("mobile"):
-  tools.add_child(UI.button("Exit",func(): get_tree().quit()))
- _spacer(col)
- col.add_child(UI.label("OFFLINE CAMPAIGN   •   25 MISSIONS   •   5 CHAPTER BOSSES",16,UI.MUTED))
- _save_error(col)
+ var menu := preload("res://scripts/ui/main_menu.gd").new()
+ content.add_child(menu)
+ menu.setup(SaveManager.has_campaign())
+ menu.new_requested.connect(_confirm_new)
+ menu.continue_requested.connect(_map)
+ menu.arsenal_requested.connect(_arsenal)
+ menu.settings_requested.connect(_settings)
+ menu.exit_requested.connect(func(): get_tree().quit())
+ _save_error(menu)
 
 func _save_error(col: VBoxContainer) -> void:
  if not SaveManager.recovery_notice.is_empty():
-  var notice := UI.label(SaveManager.recovery_notice,17,Color("f9ad52"))
+  var notice := UI.label(SaveManager.recovery_notice,17,Color("FF9C42"))
   notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
   col.add_child(notice)
  if not SaveManager.last_error.is_empty():
@@ -154,7 +144,7 @@ func _map() -> void:
    var btn := UI.button("%02d  %s\n%s" % [id,mission.name,status],_briefing.bind(id),Vector2(0,60))
    btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
    btn.add_theme_font_size_override("font_size",14)
-   var tint := Color("62baff") if status.begins_with("CONTROLLED") else (Color("f9ad52") if id == frontline else Color("ed7778"))
+   var tint := Color("37B7E5") if status.begins_with("CONTROLLED") else (Color("FF9C42") if id == frontline else Color("F04B45"))
    btn.add_theme_color_override("font_color",tint)
    row.add_child(btn)
  var nav := HBoxContainer.new()
@@ -226,7 +216,7 @@ func _play(id: int = 1) -> void:
  battle.run_id = token
  add_child(battle)
  move_child(battle,1)
- battle.scale = size / Vector2(1280,720)
+ _resize()
  battle.completed.connect(_results.bind(id,token))
  hud = BATTLE_HUD.new()
  content.add_child(hud)

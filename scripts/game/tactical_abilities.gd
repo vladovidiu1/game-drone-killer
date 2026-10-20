@@ -45,7 +45,7 @@ func activate(id: String) -> bool:
   for enemy in battle.drones.get_children():
    if not enemy.ended and enemy.position.distance_to(center) <= float(data.radius):
     enemy.apply_disable(float(data.duration))
-  battle.view.effect(center,"blast",float(data.radius),color)
+  battle.view.effect(center,"pulse",float(data.radius),color)
  else:
   _rescale_weapon_cooldowns(1.0/float(data.multiplier))
   overclock_remaining = float(data.duration)

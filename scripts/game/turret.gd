@@ -1,5 +1,7 @@
 extends Node2D
 # Automatic target acquisition; battle resolves all impacts and rewards.
+const ASSETS := preload("res://scripts/visual/visual_assets.gd")
+var art: Node2D
 var battle: Node2D
 var kind := "machine_gun"
 var definition: Dictionary = {}
@@ -18,6 +20,9 @@ func configure(owner_battle: Node2D, type: String) -> void:
  battle = owner_battle
  kind = type
  definition = CampaignManager.turrets[kind]
+ art = preload("res://scripts/visual/unit_visual.gd").new()
+ art.configure(str(ASSETS.catalog.turret_aliases[kind]))
+ add_child(art)
 
 func damage_value() -> float:
  return float(definition.damage) * pow(float(CampaignManager.combat.upgrade_damage_multiplier),level-1) * (1.0 + int(SaveManager.state.get("damage_level",0))*float(CampaignManager.combat.permanent_damage_step)) * (1.0+EconomyManager.modifier("turret_damage",battle.research_levels))
@@ -52,7 +57,7 @@ func tick(delta: float) -> void:
     for enemy in battle.drones.get_children():
      if not enemy.ended and enemy.position.distance_to(position) <= range_value():
       enemy.apply_slow(float(definition.slow_factor),float(definition.status_duration))
-    battle.view.effect(position,"blast",range_value(),Color(str(definition.color)))
+    battle.view.effect(position,"pulse",range_value(),Color(str(definition.color)))
    elif mode != "laser":
     battle.launch_projectile(self,target)
    cooldown += 1.0/fire_rate_value()
@@ -77,28 +82,13 @@ func _draw() -> void:
  if disabled_remaining > 0:
   draw_arc(Vector2.ZERO,33,0,TAU,32,Color("ba9aff"),4)
   draw_string(ThemeDB.fallback_font,Vector2(-25,-38),"OFF %.1fs" % disabled_remaining,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("ddbbff"))
- draw_circle(Vector2(0,8),30,Color(0,0,0,0.35))
- draw_circle(Vector2.ZERO,27,Color("14222e"))
- draw_arc(Vector2.ZERO,26,0,TAU,24,color.darkened(0.45),3)
- draw_rect(Rect2(-18,-18,36,36),Color("344959"))
- draw_set_transform(Vector2.ZERO,barrel_angle)
- if kind == "machine_gun":
-  draw_line(Vector2(-5,-5),Vector2(32,-5),color,5)
-  draw_line(Vector2(-5,5),Vector2(32,5),color,5)
- elif kind == "cannon" or kind == "heavy_aa":
-  draw_line(Vector2(-10,0),Vector2(34,0),Color("101a26"),17)
-  draw_line(Vector2(-8,0),Vector2(32,0),color,11)
- elif kind in ["laser","emp_tower"]:
-  draw_circle(Vector2.ZERO,16,color.darkened(0.5))
-  draw_circle(Vector2.ZERO,9,color)
-  draw_line(Vector2.ZERO,Vector2(30,0),color,5)
- else:
-  for y in [-9,9]:
-   draw_rect(Rect2(-14,y-6,40,12),Color("16212f"))
-   draw_line(Vector2(-10,y),Vector2(22,y),color,6)
- if muzzle > 0:
-  draw_colored_polygon(PackedVector2Array([Vector2(32,-7),Vector2(48,0),Vector2(32,7)]),Color("fff4be"))
- draw_set_transform(Vector2.ZERO)
+ draw_texture_rect(ASSETS.texture("turrets/placement_pad.svg"),Rect2(-35,-35,70,70),false)
+ if is_instance_valid(art):
+  art.sync(barrel_angle+PI/2,0.0,false,disabled_remaining > 0)
+ if muzzle > 0 and kind not in ["laser","emp_tower"]:
+  draw_set_transform(Vector2.ZERO,barrel_angle)
+  draw_texture_rect(ASSETS.texture("effects/muzzle_flash.svg"),Rect2(28,-13,42,26),false,Color(1,1,1,muzzle/0.08))
+  draw_set_transform(Vector2.ZERO)
  if kind == "laser" and muzzle > 0 and is_instance_valid(target) and not target.ended:
   draw_line(Vector2.ZERO,target.position-position,Color(color,0.3),7)
   draw_line(Vector2.ZERO,target.position-position,color,2)

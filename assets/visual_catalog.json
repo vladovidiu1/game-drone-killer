@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "sprites": {
+    "drone_scout": {
+      "file": "drones/combat_atlas.png",
+      "region": [
+        0,
+        0,
+        512,
+        435
+      ],
+      "pivot": [
+        256,
+        230
+      ],
+      "scale": 0.14
+    },
+    "drone_assault": {
+      "file": "drones/combat_atlas.png",
+      "region": [
+        512,
+        0,
+        512,
+        435
+      ],
+      "pivot": [
+        256,
+        230
+      ],
+      "scale": 0.14
+    },
+    "drone_heavy": {
+      "file": "drones/combat_atlas.png",
+      "region": [
+        1024,
+        0,
+        512,
+        435
+      ],
+      "pivot": [
+        256,
+        230
+      ],
+      "scale": 0.14
+    },
+    "gun_machine": {
+      "file": "drones/combat_atlas.png",
+      "region": [
+        0,
+        500,
+        512,
+        524
+      ],
+      "pivot": [
+        256,
+        350
+      ],
+      "scale": 0.12
+    },
+    "gun_cannon": {
+      "file": "drones/combat_atlas.png",
+      "region": [
+        512,
+        435,
+        512,
+        589
+      ],
+      "pivot": [
+        256,
+        425
+      ],
+      "scale": 0.08
+    },
+    "gun_primary": {
+      "file": "drones/combat_atlas.png",
+      "region": [
+        1024,
+        435,
+        512,
+        589
+      ],
+      "pivot": [
+        256,
+        425
+      ],
+      "scale": 0.086
+    },
+    "gun_missile": {
+      "file": "turrets/missile_head.svg",
+      "pivot": [
+        64,
+        79
+      ],
+      "scale": 0.54
+    },
+    "gun_laser": {
+      "file": "turrets/laser_head.svg",
+      "pivot": [
+        64,
+        79
+      ],
+      "scale": 0.54
+    },
+    "gun_emp": {
+      "file": "turrets/emp_head.svg",
+      "pivot": [
+        64,
+        79
+      ],
+      "scale": 0.54
+    },
+    "command_bunker": {
+      "file": "environment/command_bunker.png",
+      "region": [
+        40,
+        175,
+        1460,
+        650
+      ],
+      "pivot": [
+        730,
+        310
+      ],
+      "scale": 1
+    }
+  },
+  "enemy_aliases": {
+    "Scout Drone": "drone_scout",
+    "Assault Drone": "drone_assault",
+    "Heavy Drone": "drone_heavy"
+  },
+  "turret_aliases": {
+    "machine_gun": "gun_machine",
+    "cannon": "gun_cannon",
+    "heavy_aa": "gun_primary",
+    "missile": "gun_missile",
+    "laser": "gun_laser",
+    "emp_tower": "gun_emp"
+  }
+}

@@ -1,0 +1,571 @@
+{
+  "version": 1,
+  "guide": "VISUAL_STYLE.md",
+  "license_notice": "assets/ASSET_LICENSE.md",
+  "assets": [
+    {
+      "filename": "backgrounds/sentinel_keyart.png",
+      "purpose": "Main-menu key art",
+      "required_dimensions": [
+        1536,
+        1024
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "OpenAI image generation, original prompt; output exec-916191e1-8a66-484a-9f06-f5503b31b972; assets/source/GENERATION.md",
+      "license": "Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated generated candidate; art approval pending",
+      "sha256": "6e694cab36fbaadd52a1c6c35ff850573e4bd32db4d748456c6f42cd754cb310"
+    },
+    {
+      "filename": "drones/combat_atlas.png",
+      "purpose": "Shared Scout/Assault/Heavy and MG/Cannon/Primary art",
+      "required_dimensions": [
+        1536,
+        1024
+      ],
+      "animation_frames": 6,
+      "frame_semantics": "Six independent objects, not animation frames",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "OpenAI image generation, original prompt; output exec-74e5acd9-f126-4fc0-b63b-ad034baf298f; assets/source/GENERATION.md",
+      "license": "Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated six-object atlas; explicit reviewed regions/pivots",
+      "sha256": "859f9d436540c30daec65b81407b46e58004c3fbb6e64b35623e667a04751c24"
+    },
+    {
+      "filename": "effects/explosion_atlas.png",
+      "purpose": "Ignition, fire and smoke one-shot",
+      "required_dimensions": [
+        1536,
+        1024
+      ],
+      "animation_frames": 6,
+      "frame_semantics": "Sequential 3 by 2 frames",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "OpenAI image generation, original prompt; output exec-6a37c7cb-222e-469a-bbdc-6257438301a3; assets/source/GENERATION.md",
+      "license": "Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated six-frame 0.65s animation; needs final continuity review",
+      "sha256": "ce03dc644a23ec3505950cccb078233c384395c6fd15eaa2887a8894625610ed"
+    },
+    {
+      "filename": "effects/muzzle_flash.svg",
+      "purpose": "muzzle flash",
+      "required_dimensions": [
+        128,
+        64
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "6a6b6d0ad5aa07264ccfa6dd0fc5874fc7f7fb7eb48d80f4a4367b87e7bc6fed"
+    },
+    {
+      "filename": "effects/soft_shadow.svg",
+      "purpose": "soft shadow",
+      "required_dimensions": [
+        128,
+        64
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "1cf2fefa484339226d59cf0d41a4090425e31291d1d40414c7bd27018495d625"
+    },
+    {
+      "filename": "environment/command_bunker.png",
+      "purpose": "Defended command bunker with separate player cannon",
+      "required_dimensions": [
+        1536,
+        1024
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "OpenAI image generation, original prompt; output exec-ae36df4a-ba4a-4db1-89f7-06832bb9e38e; assets/source/GENERATION.md",
+      "license": "Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated cropped AtlasTexture candidate; roof-mount/perspective approval pending",
+      "sha256": "cd63fe1ad4b2eff9aeb79d6c7802f9f74a887aade65cee45b783895e18e1a89c"
+    },
+    {
+      "filename": "environment/command_bunker.svg",
+      "purpose": "command bunker",
+      "required_dimensions": [
+        320,
+        100
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Reference only; runtime uses command_bunker.png",
+      "sha256": "3824e962e8218818443e73f7b274ec900f3658b0990583838c6e52b8d4645bad"
+    },
+    {
+      "filename": "environment/outpost_alpha.png",
+      "purpose": "Mission-one terrain plate",
+      "required_dimensions": [
+        1536,
+        1024
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "OpenAI image generation, original prompt; output exec-9215633d-f3d2-4b00-b0e2-0d43aaac4df0; assets/source/GENERATION.md",
+      "license": "Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated in Outpost Alpha; other territories retain their existing environments",
+      "sha256": "8774c0b6dc70328e025ab416dcd4b1761410b932457d9845e4be8d14885797e3"
+    },
+    {
+      "filename": "projectiles/missile.svg",
+      "purpose": "missile",
+      "required_dimensions": [
+        64,
+        24
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "adeece4fb8c998224aa53e499693a9ecb032e33ebb9c02ebc6bbb521aeb3c43c"
+    },
+    {
+      "filename": "projectiles/tracer.svg",
+      "purpose": "tracer",
+      "required_dimensions": [
+        64,
+        16
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "97ebe338e4252f5a5e4b013b535a467fcd41e0f0b8f3c1b35caebd74ae806cfb"
+    },
+    {
+      "filename": "shaders/terrain_grade.gdshader",
+      "purpose": "terrain grade",
+      "required_dimensions": null,
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "Authored for G1; editable source in repository",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "da8a428db9a2641e127fa5666ac3dffc0a5e30c5b99cf14cc0ab175088cdf145"
+    },
+    {
+      "filename": "shaders/unit_surface.gdshader",
+      "purpose": "unit surface",
+      "required_dimensions": null,
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "Authored for G1; editable source in repository",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "1fbb437e0b27a62417c6c7be4b8adfb6e38a42a5c3cbd941eb4b2fdd063beb67"
+    },
+    {
+      "filename": "turrets/emp_head.svg",
+      "purpose": "emp head",
+      "required_dimensions": [
+        128,
+        128
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated interim authored vector; dedicated rendered weapon art required",
+      "sha256": "263352767c62dd78fe723bd8e0a3999845f18af5af883c68782a8c74b6bd3650"
+    },
+    {
+      "filename": "turrets/laser_head.svg",
+      "purpose": "laser head",
+      "required_dimensions": [
+        128,
+        128
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated interim authored vector; dedicated rendered weapon art required",
+      "sha256": "78559bf27715b9e26867e53be4be0cdfe11f962d740a57ad9833c05527b373b6"
+    },
+    {
+      "filename": "turrets/missile_head.svg",
+      "purpose": "missile head",
+      "required_dimensions": [
+        128,
+        128
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated interim authored vector; dedicated rendered weapon art required",
+      "sha256": "86eee5cd1e9d96d5bdd4694b9299acd2edc6fdc6727967b4f7270704f5533b91"
+    },
+    {
+      "filename": "turrets/placement_pad.svg",
+      "purpose": "placement pad",
+      "required_dimensions": [
+        80,
+        80
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "097f39a4ca41a93218f3bc256457826ed6264f6f51d6936e27f5224fcd1ced90"
+    },
+    {
+      "filename": "ui/button_disabled.svg",
+      "purpose": "button disabled",
+      "required_dimensions": [
+        256,
+        64
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/build_visual_theme.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "f1a07c53d2286398ee1bd0a1f012cf33f67fc0b53f8b41f34a88a7aef61e1536"
+    },
+    {
+      "filename": "ui/button_fire.svg",
+      "purpose": "button fire",
+      "required_dimensions": [
+        256,
+        64
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/build_visual_theme.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "a67330455e43f4c6fbb1eae1a6983562bea21dac611ec25282f91ce852ebcac8"
+    },
+    {
+      "filename": "ui/button_fire_hover.svg",
+      "purpose": "button fire hover",
+      "required_dimensions": [
+        256,
+        64
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/build_visual_theme.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "2849975db0f01b0a7474bf85f24db3270a3df5a7930b71209c217e87c68a61d1"
+    },
+    {
+      "filename": "ui/button_hover.svg",
+      "purpose": "button hover",
+      "required_dimensions": [
+        256,
+        64
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/build_visual_theme.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "873cab9f5804a6dd4bce2b7d3ac0308fcf7642e0eabf6eb2236f1b75106c3298"
+    },
+    {
+      "filename": "ui/button_normal.svg",
+      "purpose": "button normal",
+      "required_dimensions": [
+        256,
+        64
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/build_visual_theme.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "05dd6430719d3ebfa3affa25d65968eba86f33f27846c64ef7e771f4b3594076"
+    },
+    {
+      "filename": "ui/button_pressed.svg",
+      "purpose": "button pressed",
+      "required_dimensions": [
+        256,
+        64
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/build_visual_theme.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "6602dfc34b2fed36711b9c6916b38b6d55dc2f01fbb3253edcebb3805c2ed079"
+    },
+    {
+      "filename": "ui/button_primary.svg",
+      "purpose": "button primary",
+      "required_dimensions": [
+        256,
+        64
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/build_visual_theme.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "a93e173df856c7b24753317b76e1c8fe5f8cfd0acf02697f786b6c423d04082b"
+    },
+    {
+      "filename": "ui/button_primary_hover.svg",
+      "purpose": "button primary hover",
+      "required_dimensions": [
+        256,
+        64
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/build_visual_theme.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "1fdad8d0681de74d8a0700940d539a101b0d592e0aae573ae8bdb03271288f14"
+    },
+    {
+      "filename": "ui/fonts/Barlow-Regular.ttf",
+      "purpose": "Barlow-Regular",
+      "required_dimensions": null,
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "Google Fonts / ofl/barlow",
+      "license": "SIL OFL 1.1; adjacent Barlow*-OFL.txt",
+      "integration_status": "Integrated",
+      "sha256": "95aa02c7c43096e0dd44d787ba6216864a67157e402adab59b35572e0c1577ea"
+    },
+    {
+      "filename": "ui/fonts/BarlowCondensed-Bold.ttf",
+      "purpose": "BarlowCondensed-Bold",
+      "required_dimensions": null,
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "Google Fonts / ofl/barlowcondensed",
+      "license": "SIL OFL 1.1; adjacent Barlow*-OFL.txt",
+      "integration_status": "Integrated",
+      "sha256": "e476562ec9c1e16cf16475895b511f08c804f438cc9a9f80a44ea50a0eeb5b65"
+    },
+    {
+      "filename": "ui/fonts/DejaVuSansMono.ttf",
+      "purpose": "DejaVuSansMono",
+      "required_dimensions": null,
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "Unmodified Debian DejaVu font distribution",
+      "license": "Bitstream Vera / DejaVu licenses; ui/fonts/DejaVu-LICENSE.txt",
+      "integration_status": "Integrated",
+      "sha256": "54bf827eb99404e8f430c330ad30f063334f637eba0109b6a18d4f566a8e9dd8"
+    },
+    {
+      "filename": "ui/frontline_theme.tres",
+      "purpose": "frontline theme",
+      "required_dimensions": null,
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/build_visual_theme.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "6582bc0faa9b02fde08a765f3499c9495bbb1882de30e2587e6071e947fc1199"
+    },
+    {
+      "filename": "ui/icon_arsenal.svg",
+      "purpose": "icon arsenal",
+      "required_dimensions": [
+        24,
+        24
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "c1bce7be284faafc4ec2d5de1a42b1e12b60c42f2d3462ca069a99abd62a84ef"
+    },
+    {
+      "filename": "ui/icon_chevron.svg",
+      "purpose": "icon chevron",
+      "required_dimensions": [
+        24,
+        24
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Available UI kit resource; not currently placed",
+      "sha256": "236736475d9c8ae788bc14bf7cecbf6cc7894bb2008c7c18ad3b902ed68cadd2"
+    },
+    {
+      "filename": "ui/icon_credits.svg",
+      "purpose": "icon credits",
+      "required_dimensions": [
+        24,
+        24
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Available UI kit resource; not currently placed",
+      "sha256": "efae1b31184648fe4e9f0f3fc610f910876c8e41a5bbfbb3c209377816b68fad"
+    },
+    {
+      "filename": "ui/icon_crosshair.svg",
+      "purpose": "icon crosshair",
+      "required_dimensions": [
+        24,
+        24
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Available UI kit resource; not currently placed",
+      "sha256": "0963cd51f577e8b0b4d640c36fe3330ce924c37b9caecac35a3596bd2232c9f9"
+    },
+    {
+      "filename": "ui/icon_exit.svg",
+      "purpose": "icon exit",
+      "required_dimensions": [
+        24,
+        24
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Available UI kit resource; not currently placed",
+      "sha256": "0e566c83f60dce4bfe30da25a8fba7fcff0f46393e3d132f54c917c3248b1dd1"
+    },
+    {
+      "filename": "ui/icon_pause.svg",
+      "purpose": "icon pause",
+      "required_dimensions": [
+        24,
+        24
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Available UI kit resource; not currently placed",
+      "sha256": "27afcc8898143a328a0369fcf31e71d77447d8fe3d04630dc9151091b8bd8a3e"
+    },
+    {
+      "filename": "ui/icon_play.svg",
+      "purpose": "icon play",
+      "required_dimensions": [
+        24,
+        24
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "10f14d4974a9c9aa7a34dbe0f796e370a3b8a76518828cd4c117d9048a472c7b"
+    },
+    {
+      "filename": "ui/icon_settings.svg",
+      "purpose": "icon settings",
+      "required_dimensions": [
+        24,
+        24
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "b31b503883538a1d248c09972894f6e80225debc994c4d79a81844bac45a04dd"
+    },
+    {
+      "filename": "ui/icon_shield.svg",
+      "purpose": "icon shield",
+      "required_dimensions": [
+        24,
+        24
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "bc136992d6cfffc0b651180ea6a40eab0e25cb222c04b5e59e518257c4000183"
+    },
+    {
+      "filename": "ui/sentinel_badge.svg",
+      "purpose": "sentinel badge",
+      "required_dimensions": [
+        80,
+        80
+      ],
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "tools/generate_visual_vectors.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "690c33e0c766c5a52f8cb88ea91eedb0943f0aad1807ef91ac432ee9a9f6aaba"
+    },
+    {
+      "filename": "visual_catalog.json",
+      "purpose": "visual catalog",
+      "required_dimensions": null,
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "Authored for G1; editable source in repository",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "7b192630bcc8eb54f32bec2620a71d5a0187960d3b419eef09517a363bc784c6"
+    }
+  ]
+}

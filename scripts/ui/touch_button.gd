@@ -6,6 +6,31 @@ var touch_origin := Vector2.ZERO
 var previous_touch := Vector2.ZERO
 var scrolling := false
 
+var accent_alpha := 0.0
+var accent_tween: Tween
+
+func _ready() -> void:
+ mouse_entered.connect(_animate_accent.bind(0.7))
+ mouse_exited.connect(_animate_accent.bind(0.0))
+ focus_entered.connect(_animate_accent.bind(0.7))
+ focus_exited.connect(_animate_accent.bind(0.0))
+ button_down.connect(_animate_accent.bind(1.0))
+ button_up.connect(_animate_accent.bind(0.0))
+
+func _animate_accent(value: float) -> void:
+ if is_instance_valid(accent_tween):
+  accent_tween.kill()
+ accent_tween = create_tween()
+ accent_tween.tween_method(_set_accent,accent_alpha,value,0.12)
+
+func _set_accent(value: float) -> void:
+ accent_alpha = value
+ queue_redraw()
+
+func _draw() -> void:
+ if not disabled and accent_alpha > 0:
+  draw_line(Vector2(14,size.y-3),Vector2(size.x-14,size.y-3),Color(0.216,0.718,0.898,accent_alpha),1)
+
 func _gui_input(event: InputEvent) -> void:
  if disabled:
   return

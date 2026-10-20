@@ -2,6 +2,8 @@ extends Node2D
 signal breached(damage: int)
 signal destroyed(reward: int)
 signal damaged(at: Vector2)
+const ASSETS := preload("res://scripts/visual/visual_assets.gd")
+var art: Node2D
 var health := 40.0
 var maximum_health := 40.0
 var speed := 120.0
@@ -34,6 +36,13 @@ func configure(data: Dictionary, path: Array, identity: int) -> void:
  body_scale = float(data.size)
  armored = bool(data.get("armored",false))
  designation = "B" if str(data.get("name", "")) == "Bomber Drone" else ""
+ if is_instance_valid(art):
+  art.queue_free()
+ art = preload("res://scripts/visual/unit_visual.gd").new()
+ var sprite_id: String = ASSETS.catalog.enemy_aliases.get(str(data.get("name","")),"drone_heavy" if bool(data.get("armored",false)) or bool(data.get("boss",false)) else "drone_assault")
+ art.configure(sprite_id,body_scale)
+ art.show_behind_parent = true
+ add_child(art)
  spawn_id = identity
  route.clear()
  for point in path:
@@ -100,26 +109,17 @@ func hit(amount: float, manual: bool = false, armor_piercing: bool = false, poin
  queue_redraw()
 
 func _draw() -> void:
- draw_set_transform(Vector2(0,14),0,Vector2(1,0.4)*body_scale)
- draw_circle(Vector2.ZERO,24,Color(0,0,0,0.3))
- draw_set_transform(Vector2.ZERO,0,Vector2.ONE*body_scale)
- var color := Color.WHITE if hit_flash > 0 else tint
- if brain != null and brain.cloaked():
-  color.a = 0.4
- for offset in [Vector2(-17,-12),Vector2(17,-12),Vector2(-17,12),Vector2(17,12)]:
-  draw_line(Vector2.ZERO,offset,Color("131e2a"),6)
-  draw_arc(offset,10,phase,phase+4.8,12,color,2)
- draw_colored_polygon(PackedVector2Array([Vector2(-14,0),Vector2(-8,-12),Vector2(8,-12),Vector2(14,0),Vector2(0,16)]),Color("121f2d"))
- draw_colored_polygon(PackedVector2Array([Vector2(-11,0),Vector2(-6,-9),Vector2(6,-9),Vector2(11,0),Vector2(0,12)]),color)
- draw_line(Vector2(-5,0),Vector2(5,0),Color("0e1a28"),3)
- draw_circle(Vector2(0,7),2.5,Color.WHITE)
- draw_set_transform(Vector2.ZERO)
+ if is_instance_valid(art):
+  art.sync(0.0,hit_flash,brain != null and brain.cloaked(),disable_remaining > 0)
+ # Faint rotor motion overlays the rendered turbine assemblies.
+ for offset in [Vector2(-20,-18),Vector2(20,-18),Vector2(-20,17),Vector2(20,17)]:
+  draw_arc(offset*body_scale,8*body_scale,phase,phase+2.8,10,Color(0.85,0.9,0.94,0.16),1)
  if brain != null:
   _draw_ability()
  if disable_remaining > 0 or slow_remaining > 0:
   draw_arc(Vector2.ZERO,34*body_scale,0,TAU,24,Color("acbbff"),2)
  draw_rect(Rect2(-24,-32*body_scale,48,5),Color("0a1421"))
- draw_rect(Rect2(-23,-32*body_scale+1,46*health/maximum_health,3),Color("69e2b7"))
+ draw_rect(Rect2(-23,-32*body_scale+1,46*health/maximum_health,3),Color("F04B45"))
 
 func _draw_ability() -> void:
  if brain.data.has("aura_radius") and disable_remaining <= 0:

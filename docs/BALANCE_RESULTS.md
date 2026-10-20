@@ -1,5 +1,7 @@
 # Native validation and assisted-play results
 
+This is the Task 5 combat baseline. Graphics G1 validation and native captures are recorded in [VISUAL_VALIDATION.md](VISUAL_VALIDATION.md).
+
 Validated with Godot 4.6.3 stable, Compatibility project, on 2026-10-20. `./tests/run_checks.sh` completed successfully with native import/startup and **4420 assertions, zero failures**. The runner rejected script/engine errors and ObjectDB leak warnings.
 
 Catalog SHA-256: `cf9c3d814b3063a4b132e76be7b5084e75e8585b91bae493608503f9fb749716`.

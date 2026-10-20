@@ -1,6 +1,6 @@
 # DRONE KILLER: FRONTLINE
 
-A native Godot 4 game foundation for an offline Android-first defense campaign. Command Sentinel-7 against the Varkon Empire in Asteria. All 25 campaign territories are playable. Five chapter bosses, shield/EMP/sniper/carrier/stealth behaviors, environmental pressure and a persistent finale extend the existing manual cannon, six automatic defenses, ammunition, research and tactical abilities. See [campaign design and validation](docs/CAMPAIGN.md).
+A native Godot 4 game foundation for an offline Android-first defense campaign. Command Sentinel-7 against the Varkon Empire in Asteria. All 25 campaign territories are playable. Five chapter bosses, shield/EMP/sniper/carrier/stealth behaviors, environmental pressure and a persistent finale extend the existing manual cannon, six automatic defenses, ammunition, research and tactical abilities. See [campaign design and validation](docs/CAMPAIGN.md). Graphics G1 adds original generated key art, rendered drone/weapon sprites, Outpost Alpha terrain, animated explosions, a reusable military UI theme and locally bundled fonts. See [VISUAL_STYLE.md](VISUAL_STYLE.md), the [asset manifest](assets/manifest.json) and [native visual validation](docs/VISUAL_VALIDATION.md).
 
 ## Download
 
@@ -30,6 +30,15 @@ After victory, use **Next: [mission]** or the campaign map to read the next brie
 
 New Campaign requires confirmation when replacing an existing save. Continue is disabled until a campaign exists. Escape / Android Back pauses a battle and returns to the main menu from other screens. Losing focus pauses the battle; press Resume after returning. Aborting counts as defeat.
 
+## Visual foundation G1
+
+These are actual native Godot captures of the running project:
+
+![Native main menu](docs/visuals/main_menu.png)
+![Outpost Alpha with real manual and automatic combat](docs/visuals/outpost_alpha.png)
+
+The [visual validation gallery](docs/VISUAL_VALIDATION.md) also includes a live explosion, tactical construction and a wider landscape layout. [VISUAL_STYLE.md](VISUAL_STYLE.md) describes the art direction, budget, exact replacement specifications and artwork still needed. The [asset manifest](assets/manifest.json) records dimensions, frames, provenance, licenses and integration status. No generation service or font download is needed to run the game.
+
 ## Implemented scope
 
 - Compatibility renderer; 1280×720 reference canvas, expanding aspect layout, landscape orientation, mobile safe-area margins, scrollable campaign chapter rows.
@@ -44,7 +53,7 @@ New Campaign requires confirmation when replacing an existing save. Continue is 
 - Mission victory rewards are 120 / 180 / 250 permanent credits for missions 1 / 2 / 3. Defeat grants **zero** credits. Permanent damage upgrades have five levels. Replays award once per new deployment but cannot advance past that mission; replay defeats obey the same retreat rule.
 - Frontline progression and chapter checkpoint floor rules are implemented independently of mission presentation.
 - A dedicated manually controlled primary cannon, loaded at the start without using a placement slot. Its projectiles fly straight, with range-limited swept collision, recoil, muzzle flashes, trails, hit markers and reload feedback.
-- Generated vector art and synthesized shot, hit, reload and result sounds; no third-party art or audio dependencies.
+- Generated rendered artwork, authored vector UI/effects, licensed bundled fonts and synthesized shot/hit/reload/result sounds; no paid assets or external runtime services.
 
 ## Arsenal, research and two currencies
 
@@ -111,6 +120,9 @@ The Veteran Commander objective grants 150 War Credits once at five victories; s
 | `scripts/core/audio_manager.gd` | Audio settings and generated result cues |
 | `scripts/game/battle.gd` | Fixed-step battle orchestration, battle credits, placement, impacts, outcome signals |
 | `scripts/game/enemy_brain.gd` | Shared shield auras, EMP/sniper telegraphs, carrier launches, stealth cycles, boss phases/weakpoints and siege attacks |
+| `scripts/visual/visual_assets.gd`, `unit_visual.gd` | Cached art bindings/atlas frames, composed body/shadow sprites and visual state shaders |
+| `assets/`, `VISUAL_STYLE.md` | Bundled artwork/fonts/theme/shaders, provenance manifest and exact artist replacement specifications |
+| `scripts/ui/main_menu.gd` | Native illustrated menu composition and navigation signals |
 | `scripts/game/tactical_abilities.gd` | Battle-credit activations, cooldowns, disable pulses and shared Overclock timing |
 | `data/progression.json` | Upgrade coefficients/costs, unlocks, ammunition, tactical abilities and once-only objectives |
 | `scripts/ui/arsenal.gd` | Four research tabs, effective stats and guarded purchase confirmations |
@@ -214,4 +226,4 @@ The project is configured for landscape Android and Compatibility rendering, but
 
 ## Intentionally unfinished
 
-All 25 missions and the campaign finale are implemented. Final human difficulty tuning, authored production art/music, selling/relocating defenses, full accessibility/localization, signed Android exports, device profiling and release packaging remain future work. The procedural art and generated audio are playable development assets. No APK is included; this source project opens directly in Godot.
+All 25 missions and the campaign finale are implemented. Final human difficulty tuning, authored production art/music, selling/relocating defenses, full accessibility/localization, signed Android exports, device profiling and release packaging remain future work. G1 artwork and remaining procedural art are integrated production candidates; unique support/boss art and environment kits beyond Outpost Alpha still require an artist pass. Generated audio remains a development asset. No APK is included; this source project opens directly in Godot.

@@ -1,0 +1,181 @@
+[gd_resource type="Theme" load_steps=22 format=3]
+
+[ext_resource type="FontFile" path="res://assets/ui/fonts/Barlow-Regular.ttf" id="1"]
+[ext_resource type="Texture2D" path="res://assets/ui/button_normal.svg" id="2"]
+[ext_resource type="Texture2D" path="res://assets/ui/button_hover.svg" id="3"]
+[ext_resource type="Texture2D" path="res://assets/ui/button_pressed.svg" id="4"]
+[ext_resource type="Texture2D" path="res://assets/ui/button_disabled.svg" id="5"]
+[ext_resource type="Texture2D" path="res://assets/ui/button_primary.svg" id="6"]
+[ext_resource type="Texture2D" path="res://assets/ui/button_primary_hover.svg" id="7"]
+[ext_resource type="Texture2D" path="res://assets/ui/button_fire.svg" id="8"]
+[ext_resource type="Texture2D" path="res://assets/ui/button_fire_hover.svg" id="9"]
+
+[sub_resource type="StyleBoxTexture" id="normal"]
+texture = ExtResource("2")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+content_margin_left = 14.0
+content_margin_right = 14.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="hover"]
+texture = ExtResource("3")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+content_margin_left = 14.0
+content_margin_right = 14.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="pressed"]
+texture = ExtResource("4")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+content_margin_left = 14.0
+content_margin_right = 14.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="disabled"]
+texture = ExtResource("5")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+content_margin_left = 14.0
+content_margin_right = 14.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="primary"]
+texture = ExtResource("6")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+content_margin_left = 14.0
+content_margin_right = 14.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="primary_hover"]
+texture = ExtResource("7")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+content_margin_left = 14.0
+content_margin_right = 14.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="fire"]
+texture = ExtResource("8")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+content_margin_left = 14.0
+content_margin_right = 14.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="fire_hover"]
+texture = ExtResource("9")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+content_margin_left = 14.0
+content_margin_right = 14.0
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxFlat" id="focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.86, 0.94, 0.9)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+bg_color = Color(0.061, 0.09, 0.125, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.27, 0.36, 0.43, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_left = 4
+corner_radius_bottom_right = 4
+shadow_color = Color(0.01, 0.02, 0.03, 0.35)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="track"]
+bg_color = Color(0.05, 0.075, 0.1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_left = 2
+corner_radius_bottom_right = 2
+
+[sub_resource type="StyleBoxFlat" id="fill"]
+bg_color = Color(0.216, 0.718, 0.898, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_left = 2
+corner_radius_bottom_right = 2
+
+[resource]
+default_font = ExtResource("1")
+default_font_size = 20
+Label/colors/font_color = Color(0.91373, 0.94118, 0.96471, 1)
+Button/colors/font_color = Color(0.91373, 0.94118, 0.96471, 1)
+Button/colors/font_hover_color = Color(1.0, 1.0, 1.0, 1)
+Button/colors/font_pressed_color = Color(1.0, 1.0, 1.0, 1)
+Button/colors/font_disabled_color = Color(0.46667, 0.53333, 0.58824, 1)
+Button/constants/h_separation = 10
+Button/constants/outline_size = 0
+Button/styles/normal = SubResource("normal")
+Button/styles/hover = SubResource("hover")
+Button/styles/pressed = SubResource("pressed")
+Button/styles/disabled = SubResource("disabled")
+Button/styles/focus = SubResource("focus")
+TacticalPrimary/base_type = &"Button"
+TacticalPrimary/styles/normal = SubResource("primary")
+TacticalPrimary/styles/hover = SubResource("primary_hover")
+TacticalPrimary/styles/pressed = SubResource("pressed")
+TacticalPrimary/styles/disabled = SubResource("disabled")
+TacticalPrimary/styles/focus = SubResource("focus")
+TacticalFire/base_type = &"Button"
+TacticalFire/styles/normal = SubResource("fire")
+TacticalFire/styles/hover = SubResource("fire_hover")
+TacticalFire/styles/pressed = SubResource("pressed")
+TacticalFire/styles/disabled = SubResource("disabled")
+TacticalFire/styles/focus = SubResource("focus")
+PanelContainer/styles/panel = SubResource("panel")
+PopupPanel/styles/panel = SubResource("panel")
+ProgressBar/styles/background = SubResource("track")
+ProgressBar/styles/fill = SubResource("fill")
+HScrollBar/styles/scroll = SubResource("track")
+VScrollBar/styles/scroll = SubResource("track")
+VScrollBar/styles/grabber = SubResource("normal")
+VScrollBar/styles/grabber_highlight = SubResource("hover")
+VScrollBar/styles/grabber_pressed = SubResource("pressed")

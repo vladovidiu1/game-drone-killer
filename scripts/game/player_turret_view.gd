@@ -1,22 +1,23 @@
 extends Node2D
+const ASSETS := preload("res://scripts/visual/visual_assets.gd")
+var art: Node2D
 @onready var cannon: Node2D = get_parent()
+
+func _ready() -> void:
+ art = preload("res://scripts/visual/unit_visual.gd").new()
+ art.configure("gun_primary",1.0)
+ add_child(art)
 
 func _draw() -> void:
  if cannon.definition.is_empty():
   return
  var tint := Color(str(cannon.ammunition().color))
- draw_circle(Vector2(0,9),32,Color(0,0,0,0.4))
- draw_circle(Vector2.ZERO,29,Color("112231"))
- draw_arc(Vector2.ZERO,29,0,TAU,40,tint,2)
- draw_rect(Rect2(-21,-17,42,34),Color("3c586d"))
- draw_rect(Rect2(-15,-12,30,24),Color("7393a5"))
+ draw_texture_rect(ASSETS.texture("turrets/placement_pad.svg"),Rect2(-38,-38,76,76),false)
+ if is_instance_valid(art):
+  art.sync(cannon.barrel_angle+PI/2,0.0,false,false,cannon.recoil)
  draw_set_transform(Vector2.ZERO,cannon.barrel_angle)
- var recoil: float = cannon.recoil
- draw_line(Vector2(-9,0),Vector2(36-recoil,0),Color("101e2d"),16)
- draw_line(Vector2(-6,0),Vector2(35-recoil,0),tint,9)
- draw_rect(Rect2(24-recoil,-7,13,14),Color("d3f6fc"))
  if cannon.muzzle_flash > 0:
-  draw_colored_polygon(PackedVector2Array([Vector2(37,-10),Vector2(60,0),Vector2(37,10)]),Color("fff4be"))
+  draw_texture_rect(ASSETS.texture("effects/muzzle_flash.svg"),Rect2(33,-15,47,30),false,Color(1,1,1,cannon.muzzle_flash/0.065))
  draw_set_transform(Vector2.ZERO)
  # Crosshair belongs to the player cannon, independent of turret selection.
  var crosshair: Vector2 = cannon.aim_point-cannon.position

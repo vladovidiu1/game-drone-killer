@@ -30,6 +30,7 @@ run_check res://tests/campaign.tscn -- --verify-campaign
 run_check --fixed-fps 120 --disable-render-loop res://tests/research.tscn
 run_check res://tests/research.tscn -- --verify-research
 
+run_check res://tests/visual_foundation.tscn
 run_check res://tests/campaign_catalog.tscn
 run_check res://tests/enemy_ai.tscn
 FRONTLINE_CHECK_TIMEOUT=180 run_check --fixed-fps 120 --disable-render-loop res://tests/full_campaign.tscn

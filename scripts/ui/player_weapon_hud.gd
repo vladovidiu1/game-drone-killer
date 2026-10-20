@@ -12,6 +12,7 @@ func setup(simulation: Node2D) -> void:
  battle = simulation
  add_theme_constant_override("separation",6)
  ammo_label = UI.label("",17,UI.CYAN)
+ ammo_label.add_theme_font_override("font",UI.MONO)
  add_child(ammo_label)
  progress = ProgressBar.new()
  progress.custom_minimum_size = Vector2(0,8)
@@ -22,6 +23,7 @@ func setup(simulation: Node2D) -> void:
  row.add_theme_constant_override("separation",8)
  add_child(row)
  fire_button = UI.button("FIRE / HOLD",func(): pass,Vector2(168,58))
+ fire_button.theme_type_variation = &"TacticalFire"
  fire_button.focus_mode = Control.FOCUS_NONE
  fire_button.button_down.connect(func(): battle.player_controls.set_fire(&"fire_button",true))
  fire_button.button_up.connect(func(): battle.player_controls.set_fire(&"fire_button",false))
