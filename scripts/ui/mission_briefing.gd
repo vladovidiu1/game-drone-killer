@@ -22,7 +22,7 @@ func setup(id: int) -> void:
   paragraph.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
   body.add_child(paragraph)
  var record: Dictionary = SaveManager.state.get("records",{}).get(str(id),{})
- body.add_child(UI.label("Reward: %d permanent credits on victory. Defeat grants no reward." % int(definition.reward),18,UI.MUTED))
+ body.add_child(UI.label("Reward: %d War Credits on victory. Defeat grants no reward." % int(definition.reward),18,UI.MUTED))
  if bool(definition.playable):
   body.add_child(UI.label("%d waves • %d slots • %d starting battle credits" % [definition.waves.size(),definition.slots.size(),int(definition.starting_credits)],18,UI.MUTED))
  if not record.is_empty():

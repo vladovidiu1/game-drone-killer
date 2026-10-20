@@ -66,6 +66,7 @@ func fight(id: int, defend: bool) -> void:
    battle.player_controls.set_fire(&"test",target != null)
   if battle.spawner.intermission:
    battle.start_wave()
+  battle.close_build_mode()
   battle.simulate(1.0/60.0)
   await get_tree().process_frame
  check(app.screen == "results" and bool(app.result_data.get("victory",not defend)) == defend,"mission %d completes through real %s combat" % [id,"winning" if defend else "losing"])

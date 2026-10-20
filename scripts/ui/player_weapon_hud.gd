@@ -6,6 +6,7 @@ var ammo_label: Label
 var progress: ProgressBar
 var fire_button: Button
 var reload_button: Button
+var ammo_buttons: Dictionary = {}
 
 func setup(simulation: Node2D) -> void:
  battle = simulation
@@ -20,20 +21,35 @@ func setup(simulation: Node2D) -> void:
  var row := HBoxContainer.new()
  row.add_theme_constant_override("separation",8)
  add_child(row)
- fire_button = UI.button("FIRE / HOLD",func(): pass,Vector2(170,66))
+ fire_button = UI.button("FIRE / HOLD",func(): pass,Vector2(168,58))
  fire_button.focus_mode = Control.FOCUS_NONE
  fire_button.button_down.connect(func(): battle.player_controls.set_fire(&"fire_button",true))
  fire_button.button_up.connect(func(): battle.player_controls.set_fire(&"fire_button",false))
- reload_button = UI.button("Reload",func(): battle.player_controls.reload(),Vector2(92,66))
+ reload_button = UI.button("Reload",func(): battle.player_controls.reload(),Vector2(92,58))
  reload_button.add_theme_font_size_override("font_size",16)
  row.add_child(fire_button)
  row.add_child(reload_button)
+ var types := HBoxContainer.new()
+ types.add_theme_constant_override("separation",4)
+ add_child(types)
+ for pair in [["standard","STD"],["armor_piercing","AP"],["explosive","EXP"]]:
+  var button := UI.button(str(pair[1]),_select.bind(str(pair[0])),Vector2(85,38))
+  button.add_theme_font_size_override("font_size",14)
+  types.add_child(button)
+  ammo_buttons[pair[0]] = button
  battle.status_changed.connect(refresh)
  refresh()
+
+func _select(id: String) -> void:
+ battle.player_turret.select_ammunition(id)
 
 func refresh() -> void:
  var cannon: Node2D = battle.player_turret
  var reloading: bool = cannon.reload_remaining > 0
+ for id in ammo_buttons:
+  var button: Button = ammo_buttons[id]
+  button.disabled = battle.paused or battle.finished or reloading or not EconomyManager.unlocked(id) or cannon.ammunition_type == id
+  button.text = ({"standard":"STD","armor_piercing":"AP","explosive":"EXP"}[id]+(" ✓" if cannon.ammunition_type == id else "")) if EconomyManager.unlocked(id) else "LOCKED"
  ammo_label.text = "RELOAD • %.1fs" % cannon.reload_remaining if reloading else "PRIMARY / %02d : %02d" % [cannon.ammo,int(cannon.definition.magazine_size)]
  progress.value = cannon.reload_progress()*100 if reloading else 100.0*cannon.ammo/int(cannon.definition.magazine_size)
  fire_button.disabled = battle.paused or battle.finished

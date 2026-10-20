@@ -16,7 +16,7 @@
 - Manual rounds are straight swept-collision shots; secondary rounds retain their existing homing/splash rules. Consume an impact before applying damage and use the shared enemy reward lifecycle.
 - Keep player-cannon stats in `player_cannon` in the JSON catalog. All reload, recoil and ammunition timing uses battle simulation delta; pause/focus loss must clear input ownership and firing sources.
 
-- Campaign schema is version 2. Preserve v1 migration and validated `.bak` recovery. Settings remain independent of campaign reset. Validate types before converting untrusted JSON.
+- Campaign schema is version 3. Preserve v1/v2 migration and validated `.bak` recovery. Settings remain independent of campaign reset. Validate types before converting untrusted JSON.
 - Results require the matching persisted deployment token. Rewards, mission records, token consumption and territorial state must be one saved transaction; stale/duplicate results must do nothing.
 - Defeat gives no reward and retreats the current frontline by one, bounded by the highest secured floor. Floors are 1 initially and completed missions 5, 10, 15 and 20 (never 6/11/16/21). Highest reached and permanent upgrades never decrease on defeat.
 - Mission IDs 1–3 are playable. Gate deployment by current frontline, not highest-ever reach. Replay wins cannot advance beyond their territory; replay defeats obey the standard retreat rule.
@@ -27,3 +27,9 @@
 - The user has explicitly authorized publishing this project to `vladovidiu1/game-drone-killer` and requests that future requested changes also be published to GitHub after appropriate validation.
 - Commit the requested project changes and push them to `main` when complete. Use the platform's existing Git authentication. Do not ask for publication confirmation again within this authorized scope.
 - Fetch and inspect remote updates before publishing. Preserve concurrent work; never force-push or overwrite remote history. If direct publication is blocked by access or branch rules, report the exact blocker and preserve the completed local changes.
+
+- War Credits remain `state.credits`; Battle Credits remain `battle.credits`. Research/unlocks/objectives are in `data/progression.json`. Keep purchased legacy `damage_level` bonuses when migrating; new primary damage research is a separate +5% per level.
+- Permanent research purchases must validate the expected current level and persist/rollback the debit and grant together. Objectives belong inside the mission-result transaction; never re-award a claimed objective.
+- Research is applied before battle starts. Snapshot shot ammunition/critical damage at firing time, never refill magazines when switching ammunition, and retain autonomous secondary targeting.
+- Tactical build mode uses a single panel at 0.25x effective simulation speed; closing or pausing restores the prior chosen speed. Every cooldown/status/projectile/reload consumes the same simulated delta. Touch swipes inside a shop must scroll without purchasing.
+- Run `tests/research.tscn` and its fresh-process verification in addition to the existing full suite. Physical Android performance/audio remain separate validation work.

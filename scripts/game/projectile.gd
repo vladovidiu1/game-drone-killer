@@ -11,6 +11,8 @@ var consumed := false
 var direction := Vector2.UP
 var manual := false
 var range_remaining := 0.0
+var armor_multiplier := 1.0
+var critical := false
 
 func configure(owner_battle: Node2D, turret: Node2D, victim: Node2D) -> void:
  battle = owner_battle
@@ -33,8 +35,17 @@ func configure_manual(owner_battle: Node2D, heading: Vector2) -> void:
  damage = cannon.damage_value()
  speed = float(data.projectile_speed)
  range_remaining = maxf(0.0,float(data.range)-float(data.muzzle_offset))
- tint = Color(str(data.color))
+ var profile: Dictionary = cannon.ammunition()
+ tint = Color(str(profile.color))
+ armor_multiplier = float(profile.armor_multiplier)
+ splash_radius = float(profile.splash_radius)
+ critical = cannon.rng.randf() < float(data.critical_chance)
+ if critical:
+  damage *= float(data.critical_multiplier)
  lifetime = float(CampaignManager.combat.projectile_lifetime)
+
+func damage_for(enemy: Node2D) -> float:
+ return damage*(armor_multiplier if enemy.armored else 1.0)
 
 func _tick_manual(delta: float) -> void:
  var travel := minf(speed*delta,range_remaining)

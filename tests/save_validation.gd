@@ -32,11 +32,11 @@ func run() -> void:
   check(SaveManager.validate_campaign(value).is_empty(),"unsupported or malformed campaign shape rejected: "+str(value))
  var legacy := {"version":1,"frontline":6,"checkpoint":6,"credits":345,"damage_level":3,"wins":5}
  var migrated := SaveManager.validate_campaign(legacy)
- check(migrated.version == 2 and migrated.checkpoint == 5 and migrated.checkpoints == [1,5],"legacy chapter-start checkpoint migrates to completed mission floor")
+ check(migrated.version == 3 and migrated.checkpoint == 5 and migrated.checkpoints == [1,5],"legacy chapter-start checkpoint migrates to completed mission floor")
  check(migrated.credits == 345 and migrated.damage_level == 3 and migrated.highest == 6,"migration retains existing credits, upgrades and reached frontline")
  raw_write(SaveManager.PATH,JSON.stringify(legacy))
  SaveManager.reload_from_disk()
- check(SaveManager.state.version == 2 and SaveManager.persist(),"legacy file migrates and is saved in current schema")
+ check(SaveManager.state.version == 3 and SaveManager.persist(),"legacy file migrates and is saved in current schema")
  var malformed := SaveManager.fresh_state()
  malformed.frontline = 2
  malformed.highest = 3

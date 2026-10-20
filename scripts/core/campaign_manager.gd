@@ -66,6 +66,7 @@ func resolve(victory: bool, mission_id: int, run_id: String, stats: Dictionary =
   SaveManager.state.frontline = maxi(int(SaveManager.state.checkpoint),before-1)
  SaveManager.state.records[str(mission_id)] = record
  SaveManager.state.highest = maxi(int(SaveManager.state.highest),int(SaveManager.state.frontline))
+ var objective_reward := EconomyManager.grant_objectives() if victory else 0
  var after := int(SaveManager.state.frontline)
  var message := ""
  if victory:
@@ -78,7 +79,7 @@ func resolve(victory: bool, mission_id: int, run_id: String, stats: Dictionary =
   message = "Checkpoint holds at %02d. No territory lost." % after
  else:
   message = "Replay defeated. Active frontline remains %02d." % after
- var result := {"run_id":run_id,"mission_id":mission_id,"victory":victory,"reward":reward,"from":before,"to":after,"message":message}
+ var result := {"run_id":run_id,"mission_id":mission_id,"victory":victory,"reward":reward+objective_reward,"mission_reward":reward,"objective_reward":objective_reward,"from":before,"to":after,"message":message}
  SaveManager.state.last_result = result
  SaveManager.state.active_run = {}
  if not SaveManager.persist():

@@ -199,6 +199,7 @@ func run() -> void:
  check(not cannon.trigger_held and cannon.aim_point == prior_aim,"UI interaction never starts desktop aiming or firing")
  mouse_button(battle.slots[0],true)
  mouse_button(battle.slots[0],false)
+ await get_tree().process_frame
  check(battle.selected_slot == 0 and not cannon.trigger_held,"slot selection takes priority over manual mouse fire")
  key(KEY_R)
  check(cannon.reload_remaining == 2.0,"R key starts a partial-magazine reload")
@@ -277,6 +278,7 @@ func run() -> void:
   auto_shots = 0
   for automatic in battle.turrets.get_children():
    auto_shots += automatic.shots_fired
+  battle.close_build_mode()
   battle.simulate(1.0/60.0)
   await get_tree().process_frame
  check(app.screen == "results" and bool(app.result_data.get("victory",false)),"full hybrid mission reaches victory using ordinary attacks and earned credits")

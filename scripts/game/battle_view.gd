@@ -76,7 +76,7 @@ func _draw() -> void:
   draw_rect(Rect2(x,571,16,8),Color("a2c9ca"))
  text(Vector2(442,621),"S-7",Color("d9eeee"),14)
  draw_rect(Rect2(430,635,260,6),Color("0b1b23"))
- draw_rect(Rect2(430,635,260*float(battle.health)/float(battle.mission_data.base_health),6),Color("69dfba"))
+ draw_rect(Rect2(430,635,260*float(battle.health)/float(battle.max_health),6),Color("69dfba"))
  # A left-thumb guide does not intercept input or cover a placement slot.
  text(Vector2(42,580),"LEFT: DRAG TO AIM",Color("6b999f"),15)
  text(Vector2(42,602),"MOUSE: AIM + HOLD LMB / R: RELOAD",Color("6b999f"),12)
@@ -94,6 +94,8 @@ func _draw() -> void:
    draw_arc(item.point,float(item.radius)*(0.5+fraction),0,TAU,32,tint,2)
   else:
    draw_circle(item.point,float(item.radius)*(1-fraction),tint)
+ if battle.build_mode:
+  text(Vector2(42,550),"TACTICAL BUILD • 0.25x",Color("f6c777"),18)
  if battle.paused:
   draw_rect(Rect2(0,88,950,560),Color(0.02,0.07,0.1,0.4))
   text(Vector2(440,350),"PAUSED",Color("e1eeee"),32)

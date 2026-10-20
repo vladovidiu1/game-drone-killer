@@ -91,7 +91,7 @@ func _menu() -> void:
  if not OS.has_feature("mobile"):
   tools.add_child(UI.button("Exit",func(): get_tree().quit()))
  _spacer(col)
- col.add_child(UI.label("OFFLINE CAMPAIGN   •   TASK 3 BUILD   •   MISSIONS 01–03 AVAILABLE",16,UI.MUTED))
+ col.add_child(UI.label("OFFLINE CAMPAIGN   •   TASK 4 BUILD   •   MISSIONS 01–03 AVAILABLE",16,UI.MUTED))
  _save_error(col)
 
 func _save_error(col: VBoxContainer) -> void:
@@ -159,7 +159,7 @@ func _map() -> void:
  col.add_child(nav)
  nav.add_child(UI.button("Main menu",_menu))
  nav.add_child(UI.button("Arsenal",_arsenal))
- col.add_child(UI.label("Frontline: %02d   /   Highest: %02d   /   Checkpoint: %02d   /   Credits: %d" % [frontline,int(SaveManager.state.get("highest",1)),checkpoint,int(SaveManager.state.get("credits",0))],18,UI.CYAN))
+ col.add_child(UI.label("Frontline: %02d   /   Highest: %02d   /   Checkpoint: %02d   /   War Credits: %d" % [frontline,int(SaveManager.state.get("highest",1)),checkpoint,int(SaveManager.state.get("credits",0))],18,UI.CYAN))
  var feedback := UI.label(str(SaveManager.state.get("last_result",{}).get("message","Secure Asteria, one territory at a time.")),18,UI.CYAN)
  feedback.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  col.add_child(feedback)
@@ -175,25 +175,9 @@ func _briefing(id: int) -> void:
 
 func _arsenal() -> void:
  _clear("arsenal")
- var col := _column()
- _header(col,"ARSENAL / SENTINEL-7","Permanent upgrades remain after defeat. Battlefield upgrades reset per deployment.")
- _spacer(col)
- var level := int(SaveManager.state.get("damage_level",0))
- col.add_child(UI.label("KINETIC AMPLIFIER   %d / 5" % level,28,UI.CYAN))
- col.add_child(UI.label("+15%% base damage per level. Current bonus: +%d%%" % (level*15),22))
- col.add_child(UI.label("Credits: %d" % int(SaveManager.state.get("credits",0)),22))
- var buy := UI.button("Upgrade • %d credits" % EconomyManager.upgrade_cost(),func():
-  EconomyManager.buy_damage()
-  _arsenal())
- buy.disabled = not SaveManager.has_campaign() or level >= 5 or int(SaveManager.state.get("credits",0)) < EconomyManager.upgrade_cost()
- col.add_child(buy)
- if not SaveManager.has_campaign():
-  col.add_child(UI.label("Start a campaign to unlock the Arsenal.",18,UI.MUTED))
- _spacer(col)
- col.add_child(UI.button("Main menu",_menu))
- if SaveManager.has_campaign():
-  col.add_child(UI.button("Campaign map",_map))
- _save_error(col)
+ var arsenal := preload("res://scripts/ui/arsenal.gd").new()
+ content.add_child(arsenal)
+ arsenal.back_requested.connect(_menu)
 
 func _settings() -> void:
  _clear("settings")
@@ -297,8 +281,10 @@ func _show_results(victory: bool, reward: int, stats: Dictionary) -> void:
  col.add_child(feedback)
  _spacer(col)
  col.add_child(UI.label("%d DRONES DESTROYED   /   %d BASE HP REMAINING" % [int(stats.kills),int(stats.health)],24))
- col.add_child(UI.label("+%d permanent credits • Frontline: %02d • Highest: %02d" % [reward,int(SaveManager.state.frontline),int(SaveManager.state.highest)],22))
- col.add_child(UI.label("Battle bounties: %d credits (temporary). Permanent upgrades retained." % int(stats.get("earned",0)),18,UI.MUTED))
+ col.add_child(UI.label("+%d War Credits • Frontline: %02d • Highest: %02d" % [reward,int(SaveManager.state.frontline),int(SaveManager.state.highest)],22))
+ col.add_child(UI.label("Battle bounties: %d credits (temporary). Permanent research retained." % int(stats.get("earned",0)),18,UI.MUTED))
+ if int(outcome.get("objective_reward",0)) > 0:
+  col.add_child(UI.label("Includes +%d War Credits for a completed campaign objective." % int(outcome.objective_reward),18,UI.CYAN))
  _spacer(col)
  var next := int(SaveManager.state.frontline)
  if CampaignManager.can_play(next):

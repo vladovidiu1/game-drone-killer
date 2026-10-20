@@ -70,7 +70,7 @@ func run() -> void:
  await get_tree().process_frame
  app.battle.set_physics_process(false)
  var visible := get_viewport().get_visible_rect()
- var build_rect: Rect2 = app.hud.build_buttons.missile.get_global_rect()
+ var build_rect: Rect2 = app.hud.side_panel.get_global_rect()
  check(visible.encloses(build_rect), "build controls fit the 1280x720 reference viewport")
  check(app.hud.get_child(1).get_child(1).get_global_rect().position.x > 814, "build sidebar leaves turret slots unobstructed")
  check(app.battle.health == 1000, "mission starts with 1000 base HP")
@@ -96,6 +96,8 @@ func run() -> void:
  get_viewport().push_input(touch,true)
  await get_tree().process_frame
  check(app.battle.selected_slot == 1, "touch selects another slot")
+ app.hud.shop_scroll.ensure_control_visible(app.hud.build_buttons.cannon)
+ await get_tree().process_frame
  # Keep one finger on the slot while a second finger presses a build control.
  var build_touch := InputEventScreenTouch.new()
  build_touch.index = 3
@@ -140,6 +142,7 @@ func run() -> void:
     battle.upgrade_selected()
   if battle.spawner.intermission:
    battle.start_wave()
+  battle.close_build_mode()
   battle._physics_process(1.0/60.0)
   await get_tree().process_frame
  check(app.screen == "results" and bool(app.result_data.get("victory",false)), "automatic defenses win full five-wave mission without direct damage injection")

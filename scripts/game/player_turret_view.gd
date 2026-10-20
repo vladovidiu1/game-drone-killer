@@ -4,7 +4,7 @@ extends Node2D
 func _draw() -> void:
  if cannon.definition.is_empty():
   return
- var tint := Color(str(cannon.definition.color))
+ var tint := Color(str(cannon.ammunition().color))
  draw_circle(Vector2(0,9),32,Color(0,0,0,0.4))
  draw_circle(Vector2.ZERO,29,Color("112231"))
  draw_arc(Vector2.ZERO,29,0,TAU,40,tint,2)
@@ -20,7 +20,7 @@ func _draw() -> void:
  draw_set_transform(Vector2.ZERO)
  # Crosshair belongs to the player cannon, independent of turret selection.
  var crosshair: Vector2 = cannon.aim_point-cannon.position
- var color := Color("fff1a0") if cannon.hit_confirm > 0 else tint
+ var color := (Color("ff6c7e") if cannon.last_critical else Color("fff1a0")) if cannon.hit_confirm > 0 else tint
  draw_arc(crosshair,13,0,TAU,32,color,2)
  for direction in [Vector2.UP,Vector2.DOWN,Vector2.LEFT,Vector2.RIGHT]:
   draw_line(crosshair+direction*17,crosshair+direction*24,color,2)

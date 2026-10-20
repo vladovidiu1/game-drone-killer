@@ -27,3 +27,5 @@ run_check res://tests/smoke.tscn -- --verify-save
 run_check --fixed-fps 120 --disable-render-loop res://tests/save_validation.tscn
 run_check --fixed-fps 120 --disable-render-loop res://tests/campaign.tscn
 run_check res://tests/campaign.tscn -- --verify-campaign
+run_check --fixed-fps 120 --disable-render-loop res://tests/research.tscn
+run_check res://tests/research.tscn -- --verify-research

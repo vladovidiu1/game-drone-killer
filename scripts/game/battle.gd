@@ -12,6 +12,10 @@ var mission_id := 1
 var run_id := ""
 var mission_data: Dictionary
 var health := 1000
+var max_health := 1000
+var research_levels: Dictionary = {}
+var abilities: Node
+var build_mode := false
 var credits := 0
 var earned := 0
 var kills := 0
@@ -35,8 +39,10 @@ var impacts := 0
 
 func _ready() -> void:
  mission_data = CampaignManager.mission(mission_id)
- health = int(mission_data.base_health)
- credits = int(mission_data.starting_credits)
+ research_levels = SaveManager.state.get("research",{}).duplicate(true)
+ max_health = int(mission_data.base_health)+int(EconomyManager.modifier("base_health",research_levels))
+ health = max_health
+ credits = int(mission_data.starting_credits)+int(EconomyManager.modifier("starting_credits",research_levels))
  for point in mission_data.slots:
   slots.append(Vector2(float(point[0]),float(point[1])))
  placed.resize(slots.size())
@@ -57,8 +63,11 @@ func _ready() -> void:
  spawner.configure(mission_data.waves,float(mission_data.build_time),mission_data.paths.size())
  spawner.spawn_requested.connect(spawn_enemy)
  spawner.changed.connect(func(): status_changed.emit())
+ abilities = preload("res://scripts/game/tactical_abilities.gd").new()
+ abilities.configure(self)
+ add_child(abilities)
  player_turret = PLAYER_TURRET.instantiate()
- player_turret.configure(self,CampaignManager.player_cannon)
+ player_turret.configure(self,EconomyManager.primary_stats(research_levels))
  add_child(player_turret)
  player_turret.state_changed.connect(func(): status_changed.emit())
  player_controls = PLAYER_INPUT.new()
@@ -69,11 +78,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
  if paused or finished:
   return
- simulate(delta*game_speed)
+ simulate(delta*effective_speed())
 
 func simulate(delta: float) -> void:
  if paused or finished:
   return
+ abilities.tick(delta)
  spawner.tick(delta,living_count())
  for enemy in drones.get_children():
   enemy.tick(delta)
@@ -133,7 +143,9 @@ func select_slot(index: int) -> void:
  if paused or finished or index < -1 or index >= slots.size():
   return
  selected_slot = index
+ build_mode = index >= 0
  selection_changed.emit()
+ status_changed.emit()
  view.queue_redraw()
 
 func select_at(point: Vector2) -> bool:
@@ -146,7 +158,7 @@ func select_at(point: Vector2) -> bool:
  return false
 
 func build_turret(kind: String) -> bool:
- if paused or finished or selected_slot < 0 or placed[selected_slot] != null or not CampaignManager.turrets.has(kind):
+ if paused or finished or selected_slot < 0 or placed[selected_slot] != null or not CampaignManager.turrets.has(kind) or not EconomyManager.unlocked(kind):
   return false
  var definition: Dictionary = CampaignManager.turrets[kind]
  if credits < int(definition.cost):
@@ -197,17 +209,28 @@ func resolve_impact(projectile: Node2D) -> void:
   view.effect(projectile.destination,"blast",projectile.splash_radius,projectile.tint)
   for enemy in drones.get_children():
    if not enemy.ended and enemy.position.distance_squared_to(projectile.destination) <= projectile.splash_radius*projectile.splash_radius:
-    enemy.hit(projectile.damage)
+    enemy.hit(projectile.damage_for(enemy))
+    if projectile.manual:
+     player_turret.notify_hit(projectile.critical)
  elif is_instance_valid(projectile.target) and not projectile.target.ended:
-  projectile.target.hit(projectile.damage)
+  projectile.target.hit(projectile.damage_for(projectile.target))
   if projectile.manual:
-   player_turret.notify_hit()
+   player_turret.notify_hit(projectile.critical)
 
 func start_wave() -> bool:
  return not paused and not finished and spawner.start_early()
 
+func effective_speed() -> float:
+ return 0.25 if build_mode else game_speed
+
+func close_build_mode() -> void:
+ build_mode = false
+ selected_slot = -1
+ selection_changed.emit()
+ status_changed.emit()
+
 func toggle_speed() -> void:
- if finished:
+ if finished or build_mode:
   return
  game_speed = 2.0 if game_speed == 1.0 else 1.0
  status_changed.emit()
@@ -216,6 +239,7 @@ func set_paused(value: bool) -> void:
  paused = value
  if value and is_instance_valid(player_controls):
   player_controls.clear()
+  close_build_mode()
  if is_instance_valid(view):
   view.queue_redraw()
  status_changed.emit()

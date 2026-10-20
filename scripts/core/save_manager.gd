@@ -2,9 +2,10 @@ extends Node
 signal saved
 const PATH := "user://campaign.json"
 const SETTINGS_PATH := "user://settings.json"
-const VERSION := 2
+const VERSION := 3
 const FLOORS := [1,5,10,15,20]
 const DEFAULT_SETTINGS := {"volume":0.6,"muted":false,"reduced_motion":false}
+var catalog: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/progression.json"))
 var state: Dictionary = {}
 var settings: Dictionary = DEFAULT_SETTINGS.duplicate()
 var last_error := ""
@@ -19,13 +20,13 @@ func integer(value: Variant, fallback: int, low: int, high: int) -> int:
  return fallback
 
 func fresh_state() -> Dictionary:
- return {"version":VERSION,"frontline":1,"highest":1,"checkpoint":1,"checkpoints":[1],"credits":0,"damage_level":0,"wins":0,"records":{},"active_run":{},"last_result":{}}
+ return {"version":VERSION,"frontline":1,"highest":1,"checkpoint":1,"checkpoints":[1],"credits":0,"damage_level":0,"wins":0,"records":{},"active_run":{},"last_result":{},"research":{},"unlocks":[],"equipped_ammo":"standard","claimed_objectives":[]}
 
 func validate_campaign(value: Variant) -> Dictionary:
  if not value is Dictionary:
   return {}
  var version := integer(value.get("version"),0,0,1000)
- if version not in [1,VERSION] or value.get("version") != version or not value.has("frontline") or not (value.frontline is int or value.frontline is float):
+ if version not in [1,2,VERSION] or value.get("version") != version or not value.has("frontline") or not (value.frontline is int or value.frontline is float):
   return {}
  var result := fresh_state()
  result.frontline = integer(value.frontline,1,1,25)
@@ -57,6 +58,19 @@ func validate_campaign(value: Variant) -> Dictionary:
    if not entry is Dictionary:
     continue
    result.records[str(id)] = {"victories":integer(entry.get("victories"),0,0,1000000),"defeats":integer(entry.get("defeats"),0,0,1000000),"best_health":integer(entry.get("best_health"),0,0,10000000),"rewards":integer(entry.get("rewards"),0,0,1000000000),"last_outcome":"victory" if entry.get("last_outcome") == "victory" else "defeat"}
+ var research: Variant = value.get("research",{})
+ for key in catalog.upgrades:
+  result.research[key] = integer(research.get(key),0,0,catalog.upgrades[key].costs.size()) if research is Dictionary else 0
+ for field in ["unlocks","claimed_objectives"]:
+  var entries: Variant = value.get(field,[])
+  var known: Dictionary = catalog.unlocks if field == "unlocks" else catalog.objectives
+  if entries is Array:
+   for key in entries:
+    if key is String and known.has(key) and not result[field].has(key):
+     result[field].append(key)
+ var ammo: Variant = value.get("equipped_ammo","standard")
+ if ammo is String and catalog.ammunition.has(ammo) and (ammo == "standard" or result.unlocks.has(ammo)):
+  result.equipped_ammo = ammo
  var active: Variant = value.get("active_run",{})
  if active is Dictionary and valid_token(active.get("id")):
   var mission_id := integer(active.get("mission_id"),0,0,25)
@@ -64,7 +78,7 @@ func validate_campaign(value: Variant) -> Dictionary:
    result.active_run = {"id":active.id,"mission_id":mission_id,"frontline":result.frontline}
  var outcome: Variant = value.get("last_result",{})
  if outcome is Dictionary and valid_token(outcome.get("run_id")):
-  result.last_result = {"run_id":outcome.run_id,"mission_id":integer(outcome.get("mission_id"),1,1,25),"victory":outcome.get("victory") == true,"reward":integer(outcome.get("reward"),0,0,1000000000),"from":integer(outcome.get("from"),1,1,25),"to":integer(outcome.get("to"),1,1,25),"message":str(outcome.get("message","")).left(500)}
+  result.last_result = {"run_id":outcome.run_id,"mission_id":integer(outcome.get("mission_id"),1,1,25),"victory":outcome.get("victory") == true,"reward":integer(outcome.get("reward"),0,0,1000000000),"mission_reward":integer(outcome.get("mission_reward",outcome.get("reward")),0,0,1000000000),"objective_reward":integer(outcome.get("objective_reward"),0,0,1000000000),"from":integer(outcome.get("from"),1,1,25),"to":integer(outcome.get("to"),1,1,25),"message":str(outcome.get("message","")).left(500)}
  return result
 
 func valid_token(value: Variant) -> bool:
@@ -75,7 +89,8 @@ func validate_settings(value: Variant) -> Dictionary:
   return {}
  var source: Variant = value
  if value.has("version"):
-  if value.version != VERSION or value.version is bool or not value.get("settings") is Dictionary:
+  var settings_version := integer(value.version,0,0,1000)
+  if settings_version not in [2,VERSION] or value.version != settings_version or value.version is bool or not value.get("settings") is Dictionary:
    return {}
   source = value.settings
  # Legacy settings were an unwrapped dictionary.

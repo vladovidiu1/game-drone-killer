@@ -1,6 +1,6 @@
 # DRONE KILLER: FRONTLINE
 
-A native Godot 4 game foundation for an offline Android-first defense campaign. Command Sentinel-7 against the Varkon Empire in Asteria. Task 3 connects three playable missions through a persistent territorial campaign, while retaining the manual cannon, automatic defenses, Arsenal, settings and all hybrid controls.
+A native Godot 4 game foundation for an offline Android-first defense campaign. Command Sentinel-7 against the Varkon Empire in Asteria. Task 4 adds permanent research, three primary ammunition types, six automatic turret designs, tactical abilities and a tabbed Arsenal to the three-mission hybrid campaign.
 
 ## Download
 
@@ -46,6 +46,57 @@ New Campaign requires confirmation when replacing an existing save. Continue is 
 - A dedicated manually controlled primary cannon, loaded at the start without using a placement slot. Its projectiles fly straight, with range-limited swept collision, recoil, muzzle flashes, trails, hit markers and reload feedback.
 - Generated vector art and synthesized shot, hit, reload and result sounds; no third-party art or audio dependencies.
 
+## Arsenal, research and two currencies
+
+**Battle Credits** are the temporary `battle.credits` balance: mission starting budget plus drone bounties. Construction, temporary turret levels and tactical abilities spend only this balance; a new mission resets it. **War Credits** are the persistent `SaveManager.state.credits` balance, spent only on research/unlocks. Mission victories and once-only objectives award War Credits. Defeat does not remove them or research.
+
+Open **Arsenal** from the main menu or campaign. Its four tabs are **PRIMARY CANNON**, **AUTOMATIC TURRETS**, **RESEARCH** and **SPECIAL ABILITIES**. Research cards show current level, next benefit, escalating War Credit cost, requirements and maximum status. A confirmation dialog reviews the actual purchase; cancellation spends nothing. Stale/double confirmations cannot buy a second level. Prices, five-level limits, coefficients, unlock requirements and objectives are configured in `data/progression.json`.
+
+| Permanent upgrade | Per-level effect (5 levels each) |
+| --- | --- |
+| Cannon Damage | +5% primary damage |
+| Fire Rate | +4% primary firing rate |
+| Magazine Capacity | +10 rounds |
+| Reload Speed | -6% base reload duration |
+| Projectile Velocity | +5% projectile speed |
+| Critical Hit Chance | +2 percentage points |
+| Critical Damage | +10 percentage points on the critical bonus (default 1.5×) |
+| Base Health | +100 maximum HP |
+| Starting Battle Credits | +50 starting credits |
+| Automatic Turret Damage / Range / Fire Rate | +5% / +3% / +4% |
+| Repair Efficiency | +5% healed HP, rounded down |
+| Repair / EMP / Overclock Mastery | -4% respective ability cooldown |
+
+Bonuses apply to the existing base stats. Five primary levels produce 18.75 damage, 7.2 shots/s, 110 rounds, 1.4s reload, 1062.5 projectile speed, 10% critical chance and 2× critical damage, before legacy bonuses or ammunition. Existing purchased 15%-per-level Kinetic Amplifier bonuses remain as a separate legacy modifier; they are neither erased nor converted into the new 5% research. Research is snapshotted before a battle starts.
+
+| Primary ammunition | Effect / tradeoff | Unlock |
+| --- | --- | --- |
+| Standard | Normal damage/rate, 1 round per shot | Available initially |
+| Armor Piercing | 1.75× damage against Assault/Heavy armor, 25% slower fire | Highest mission 2, 180 War Credits |
+| Explosive | 45-unit splash, 75% damage, 3 rounds per shot | Highest mission 3, 260 War Credits |
+
+Use **STD / AP / EXP** in the battle HUD. Each has a distinct color for shots and crosshair; critical hits flash a red hit indicator. Changing types preserves ammunition and the firing cooldown, cannot refill the magazine, and is disabled while reloading. In-flight shots keep the profile they were fired with. The equipped type is saved. The Arsenal shows base researched statistics plus equipped-ammunition modifiers.
+
+| New autonomous defense | Battle cost | Behavior | Research unlock |
+| --- | --- | --- | --- |
+| Laser Turret | 250 | 24 base DPS, accurate continuous beam, 270 range | Highest 2, 220 War Credits |
+| EMP Tower | 230 | Area slow to 35% movement for 2s, 5s base cycle, 230 range | Highest 3, 250 War Credits |
+| Heavy AA Cannon | 450 | 180 damage, 0.25 shots/s, 340 range | Highest 3, 300 War Credits |
+
+Machine Gun, Cannon and Missile Launcher stay available from the start. All six acquire targets autonomously and support temporary battle levels and permanent defense research. Laser DPS scales with damage and rate research/Overclock; EMP pulses are nonstacking slows, and affected drones display a status ring.
+
+| Tactical ability | Battle cost | Default cooldown | Effect |
+| --- | --- | --- | --- |
+| Emergency Repair | 90 | 30s | Restore 250 HP, improved by Repair Efficiency and capped at maximum HP |
+| EMP Blast | 120 | 45s | Disable drones within 650 units for 2.5s |
+| Overclock | 100 | 40s | 1.5× primary and automatic firing rate for 6s |
+
+Abilities start available; mastery research improves their cooldowns. **REPAIR / EMP / BOOST** buttons display costs, remaining cooldown and active Overclock duration. Charges/cooldowns are consumed before applying an effect, so simultaneous/duplicate touch callbacks cannot activate twice. A full-health repair costs nothing and is unavailable. All durations, status recovery and effects use simulation time, freeze on pause, and reset with the mission.
+
+Selecting a placement slot opens the single **tactical build/upgrade panel** and sets the effective simulation speed to **0.25× normal**, even if the previous choice was 2×. **Close** restores the prior 1×/2× choice. Selecting another slot reuses this panel; pausing/focus loss closes it and clears held input. The speed toggle is disabled while building. Manual aim and FIRE remain available at the same slowed rate; another finger may build, upgrade or scroll. Touch swipes on build buttons scroll the list and cancel the purchase gesture. World input never starts from HUD touches.
+
+The Veteran Commander objective grants 150 War Credits once at five victories; securing checkpoint 5 grants 250 once. Objectives are applied inside the existing mission result transaction, persist across defeat, and cannot be claimed again by duplicate results or loading the save. They appear in the RESEARCH tab.
+
 ## Architecture and files
 
 | Location | Responsibility |
@@ -54,11 +105,14 @@ New Campaign requires confirmation when replacing an existing save. Continue is 
 | `scenes/main.tscn` | Root interface scene; composed native Control screens |
 | `scenes/gameplay.tscn` | Reusable battle simulation scene |
 | `scenes/drone.tscn` | Reusable enemy component |
-| `scripts/core/save_manager.gd` | Schema v2 validation, v1 migration, atomic replacement, last-known-good backups, recovery and write errors |
+| `scripts/core/save_manager.gd` | Schema v3 validation, v1/v2 migration, atomic replacement, backups and recovery |
 | `scripts/core/campaign_manager.gd` | Catalog, access/territory state, persistent attempt tokens, reward transactions, advancement and checkpoints |
-| `scripts/core/economy_manager.gd` | Campaign credits and permanent upgrades |
+| `scripts/core/economy_manager.gd` | Transactional War Credit research/unlocks, legacy bonuses, effective stats and objective grants |
 | `scripts/core/audio_manager.gd` | Audio settings and generated result cues |
 | `scripts/game/battle.gd` | Fixed-step battle orchestration, battle credits, placement, impacts, outcome signals |
+| `scripts/game/tactical_abilities.gd` | Battle-credit activations, cooldowns, disable pulses and shared Overclock timing |
+| `data/progression.json` | Upgrade coefficients/costs, unlocks, ammunition, tactical abilities and once-only objectives |
+| `scripts/ui/arsenal.gd` | Four research tabs, effective stats and guarded purchase confirmations |
 | `scripts/game/wave_spawner.gd` | Reusable mixed-group waves, intermissions, early start, deterministic route cycling |
 | `scripts/game/turret.gd`, `scenes/turret.tscn` | Target priority, range, rotation, fire cadence and upgrades |
 | `scripts/game/projectile.gd`, `scenes/projectile.tscn` | Existing secondary homing/splash and additive straight manual rounds; swept collision and single-use impact lifecycle |
@@ -74,7 +128,7 @@ New Campaign requires confirmation when replacing an existing save. Continue is 
 | `scripts/ui/mission_briefing.gd` | Scrollable location/story/intelligence/preparation/rewards and deployment gate |
 | `scripts/ui/ui_kit.gd`, `backdrop.gd` | Reusable themed controls and decorative map-grid background |
 | `data/definitions.json` | 25 mission definitions, wave groups, paths, slots, enemies, turrets and upgrade tuning |
-| `tests/combat.gd`, `combat.tscn`, `hybrid.gd`, `hybrid.tscn`, `smoke.gd`, `smoke.tscn`, `campaign.gd`, `campaign.tscn`, `save_validation.gd`, `save_validation.tscn`, `run_checks.sh` | Executable integration checks with isolated save data |
+| `tests/combat.gd`, `combat.tscn`, `hybrid.gd`, `hybrid.tscn`, `smoke.gd`, `smoke.tscn`, `campaign.gd`, `campaign.tscn`, `save_validation.gd`, `save_validation.tscn`, `research.gd`, `research.tscn`, `run_checks.sh` | Executable integration checks with isolated save data |
 | `AGENTS.md` | Development conventions |
 
 Godot-generated `.gd.uid` files are retained for stable resource identities. `.godot/` is an ignored generated import cache. UI screens are assembled from reusable native Controls in the root scene; they are not separate `.tscn` files. Battle, turret, projectile and drone scenes can be reused without menu dependencies. Signals report battle state, breaches, kills, economy changes, and campaign changes.
@@ -97,13 +151,13 @@ The map derives control from the active frontline, independently of historical c
 
 Every deployment receives a unique persisted attempt token. Only its matching result may update records, rewards, frontline, highest and checkpoints. The outcome and consumed token are saved together; duplicate, mismatched and stale events are rejected, including after reload. Replaying a controlled mission is a new paid attempt, not a duplicate event, and cannot advance past that mission. Defeats, including replay defeats, follow the same checkpoint-bounded retreat rule and grant no rewards.
 
-Campaign schema v2 stores `frontline`, `highest`, `checkpoints`, derived `checkpoint`, `credits`, `damage_level`, `wins`, `records`, `active_run` and `last_result`. Per-mission records include victory/defeat counts, best remaining base HP and cumulative rewards. Settings have an independent versioned wrapper with validated volume and boolean preferences. Schema v1 saves retain their credits/upgrades/wins, gain a highest-reached index, and migrate old chapter-start floors 6/11/16/21 to completed-mission floors 5/10/15/20. Earlier saves did not contain detailed per-mission records; new outcomes populate them.
+Campaign schema v3 stores `frontline`, `highest`, `checkpoints`, derived `checkpoint`, `credits`, `damage_level`, `wins`, `records`, `active_run` and `last_result`. Per-mission records include victory/defeat counts, best remaining base HP and cumulative rewards. Research levels, weapon/ammunition unlocks, equipped ammunition and claimed objectives are added without resetting campaign data. Settings have an independent versioned wrapper with validated volume and boolean preferences. Schema v1 saves retain their credits/upgrades/wins, gain a highest-reached index, and migrate old chapter-start floors 6/11/16/21 to completed-mission floors 5/10/15/20. Schema v2 upgrades directly to v3 with zero new research, preserving legacy bonuses, records, balances and checkpoints. Schema v1 lacked detailed per-mission records; new outcomes populate them.
 
 Writes serialize to a temporary file, flush and validate it, preserve the previous valid file as `.bak`, then replace the primary file. A malformed primary recovers its validated backup. Missing files use safe defaults; if both campaign copies are invalid, Continue is disabled and a recovery notice appears. Unknown schemas are not interpreted as current data. Invalid originals are archived as `.invalid-*` before a subsequent successful replacement. Upgrades and results roll back in memory if persistence fails; a result save failure offers retry. A running battle is not restored after closing the app; the next deployment starts fresh with a new token.
 
 ## Manual primary cannon / hybrid controls
 
-The top-down camera and all automatic defenses are retained. The primary cannon sits on the base at the bottom center and shares the base's protection; it has no separate damageable health pool or placement cost. Its default stats are **15 damage, 6 shots/s, 400 range, 60 rounds, 2-second reload and 850 projectile units/s**, configured in `data/definitions.json` under `player_cannon`. The permanent Arsenal damage modifier applies to both primary and secondary guns. A mission may override its location with `player_position`.
+The top-down camera and all automatic defenses are retained; the Arsenal section above lists the new upgrades and ammunition tradeoffs. The primary cannon sits on the base at the bottom center and shares the base's protection; it has no separate damageable health pool or placement cost. Its default stats are **15 damage, 6 shots/s, 400 range, 60 rounds, 2-second reload and 850 projectile units/s**, configured in `data/definitions.json` under `player_cannon`. Permanent research applies on top of the existing base stats; retained legacy amplifier bonuses still apply to both guns. A mission may override its location with `player_position`.
 
 - **Desktop:** move the mouse over the battlefield to aim. Hold left click to fire. Release, enter the HUD, pause or lose focus to stop. Click slots to select/build instead of firing; **R** reloads a partially empty magazine; **Esc** pauses.
 - **Android:** start a drag on empty ground in the **left half of the battlefield** to own the aim gesture. Relative thumb movement moves the crosshair at configurable sensitivity, so the thumb can stay on the left while aiming across the battlefield. Hold **FIRE** on the right with another finger. Release FIRE to stop. Touch **Reload** for a partial reload. A third finger can operate build/upgrade controls while aim/fire remain active.
@@ -125,7 +179,7 @@ Nominal primary damage is 90 DPS while firing and about 75 DPS including reload 
 
 All three missions have a 12-second build phase before each wave. Clear all active drones before the next build phase begins. Early start never overlaps active waves. The HUD's remaining enemy count includes pending spawns plus living enemies for the current wave (or the upcoming wave during a build phase).
 
-Bounties are **temporary battle credits**, as are turret purchases and upgrades. They reset on retry and are shown separately in results. Campaign rewards remain **permanent credits** for Arsenal: +120 / +180 / +250 on victory, **zero** on defeat. The earlier defeat-salvage reward is removed to follow the campaign rules. Existing saves and permanent upgrades migrate to schema v2.
+Bounties are **temporary battle credits**, as are turret purchases and upgrades. They reset on retry and are shown separately in results. Campaign rewards remain **permanent credits** for Arsenal: +120 / +180 / +250 on victory, **zero** on defeat. The earlier defeat-salvage reward is removed to follow the campaign rules. Existing saves and permanent upgrades migrate to schema v3.
 
 For an opening strategy, place Machine Guns on slots 1 and 3 and a Cannon on slot 2. Use bounties for more turrets or upgrades. Leaving the primary idle and every slot empty will lose the base. Manual fire can cover gaps in automatic defenses, but only covers one direction at a time.
 
@@ -143,7 +197,7 @@ Each engine invocation has a 60-second watchdog. The runner imports the project,
 
 Coverage includes menus, all map nodes, locked deployment, actual mouse and two-finger touch input propagation through the HUD, reference-layout bounds, purchase/upgrade rules, target priority, range, single-hit damage, missile area damage, wave counts, pause, 2x simulation speed, full five-wave victories using purchased defenses alone and combined manual/automatic attacks, magazine depletion, timed and partial reload, straight-projectile misses/range, pause/retry input cleanup, natural defeat through drone breaches, rewards, purchases, permanent upgrades, checkpoint retreat, replay progression bounds, and fresh-process persistence. Combat uses fixed simulation time to finish quickly; it is not a performance benchmark.
 
-Godot 4.6.3 validation passes **227 assertions**: 40 combat, 55 hybrid controls, 42 UI/regression, 4 legacy workflow persistence, 38 save/recovery/rule checks, 43 connected-campaign checks and 5 fresh-process campaign checks. The campaign integration run covers new campaign → win 1 → win 2 → lose 3 → return to 2 → win 2 again → reload → win 3. It builds/upgrades with the actual mission budget and bounties, fires ordinary projectiles, and loses through natural drone breaches. Checkpoint 5/10/15/20 tests exercise the transaction service with temporary future-mission availability; they do not claim those future combat encounters exist. Graphical inspection, audible output, physical multitouch, Android exports, and the 60 FPS target have **not** been verified on a device.
+The runner also checks every research level, unlock requirements, purchase confirmation/idempotency, every resulting stat, ammunition consumption and armor/splash/critical damage, new turrets, ability costs/cooldowns, tactical time scaling, multi-touch scrolling and schema v3 fresh-process restoration. The original 227 assertions remain in the suite; research adds 186 behavioral checks plus 4 fresh-process checks (417 total). The campaign integration run covers new campaign → win 1 → win 2 → lose 3 → return to 2 → win 2 again → reload → win 3. It builds/upgrades with the actual mission budget and bounties, fires ordinary projectiles, and loses through natural drone breaches. Checkpoint 5/10/15/20 tests exercise the transaction service with temporary future-mission availability; they do not claim those future combat encounters exist. Graphical inspection, audible output, physical multitouch, Android exports, and the 60 FPS target have **not** been verified on a device.
 
 Manual device checks: test 16:9 and tall landscape displays, cutout margins, left-thumb aim plus right-thumb FIRE, aiming while using build/upgrade controls, firing across reloads, release outside the FIRE button, app background/resume, muted result cues, replacing a campaign, and a full win/loss loop. Measure frame time on a mid-range Android device before claiming stable 60 FPS.
 
@@ -153,4 +207,4 @@ The project is configured for landscape Android and Compatibility rendering, but
 
 ## Intentionally unfinished
 
-Missions 4–25 contain metadata and clearly labeled development/locked screens. Additional weapons, selling/relocating turrets, additional mission environments, campaign finale, final art, music, full accessibility/localization, signed Android builds, device profiling, and a commercial release pipeline are future tasks. This is a playable combat increment, not a release-ready 25-mission game.
+Missions 4–25 contain metadata and clearly labeled development/locked screens. Additional mission-specific weapons, selling/relocating turrets, additional mission environments, campaign finale, final art, music, full accessibility/localization, signed Android builds, device profiling, and a commercial release pipeline are future tasks. This is a playable combat increment, not a release-ready 25-mission game.
