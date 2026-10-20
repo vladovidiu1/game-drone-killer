@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Isolate saves and detect Godot errors even when its exit code is zero.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+FRONTLINE_TEST_ROOT=$(mktemp -d /tmp/frontline-checks.XXXXXX)
+trap 'rm -rf "$FRONTLINE_TEST_ROOT"' EXIT
+export XDG_CONFIG_HOME="$FRONTLINE_TEST_ROOT/config"
+export XDG_CACHE_HOME="$FRONTLINE_TEST_ROOT/cache"
+export XDG_DATA_HOME="$FRONTLINE_TEST_ROOT/data"
+mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME"
+GODOT_BIN="${GODOT_BIN:-godot}"
+run_check() {
+ local result=0
+ timeout 60 "$GODOT_BIN" --headless --path . "$@" > "$FRONTLINE_TEST_ROOT/output.log" 2>&1 || result=$?
+ cat "$FRONTLINE_TEST_ROOT/output.log"
+ if [ "$result" -ne 0 ]; then return "$result"; fi
+ if rg -q 'SCRIPT ERROR:|ERROR:|WARNING: ObjectDB' "$FRONTLINE_TEST_ROOT/output.log"; then
+  return 1
+ fi
+}
+run_check --editor --import --quit
+run_check --quit-after 120
+run_check --fixed-fps 120 --disable-render-loop res://tests/combat.tscn
+run_check --fixed-fps 120 --disable-render-loop res://tests/hybrid.tscn
+run_check --fixed-fps 120 --disable-render-loop res://tests/smoke.tscn
+run_check res://tests/smoke.tscn -- --verify-save
+run_check --fixed-fps 120 --disable-render-loop res://tests/save_validation.tscn
+run_check --fixed-fps 120 --disable-render-loop res://tests/campaign.tscn
+run_check res://tests/campaign.tscn -- --verify-campaign
