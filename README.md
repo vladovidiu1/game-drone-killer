@@ -2,6 +2,8 @@
 
 A native Godot 4 game foundation for an offline Android-first defense campaign. Command Sentinel-7 against the Varkon Empire in Asteria. All 25 campaign territories are playable. Five chapter bosses, shield/EMP/sniper/carrier/stealth behaviors, environmental pressure and a persistent finale extend the existing manual cannon, six automatic defenses, ammunition, research and tactical abilities. See [campaign design and validation](docs/CAMPAIGN.md). Graphics G1 adds original generated key art, rendered drone/weapon sprites, Outpost Alpha terrain, animated explosions, a reusable military UI theme and locally bundled fonts. See [VISUAL_STYLE.md](VISUAL_STYLE.md), the [asset manifest](assets/manifest.json) and [native visual validation](docs/VISUAL_VALIDATION.md).
 
+Latest graphics increment: **G4 combat VFX** adds distinct weapon impacts/trails, layered destruction and persistent quality/accessibility controls. See the [current native gallery](docs/effects/README.md) and [validation](docs/effects/VALIDATION.md).
+
 ## Download
 
 Repository: https://github.com/vladovidiu1/game-drone-killer
@@ -239,3 +241,9 @@ See [environment architecture, performance budgets and asset replacement specifi
 All nine drones, five bosses, six automatic weapons and the primary cannon now have distinct detailed raster artwork. Shared presentation components animate propulsion, hovering, damage, boss armor, recoil, reload/autoloader and cosmetic heat; real upgrade/research snapshots add armor. Enemy removal/rewards stay immediate. A skippable terminal boss destruction sequence appears after the campaign result has been saved.
 
 See [art/animation architecture and budgets](docs/UNIT_VISUALS.md), [native gallery and validation](docs/units/README.md), and source bindings in `assets/visual_catalog.json`. `./tests/run_native_capture.sh /tmp/frontline-g3-captures` exercises every archetype using labeled native gameplay fixtures and rejects engine errors. Godot imports the five full-resolution G3 atlases at half size for mobile; keep their tracked import settings. Physical Android profiling and final art approval remain separate work.
+
+## G4 cinematic combat effects
+
+Combat now has weapon-specific metal sparks, cannon smoke, missile exhaust/trails, laser impact glows, EMP arcs/status cues, distinct primary ammunition trails, critical-hit confirmation and real reload feedback. Layered destruction scales up for Heavy drones and bosses. Optional field-edge damage feedback, gentle artwork-only shake, boss arrival and a saved-result victory presentation preserve normal combat and reward ownership.
+
+Settings includes Low/Medium/High particle budgets, Reduced combat effects, Reduced motion and independent smoke/debris/impact-lighting/shake switches. Options persist locally and apply next mission. Effects are pooled, clipped away from HUD, limited in density and automatically cleaned up. See [architecture, exact limits and art status](docs/COMBAT_VFX.md), [native G4 gallery](docs/effects/README.md) and [validation](docs/effects/VALIDATION.md). Run `./tests/run_effect_capture.sh /tmp/frontline-g4-captures` with a real display; the normal test runner includes VFX lifecycle/stress/accessibility and fresh-process settings checks. Physical Android frame-time/thermal testing and final asset approval remain outstanding. Include `assets/effects/*.json` when filtering Android export resources.

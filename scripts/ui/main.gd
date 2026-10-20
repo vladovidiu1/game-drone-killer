@@ -178,8 +178,16 @@ func _arsenal() -> void:
 func _settings() -> void:
  _clear("settings")
  var col := _column()
- _header(col,"SETTINGS","Saved locally on this device")
- _spacer(col)
+ _header(col,"SETTINGS","Saved locally on this device • visual changes apply next mission")
+ var outer := col
+ var scroll := ScrollContainer.new()
+ scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+ scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+ outer.add_child(scroll)
+ col = VBoxContainer.new()
+ col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ col.add_theme_constant_override("separation",12)
+ scroll.add_child(col)
  col.add_child(UI.label("Master volume",22))
  var slider := HSlider.new()
  slider.min_value = 0
@@ -216,8 +224,11 @@ func _settings() -> void:
   SaveManager.save_settings())
  col.add_child(reduced)
  col.add_child(UI.label("Disables rain, moving haze, embers and light sweeps. Applied next mission.",16))
+ var visual_settings := preload("res://scripts/ui/effects_settings.gd").new()
+ col.add_child(visual_settings)
+ visual_settings.setup()
  _spacer(col)
- col.add_child(UI.button("Main menu",_menu))
+ outer.add_child(UI.button("Main menu",_menu))
  _save_error(col)
 
 func _play(id: int = 1) -> void:
@@ -277,6 +288,8 @@ func _results(victory: bool, stats: Dictionary, id: int, token: String) -> void:
  _show_results.call_deferred(victory,int(outcome.reward),result_data)
 
 func _show_results(victory: bool, reward: int, stats: Dictionary) -> void:
+ if victory and is_instance_valid(battle):
+  battle.view.combat_fx.announce("TERRITORY SECURED",true)
  if victory and is_instance_valid(battle) and battle.finished and not battle.view.destruction.wrecks.is_empty():
   var has_boss := false
   for wreck in battle.view.destruction.wrecks:
@@ -291,6 +304,11 @@ func _show_results(victory: bool, reward: int, stats: Dictionary) -> void:
    outro.setup(battle.view)
    await outro.completed
  _clear("results")
+ if victory:
+  var celebration := Control.new()
+  celebration.set_script(preload("res://scripts/visual/victory_effect.gd"))
+  celebration.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+  content.add_child(celebration)
  var col := _column()
  var outcome: Dictionary = stats.campaign
  var id := int(outcome.mission_id)

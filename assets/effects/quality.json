@@ -1,0 +1,29 @@
+{
+  "low": {
+    "particles": 48,
+    "burst": 4,
+    "smoke": 3,
+    "debris": 6,
+    "lights": 3,
+    "emissions_per_tick": 12,
+    "explosions": 4
+  },
+  "medium": {
+    "particles": 112,
+    "burst": 8,
+    "smoke": 8,
+    "debris": 16,
+    "lights": 6,
+    "emissions_per_tick": 28,
+    "explosions": 8
+  },
+  "high": {
+    "particles": 192,
+    "burst": 12,
+    "smoke": 12,
+    "debris": 24,
+    "lights": 8,
+    "emissions_per_tick": 48,
+    "explosions": 12
+  }
+}

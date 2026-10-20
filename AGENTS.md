@@ -57,3 +57,11 @@
 - Fixed bearings, rotating heads, sliding primary barrels and boss armor are visual-only. Keep the actual manual angle, projectile origin/collision, boss weakpoint and controller positions unchanged.
 - Detached destruction snapshots have no enemy references/physics and stay capped at 12. Terminal boss outros start only after the existing result transaction succeeds; they must never re-award outcomes or resume combat. Preserve Continue/Esc/Android Back skip.
 - Run `tests/unit_visuals.tscn` through the full runner, and `tests/run_native_capture.sh` with a real display for all-archetype render checks. Label staged visual fixtures; distinguish them from full campaign combat and Android performance measurements.
+
+## G4 combat presentation
+
+- Follow `docs/COMBAT_VFX.md`. Compose the clipped `scenes/effects/combat_effects.tscn` through BattleView. Keep quality profiles in `assets/effects/quality.json`, separate from damage/stat data. Export the JSON.
+- Reuse the fixed 192-slot pool, per-preset emission/category limits and independent explosion-density cap. No per-particle nodes, gameplay RNG, physics or enemy/projectile references. Coalesce repeated sustained-damage hit cues.
+- Advance all world VFX with the shared simulated delta; the existing terminal outro may advance detached presentation after a successful result save. UI victory sweeps never write outcomes.
+- Shake presentation artwork only, never Battle, controllers, projectile paths, camera/input transforms, field clip or HUD. Respect Reduced effects/Reduced motion and individual layer switches. Preserve schema-v3 defaults, strict type validation and fresh-process persistence.
+- Run the full runner and native `tests/run_effect_capture.sh` after VFX changes. Distinguish labeled shot/death/stress fixtures from normal-budget wave captures and from unavailable Android hardware benchmarks.

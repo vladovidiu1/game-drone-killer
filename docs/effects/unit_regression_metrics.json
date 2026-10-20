@@ -1,0 +1,137 @@
+[
+  {
+    "capture": "drone_catalog",
+    "draw_calls": 163.0,
+    "objects": 1861.0
+  },
+  {
+    "capture": "drone_damage",
+    "draw_calls": 164.0,
+    "objects": 1861.0
+  },
+  {
+    "capture": "drone_destruction",
+    "draw_calls": 141.0,
+    "objects": 1801.0
+  },
+  {
+    "capture": "boss_assault_carrier",
+    "draw_calls": 135.0,
+    "objects": 1828.0
+  },
+  {
+    "capture": "boss_assault_carrier_phase3",
+    "draw_calls": 152.0,
+    "objects": 1831.0
+  },
+  {
+    "capture": "boss_assault_carrier_destroyed",
+    "draw_calls": 127.0,
+    "objects": 1819.0
+  },
+  {
+    "capture": "boss_emp_warship",
+    "draw_calls": 136.0,
+    "objects": 1837.0
+  },
+  {
+    "capture": "boss_emp_warship_phase3",
+    "draw_calls": 153.0,
+    "objects": 1840.0
+  },
+  {
+    "capture": "boss_emp_warship_destroyed",
+    "draw_calls": 127.0,
+    "objects": 1827.0
+  },
+  {
+    "capture": "boss_border_guardian",
+    "draw_calls": 136.0,
+    "objects": 1845.0
+  },
+  {
+    "capture": "boss_border_guardian_phase3",
+    "draw_calls": 153.0,
+    "objects": 1848.0
+  },
+  {
+    "capture": "boss_border_guardian_destroyed",
+    "draw_calls": 127.0,
+    "objects": 1835.0
+  },
+  {
+    "capture": "boss_factory_ship",
+    "draw_calls": 135.0,
+    "objects": 1853.0
+  },
+  {
+    "capture": "boss_factory_ship_phase3",
+    "draw_calls": 152.0,
+    "objects": 1856.0
+  },
+  {
+    "capture": "boss_factory_ship_destroyed",
+    "draw_calls": 127.0,
+    "objects": 1843.0
+  },
+  {
+    "capture": "boss_hive_core",
+    "draw_calls": 136.0,
+    "objects": 1861.0
+  },
+  {
+    "capture": "boss_hive_core_phase3",
+    "draw_calls": 153.0,
+    "objects": 1864.0
+  },
+  {
+    "capture": "boss_hive_core_destroyed",
+    "draw_calls": 127.0,
+    "objects": 1851.0
+  },
+  {
+    "capture": "arsenal_level1",
+    "draw_calls": 166.0,
+    "objects": 1929.0
+  },
+  {
+    "capture": "arsenal_level3",
+    "draw_calls": 199.0,
+    "objects": 1929.0
+  },
+  {
+    "capture": "primary_standard_heat",
+    "draw_calls": 145.0,
+    "objects": 1890.0
+  },
+  {
+    "capture": "primary_armor_piercing",
+    "draw_calls": 139.0,
+    "objects": 1892.0
+  },
+  {
+    "capture": "primary_explosive",
+    "draw_calls": 168.0,
+    "objects": 1897.0
+  },
+  {
+    "capture": "primary_reload",
+    "draw_calls": 138.0,
+    "objects": 1900.0
+  },
+  {
+    "capture": "primary_pause",
+    "draw_calls": 139.0,
+    "objects": 1903.0
+  },
+  {
+    "capture": "boss_victory_outro",
+    "draw_calls": 129.0,
+    "objects": 1903.0
+  },
+  {
+    "capture": "boss_victory_results",
+    "draw_calls": 20.0,
+    "objects": 1778.0
+  }
+]

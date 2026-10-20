@@ -1,0 +1,177 @@
+{
+  "date_utc": "2026-10-20",
+  "godot": "4.6.3 stable",
+  "headless": {
+    "exit_code": 0,
+    "assertions": 6298,
+    "failures": 0,
+    "suites": [
+      {
+        "suite": "COMBAT",
+        "assertions": 40,
+        "failures": 0
+      },
+      {
+        "suite": "HYBRID",
+        "assertions": 55,
+        "failures": 0
+      },
+      {
+        "suite": "SMOKE",
+        "assertions": 42,
+        "failures": 0
+      },
+      {
+        "suite": "SMOKE",
+        "assertions": 4,
+        "failures": 0
+      },
+      {
+        "suite": "SAVE/RULES",
+        "assertions": 38,
+        "failures": 0
+      },
+      {
+        "suite": "CAMPAIGN",
+        "assertions": 43,
+        "failures": 0
+      },
+      {
+        "suite": "CAMPAIGN",
+        "assertions": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESEARCH",
+        "assertions": 186,
+        "failures": 0
+      },
+      {
+        "suite": "RESEARCH",
+        "assertions": 4,
+        "failures": 0
+      },
+      {
+        "suite": "COMBAT VFX",
+        "assertions": 310,
+        "failures": 0
+      },
+      {
+        "suite": "COMBAT VFX",
+        "assertions": 2,
+        "failures": 0
+      },
+      {
+        "suite": "VISUAL FOUNDATION",
+        "assertions": 393,
+        "failures": 0
+      },
+      {
+        "suite": "UNIT VISUALS",
+        "assertions": 195,
+        "failures": 0
+      },
+      {
+        "suite": "ENVIRONMENTS",
+        "assertions": 976,
+        "failures": 0
+      },
+      {
+        "suite": "ENVIRONMENTS",
+        "assertions": 2,
+        "failures": 0
+      },
+      {
+        "suite": "CATALOG",
+        "assertions": 3689,
+        "failures": 0
+      },
+      {
+        "suite": "ENEMY AI",
+        "assertions": 88,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "assertions": 184,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "assertions": 31,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "assertions": 11,
+        "failures": 0
+      }
+    ],
+    "combat_records_unchanged": 30
+  },
+  "native": {
+    "display": "X11",
+    "renderer": "Compatibility OpenGL 4.5, Mesa 25.0.7 llvmpipe",
+    "effects_fixture_captures": 36,
+    "unit_regression_captures": 27,
+    "normal_wave_captures": 5,
+    "gallery_pngs": 28,
+    "failures": 0,
+    "effects_draw_calls": [
+      20.0,
+      186.0
+    ],
+    "unit_draw_calls": [
+      20.0,
+      199.0
+    ],
+    "stress_samples": [
+      {
+        "active_particles": 188,
+        "capture": "stress_high",
+        "debris": 24,
+        "draw_calls": 186.0,
+        "dropped_emissions": 768,
+        "lights": 4,
+        "peak_particles": 192,
+        "smoke": 12
+      },
+      {
+        "active_particles": 47,
+        "capture": "stress_low",
+        "debris": 6,
+        "draw_calls": 141.0,
+        "dropped_emissions": 592,
+        "lights": 2,
+        "peak_particles": 48,
+        "smoke": 3
+      }
+    ],
+    "grid_interference_captures": 1,
+    "grid_metrics": [
+      {
+        "active_particles": 0,
+        "capture": "grid_interference",
+        "debris": 0,
+        "draw_calls": 125.0,
+        "dropped_emissions": 0,
+        "lights": 0,
+        "peak_particles": 0,
+        "smoke": 0
+      }
+    ]
+  },
+  "unchanged_gameplay_files": {
+    "data/definitions.json": "cf9c3d814b3063a4b132e76be7b5084e75e8585b91bae493608503f9fb749716",
+    "data/progression.json": "86ecd0d8d1509bf086abd43d6872761649373934fdca0b6a4696202af1db8bae",
+    "scripts/game/enemy_brain.gd": "b0eea4c32d3c05abeedf2312632f4700ac48bee9e8dac6e0ae94b6185ecff0ac",
+    "scripts/game/player_turret.gd": "24204cfe4cc118bc3915f64fb9191cf44b580547eedb8d27a4d8b51a98c69343"
+  },
+  "limitations": [
+    "No physical Android device or CPU/GPU particle comparison",
+    "No verified 60 FPS, thermal, battery or actual VRAM claim",
+    "Audio driver Dummy; no audible playback/hardware multitouch verification",
+    "No APK/export/signing validation",
+    "Integrated generated/utility artwork still needs final art approval"
+  ]
+}

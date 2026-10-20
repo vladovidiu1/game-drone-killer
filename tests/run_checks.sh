@@ -30,6 +30,8 @@ run_check res://tests/campaign.tscn -- --verify-campaign
 run_check --fixed-fps 120 --disable-render-loop res://tests/research.tscn
 run_check res://tests/research.tscn -- --verify-research
 
+run_check res://tests/effects.tscn
+run_check res://tests/effects.tscn -- --verify-effects
 run_check res://tests/visual_foundation.tscn
 run_check res://tests/unit_visuals.tscn
 run_check res://tests/environments.tscn

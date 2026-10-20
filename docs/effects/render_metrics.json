@@ -1,0 +1,362 @@
+[
+  {
+    "active_particles": 1,
+    "capture": "weapon_machine_gun_fire",
+    "debris": 0,
+    "draw_calls": 130.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 1,
+    "smoke": 0
+  },
+  {
+    "active_particles": 6,
+    "capture": "weapon_machine_gun_impact",
+    "debris": 0,
+    "draw_calls": 129.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 6,
+    "smoke": 0
+  },
+  {
+    "active_particles": 2,
+    "capture": "weapon_cannon_fire",
+    "debris": 0,
+    "draw_calls": 130.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 2,
+    "smoke": 1
+  },
+  {
+    "active_particles": 15,
+    "capture": "weapon_cannon_impact",
+    "debris": 0,
+    "draw_calls": 132.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 15,
+    "smoke": 2
+  },
+  {
+    "active_particles": 3,
+    "capture": "weapon_missile_fire",
+    "debris": 0,
+    "draw_calls": 131.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 3,
+    "smoke": 1
+  },
+  {
+    "active_particles": 23,
+    "capture": "weapon_missile_impact",
+    "debris": 0,
+    "draw_calls": 140.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 23,
+    "smoke": 7
+  },
+  {
+    "active_particles": 1,
+    "capture": "weapon_laser_fire",
+    "debris": 0,
+    "draw_calls": 130.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 1,
+    "smoke": 0
+  },
+  {
+    "active_particles": 1,
+    "capture": "weapon_laser_impact",
+    "debris": 0,
+    "draw_calls": 130.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 2,
+    "smoke": 0
+  },
+  {
+    "active_particles": 1,
+    "capture": "weapon_emp_tower_fire",
+    "debris": 0,
+    "draw_calls": 151.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 1,
+    "smoke": 0
+  },
+  {
+    "active_particles": 1,
+    "capture": "weapon_emp_tower_impact",
+    "debris": 0,
+    "draw_calls": 151.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 1,
+    "smoke": 0
+  },
+  {
+    "active_particles": 2,
+    "capture": "weapon_heavy_aa_fire",
+    "debris": 0,
+    "draw_calls": 131.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 2,
+    "smoke": 1
+  },
+  {
+    "active_particles": 15,
+    "capture": "weapon_heavy_aa_impact",
+    "debris": 0,
+    "draw_calls": 132.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 15,
+    "smoke": 2
+  },
+  {
+    "active_particles": 1,
+    "capture": "primary_standard_flight",
+    "debris": 0,
+    "draw_calls": 125.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 2,
+    "smoke": 1
+  },
+  {
+    "active_particles": 7,
+    "capture": "primary_standard_impact",
+    "debris": 0,
+    "draw_calls": 127.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 7,
+    "smoke": 1
+  },
+  {
+    "active_particles": 3,
+    "capture": "primary_armor_piercing_flight",
+    "debris": 0,
+    "draw_calls": 130.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 3,
+    "smoke": 1
+  },
+  {
+    "active_particles": 9,
+    "capture": "primary_armor_piercing_impact",
+    "debris": 0,
+    "draw_calls": 128.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 9,
+    "smoke": 1
+  },
+  {
+    "active_particles": 3,
+    "capture": "primary_explosive_flight",
+    "debris": 0,
+    "draw_calls": 125.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 3,
+    "smoke": 3
+  },
+  {
+    "active_particles": 19,
+    "capture": "primary_explosive_impact",
+    "debris": 0,
+    "draw_calls": 133.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 19,
+    "smoke": 5
+  },
+  {
+    "active_particles": 1,
+    "capture": "primary_reload",
+    "debris": 0,
+    "draw_calls": 127.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 19,
+    "smoke": 1
+  },
+  {
+    "active_particles": 8,
+    "capture": "primary_critical",
+    "debris": 0,
+    "draw_calls": 131.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 8,
+    "smoke": 1
+  },
+  {
+    "active_particles": 12,
+    "capture": "destroy_scout_flash",
+    "debris": 2,
+    "draw_calls": 127.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 12,
+    "smoke": 1
+  },
+  {
+    "active_particles": 3,
+    "capture": "destroy_scout_smoke",
+    "debris": 2,
+    "draw_calls": 124.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 12,
+    "smoke": 1
+  },
+  {
+    "active_particles": 18,
+    "capture": "destroy_heavy_flash",
+    "debris": 4,
+    "draw_calls": 127.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 18,
+    "smoke": 1
+  },
+  {
+    "active_particles": 5,
+    "capture": "destroy_heavy_smoke",
+    "debris": 4,
+    "draw_calls": 124.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 18,
+    "smoke": 1
+  },
+  {
+    "active_particles": 20,
+    "capture": "destroy_assault_carrier_flash",
+    "debris": 6,
+    "draw_calls": 132.0,
+    "dropped_emissions": 0,
+    "lights": 1,
+    "peak_particles": 20,
+    "smoke": 1
+  },
+  {
+    "active_particles": 7,
+    "capture": "destroy_assault_carrier_smoke",
+    "debris": 6,
+    "draw_calls": 129.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 20,
+    "smoke": 1
+  },
+  {
+    "active_particles": 0,
+    "capture": "critical_base_damage",
+    "debris": 0,
+    "draw_calls": 130.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 0,
+    "smoke": 0
+  },
+  {
+    "active_particles": 0,
+    "capture": "boss_arrival",
+    "debris": 0,
+    "draw_calls": 136.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 0,
+    "smoke": 0
+  },
+  {
+    "active_particles": 188,
+    "capture": "stress_high",
+    "debris": 24,
+    "draw_calls": 186.0,
+    "dropped_emissions": 768,
+    "lights": 4,
+    "peak_particles": 192,
+    "smoke": 12
+  },
+  {
+    "active_particles": 47,
+    "capture": "stress_low",
+    "debris": 6,
+    "draw_calls": 141.0,
+    "dropped_emissions": 592,
+    "lights": 2,
+    "peak_particles": 48,
+    "smoke": 3
+  },
+  {
+    "active_particles": 2,
+    "capture": "reduced_effects_motion",
+    "debris": 0,
+    "draw_calls": 116.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 2,
+    "smoke": 0
+  },
+  {
+    "active_particles": 0,
+    "capture": "settings_audio",
+    "debris": 0,
+    "draw_calls": 30.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 0,
+    "smoke": 0
+  },
+  {
+    "active_particles": 0,
+    "capture": "settings_quality",
+    "debris": 0,
+    "draw_calls": 31.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 0,
+    "smoke": 0
+  },
+  {
+    "active_particles": 0,
+    "capture": "settings_effects",
+    "debris": 0,
+    "draw_calls": 29.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 0,
+    "smoke": 0
+  },
+  {
+    "active_particles": 13,
+    "capture": "victory_outro",
+    "debris": 6,
+    "draw_calls": 129.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 17,
+    "smoke": 1
+  },
+  {
+    "active_particles": 0,
+    "capture": "victory_results",
+    "debris": 0,
+    "draw_calls": 20.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 0,
+    "smoke": 0
+  }
+]

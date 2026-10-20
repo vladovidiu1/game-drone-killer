@@ -93,7 +93,8 @@ func configure(id: String, size_multiplier: float = 1.0) -> void:
  body.add_child(mechanics)
 
 func advance(delta: float, health_fraction: float = 1.0, shots: int = 0, upgrade_tier: int = 1, reload_active: bool = false, progress: float = 1.0, phase: int = 0) -> void:
- clock += delta
+ if not bool(SaveManager.settings.get("reduced_motion",false)):
+  clock += delta
  damage_state = clampf(1.0-health_fraction,0,1)
  tier = clampi(upgrade_tier,1,3)
  phase_state = phase

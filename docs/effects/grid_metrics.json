@@ -1,0 +1,12 @@
+[
+  {
+    "active_particles": 0,
+    "capture": "grid_interference",
+    "debris": 0,
+    "draw_calls": 125.0,
+    "dropped_emissions": 0,
+    "lights": 0,
+    "peak_particles": 0,
+    "smoke": 0
+  }
+]

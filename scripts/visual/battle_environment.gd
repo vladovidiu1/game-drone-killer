@@ -30,7 +30,7 @@ func setup(mission: Dictionary) -> void:
  assignment = LIBRARY.missions[str(int(mission.id))]
  profile = LIBRARY.profiles[assignment.profile]
  kit = LIBRARY.types[assignment.type]
- reduced = bool(SaveManager.settings.get("reduced_environment_effects",false))
+ reduced = bool(SaveManager.settings.get("reduced_environment_effects",false)) or bool(SaveManager.settings.get("reduced_motion",false)) or bool(SaveManager.settings.get("reduced_effects",false))
  terrain = Sprite2D.new()
  terrain.name = "TerrainPlate"
  terrain.centered = false

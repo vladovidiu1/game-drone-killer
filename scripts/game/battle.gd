@@ -147,6 +147,8 @@ func spawn_enemy(kind: String, path_index: int = 0) -> Node2D:
  enemy.destroyed.connect(_destroyed.bind(enemy))
  enemy.damaged.connect(func(at: Vector2): view.effect(at,"hit",12,Color("fff3be")))
  drones.add_child(enemy)
+ if enemy.brain.boss:
+  view.combat_fx.announce("HOSTILE COMMAND / "+enemy.display_name.to_upper())
  return enemy
 
 func spawn_support(kind: String, parent_unit: Node2D) -> Node2D:
@@ -164,7 +166,8 @@ func _breached(damage: int) -> void:
  if finished:
   return
  health = maxi(0,health-damage)
- view.base_flash = 0.35
+ view.base_flash = 0.12 if SaveManager.settings.get("reduced_effects",false) else 0.35
+ view.combat_fx.base_damaged(float(health)/max_health)
  view.effect(Vector2(560,595),"blast",60,Color("ff796b"))
  status_changed.emit()
  if health == 0:
@@ -177,7 +180,8 @@ func _destroyed(reward: int, enemy: Node2D) -> void:
  credits += reward
  earned += reward
  view.destruction.snapshot(enemy)
- view.effect(enemy.position,"blast",32,enemy.tint)
+ view.combat_fx.destroyed(enemy)
+ view.effect(enemy.position,"blast",72 if enemy.brain.boss else 46 if enemy.body_scale >= 1.3 else 32,enemy.tint)
  status_changed.emit()
 
 func select_slot(index: int) -> void:
@@ -235,17 +239,20 @@ func launch_projectile(turret: Node2D, target: Node2D) -> void:
  var projectile = PROJECTILE.instantiate()
  projectile.configure(self,turret,target)
  projectiles.add_child(projectile)
+ view.combat_fx.shot(turret.position+Vector2.from_angle(turret.barrel_angle)*32,Vector2.from_angle(turret.barrel_angle),turret.kind,projectile.tint)
  shots_fired += 1
 
 func launch_player_projectile(direction: Vector2) -> void:
  var projectile = PROJECTILE.instantiate()
  projectile.configure_manual(self,direction)
  projectiles.add_child(projectile)
+ view.combat_fx.shot(projectile.position,direction,projectile.visual_kind,projectile.tint)
  shots_fired += 1
 
 func resolve_impact(projectile: Node2D) -> void:
  # A projectile consumes itself before calling here. Splash replaces direct damage.
  impacts += 1
+ view.combat_fx.impact(projectile.destination,projectile.visual_kind,projectile.tint,projectile.splash_radius,projectile.critical)
  if projectile.splash_radius > 0:
   view.effect(projectile.destination,"blast",projectile.splash_radius,projectile.tint)
   for enemy in drones.get_children():

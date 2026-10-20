@@ -9,8 +9,11 @@ var destruction := preload("res://scripts/visual/destruction_batch.gd").new()
 
 var environment: Control
 var telemetry: Node2D
+var combat_fx: Node2D
 
 func _ready() -> void:
+ combat_fx = preload("res://scenes/effects/combat_effects.tscn").instantiate()
+ add_child(combat_fx)
  environment = preload("res://scripts/visual/battle_environment.gd").new()
  environment.setup(battle.mission_data)
  add_child(environment)
@@ -23,12 +26,32 @@ func _ready() -> void:
   environment.name = "OutpostTerrain"
 
 func effect(point: Vector2, kind: String, radius: float, tint: Color) -> void:
- if effects.size() >= int(CampaignManager.combat.effect_limit):
+ var limit := mini(int(CampaignManager.combat.effect_limit),24 if combat_fx.reduced else 48 if int(combat_fx.profile.particles) <= 48 else 96)
+ if kind == "blast":
+  var blasts := 0
+  var oldest := -1
+  for index in effects.size():
+   if effects[index].kind == "blast":
+    blasts += 1
+    if oldest < 0:
+     oldest = index
+  if blasts >= int(combat_fx.profile.explosions) and oldest >= 0:
+   effects.remove_at(oldest)
+ if kind == "hit":
+  for item in effects:
+   if item.kind == "hit" and Vector2(item.point).distance_squared_to(point) < 81:
+    item.age = 0.0
+    return
+ while effects.size() >= limit:
   effects.pop_front()
  effects.append({"point":point,"kind":kind,"radius":radius,"tint":tint,"age":0.0,"duration":0.65 if kind in ["blast","pulse"] else 0.15 if kind == "hit" else 0.45})
+ if kind == "pulse":
+  combat_fx.pulse(point,radius,tint)
  queue_redraw()
 
 func tick(delta: float) -> void:
+ combat_fx.tick(delta)
+ combat_fx.observe(battle,delta)
  preload("res://scripts/visual/combat_visuals.gd").advance(battle,delta)
  environment.tick(delta)
  telemetry.queue_redraw()
@@ -41,6 +64,7 @@ func tick(delta: float) -> void:
  queue_redraw()
 
 func tick_outro(delta: float) -> void:
+ combat_fx.tick(delta)
  telemetry.queue_redraw()
  destruction.tick(delta)
  for index in range(effects.size()-1,-1,-1):
@@ -48,6 +72,37 @@ func tick_outro(delta: float) -> void:
   if effects[index].age >= float(effects[index].duration):
    effects.remove_at(index)
  queue_redraw()
+
+# Foreground effects are painted by the clipped scene above drone bodies,
+# beneath boss telemetry and the native HUD. Rendering never resolves a hit.
+func paint_effects(canvas: CanvasItem) -> void:
+ for item in effects:
+  var fraction: float = float(item.age)/float(item.duration)
+  var tint: Color = item.tint
+  tint.a = 1.0-fraction
+  if item.kind == "blast":
+   # Grid-interference/large tactical cues must not become field-covering
+   # fireballs when impacts move to the foreground. Keep actors legible.
+   if float(item.radius) > 160:
+    var pulse_radius: float = float(item.radius)*(1.0 if combat_fx.motion else .4+fraction*.6)
+    canvas.draw_arc(item.point,pulse_radius,0,TAU,64,Color(tint,tint.a*.45),2,true)
+    continue
+   if not combat_fx.smoke and fraction >= .5:
+    continue
+   var frame := ASSETS.explosion_frame(mini(5,int(fraction*6)))
+   var diameter := maxf(28.0,float(item.radius)*2.5)
+   canvas.draw_texture_rect(ASSETS.texture("effects/soft_shadow.svg"),Rect2(item.point-Vector2(diameter*.5,diameter*.15),Vector2(diameter,diameter*.4)),false,Color(1,1,1,1-fraction))
+   canvas.draw_texture_rect(frame,Rect2(item.point-Vector2.ONE*diameter*.5,Vector2.ONE*diameter),false,Color(1,1,1,1.0-smoothstep(0.6,1.0,fraction)))
+  elif item.kind == "pulse":
+   var radius: float = float(item.radius)*(1.0 if combat_fx.motion else fraction)
+   canvas.draw_arc(item.point,radius,0,TAU,64,tint,2.5*(1-fraction)+0.5)
+   canvas.draw_arc(item.point,radius*.78,0,TAU,48,Color(tint,tint.a*.35),1)
+  elif item.kind == "build":
+   canvas.draw_arc(item.point,float(item.radius)*(1.0 if combat_fx.motion else 0.5+fraction),0,TAU,32,tint,2)
+  else:
+   for direction in [Vector2(1,1),Vector2(1,-1)]:
+    var offset: Vector2 = direction*float(item.radius)*(0.4+fraction)
+    canvas.draw_line(item.point-offset,item.point+offset,Color(1,0.85,0.63,1-fraction),2*(1-fraction))
 
 func text(at: Vector2, value: String, color: Color, font_size: int = 16) -> void:
  draw_string(BODY_FONT,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,color)
@@ -103,25 +158,6 @@ func _draw() -> void:
  text(Vector2(442,621),"S-7",Color("d9eeee"),14)
  draw_rect(Rect2(430,635,260,6),Color("0b1b23"))
  draw_rect(Rect2(430,635,260*float(battle.health)/float(battle.max_health),6),Color("37B7E5"))
- for item in effects:
-  var fraction: float = float(item.age)/float(item.duration)
-  var tint: Color = item.tint
-  tint.a = 1.0-fraction
-  if item.kind == "blast":
-   var frame := ASSETS.explosion_frame(mini(5,int(fraction*6)))
-   var diameter := maxf(28.0,float(item.radius)*2.5)
-   draw_texture_rect(ASSETS.texture("effects/soft_shadow.svg"),Rect2(item.point-Vector2(diameter*.5,diameter*.15),Vector2(diameter,diameter*.4)),false,Color(1,1,1,1-fraction))
-   draw_texture_rect(frame,Rect2(item.point-Vector2.ONE*diameter*.5,Vector2.ONE*diameter),false,Color(1,1,1,1.0-smoothstep(0.6,1.0,fraction)))
-  elif item.kind == "pulse":
-   var radius: float = float(item.radius)*fraction
-   draw_arc(item.point,radius,0,TAU,64,tint,2.5*(1-fraction)+0.5)
-   draw_arc(item.point,radius*.78,0,TAU,48,Color(tint,tint.a*.35),1)
-  elif item.kind == "build":
-   draw_arc(item.point,float(item.radius)*(0.5+fraction),0,TAU,32,tint,2)
-  else:
-   for direction in [Vector2(1,1),Vector2(1,-1)]:
-    var offset: Vector2 = direction*float(item.radius)*(0.4+fraction)
-    draw_line(item.point-offset,item.point+offset,Color(1,0.85,0.63,1-fraction),2*(1-fraction))
  destruction.draw(self)
  var condition: Dictionary = battle.mission_data.get("environment",{})
  if condition.get("kind") == "dust":

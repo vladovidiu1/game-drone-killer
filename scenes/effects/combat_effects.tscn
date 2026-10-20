@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/visual/combat_effects.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/visual/effect_painter.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/visual/screen_feedback.gd" id="3"]
+
+[node name="CombatEffects" type="Node2D"]
+script = ExtResource("1")
+
+[node name="FieldClip" type="Control" parent="."]
+z_index = 1
+clip_contents = true
+offset_top = 88.0
+offset_right = 955.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="Particles" type="Node2D" parent="FieldClip"]
+position = Vector2(0, -88)
+script = ExtResource("2")
+
+[node name="ScreenFeedback" type="Node2D" parent="."]
+z_index = 6
+script = ExtResource("3")

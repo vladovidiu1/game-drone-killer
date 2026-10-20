@@ -86,7 +86,7 @@ func _draw() -> void:
   art.sync(barrel_angle+PI/2,0.0,false,disabled_remaining > 0)
  preload("res://scripts/visual/weapon_effects.gd").flash(self,kind,barrel_angle,clampf(muzzle/.08,0,1))
  if kind == "laser" and muzzle > 0 and is_instance_valid(target) and not target.ended:
-  draw_line(Vector2.ZERO,target.position-position,Color(color,0.3),7)
-  draw_line(Vector2.ZERO,target.position-position,color,2)
+  draw_line(Vector2.from_angle(barrel_angle)*30,target.position-position,Color(color,0.19),8)
+  draw_line(Vector2.from_angle(barrel_angle)*30,target.position-position,Color("f6eef5"),1.8)
  for i in level:
   draw_circle(Vector2(-8+i*8,20),2.5,color)

@@ -16,6 +16,7 @@ var critical := false
 # Presentation snapshots only; never used for hit, movement or damage decisions.
 var visual_kind := "standard"
 var visual_origin := Vector2.ZERO
+var visual_trail_time := 0.0
 
 func configure(owner_battle: Node2D, turret: Node2D, victim: Node2D) -> void:
  battle = owner_battle
@@ -96,6 +97,10 @@ func _tick_manual(delta: float) -> void:
 func tick(delta: float) -> void:
  if consumed:
   return
+ visual_trail_time -= delta
+ if visual_trail_time <= 0:
+  visual_trail_time = .065
+  battle.view.combat_fx.trail(position,direction,visual_kind,tint)
  lifetime -= delta
  if lifetime <= 0:
   retire()

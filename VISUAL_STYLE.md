@@ -1,4 +1,6 @@
-# DRONE KILLER: FRONTLINE — G1 / environments G2 / units G3
+# DRONE KILLER: FRONTLINE — G1 / environments G2 / units G3 / effects G4
+
+G4 adds [bounded combat effects, weapon feedback and accessibility controls](docs/COMBAT_VFX.md). See [native G4 captures and validation](docs/effects/README.md). Its foreground layering, quality limits and settings extend/supersede the original G1/G3 VFX budgets below.
 
 G3 adds [distinct unit artwork and reusable combat animation](docs/UNIT_VISUALS.md) for all 14 enemies and 7 weapons. See [native G3 captures and validation](docs/units/README.md).
 
@@ -101,4 +103,4 @@ Use a separate temporary data directory: the capture scene deliberately starts a
 
 Linux OpenGL/llvmpipe captures are checked in under `docs/visuals/`. Physical Android appearance, physical multitouch, audible playback, cutout hardware, FPS, memory and battery/thermal behavior still require device validation. Generated art should receive art-direction and commercial-clearance review before release.
 
-For an Android export, include all resources and include `data/*.json`, `assets/*.json`, `assets/environment/*.json`, `assets/ASSET_LICENSE.md` and `assets/ui/fonts/*.txt` as non-resource files if the preset filters them. Keep dynamic atlas/catalog dependencies and font notices in the package. Export templates/SDK/signing and a physical device build remain separate validation steps.
+For an Android export, include all resources and include `data/*.json`, `assets/*.json`, `assets/environment/*.json`, `assets/effects/*.json`, `assets/ASSET_LICENSE.md` and `assets/ui/fonts/*.txt` as non-resource files if the preset filters them. Keep dynamic atlas/catalog dependencies and font notices in the package. Export templates/SDK/signing and a physical device build remain separate validation steps.
