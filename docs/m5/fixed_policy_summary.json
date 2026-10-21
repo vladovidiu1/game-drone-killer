@@ -1,0 +1,47 @@
+{
+  "simulations": 55,
+  "unfinished": 0,
+  "peak_live_enemies": 23,
+  "by_strategy": {
+    "automatic": {
+      "samples": 6,
+      "wins": [
+        1
+      ]
+    },
+    "hybrid": {
+      "samples": 6,
+      "wins": [
+        1,
+        5,
+        10,
+        15,
+        20,
+        25
+      ]
+    },
+    "manual_only": {
+      "samples": 6,
+      "wins": [
+        1,
+        5
+      ]
+    },
+    "two_cannon": {
+      "samples": 6,
+      "wins": []
+    },
+    "two_mg": {
+      "samples": 6,
+      "wins": [
+        1
+      ]
+    },
+    "two_mixed": {
+      "samples": 25,
+      "wins": [
+        1
+      ]
+    }
+  }
+}

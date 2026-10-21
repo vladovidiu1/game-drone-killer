@@ -1,5 +1,7 @@
 # Campaign design and validation
 
+M5 extends this campaign with directed multi-sector attacks. Current validation permits bounded real defeats and follows the saved retreat/reconquest rules; it still requires actual victories on all 25 territories, every boss, checkpoint retention and fresh-process restoration. See [M5 rules](TACTICAL_DIRECTOR.md) and [current measured outcomes](m5/VALIDATION.md); earlier first-pass results below describe their recorded revision.
+
 Task 5 extends the existing native Godot hybrid battle. `data/definitions.json` is the runtime source of mission geometry, enemy statistics, formations, conditions and boss phases. No per-level scripts or external services are required.
 
 ## Territories

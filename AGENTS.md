@@ -120,3 +120,11 @@
 - The editor simulator and test injection require editor + debug + non-Android and an explicit opt-in. Do not enable mock rewards in exported builds. The conditional native adapter is strict Android debug/official-test only; production advertising remains disabled pending actual SDK/consent/audience/privacy/SSV work.
 - Use pinned Poing v5.1.0 documented APIs, never another plugin's method names. Do not initialize/load before fresh required UMP handling. Unknown/underage/mixed audiences remain ineligible until implemented. Sample Google App ID cannot host publisher-configured consent messages; do not bypass missing consent forms.
 - Run full regression including rewarded/fresh-process and AdMob boundary-contract test-double suites. Use real display wrappers for native ad-offer/cancel/saved UI captures. Distinguish test doubles/editor callbacks from real SDK/test-ad/Android evidence. Local clock/file protections are best effort, not server-authoritative.
+
+## M5 tactical attacks
+
+- Follow `docs/TACTICAL_DIRECTOR.md`. Keep sector geometry/base budgets in mission `approaches`, and selection weights, threat costs, chapter curves, warning and support caps in `data/tactical_director.json`. Do not rerun old M1 catalog generators over M5 geometry.
+- Freeze plans once at intermission start. Radar counts must describe the actual directed entries; legacy formation routing must not override them. Respect the minimum warning on early launch and the shared pause/build delta.
+- Coverage is approximate placement/range/DPS only, sampled once per plan. Keep adaptation/history bonuses capped and probabilistic; never inspect live player intentions or force survivors.
+- Preserve real enemy abilities and projectile/target/damage lifecycle. Directed supports inherit wave ownership and share its finite reserve, including nested carriers. Keep economy and campaign result transactions authoritative.
+- Run full regression, `tests/run_m1_balance.sh`, and native `tests/run_tactical_capture.sh` for tactical changes. Record losses and bounded real retreat/reconquest in the earned-budget campaign; do not erase defeats, inject funds, or describe an assisted policy as human/device balance. Keep native capture runners sequential.

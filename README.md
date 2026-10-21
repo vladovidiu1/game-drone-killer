@@ -8,6 +8,8 @@ M1 combat tuning adds 50% nominal drone speed, telegraphed Scout/Bomber accelera
 
 M2 adds **six projectile technologies**, three research tiers each, a three-slot mission loadout, twelve automatic-turret specialization branches and configurable enemy resistances. [Research/loadout rules and validation](docs/WEAPON_RESEARCH.md).
 
+M5 adds **eight seeded tactical patterns**, WEST/CENTER/EAST routes on all 25 maps, a six-second radar preparation window and capped late-campaign reconnaissance. [Rules and tuning](docs/TACTICAL_DIRECTOR.md) · [Measured results and native captures](docs/m5/VALIDATION.md).
+
 ## Download
 
 Repository: https://github.com/vladovidiu1/game-drone-killer
@@ -219,7 +221,7 @@ Run from the repository root on Linux with Godot, Bash, GNU timeout, and ripgrep
 ./tests/run_checks.sh
 ```
 
-The runner uses isolated temporary XDG saves, checks exit status and rejects script/engine errors even after a zero exit. The default watchdog is 60 seconds per engine process, extended to 180 for the 25-mission simulation and 90 for comparative simulations. It imports the native project and runs startup, combat, hybrid input, UI, corrupt-save/migration, research and campaign checks.
+The runner uses isolated temporary XDG saves, checks exit status and rejects script/engine errors even after a zero exit. The default watchdog is 60 seconds per engine process, extended to 180 for the campaign UI fixture, 300 for the connected tactical campaign and 90 for comparative simulations. It imports the native project and runs startup, combat, hybrid input, UI, corrupt-save/migration, research and campaign checks.
 
 The original suites retain mouse/two-finger input propagation, ammunition, single-use hits, splash, autonomous targeting, purchases, tactical slow time, pause, standardized normal timing, reload, research transactions, checkpoint retreat and fresh-process persistence. Added suites validate every territory/reference/phase, exercise enemy abilities and all five bosses, and play missions 1–25 through ordinary combat with earned research/battle funds. They then lose/reconquer the final frontier and verify the completed save in a fresh process. Separate endgame simulations compare automatic-only and manual-only defenses with the hybrid result. Synthetic phase and transaction fixtures are distinguished from these full battles.
 
@@ -266,3 +268,7 @@ Drag the strategic map to explore all 25 operations, then select a marker for it
 The original four Arsenal tabs use weapon illustrations, real stat summaries, upgrade indicators and purchase feedback. Battle HP/wave/threat/credits use dedicated readouts; ammo/reload/FIRE/ammunition/abilities/build/pause retain their existing functionality. M2 extends this to five tabs including PROJECTILES and per-design specialization. Short-height layouts keep combat controls accessible. Menu atmosphere, short screen transitions and resource feedback respect Reduced motion/effects.
 
 See [design/architecture and performance limits](docs/UI_DESIGN.md), [native gallery](docs/ui/README.md), and [validation](docs/ui/VALIDATION.md). Run `./tests/run_ui_capture.sh /tmp/frontline-g5-captures` with a real display. Android exports must also include `assets/ui/*.json`.
+
+### M5 tactical attacks
+
+All 25 missions now support western, central and eastern approaches, seeded attack patterns, truthful six-second radar preparation and limited late-campaign reconnaissance. Existing saves, research, manual fire and campaign transactions remain compatible. See [Tactical Director](docs/TACTICAL_DIRECTOR.md) for tuning, debug flags, replayable tests and [validation](docs/m5/VALIDATION.md) for measured outcomes and Android limitations.

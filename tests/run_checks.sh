@@ -21,12 +21,13 @@ run_check() {
 run_check --editor --import --quit
 run_check --quit-after 120
 run_check res://tests/m1_mechanics.tscn
+FRONTLINE_CHECK_TIMEOUT=120 run_check res://tests/tactical_director.tscn
 run_check --fixed-fps 120 --disable-render-loop res://tests/combat.tscn
 run_check --fixed-fps 120 --disable-render-loop res://tests/hybrid.tscn
 run_check --fixed-fps 120 --disable-render-loop res://tests/smoke.tscn
 run_check res://tests/smoke.tscn -- --verify-save
 run_check --fixed-fps 120 --disable-render-loop res://tests/save_validation.tscn
-run_check --fixed-fps 120 --disable-render-loop res://tests/campaign.tscn
+FRONTLINE_CHECK_TIMEOUT=180 run_check --fixed-fps 120 --disable-render-loop res://tests/campaign.tscn
 run_check res://tests/campaign.tscn -- --verify-campaign
 run_check --fixed-fps 120 --disable-render-loop res://tests/research.tscn
 run_check res://tests/research.tscn -- --verify-research
@@ -49,11 +50,12 @@ run_check res://tests/environments.tscn
 run_check res://tests/environments.tscn -- --verify-environment-settings
 run_check res://tests/campaign_catalog.tscn
 run_check res://tests/enemy_ai.tscn
-FRONTLINE_CHECK_TIMEOUT=180 run_check --fixed-fps 120 --disable-render-loop res://tests/full_campaign.tscn
+FRONTLINE_CHECK_TIMEOUT=300 run_check --fixed-fps 120 --disable-render-loop res://tests/full_campaign.tscn
 run_check res://tests/full_campaign.tscn -- --verify-full
 FRONTLINE_CHECK_TIMEOUT=90 run_check --fixed-fps 120 --disable-render-loop res://tests/full_campaign.tscn -- --compare
 if [ -n "${FRONTLINE_REPORT_DIR:-}" ]; then
  mkdir -p "$FRONTLINE_REPORT_DIR"
+ cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/tactical_scenarios.json" "$FRONTLINE_REPORT_DIR/"
  cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/rewarded_ad_scenarios.json" "$FRONTLINE_REPORT_DIR/"
  cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/economy_scenarios.json" "$FRONTLINE_REPORT_DIR/"
  cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/campaign_balance.json" "$FRONTLINE_REPORT_DIR/"

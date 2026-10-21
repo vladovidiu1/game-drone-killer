@@ -1,0 +1,72 @@
+{
+  "checks": 76,
+  "failures": 0,
+  "fixture": "M12 access + tier2 research; ordinary battle funds; seeded west flank; injected two-finger native input; no Android hardware",
+  "frames": [
+    {
+      "capture": "radar_1280x720",
+      "draw_calls": 167.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "contacts_1280x720",
+      "draw_calls": 234.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "radar_1600x720",
+      "draw_calls": 162.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "contacts_1600x720",
+      "draw_calls": 234.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "radar_1280x600",
+      "draw_calls": 166.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "contacts_1280x600",
+      "draw_calls": 233.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "radar_1024x768",
+      "draw_calls": 167.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "contacts_1024x768",
+      "draw_calls": 234.0,
+      "size": [
+        1024,
+        768
+      ]
+    }
+  ],
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)"
+}

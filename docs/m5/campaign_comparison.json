@@ -1,0 +1,614 @@
+[
+  {
+    "attack_seed": 1025,
+    "battle_earned": 1403,
+    "battle_remaining": 93,
+    "battle_spent": 2640,
+    "enemy_actions": 16,
+    "environmental_pulses": 3,
+    "health": 0,
+    "id": 25,
+    "kills": 90,
+    "manual_hits": 0,
+    "manual_shots": 0,
+    "mode": "automatic",
+    "research": {
+      "ammo_armor_piercing": 0,
+      "ammo_cryo": 0,
+      "ammo_emp": 0,
+      "ammo_explosive": 0,
+      "ammo_railgun": 0,
+      "ammo_standard": 0,
+      "base_health": 4,
+      "cannon_damage": 4,
+      "cannon_rate": 4,
+      "crit_chance": 0,
+      "crit_damage": 0,
+      "emp_mastery": 0,
+      "magazine": 0,
+      "overclock_mastery": 0,
+      "reload": 4,
+      "repair_efficiency": 0,
+      "repair_mastery": 0,
+      "spec_cannon_blast": 0,
+      "spec_cannon_impact": 0,
+      "spec_emp_tower_duration": 0,
+      "spec_emp_tower_radius": 0,
+      "spec_heavy_aa_armor": 0,
+      "spec_heavy_aa_precision": 0,
+      "spec_laser_shield": 0,
+      "spec_laser_sustained": 0,
+      "spec_machine_gun_armor": 0,
+      "spec_machine_gun_rapid": 0,
+      "spec_missile_blast": 0,
+      "spec_missile_guidance": 0,
+      "starting_credits": 4,
+      "turret_damage": 5,
+      "turret_range": 4,
+      "turret_rate": 4,
+      "velocity": 0
+    },
+    "seconds": 116.1,
+    "starting_battle_credits": 1330,
+    "support_spawned": 0,
+    "tactical_plans": [
+      {
+        "adaptive": true,
+        "base_after": 1235,
+        "base_before": 1400,
+        "baseline_budget": 83,
+        "bounty_cap": 379,
+        "breaches": 12,
+        "budget": 70,
+        "complete": true,
+        "coverage": {
+          "CENTER": 0.0,
+          "EAST": 0.0,
+          "WEST": 0.0
+        },
+        "entry_fingerprint": "a7291509e2fdb55044b476a0ade65de7517647051d7c564bdd50b7e9832230d3",
+        "kills": 14,
+        "name": "WEST FLANK",
+        "pattern": "west_flank",
+        "planned_bounty": 314,
+        "sector_outcomes": {
+          "CENTER": {
+            "breaches": 2,
+            "kills": 3,
+            "supports": 0
+          },
+          "EAST": {
+            "breaches": 3,
+            "kills": 1,
+            "supports": 0
+          },
+          "WEST": {
+            "breaches": 7,
+            "kills": 10,
+            "supports": 0
+          }
+        },
+        "sectors": {
+          "CENTER": 5,
+          "EAST": 4,
+          "WEST": 17
+        },
+        "seed": 1025,
+        "spent": 68,
+        "support_budget": 0,
+        "support_spent": 0,
+        "supports": 0,
+        "warning": "WARNING: WESTERN APPROACH DETECTED",
+        "warning_seconds": 6.0,
+        "wave": 1,
+        "weakest": "CENTER",
+        "weights": {
+          "balanced": 2.0,
+          "center_breakthrough": 4.2,
+          "decoy": 3.0,
+          "east_flank": 3.0,
+          "elite": 3.0,
+          "split": 4.0,
+          "swarm": 3.0,
+          "west_flank": 3.0
+        }
+      },
+      {
+        "adaptive": false,
+        "base_after": 760,
+        "base_before": 1235,
+        "baseline_budget": 83,
+        "bounty_cap": 379,
+        "breaches": 14,
+        "budget": 70,
+        "complete": true,
+        "coverage": {
+          "CENTER": 273.04,
+          "EAST": 200.1,
+          "WEST": 230.11
+        },
+        "entry_fingerprint": "aafd5eff06ecee2451b4dc50bf03dcad66eb4749e3b3ffefb014bb9f544be795",
+        "kills": 12,
+        "name": "SPLIT ATTACK",
+        "pattern": "split",
+        "planned_bounty": 314,
+        "sector_outcomes": {
+          "CENTER": {
+            "breaches": 1,
+            "kills": 0,
+            "supports": 0
+          },
+          "EAST": {
+            "breaches": 7,
+            "kills": 5,
+            "supports": 0
+          },
+          "WEST": {
+            "breaches": 6,
+            "kills": 7,
+            "supports": 0
+          }
+        },
+        "sectors": {
+          "CENTER": 1,
+          "EAST": 12,
+          "WEST": 13
+        },
+        "seed": 1025,
+        "spent": 68,
+        "support_budget": 0,
+        "support_spent": 0,
+        "supports": 0,
+        "warning": "SIMULTANEOUS FLANK CONTACTS — WEST + EAST",
+        "warning_seconds": 6.0,
+        "wave": 2,
+        "weakest": "EAST",
+        "weights": {
+          "balanced": 2.0,
+          "center_breakthrough": 3.0,
+          "decoy": 3.0,
+          "east_flank": 3.0,
+          "elite": 3.0,
+          "split": 4.0,
+          "swarm": 3.0,
+          "west_flank": 3.3
+        }
+      },
+      {
+        "adaptive": true,
+        "base_after": 330,
+        "base_before": 760,
+        "baseline_budget": 139,
+        "bounty_cap": 652,
+        "breaches": 12,
+        "budget": 118,
+        "complete": true,
+        "coverage": {
+          "CENTER": 273.04,
+          "EAST": 219.39,
+          "WEST": 239.76
+        },
+        "entry_fingerprint": "d4d3572b85912cd05763134dff353a94a2d5fe393012c5bda6de9d4942a6c24e",
+        "kills": 17,
+        "name": "ELITE STRIKE",
+        "pattern": "elite",
+        "planned_bounty": 505,
+        "sector_outcomes": {
+          "CENTER": {
+            "breaches": 4,
+            "kills": 13,
+            "supports": 0
+          },
+          "EAST": {
+            "breaches": 4,
+            "kills": 2,
+            "supports": 0
+          },
+          "WEST": {
+            "breaches": 4,
+            "kills": 2,
+            "supports": 0
+          }
+        },
+        "sectors": {
+          "CENTER": 17,
+          "EAST": 6,
+          "WEST": 6
+        },
+        "seed": 1025,
+        "spent": 111,
+        "support_budget": 0,
+        "support_spent": 0,
+        "supports": 0,
+        "warning": "COORDINATED ELITE SIGNATURES INBOUND",
+        "warning_seconds": 6.0,
+        "wave": 3,
+        "weakest": "EAST",
+        "weights": {
+          "balanced": 2.0,
+          "center_breakthrough": 3.0,
+          "decoy": 3.0,
+          "east_flank": 4.2,
+          "elite": 3.0,
+          "split": 4.4,
+          "swarm": 3.0,
+          "west_flank": 3.3
+        }
+      },
+      {
+        "adaptive": false,
+        "base_after": 310,
+        "base_before": 330,
+        "baseline_budget": 144,
+        "bounty_cap": 678,
+        "breaches": 6,
+        "budget": 122,
+        "complete": true,
+        "coverage": {
+          "CENTER": 299.07,
+          "EAST": 219.39,
+          "WEST": 257.11
+        },
+        "entry_fingerprint": "b9b4ba072d2a3e838cf49007cc1e6e0fdca96c91c0c2a0c049342a3160b2568b",
+        "kills": 30,
+        "name": "DECOY ATTACK",
+        "pattern": "decoy",
+        "planned_bounty": 573,
+        "sector_outcomes": {
+          "CENTER": {
+            "breaches": 0,
+            "kills": 0,
+            "supports": 0
+          },
+          "EAST": {
+            "breaches": 5,
+            "kills": 12,
+            "supports": 0
+          },
+          "WEST": {
+            "breaches": 1,
+            "kills": 18,
+            "supports": 0
+          }
+        },
+        "sectors": {
+          "CENTER": 0,
+          "EAST": 17,
+          "WEST": 19
+        },
+        "seed": 1025,
+        "spent": 121,
+        "support_budget": 0,
+        "support_spent": 0,
+        "supports": 0,
+        "warning": "MIXED SIGNATURES — ARMOR AND FAST FLANKS",
+        "warning_seconds": 6.0,
+        "wave": 4,
+        "weakest": "EAST",
+        "weights": {
+          "balanced": 2.0,
+          "center_breakthrough": 3.0,
+          "decoy": 3.0,
+          "east_flank": 3.0,
+          "elite": 3.3,
+          "split": 4.4,
+          "swarm": 3.0,
+          "west_flank": 3.3
+        }
+      },
+      {
+        "adaptive": false,
+        "base_after": 0,
+        "base_before": 310,
+        "baseline_budget": 166,
+        "bounty_cap": 777,
+        "breaches": 9,
+        "budget": 141,
+        "complete": false,
+        "coverage": {
+          "CENTER": 332.06,
+          "EAST": 271.81,
+          "WEST": 293.22
+        },
+        "entry_fingerprint": "6d1afa35f51e5376b8e37a02b4c8fef09f539fdb76587efb7b06fd661d0b4a0d",
+        "kills": 17,
+        "name": "ELITE STRIKE",
+        "pattern": "elite",
+        "planned_bounty": 633,
+        "sector_outcomes": {
+          "CENTER": {
+            "breaches": 7,
+            "kills": 10,
+            "supports": 0
+          },
+          "EAST": {
+            "breaches": 0,
+            "kills": 4,
+            "supports": 0
+          },
+          "WEST": {
+            "breaches": 2,
+            "kills": 3,
+            "supports": 0
+          }
+        },
+        "sectors": {
+          "CENTER": 17,
+          "EAST": 5,
+          "WEST": 6
+        },
+        "seed": 1025,
+        "spent": 141,
+        "support_budget": 160,
+        "support_spent": 0,
+        "supports": 0,
+        "terminated": true,
+        "victory": false,
+        "warning": "COORDINATED ELITE SIGNATURES INBOUND",
+        "warning_seconds": 6.0,
+        "wave": 5,
+        "weakest": "EAST",
+        "weights": {
+          "balanced": 2.0,
+          "center_breakthrough": 3.0,
+          "decoy": 3.3,
+          "east_flank": 3.0,
+          "elite": 3.3,
+          "split": 4.4,
+          "swarm": 3.0,
+          "west_flank": 3.3
+        }
+      }
+    ],
+    "victory": false,
+    "war_balance": 503,
+    "war_balance_after": 503,
+    "war_reward": 0,
+    "weakpoint_hits": 0
+  },
+  {
+    "attack_seed": 1125,
+    "battle_earned": 212,
+    "battle_remaining": 922,
+    "battle_spent": 620,
+    "enemy_actions": 0,
+    "environmental_pulses": 1,
+    "health": 0,
+    "id": 25,
+    "kills": 18,
+    "manual_hits": 155,
+    "manual_shots": 168,
+    "mode": "manual_only",
+    "research": {
+      "ammo_armor_piercing": 0,
+      "ammo_cryo": 0,
+      "ammo_emp": 0,
+      "ammo_explosive": 0,
+      "ammo_railgun": 0,
+      "ammo_standard": 0,
+      "base_health": 4,
+      "cannon_damage": 4,
+      "cannon_rate": 4,
+      "crit_chance": 0,
+      "crit_damage": 0,
+      "emp_mastery": 0,
+      "magazine": 0,
+      "overclock_mastery": 0,
+      "reload": 4,
+      "repair_efficiency": 0,
+      "repair_mastery": 0,
+      "spec_cannon_blast": 0,
+      "spec_cannon_impact": 0,
+      "spec_emp_tower_duration": 0,
+      "spec_emp_tower_radius": 0,
+      "spec_heavy_aa_armor": 0,
+      "spec_heavy_aa_precision": 0,
+      "spec_laser_shield": 0,
+      "spec_laser_sustained": 0,
+      "spec_machine_gun_armor": 0,
+      "spec_machine_gun_rapid": 0,
+      "spec_missile_blast": 0,
+      "spec_missile_guidance": 0,
+      "starting_credits": 4,
+      "turret_damage": 5,
+      "turret_range": 4,
+      "turret_rate": 4,
+      "velocity": 0
+    },
+    "seconds": 63.4,
+    "starting_battle_credits": 1330,
+    "support_spawned": 0,
+    "tactical_plans": [
+      {
+        "adaptive": false,
+        "base_after": 865,
+        "base_before": 1400,
+        "baseline_budget": 83,
+        "bounty_cap": 379,
+        "breaches": 22,
+        "budget": 70,
+        "complete": true,
+        "coverage": {
+          "CENTER": 0.0,
+          "EAST": 0.0,
+          "WEST": 0.0
+        },
+        "entry_fingerprint": "79f37bf451d62edbd06f9c3fcf3e813079004c52db5f046153a693f3a2086d13",
+        "kills": 4,
+        "name": "EAST FLANK",
+        "pattern": "east_flank",
+        "planned_bounty": 314,
+        "sector_outcomes": {
+          "CENTER": {
+            "breaches": 5,
+            "kills": 0,
+            "supports": 0
+          },
+          "EAST": {
+            "breaches": 14,
+            "kills": 3,
+            "supports": 0
+          },
+          "WEST": {
+            "breaches": 3,
+            "kills": 1,
+            "supports": 0
+          }
+        },
+        "sectors": {
+          "CENTER": 5,
+          "EAST": 17,
+          "WEST": 4
+        },
+        "seed": 1125,
+        "spent": 68,
+        "support_budget": 0,
+        "support_spent": 0,
+        "supports": 0,
+        "warning": "MULTIPLE CONTACTS — EAST SECTOR",
+        "warning_seconds": 6.0,
+        "wave": 1,
+        "weakest": "CENTER",
+        "weights": {
+          "balanced": 2.0,
+          "center_breakthrough": 3.0,
+          "decoy": 3.0,
+          "east_flank": 3.0,
+          "elite": 3.0,
+          "split": 4.0,
+          "swarm": 3.0,
+          "west_flank": 3.0
+        }
+      },
+      {
+        "adaptive": true,
+        "base_after": 115,
+        "base_before": 865,
+        "baseline_budget": 83,
+        "bounty_cap": 379,
+        "breaches": 21,
+        "budget": 70,
+        "complete": true,
+        "coverage": {
+          "CENTER": 0.0,
+          "EAST": 0.0,
+          "WEST": 0.0
+        },
+        "entry_fingerprint": "532e39cf21fc00853a1efcdac42f00a1d6669dc9a628346667a634f5db82941e",
+        "kills": 5,
+        "name": "EAST FLANK",
+        "pattern": "east_flank",
+        "planned_bounty": 314,
+        "sector_outcomes": {
+          "CENTER": {
+            "breaches": 5,
+            "kills": 0,
+            "supports": 0
+          },
+          "EAST": {
+            "breaches": 13,
+            "kills": 4,
+            "supports": 0
+          },
+          "WEST": {
+            "breaches": 3,
+            "kills": 1,
+            "supports": 0
+          }
+        },
+        "sectors": {
+          "CENTER": 5,
+          "EAST": 17,
+          "WEST": 4
+        },
+        "seed": 1125,
+        "spent": 68,
+        "support_budget": 0,
+        "support_spent": 0,
+        "supports": 0,
+        "warning": "MULTIPLE CONTACTS — EAST SECTOR",
+        "warning_seconds": 6.0,
+        "wave": 2,
+        "weakest": "CENTER",
+        "weights": {
+          "balanced": 2.0,
+          "center_breakthrough": 4.2,
+          "decoy": 3.0,
+          "east_flank": 3.3,
+          "elite": 3.0,
+          "split": 4.0,
+          "swarm": 3.0,
+          "west_flank": 3.0
+        }
+      },
+      {
+        "adaptive": false,
+        "base_after": 0,
+        "base_before": 115,
+        "baseline_budget": 139,
+        "bounty_cap": 652,
+        "breaches": 7,
+        "budget": 118,
+        "complete": false,
+        "coverage": {
+          "CENTER": 0.0,
+          "EAST": 0.0,
+          "WEST": 0.0
+        },
+        "entry_fingerprint": "3653a6114df6326f92c6568e54fe23e24aa5a35960d7701e640b26f224c8a562",
+        "kills": 9,
+        "name": "SPLIT ATTACK",
+        "pattern": "split",
+        "planned_bounty": 520,
+        "sector_outcomes": {
+          "CENTER": {
+            "breaches": 1,
+            "kills": 0,
+            "supports": 0
+          },
+          "EAST": {
+            "breaches": 5,
+            "kills": 6,
+            "supports": 0
+          },
+          "WEST": {
+            "breaches": 1,
+            "kills": 3,
+            "supports": 0
+          }
+        },
+        "sectors": {
+          "CENTER": 1,
+          "EAST": 16,
+          "WEST": 16
+        },
+        "seed": 1125,
+        "spent": 111,
+        "support_budget": 0,
+        "support_spent": 0,
+        "supports": 0,
+        "terminated": true,
+        "victory": false,
+        "warning": "SIMULTANEOUS FLANK CONTACTS — WEST + EAST",
+        "warning_seconds": 6.0,
+        "wave": 3,
+        "weakest": "CENTER",
+        "weights": {
+          "balanced": 2.0,
+          "center_breakthrough": 3.0,
+          "decoy": 3.0,
+          "east_flank": 3.3,
+          "elite": 3.0,
+          "split": 4.0,
+          "swarm": 3.0,
+          "west_flank": 3.0
+        }
+      }
+    ],
+    "victory": false,
+    "war_balance": 503,
+    "war_balance_after": 503,
+    "war_reward": 0,
+    "weakpoint_hits": 0
+  }
+]

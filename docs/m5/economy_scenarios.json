@@ -1,0 +1,22 @@
+{
+  "checks": 419,
+  "failures": 0,
+  "scenarios": [
+    {
+      "combat": "separate full-campaign suite",
+      "first_clear_and_objective_income": 8640,
+      "injected_currency": 0,
+      "name": "unspent no-ad accounting campaign"
+    },
+    {
+      "income": 120,
+      "name": "eight completed mission-1 replays"
+    },
+    {
+      "floor": 20,
+      "name": "nine defeats with purchased upgrades",
+      "research_retained": true,
+      "war_loss": 0
+    }
+  ]
+}

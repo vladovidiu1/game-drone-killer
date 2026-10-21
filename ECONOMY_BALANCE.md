@@ -1,5 +1,7 @@
 # DRONE KILLER: FRONTLINE — M3 economy
 
+M5 adds finite support reserves and retunes late-wave threat allocation without changing currency prices, first-clear/replay rules or saved balances. Historical M3 tables below remain labeled measurements of that revision; current earned-budget progression, including real losses/reconquests, is recorded in [M5 validation](docs/m5/VALIDATION.md).
+
 All currency rewards, prices and price curves live in **`data/economy.json`**. `scripts/core/economy_config.gd` hydrates the existing mission/enemy/turret and progression catalogs so combat, Arsenal, briefings, results and tests see identical values. `definitions.json` retains combat stats, waves and geometry; `progression.json` retains research effects, prerequisites, chapter gates and descriptions. Neither duplicates prices. The historical M1 generator must not restore its frozen pre-M3 economics over current data.
 
 ## Battle Credits: tactical supply

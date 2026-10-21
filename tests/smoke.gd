@@ -122,6 +122,9 @@ func run() -> void:
  check(app.battle.paused and app.battle.spawner.timer == old_timer, "pause button freezes simulation")
  app.hud.pause_button.pressed.emit()
  check(app.battle.effective_speed() == 1 and not app.battle.has_method("toggle_speed"), "pause/resume restores normal speed with no selector")
+ check(app.hud.wave_button.disabled, "radar preparation prevents instant launch")
+ app.battle.spawner.tick(6,0)
+ app.hud.refresh()
  app.hud.wave_button.pressed.emit()
  check(not app.battle.spawner.intermission, "HUD starts wave early")
  for frame in 20000:

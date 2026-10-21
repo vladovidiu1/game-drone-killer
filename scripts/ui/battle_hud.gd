@@ -20,6 +20,7 @@ var close_button: Button
 var ability_buttons: Dictionary = {}
 var stat_cards: Dictionary = {}
 var stack: VBoxContainer
+var radar: Control
 var wave_row: HBoxContainer
 
 func setup(simulation: Node2D) -> void:
@@ -58,6 +59,10 @@ func setup(simulation: Node2D) -> void:
  field.mouse_filter = Control.MOUSE_FILTER_IGNORE
  field.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  middle.add_child(field)
+ radar = preload("res://scripts/ui/tactical_radar.gd").new()
+ radar.battle = battle
+ field.add_child(radar)
+ radar.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
  side_panel = UI.panel(UI.CYAN,6)
  side_panel.custom_minimum_size.x = 300
  middle.add_child(side_panel)
@@ -172,7 +177,9 @@ func refresh() -> void:
  readout.text = "BASE %d/%d | WAVE %d/%d | ENEMIES %d | BATTLE CREDITS %d" % [battle.health,battle.max_health,wave_number,spawner.waves.size(),spawner.remaining_to_spawn()+battle.living_count(),battle.credits]
  pause_button.text = "Resume" if battle.paused else "Pause"
  wave_label.text = "BUILD %ds" % maxi(0,int(ceil(spawner.timer))) if spawner.intermission else "WAVE %d" % wave_number
- wave_button.disabled = battle.paused or not spawner.intermission or battle.finished
+ radar.queue_redraw()
+ wave_button.text = "Radar %ds" % int(ceil(spawner.warning_remaining)) if spawner.warning_remaining > 0 else "Start early"
+ wave_button.disabled = battle.paused or not spawner.intermission or battle.finished or spawner.warning_remaining > 0
  stat_cards.base.update_value("%d / %d" % [battle.health,battle.max_health],-1,float(battle.health)/battle.max_health)
  stat_cards.wave.update_value("%02d / %02d" % [wave_number,spawner.waves.size()])
  stat_cards.enemies.update_value("%02d" % (spawner.remaining_to_spawn()+battle.living_count()))

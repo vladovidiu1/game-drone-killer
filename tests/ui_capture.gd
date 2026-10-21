@@ -101,6 +101,7 @@ func run() -> void:
   battle.select_slot(int(item[0]))
   check(battle.build_turret(str(item[1])),"Actual budget buys demo defense")
  battle.close_build_mode()
+ battle.spawner.tick(battle.spawner.warning_remaining,0)
  battle.start_wave()
  for frame in 600:
   var target: Node2D = null

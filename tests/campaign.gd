@@ -92,7 +92,7 @@ func run() -> void:
  for id in [1,2,3]:
   var definition := CampaignManager.mission(id)
   check(not str(definition.location).is_empty() and not str(definition.story).is_empty() and not str(definition.intel).is_empty() and not str(definition.preparation).is_empty(),"mission %d has full briefing intelligence and preparation" % id)
- check(CampaignManager.mission(2).paths.size() == 2,"Red Hill has exactly two approach paths")
+ check(CampaignManager.mission(2).paths.size() == 3 and CampaignManager.mission(2).approaches.sectors.has("CENTER"),"Red Hill preserves side routes and adds a central approach")
  check(CampaignManager.mission(3).paths[1][0][0] < 100 and CampaignManager.mission(3).paths[2][0][0] > 850,"depot includes opposing side approaches")
  await fight(1,true)
  check(SaveManager.state.frontline == 2 and SaveManager.state.highest == 2,"win mission 1 advances to 2")

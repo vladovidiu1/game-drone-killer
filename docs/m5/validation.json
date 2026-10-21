@@ -1,0 +1,246 @@
+{
+  "baseline": "a40211c8b0753d643552640dea895d4ca72af70b",
+  "date": "2026-10-21",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "renderer": "Compatibility / GLES3; native X11 llvmpipe",
+  "full_runner": {
+    "exit_code": 0,
+    "suite_invocations": 32,
+    "assertions": 68307,
+    "failures": 0,
+    "engine_errors": false,
+    "suites": [
+      {
+        "suite": "M1 MECHANICS",
+        "checks": 46,
+        "failures": 0
+      },
+      {
+        "suite": "TACTICAL DIRECTOR",
+        "checks": 58559,
+        "failures": 0
+      },
+      {
+        "suite": "COMBAT",
+        "checks": 41,
+        "failures": 0
+      },
+      {
+        "suite": "HYBRID",
+        "checks": 55,
+        "failures": 0
+      },
+      {
+        "suite": "SMOKE",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "SMOKE",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "SAVE/RULES",
+        "checks": 38,
+        "failures": 0
+      },
+      {
+        "suite": "CAMPAIGN",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "CAMPAIGN",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESEARCH",
+        "checks": 187,
+        "failures": 0
+      },
+      {
+        "suite": "RESEARCH",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "ECONOMY",
+        "checks": 419,
+        "failures": 0
+      },
+      {
+        "suite": "ECONOMY",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "REWARDED ADS",
+        "checks": 97,
+        "failures": 0
+      },
+      {
+        "suite": "REWARDED ADS",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "ADMOB BOUNDARY CONTRACT",
+        "checks": 17,
+        "failures": 0
+      },
+      {
+        "suite": "WEAPON RESEARCH",
+        "checks": 1424,
+        "failures": 0
+      },
+      {
+        "suite": "WEAPON RESEARCH",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "GRAPHICS AUDIT",
+        "checks": 810,
+        "failures": 0
+      },
+      {
+        "suite": "GRAPHICS AUDIT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "TACTICAL UI",
+        "checks": 193,
+        "failures": 0
+      },
+      {
+        "suite": "COMBAT VFX",
+        "checks": 310,
+        "failures": 0
+      },
+      {
+        "suite": "COMBAT VFX",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "VISUAL FOUNDATION",
+        "checks": 476,
+        "failures": 0
+      },
+      {
+        "suite": "UNIT VISUALS",
+        "checks": 195,
+        "failures": 0
+      },
+      {
+        "suite": "ENVIRONMENTS",
+        "checks": 953,
+        "failures": 0
+      },
+      {
+        "suite": "ENVIRONMENTS",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "CATALOG",
+        "checks": 4006,
+        "failures": 0
+      },
+      {
+        "suite": "ENEMY AI",
+        "checks": 88,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "checks": 234,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "checks": 31,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "checks": 11,
+        "failures": 0
+      }
+    ]
+  },
+  "fixed_policy": {
+    "simulations": 55,
+    "unfinished": 0,
+    "peak_live_enemies": 23,
+    "by_strategy": {
+      "automatic": {
+        "samples": 6,
+        "wins": [
+          1
+        ]
+      },
+      "hybrid": {
+        "samples": 6,
+        "wins": [
+          1,
+          5,
+          10,
+          15,
+          20,
+          25
+        ]
+      },
+      "manual_only": {
+        "samples": 6,
+        "wins": [
+          1,
+          5
+        ]
+      },
+      "two_cannon": {
+        "samples": 6,
+        "wins": []
+      },
+      "two_mg": {
+        "samples": 6,
+        "wins": [
+          1
+        ]
+      },
+      "two_mixed": {
+        "samples": 25,
+        "wins": [
+          1
+        ]
+      }
+    }
+  },
+  "native_tactical": {
+    "exit_code": 0,
+    "checks": 76,
+    "failures": 0,
+    "frames": 8,
+    "physical_android": false
+  },
+  "native_ui": {
+    "exit_code": 0,
+    "frames": 36,
+    "failures": 0
+  },
+  "config_sha256": {
+    "data/definitions.json": "b252a27dccd2f17a8bacdedea95e0a58b5fe4e0210d4a09ed90074a36b4f21ca",
+    "data/tactical_director.json": "e1abcd81368b55f8c9815c138fae264f5557701e3ba1b5663346259a2ac6d96c",
+    "data/economy.json": "b1ffaa29bf3c918bbf3fc057264ddc620fb89025a3f5427a72425f0bcc346d0c",
+    "data/progression.json": "f1e0da169c3479ca87d54dbd1fead0653bce37e6fa7dc8604a77c10eefd0c4c5"
+  },
+  "limitations": [
+    "No human difficulty study",
+    "No physical Android test, APK, audio or frame-time measurement",
+    "Tactical scenarios use declared research/input fixtures",
+    "Connected campaign includes real losses/reconquests and uses earned funds without ads"
+  ]
+}

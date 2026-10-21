@@ -8,6 +8,7 @@ var base_flash := 0.0
 var destruction := preload("res://scripts/visual/destruction_batch.gd").new()
 
 var environment: Control
+var radar: Node2D
 var telemetry: Node2D
 var combat_fx: Node2D
 
@@ -21,6 +22,10 @@ func _ready() -> void:
  telemetry.battle = battle
  telemetry.z_index = 2
  add_child(telemetry)
+ radar = preload("res://scripts/visual/attack_indicators.gd").new()
+ radar.battle = battle
+ radar.z_index = 1
+ add_child(radar)
  # Stable integration anchor retained for G1 tooling, now backed by the library.
  if battle.mission_id == 1:
   environment.name = "OutpostTerrain"
@@ -54,6 +59,7 @@ func tick(delta: float) -> void:
  combat_fx.observe(battle,delta)
  preload("res://scripts/visual/combat_visuals.gd").advance(battle,delta)
  environment.tick(delta)
+ radar.tick(delta)
  telemetry.queue_redraw()
  destruction.tick(delta)
  base_flash = maxf(0.0,base_flash-delta)

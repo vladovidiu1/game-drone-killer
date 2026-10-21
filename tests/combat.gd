@@ -121,6 +121,8 @@ func run() -> void:
  await get_tree().process_frame
 
  battle = arena()
+ check(not battle.start_wave(), "early start cannot skip radar warning")
+ battle.spawner.tick(6,0)
  check(battle.start_wave() and battle.spawner.wave == 0, "early start begins first wave")
  check(not battle.start_wave(), "early start cannot overlap active wave")
  var order: Array[String] = []

@@ -135,3 +135,7 @@ Use a separate temporary data directory: the capture scene deliberately starts a
 Linux OpenGL/llvmpipe captures are checked in under `docs/visuals/`. Physical Android appearance, physical multitouch, audible playback, cutout hardware, FPS, memory and battery/thermal behavior still require device validation. Generated art should receive art-direction and commercial-clearance review before release.
 
 For an Android export, include all resources and include `data/*.json`, `assets/*.json`, `assets/environment/*.json`, `assets/effects/*.json`, `assets/ui/*.json`, `assets/ASSET_LICENSE.md` and `assets/ui/fonts/*.txt` as non-resource files if the preset filters them. Keep dynamic atlas/catalog dependencies and font notices in the package. Export templates/SDK/signing and a physical device build remain separate validation steps.
+
+## Tactical radar (M5)
+
+Use the shared charcoal/metal theme and Barlow font for a pointer-ignoring preparation strip. Orange indicates incoming plans, cyan the compact active-contacts strip, and restrained red/orange chevrons indicate actual entry directions. Show scheduled W/C/E counts and the defended objective in text as well as color. Collapse the strip when combat begins; do not cover build, FIRE, reload or ammo controls. Entry animation consumes simulated delta, redraws at 10 Hz and honors Reduced motion. See `docs/TACTICAL_DIRECTOR.md` and the native captures in `docs/m5/`.

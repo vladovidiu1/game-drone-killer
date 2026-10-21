@@ -38,8 +38,8 @@ func combat_cue(kind: String) -> void:
  if AudioServer.get_driver_name() == "Dummy":
   return
  if not combat_streams.has(kind):
-  var duration := 0.045 if kind == "shot" else 0.09
-  var frequency := 200.0 if kind == "shot" else (900.0 if kind == "hit" else 440.0)
+  var duration := 0.24 if kind == "radar" else 0.045 if kind == "shot" else 0.09
+  var frequency := 640.0 if kind == "radar" else 200.0 if kind == "shot" else (900.0 if kind == "hit" else 440.0)
   var stream := AudioStreamWAV.new()
   stream.format = AudioStreamWAV.FORMAT_16_BITS
   stream.mix_rate = 22050

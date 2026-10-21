@@ -6,6 +6,7 @@ var checks := 0
 var rows: Array = []
 var battle: Node2D
 var outcome: Dictionary = {}
+var deployments: Dictionary = {}
 
 func check(value: bool, message: String) -> void:
  checks += 1
@@ -17,7 +18,8 @@ func _ready() -> void:
  run.call_deferred()
 
 func purchase_research() -> void:
- for unlock in ["armor_piercing","explosive","laser","emp_tower","heavy_aa"]:
+ # Spend earned WC on deployed weapons rather than buying unused unlocks.
+ for unlock in ["armor_piercing"]:
   if EconomyManager.purchase_state(unlock).allowed:
    EconomyManager.purchase(unlock,0)
  for level in range(5):
@@ -28,12 +30,15 @@ func purchase_research() -> void:
   EconomyManager.equip_ammunition("armor_piercing")
 
 func build_defenses() -> void:
+ var reserve := int(SaveManager.catalog.abilities.repair.cost) if battle.health < battle.max_health else 0
  for index in battle.slots.size():
   if battle.placed[index] == null:
-   battle.select_slot(index)
-   battle.build_turret("missile" if index%3 == 2 else "machine_gun" if index < 2 else "cannon")
+   var kind := "missile" if index%3 == 2 else "machine_gun" if index < 2 else "cannon"
+   if battle.credits-int(CampaignManager.turrets[kind].cost) >= reserve:
+    battle.select_slot(index)
+    battle.build_turret(kind)
  for index in battle.slots.size():
-  if battle.placed[index] != null:
+  if battle.placed[index] != null and battle.credits-battle.placed[index].upgrade_cost() >= reserve:
    battle.select_slot(index)
    battle.upgrade_selected()
  battle.close_build_mode()
@@ -71,11 +76,13 @@ func fight(id: int, defend: bool, manual: bool = true, expected_win: int = -1, b
  outcome = {}
  battle = preload("res://scenes/gameplay.tscn").instantiate()
  battle.mission_id = id
+ battle.attack_seed = 1000+id+100*int(deployments.get(id,0))
+ deployments[id] = int(deployments.get(id,0))+1
  battle.run_id = CampaignManager.begin_mission(id)
  check(not battle.run_id.is_empty(),"deployment token for %d" % id)
  add_child(battle)
  battle.set_physics_process(false)
- battle.player_turret.rng.seed = 1000+id
+ battle.player_turret.rng.seed = battle.attack_seed
  battle.completed.connect(func(_victory: bool, stats: Dictionary): outcome = stats)
  if defend and build_enabled:
   build_defenses()
@@ -84,10 +91,10 @@ func fight(id: int, defend: bool, manual: bool = true, expected_win: int = -1, b
   if battle.finished:
    break
   if defend and frame%60 == 0:
+   if battle.health <= battle.max_health-250:
+    battle.abilities.activate("repair")
    if build_enabled:
     build_defenses()
-   if battle.health < battle.max_health-250:
-    battle.abilities.activate("repair")
    if manual and battle.living_count() >= 8 and battle.credits >= int(SaveManager.catalog.abilities.emp_blast.cost)+int(SaveManager.catalog.abilities.repair.cost):
     battle.abilities.activate("emp_blast")
    if manual and battle.living_count() >= 10 and battle.credits >= int(SaveManager.catalog.abilities.overclock.cost)+int(SaveManager.catalog.abilities.repair.cost):
@@ -99,8 +106,11 @@ func fight(id: int, defend: bool, manual: bool = true, expected_win: int = -1, b
    await get_tree().process_frame
  check(battle.finished,"mission %d terminates within ten simulated minutes" % id)
  var expected := defend if expected_win < 0 else bool(expected_win)
- check(bool(outcome.get("victory",false)) == expected,"mission %d expected %s" % [id,"victory" if defend else "defeat"])
- if defend and expected:
+ if expected_win != -2:
+  check(bool(outcome.get("victory",false)) == expected,"mission %d expected %s" % [id,"victory" if expected else "defeat"])
+ else:
+  check(not outcome.is_empty() and bool(outcome.victory) == (battle.health > 0),"mission %d outcome agrees with real base state" % id)
+ if defend and bool(outcome.get("victory",false)):
   check(battle.earned > 0 and battle.credits >= 0,"mission %d real bounty economy" % id)
   if not manual:
    check(battle.player_turret.shots_fired == 0,"primary stays silent without input")
@@ -109,13 +119,20 @@ func fight(id: int, defend: bool, manual: bool = true, expected_win: int = -1, b
    check(battle.enemy_actions > 0,"mission %d boss uses live abilities" % id)
  var row := {"id":id,"mode":"hybrid" if defend and manual and build_enabled else "manual_only" if defend and manual else "automatic" if defend else "undefended","victory":outcome.get("victory",false),"seconds":snappedf(battle.elapsed,.1),"health":battle.health,"kills":battle.kills,"battle_earned":battle.earned,"manual_shots":battle.player_turret.shots_fired,"manual_hits":battle.player_turret.hits,"weakpoint_hits":battle.weakpoint_hits,"enemy_actions":battle.enemy_actions,"support_spawned":battle.support_spawned,"environmental_pulses":battle.environmental_pulses,"research":battle.research_levels.duplicate(),"war_balance":SaveManager.state.credits}
  var resolved := CampaignManager.resolve(bool(outcome.get("victory",false)),id,battle.run_id,outcome)
+ row.attack_seed = battle.attack_seed
+ row.tactical_plans = battle.director.plans.duplicate(true)
+ for plan in row.tactical_plans:
+  plan.entry_fingerprint = JSON.stringify(plan.entries).sha256_text()
+  plan.erase("entries")
  row.starting_battle_credits = int(battle.mission_data.starting_credits)+int(EconomyManager.modifier("starting_credits",battle.research_levels))
  row.battle_remaining = battle.credits
  row.battle_spent = row.starting_battle_credits+battle.earned-battle.credits
  row.war_reward = int(resolved.get("reward",0))
  row.war_balance_after = int(SaveManager.state.credits)
  rows.append(row)
- print("BALANCE: "+JSON.stringify(row))
+ var summary: Dictionary = row.duplicate()
+ summary.erase("tactical_plans")
+ print("BALANCE: "+JSON.stringify(summary))
  check(not resolved.is_empty(),"mission %d result persisted" % id)
  check(CampaignManager.resolve(true,id,battle.run_id,outcome).is_empty(),"mission %d duplicate result rejected" % id)
  battle.queue_free()
@@ -164,21 +181,28 @@ func run() -> void:
   finish()
   return
  check(SaveManager.new_campaign(),"start clean campaign")
- for id in range(1,26):
-  purchase_research()
-  await fight(id,true)
-  if failures > 0:
+ # A tactical campaign may include real losses. Follow the persisted frontline,
+ # retain strict completion/checkpoint/boss/save assertions, and bound recovery.
+ for attempt in range(60):
+  if SaveManager.state.campaign_complete or failures > 0:
    break
+  purchase_research()
+  await fight(int(SaveManager.state.frontline),true,true,-2)
+ check(SaveManager.state.campaign_complete and CampaignManager.territory_state(25) == "CONTROLLED","Hive campaign reachable within 60 real earned-budget deployments")
  if failures == 0:
-  check(SaveManager.state.campaign_complete and CampaignManager.territory_state(25) == "CONTROLLED","Hive ends campaign and controls territory 25")
   check(SaveManager.state.checkpoints == [1,5,10,15,20],"all five chapters interconnected through real combat")
-  # Actual failure with no defense: final boss and escorts must be dangerous.
   var retained: Dictionary = SaveManager.state.research.duplicate(true)
   await fight(25,false)
   check(SaveManager.state.frontline == 24 and not SaveManager.state.campaign_complete,"final replay defeat returns territory 24 to contest")
   check(SaveManager.state.research == retained,"late-campaign defeat retains permanent research")
-  await fight(24,true)
-  await fight(25,true)
+  for recovery in range(16):
+   if SaveManager.state.campaign_complete or failures > 0:
+    break
+   purchase_research()
+   await fight(int(SaveManager.state.frontline),true,true,-2)
+  check(SaveManager.state.campaign_complete,"final territories reconquered within 16 real recovery deployments")
+ for id in range(1,26):
+  check(SaveManager.state.records.has(str(id)) and int(SaveManager.state.records[str(id)].victories) >= 1,"mission %d has a real persisted victory" % id)
  var file := FileAccess.open("user://campaign_balance.json",FileAccess.WRITE)
  file.store_string(JSON.stringify(rows,"  "))
  print("BALANCE_REPORT: "+ProjectSettings.globalize_path("user://campaign_balance.json"))

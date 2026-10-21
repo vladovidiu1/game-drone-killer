@@ -8,6 +8,8 @@ const PROJECTILE := preload("res://scenes/projectile.tscn")
 const PLAYER_TURRET := preload("res://scenes/player_turret.tscn")
 const PLAYER_INPUT := preload("res://scripts/game/player_input.gd")
 const WAVES := preload("res://scripts/game/wave_spawner.gd")
+var attack_seed := -1
+var director: RefCounted
 var mission_id := 1
 var run_id := ""
 var mission_data: Dictionary
@@ -86,8 +88,16 @@ func _ready() -> void:
  add_child(projectiles)
  spawner = WAVES.new()
  add_child(spawner)
- spawner.configure(mission_data.waves,float(mission_data.build_time),mission_data.paths.size())
- spawner.spawn_requested.connect(spawn_enemy)
+ director = preload("res://scripts/game/tactical_attack_director.gd").new()
+ if attack_seed < 0:
+  attack_seed = int(Time.get_ticks_usec()) ^ int(Crypto.new().generate_random_bytes(4).decode_u32(0))
+  for argument in OS.get_cmdline_user_args():
+   if argument.begins_with("--attack-seed=") and argument.get_slice("=",1).is_valid_int():
+    attack_seed = int(argument.get_slice("=",1))
+ director.configure(self,attack_seed)
+ spawner.attack_announced.connect(func(_plan: Dictionary): AudioManager.combat_cue("radar"))
+ spawner.configure(mission_data.waves,float(mission_data.build_time),mission_data.paths.size(),director)
+ spawner.spawn_requested.connect(spawn_directed_enemy)
  spawner.changed.connect(func(): status_changed.emit())
  abilities = preload("res://scripts/game/tactical_abilities.gd").new()
  abilities.configure(self)
@@ -137,6 +147,16 @@ func living_count() -> int:
    count += 1
  return count
 
+func spawn_directed_enemy(kind: String, path_index: int) -> void:
+ var enemy := spawn_enemy(kind,path_index)
+ enemy.set_meta("attack_wave",spawner.wave)
+ enemy.set_meta("attack_sector",str(mission_data.approaches.sectors[path_index]))
+
+func _drone_breached(damage: int, enemy: Node2D) -> void:
+ if not finished:
+  director.record(enemy,"breaches")
+ _breached(damage)
+
 func spawn_enemy(kind: String, path_index: int = 0) -> Node2D:
  var enemy = DRONE.instantiate()
  spawn_identity += 1
@@ -144,7 +164,7 @@ func spawn_enemy(kind: String, path_index: int = 0) -> Node2D:
  enemy.speed = minf(float(CampaignManager.balance.maximum_drone_speed),enemy.speed*float(mission_data.get("speed_multiplier",1.0))*float(CampaignManager.balance.movement_multiplier))
  enemy.brain = preload("res://scripts/game/enemy_brain.gd").new()
  enemy.brain.configure(enemy,self,CampaignManager.enemies[kind])
- enemy.breached.connect(_breached)
+ enemy.breached.connect(_drone_breached.bind(enemy))
  enemy.destroyed.connect(_destroyed.bind(enemy))
  enemy.damaged.connect(func(at: Vector2): view.effect(at,"hit",12,Color("fff3be")))
  drones.add_child(enemy)
@@ -153,11 +173,19 @@ func spawn_enemy(kind: String, path_index: int = 0) -> Node2D:
  return enemy
 
 func spawn_support(kind: String, parent_unit: Node2D) -> Node2D:
+ if not director.reserve_support(kind,parent_unit):
+  return null
  var child := spawn_enemy(kind,0)
  child.is_support = true
+ if parent_unit.has_meta("attack_wave"):
+  child.set_meta("attack_wave",parent_unit.get_meta("attack_wave"))
+  child.set_meta("attack_sector",parent_unit.get_meta("attack_sector"))
+  director.record(child,"supports")
  child.reward = int(child.reward*int(preload("res://scripts/core/economy_config.gd").values.battle.support_bounty_percent)/100.0)
  child.route.assign([parent_unit.position,Vector2(parent_unit.position.x,minf(550,maxf(450,parent_unit.position.y+30))),Vector2(560,600)])
  child.position = parent_unit.position+Vector2((support_spawned%3-1)*25,15)
+ var bounds: Array = mission_data.approaches.movement_bounds
+ child.position = child.position.clamp(Vector2(bounds[0],bounds[1]),Vector2(bounds[0]+bounds[2],bounds[1]+bounds[3]))
  child.waypoint = 1
  child.distance_remaining = child.position.distance_to(child.route[1])+child.route[1].distance_to(child.route[2])
  support_spawned += 1
@@ -178,6 +206,7 @@ func _destroyed(reward: int, enemy: Node2D) -> void:
  if finished or not is_instance_valid(enemy) or bool(enemy.get_meta("bounty_paid",false)):
   return
  enemy.set_meta("bounty_paid",true)
+ director.record(enemy,"kills")
  reward = maxi(0,reward)
  kills += 1
  credits += reward
@@ -307,6 +336,7 @@ func _notification(what: int) -> void:
 func _finish(victory: bool) -> void:
  if finished:
   return
+ director.finish(victory)
  finished = true
  set_paused(true)
- completed.emit(victory,{"mission_id":mission_id,"run_id":run_id,"victory":victory,"kills":kills,"health":health,"waves":spawner.wave+1,"earned":earned,"shots":shots_fired,"manual_shots":player_turret.shots_fired,"manual_hits":player_turret.hits,"seconds":elapsed,"enemy_actions":enemy_actions,"weakpoint_hits":weakpoint_hits})
+ completed.emit(victory,{"mission_id":mission_id,"run_id":run_id,"victory":victory,"kills":kills,"health":health,"waves":spawner.wave+1,"earned":earned,"shots":shots_fired,"manual_shots":player_turret.shots_fired,"manual_hits":player_turret.hits,"seconds":elapsed,"enemy_actions":enemy_actions,"weakpoint_hits":weakpoint_hits,"attack_seed":attack_seed,"tactical_plans":director.plans.duplicate(true)})

@@ -28,6 +28,7 @@ func run() -> void:
     SaveManager.state.research[key] = tier
    var battle := preload("res://scenes/gameplay.tscn").instantiate()
    battle.mission_id = id
+   battle.attack_seed = 1000+id
    add_child(battle)
    battle.set_physics_process(false)
    battle.player_turret.rng.seed = 1000+id
