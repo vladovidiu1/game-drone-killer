@@ -31,7 +31,7 @@ func run() -> void:
  check(battle.build_turret("machine_gun") and battle.credits == 400, "Machine Gun costs 100")
  check(not battle.build_turret("cannon") and battle.credits == 400, "occupied slot cannot be purchased twice")
  var turret: Node2D = battle.placed[0]
- check(is_equal_approx(turret.damage_value(),10) and is_equal_approx(turret.range_value(),240), "Machine Gun base stats match specification")
+ check(is_equal_approx(turret.damage_value(),10) and is_equal_approx(turret.range_value(),230), "Machine Gun base stats match specification")
  var first: Node2D = battle.spawn_enemy("scout")
  var second: Node2D = battle.spawn_enemy("scout")
  first.position = Vector2(360,250)
@@ -56,12 +56,12 @@ func run() -> void:
  second.hit(100)
  check(battle.credits == before+10 and battle.kills == 1, "Scout reward paid once after destruction")
  check(battle.upgrade_selected() and turret.level == 2 and battle.credits == before+10-65, "upgrade deducts credits and increments level")
- check(is_equal_approx(turret.damage_value(),15) and turret.range_value() == 256, "upgrade improves damage and range")
+ check(is_equal_approx(turret.damage_value(),13.5) and turret.range_value() == 242, "upgrade improves damage and range")
  check(battle.upgrade_selected() and turret.level == 3, "second upgrade reaches level cap")
  check(not battle.upgrade_selected(), "maximum level prevents further upgrades")
  battle.select_slot(1)
  check(not battle.build_turret("missile"), "unaffordable turret rejected")
- check(battle.build_turret("cannon") and battle.placed[1].definition.damage == 55, "Cannon builds for 200 with configured damage")
+ check(battle.build_turret("cannon") and battle.placed[1].definition.damage == 50, "Cannon builds for 200 with configured damage")
  battle.queue_free()
  await get_tree().process_frame
 
@@ -77,9 +77,9 @@ func run() -> void:
  battle.launch_projectile(battle.placed[0],heavy)
  shot = battle.projectiles.get_child(0)
  shot.tick(0.2)
- check(heavy.health == 220 and scout.ended and outside.health == 100, "missile splash damages each enemy inside 75 radius only once")
+ check(heavy.health == 240 and scout.ended and outside.health == 100, "missile splash damages each enemy inside 75 radius only once")
  shot.impact()
- check(heavy.health == 220 and battle.kills == 1 and battle.credits == 160, "missile direct target and kill reward are not duplicated")
+ check(heavy.health == 240 and battle.kills == 1 and battle.credits == 160, "missile direct target and kill reward are not duplicated")
  heavy.hit(500)
  outside.hit(500)
  check(battle.credits == 240, "Heavy and Assault rewards are 60 and 20")
@@ -92,7 +92,7 @@ func run() -> void:
  var start: Vector2 = enemy.position
  var remaining: float = enemy.distance_remaining
  enemy.tick(0.25)
- check(is_equal_approx(remaining-enemy.distance_remaining,30), "Scout travels 120 path units per second")
+ check(is_equal_approx(remaining-enemy.distance_remaining,45), "Scout travels 180 nominal path units per second")
  check(enemy.position.y > start.y, "enemies enter from the top and move down")
  battle.set_paused(true)
  var frozen: Vector2 = enemy.position
@@ -103,13 +103,11 @@ func run() -> void:
  battle.select_slot(0)
  check(not battle.build_turret("machine_gun"), "paused battle cannot purchase")
  battle.set_paused(false)
- battle.toggle_speed()
  remaining = enemy.distance_remaining
  battle._physics_process(0.25)
- check(battle.game_speed == 2 and is_equal_approx(remaining-enemy.distance_remaining,60), "2x speed doubles simulated movement")
- check(is_equal_approx(timer-battle.spawner.timer,0.5), "2x speed doubles wave timer")
- battle.toggle_speed()
- check(battle.game_speed == 1, "normal speed restored")
+ check(battle.effective_speed() == 1 and is_equal_approx(remaining-enemy.distance_remaining,45), "normal speed uses unscaled movement")
+ check(is_equal_approx(timer-battle.spawner.timer,0.25), "normal speed uses the same wave delta")
+ check(not battle.has_method("toggle_speed"), "combat speed selection API removed")
  enemy.tick(20)
  var hp: int = battle.health
  enemy.tick(20)
@@ -141,9 +139,15 @@ func run() -> void:
   battle.simulate(1.0/60.0)
   await get_tree().process_frame
  check(battle.finished and battle.health == 1000, "wave scheduler completes all waves")
- check(order.size() == 51 and order.count("scout") == 35 and order.count("assault") == 15 and order.count("heavy") == 1, "exact five-wave composition: 35 Scouts, 15 Assaults, 1 Heavy")
+ var expected_count := 0
+ var expected_reward := 0
+ for wave in battle.mission_data.waves:
+  for group in wave.groups:
+   expected_count += int(group.count)
+   expected_reward += int(group.count)*int(CampaignManager.enemies[str(group.enemy)].reward)
+ check(order.size() == expected_count, "all configured M1 wave enemies spawn exactly once")
  check(seen_paths.has(0) and seen_paths.has(1) and seen_paths.has(2), "wave spawns use all configured entry paths")
- check(battle.earned == 710, "full enemy roster pays 710 battle credits")
+ check(battle.earned == expected_reward, "full enemy roster pays configured bounty exactly once")
  battle.queue_free()
  await get_tree().process_frame
  print("COMBAT: %d checks, %d failures" % [checks,failures])

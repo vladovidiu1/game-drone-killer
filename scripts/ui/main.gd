@@ -277,7 +277,6 @@ func _show_results(victory: bool, reward: int, stats: Dictionary) -> void:
    screen = "debrief"
    if is_instance_valid(hud):
     hud.pause_button.visible = false
-    hud.speed_button.visible = false
    outro = preload("res://scripts/ui/combat_outro.gd").new()
    add_child(outro)
    outro.setup(battle.view)

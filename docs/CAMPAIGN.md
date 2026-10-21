@@ -46,7 +46,7 @@ Each territory has its own location/story, layout, landmarks, gate positions, sl
 | Carrier | 220 HP; telegraphed launches create two real scouts, up to six living support drones | Kill before launch; explosive fire handles offspring |
 | Stealth | 65 HP; 3s cloak in a 6s cycle blocks new automatic acquisition, retains a visible outline | Manual rounds always collide; EMP reveals; exploit visible windows |
 
-Carrier offspring start at their carrier, travel to the bunker, have half bounty and share the ordinary once-only damage/reward lifecycle. Boss support uses at most eight living support units; launches also stop at 72 total living enemies. Ability timers, statuses, reloading, effects and the scheduler consume the same battle delta. Pause freezes them, 2x speeds them up, and tactical mode slows them to 0.25x.
+Carrier offspring start at their carrier, travel to the bunker, have half bounty and share the ordinary once-only damage/reward lifecycle. Boss support uses at most eight living support units; launches also stop at 72 total living enemies. Ability timers, statuses, reloading, effects and the scheduler consume the same battle delta. Pause freezes them; tactical mode slows them to 0.25x and closing restores normal speed. There is no selectable 2x combat mode (M1).
 
 Base archetype HP does not scale with mission number. Data raises movement speed by 0.9% per territory after mission 3, capped below +20%, while later recipes mix more armor, support units, flanks and tighter deployment intervals. Escort recipes interleave groups and configurable column/fan/pincer routing rather than spawning every escort after its protected formation. Automatic targeting remains shortest remaining path with stable spawn-ID ties, excluding cloaked units.
 
@@ -87,6 +87,6 @@ The machine-readable files `campaign_balance.json` and `campaign_comparison.json
 
 These runs establish valid data, connected completion, affordable progression and meaningful counter behavior. The assisted commander has precise targeting, instant build decisions and perfect timer knowledge. It is not evidence that humans will find every mission balanced or enjoyable. Early missions can still be won primarily with automatic fire; later boss cores make manual shooting substantially more efficient.
 
-All 25 missions require human difficulty/aim/reload testing, particularly opening economies in 4–6, boss readability in 5/10/15/20/25, dust in 13/21, carrier density in chapter 4 and grid outages in 22/25. Check the 3–7 minute target at 1x with ordinary preparation; early starts and 2x deliberately shorten it.
+All 25 missions require human difficulty/aim/reload testing, particularly opening economies in 4–6, boss readability in 5/10/15/20/25, dust in 13/21, carrier density in chapter 4 and grid outages in 22/25. Check the M1 2–5 minute target at normal speed with ordinary preparation; early starts shorten it. See [M1 balance evidence](M1_BALANCE.md).
 
 No physical Android device, signed APK, graphical play session, audible playback, cutout/aspect-ratio hardware check or mid-range-device 60 FPS measurement was available. G1/G2 subsequently verified native Linux Compatibility rendering; see their visual reports. Physical Android acceptance and audible output still need separate passes before release.

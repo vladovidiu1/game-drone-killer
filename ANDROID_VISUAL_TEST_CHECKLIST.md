@@ -45,7 +45,7 @@ Cover at least one lower-spec Android device, one mid-range Adreno device and on
 - [ ] Build each unlocked secondary turret; scroll to later choices without buying during the swipe. Upgrade and close panel. Another finger must still aim/fire where allowed.
 - [ ] Standard/AP/Explosive selection remains usable and never refills a magazine. Manual reload and empty-magazine reload show correct progress; no fire during reload.
 - [ ] Activate Repair/EMP/Overclock, check costs/cooldowns/disabled labels and no accidental purchase from another finger.
-- [ ] Enter/leave tactical build at both selected 1x and 2x. Effective build speed is 0.25x; closing restores prior speed. Aim, shots, cooldowns and reload share simulated time.
+- [ ] Enter/leave tactical build from standardized normal combat. Effective build speed is 0.25x; closing always restores normal speed. Confirm the old 1x/2x selector is absent. Aim, shots, cooldowns and reload share simulated time.
 - [ ] Pause via HUD and Android Back; resume, interrupt a held shot with pause, then verify no firing resumes without a fresh press.
 - [ ] Drag map in all directions; focus current objective, inspect operations, release after drag without opening an unintended briefing. Checkpoint/locked states and labels remain clear.
 - [ ] Navigate every menu/confirmation/result action with fingers. Confirm button reachability with both hands and no tiny touch-only targets.

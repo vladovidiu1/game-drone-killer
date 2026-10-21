@@ -116,7 +116,7 @@ func tick(delta: float) -> void:
  var previous := position
  direction = (destination-position).normalized()
  position = position.move_toward(destination,speed*delta)
- # Swept segment versus target circle avoids tunneling at 2x speed.
+ # Swept segment versus target circle avoids tunneling across long simulation steps.
  var closest := Geometry2D.get_closest_point_to_segment(destination,previous,position)
  if closest.distance_to(destination) <= float(CampaignManager.combat.hit_radius):
   impact()

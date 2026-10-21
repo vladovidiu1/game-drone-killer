@@ -1,11 +1,11 @@
 [
   {
-    "battle_earned": 4975,
-    "enemy_actions": 13,
-    "environmental_pulses": 10,
+    "battle_earned": 5480,
+    "enemy_actions": 24,
+    "environmental_pulses": 7,
     "health": 0,
     "id": 25,
-    "kills": 224,
+    "kills": 227,
     "manual_hits": 0,
     "manual_shots": 0,
     "mode": "automatic",
@@ -27,21 +27,21 @@
       "turret_rate": 5,
       "velocity": 0
     },
-    "seconds": 354.2,
-    "support_spawned": 9,
+    "seconds": 257.6,
+    "support_spawned": 0,
     "victory": false,
     "war_balance": 4175,
     "weakpoint_hits": 0
   },
   {
-    "battle_earned": 805,
+    "battle_earned": 130,
     "enemy_actions": 0,
-    "environmental_pulses": 4,
+    "environmental_pulses": 1,
     "health": 0,
     "id": 25,
-    "kills": 42,
-    "manual_hits": 276,
-    "manual_shots": 300,
+    "kills": 7,
+    "manual_hits": 83,
+    "manual_shots": 91,
     "mode": "manual_only",
     "research": {
       "base_health": 5,
@@ -61,7 +61,7 @@
       "turret_rate": 5,
       "velocity": 0
     },
-    "seconds": 160.6,
+    "seconds": 43.7,
     "support_spawned": 0,
     "victory": false,
     "war_balance": 4175,

@@ -28,7 +28,7 @@ func setup(id: int) -> void:
  body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  body.add_theme_constant_override("separation",12)
  scroll.add_child(body)
- for field in [["OBJECTIVE",definition.get("objective","Protect the base.")],["CONDITIONS",str(definition.get("environment",{}).get("kind","clear")).to_upper()+" • Target duration: 3–7 minutes at 1x; early wave starts shorten deployment."],["SITUATION",definition.story],["ENEMY INTELLIGENCE",definition.intel],["RECOMMENDED PREPARATION",definition.preparation]]:
+ for field in [["OBJECTIVE",definition.get("objective","Protect the base.")],["CONDITIONS",str(definition.get("environment",{}).get("kind","clear")).to_upper()+" • Target duration: %d–%d minutes at normal speed; early wave starts shorten deployment." % [int(definition.target_minutes[0]),int(definition.target_minutes[1])]],["SITUATION",definition.story],["ENEMY INTELLIGENCE",definition.intel],["RECOMMENDED PREPARATION",definition.preparation]]:
   body.add_child(UI.label(str(field[0]),17,UI.CYAN))
   var paragraph := UI.label(str(field[1]),20)
   paragraph.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

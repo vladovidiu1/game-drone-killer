@@ -12,6 +12,8 @@ var barrel_angle := -PI/2
 var muzzle := 0.0
 var shots_fired := 0
 var disabled_remaining := 0.0
+var acquisition_remaining := 0.0
+var scan_remaining := 0.0
 
 func apply_disable(duration: float) -> void:
  disabled_remaining = maxf(disabled_remaining,duration)
@@ -36,35 +38,55 @@ func fire_rate_value() -> float:
 func upgrade_cost() -> int:
  return int(ceil(float(definition.cost)*float(CampaignManager.combat.upgrade_cost_multiplier)*level))
 
+func valid_target(unit: Node2D) -> bool:
+ return is_instance_valid(unit) and not unit.ended and unit.automatically_targetable() and position.distance_squared_to(unit.position) <= range_value()*range_value()
+
 func tick(delta: float) -> void:
  disabled_remaining = maxf(0.0,disabled_remaining-delta)
+ muzzle = maxf(0.0,muzzle-delta)
+ cooldown = maxf(0.0,cooldown-delta)
  if disabled_remaining > 0:
   target = null
+  scan_remaining = 0
+  acquisition_remaining = 0
   muzzle = 0.0
   queue_redraw()
   return
- muzzle = maxf(0.0,muzzle-delta)
- cooldown = maxf(-delta,cooldown-delta)
- target = acquire_target()
+ scan_remaining -= delta
+ if not is_instance_valid(target) or not valid_target(target):
+  target = null
+  scan_remaining = 0
+ if scan_remaining <= 0:
+  var candidate := acquire_target()
+  # Stable lock: only a meaningfully closer threat interrupts a living target.
+  if target != null and candidate != null and candidate != target and candidate.distance_remaining+float(CampaignManager.balance.target_switch_margin) >= target.distance_remaining:
+   candidate = target
+  if candidate != target:
+   target = candidate
+   acquisition_remaining = float(definition.acquisition_delay)
+  scan_remaining = float(CampaignManager.balance.target_scan_interval)
  if is_instance_valid(target):
-  barrel_angle = (target.position-position).angle()
-  var mode := str(definition.get("mode","projectile"))
-  if mode == "laser":
-   target.hit(damage_value()*delta*fire_rate_value()/float(definition.fire_rate))
-   muzzle = 0.06
-  if cooldown <= 0:
-   if mode == "emp":
-    for enemy in battle.drones.get_children():
-     if not enemy.ended and enemy.position.distance_to(position) <= range_value():
-      enemy.apply_slow(float(definition.slow_factor),float(definition.status_duration))
-    battle.view.effect(position,"pulse",range_value(),Color(str(definition.color)))
-   elif mode != "laser":
-    battle.launch_projectile(self,target)
-   cooldown += 1.0/fire_rate_value()
-   muzzle = 0.08
-   shots_fired += 1
- else:
-  cooldown = maxf(0.0,cooldown)
+  var desired: float = (target.position-position).angle()
+  var turn_rate := deg_to_rad(float(definition.turn_degrees))*(1.0+(level-1)*float(CampaignManager.balance.upgrade_turn_step))
+  barrel_angle = rotate_toward(barrel_angle,desired,turn_rate*delta)
+  acquisition_remaining = maxf(0.0,acquisition_remaining-delta)
+  var aligned := absf(angle_difference(barrel_angle,desired)) <= deg_to_rad(float(definition.firing_arc_degrees))
+  if acquisition_remaining <= 0 and aligned:
+   var mode := str(definition.get("mode","projectile"))
+   if mode == "laser":
+    target.hit(damage_value()*delta*fire_rate_value()/float(definition.fire_rate))
+    muzzle = 0.06
+   if cooldown <= 0:
+    if mode == "emp":
+     for enemy in battle.drones.get_children():
+      if not enemy.ended and enemy.position.distance_to(position) <= range_value():
+       enemy.apply_slow(float(definition.slow_factor),float(definition.status_duration))
+     battle.view.effect(position,"pulse",range_value(),Color(str(definition.color)))
+    elif mode != "laser":
+     battle.launch_projectile(self,target)
+    cooldown = 1.0/fire_rate_value()
+    muzzle = 0.08
+    shots_fired += 1
  queue_redraw()
 
 func acquire_target() -> Node2D:

@@ -69,6 +69,9 @@ func tick(delta: float) -> void:
  var moving_time := delta-disabled_time
  var slowed_time := minf(moving_time,maxf(0.0,slow_remaining-disabled_time))
  var travel := speed*(moving_time-slowed_time+slowed_time*slow_factor)
+ if brain != null:
+  var start: float = brain.elapsed-delta+disabled_time
+  travel = speed*(brain.movement_time(start,start+slowed_time)*slow_factor+brain.movement_time(start+slowed_time,brain.elapsed))
  disable_remaining = maxf(0.0,disable_remaining-delta)
  slow_remaining = maxf(0.0,slow_remaining-delta)
  if slow_remaining <= 0:
@@ -123,6 +126,8 @@ func _draw() -> void:
   draw_rect(Rect2(-23,-32*body_scale+1,46*health/maximum_health,3),Color("F04B45"))
 
 func _draw_ability() -> void:
+ if brain.burst_warning():
+  draw_arc(Vector2.ZERO,27*body_scale,PI,TAU,16,Color("FF9C42"),2)
  if brain.data.has("aura_radius") and disable_remaining <= 0:
   draw_circle(Vector2.ZERO,float(brain.data.aura_radius),Color(0.3,0.9,1,0.06))
   draw_arc(Vector2.ZERO,float(brain.data.aura_radius),0,TAU,40,Color(0.3,0.9,1,0.35),2)

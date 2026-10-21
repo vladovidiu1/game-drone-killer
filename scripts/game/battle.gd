@@ -21,7 +21,6 @@ var earned := 0
 var kills := 0
 var finished := false
 var paused := false
-var game_speed := 1.0
 var selected_slot := -1
 var slots: Array[Vector2] = []
 var placed: Array[Node2D] = []
@@ -140,7 +139,7 @@ func spawn_enemy(kind: String, path_index: int = 0) -> Node2D:
  var enemy = DRONE.instantiate()
  spawn_identity += 1
  enemy.configure(CampaignManager.enemies[kind],mission_data.paths[path_index % mission_data.paths.size()],spawn_identity)
- enemy.speed *= float(mission_data.get("speed_multiplier",1.0))
+ enemy.speed = minf(float(CampaignManager.balance.maximum_drone_speed),enemy.speed*float(mission_data.get("speed_multiplier",1.0))*float(CampaignManager.balance.movement_multiplier))
  enemy.brain = preload("res://scripts/game/enemy_brain.gd").new()
  enemy.brain.configure(enemy,self,CampaignManager.enemies[kind])
  enemy.breached.connect(_breached)
@@ -269,18 +268,12 @@ func start_wave() -> bool:
  return not paused and not finished and spawner.start_early()
 
 func effective_speed() -> float:
- return 0.25 if build_mode else game_speed
+ return 0.25 if build_mode else 1.0
 
 func close_build_mode() -> void:
  build_mode = false
  selected_slot = -1
  selection_changed.emit()
- status_changed.emit()
-
-func toggle_speed() -> void:
- if finished or build_mode:
-  return
- game_speed = 2.0 if game_speed == 1.0 else 1.0
  status_changed.emit()
 
 func set_paused(value: bool) -> void:

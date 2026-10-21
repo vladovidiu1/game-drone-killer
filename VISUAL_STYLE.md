@@ -75,6 +75,8 @@ Use baked soft shadows instead of runtime Light2D/shadow passes for this prelit 
 
 The original G1 set of five 1536×1024 RGBA PNGs costs approximately 40 MiB of GPU texture storage with complete mip chains before fonts, vectors, framebuffer and driver overhead. This is a budget estimate, not a device measurement. No dynamic light or screen-copy pass is introduced. G2 loads terrain sheets by scene lifetime rather than accumulating the complete library; its typical large-texture estimate is 48 MiB. G3 replaces the old 8 MiB active combat sheet with about 10 MiB of imported unit sheets, bringing the typical large-texture estimate to roughly 50 MiB. Target under 64 MiB for the visual texture set and profile actual frame time, overdraw, thermal behavior and memory on Android before claiming 60 FPS. Consider atlas packing/downsize or device compression only after visual/device review; do not enable unsupported compression blindly.
 
+M1 retains this art direction and adds short orange propulsion arcs before/during Scout/Bomber acceleration. They are threat cues driven by existing enemy state; do not animate collision positions in presentation. Automatic weapon heads now follow actual bounded tracking rotation. There is no combat speed selector; temporary tactical build remains 0.25x. See [M1 evidence](docs/M1_BALANCE.md).
+
 ## Graphics presets and draw order (G6)
 
 The canonical policy is `scripts/visual/graphics_profile.gd`, using `assets/effects/quality.json` and the existing validated schema-v3 `effects_quality` setting. Medium remains the default. Settings provides three 54px native touch buttons, with explicit save-error rollback. Presets apply to the next deployed mission; menu atmosphere reads the selected preset when composed.

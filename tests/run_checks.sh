@@ -20,6 +20,7 @@ run_check() {
 }
 run_check --editor --import --quit
 run_check --quit-after 120
+run_check res://tests/m1_mechanics.tscn
 run_check --fixed-fps 120 --disable-render-loop res://tests/combat.tscn
 run_check --fixed-fps 120 --disable-render-loop res://tests/hybrid.tscn
 run_check --fixed-fps 120 --disable-render-loop res://tests/smoke.tscn

@@ -78,7 +78,8 @@ func tick(delta: float, living_enemies: int) -> void:
   elif str(entry.formation) == "fan":
    path_index = (total_spawned/3) % path_count
   total_spawned += 1
-  timer += float(waves[wave].interval)
+  var burst_size := maxi(1,int(waves[wave].get("burst_size",1)))
+  timer += float(waves[wave].get("burst_gap",waves[wave].interval)) if cursor%burst_size != 0 else float(waves[wave].interval)
   spawn_requested.emit(kind,path_index)
  if cursor >= pending.size() and living_enemies == 0 and not spawned_this_tick:
   if wave + 1 >= waves.size():

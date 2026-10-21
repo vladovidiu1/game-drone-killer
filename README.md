@@ -4,6 +4,8 @@ A native Godot 4 game foundation for an offline Android-first defense campaign. 
 
 Latest graphics increment: **G6 visual audit and optimization** unifies Low / Medium / High across weather, additional shadows, decor, menu atmosphere and combat VFX. It fixes HUD draw order and removes the mission-title plate from drone entry lanes. See the [audit and measured limits](GRAPHICS_AUDIT.md), [current native gallery](docs/audit/README.md), [asset inventory](ASSET_MANIFEST.md) and [physical Android checklist](ANDROID_VISUAL_TEST_CHECKLIST.md). Generated artwork still awaits final art approval; Android frame rate has not been measured.
 
+M1 combat tuning adds 50% nominal drone speed, telegraphed Scout/Bomber acceleration, bounded automatic tracking/acquisition, revised upgrades and denser burst formations across all missions. [Baseline/comparison evidence and remaining difficulty limits](docs/M1_BALANCE.md).
+
 ## Download
 
 Repository: https://github.com/vladovidiu1/game-drone-killer
@@ -19,7 +21,7 @@ Use **Godot 4.6.3 stable**, standard GDScript edition. No plugins, external asse
 3. Choose **New Campaign → 01 Outpost Alpha → Start Mission**.
 4. Click or touch a glowing build slot, then choose Machine Gun, Cannon, or Missile Launcher in the sidebar. Turrets fire automatically. Select an existing turret to upgrade it.
 5. Aim the primary cannon with the mouse and hold left click over the battlefield to fire; press **R** to reload. On Android, drag a finger in the left aiming area and hold the large **FIRE** button on the right with another finger.
-6. Survive all mission waves while keeping the base above 0 HP. Outpost Alpha starts with 500 battle credits and 1000 base HP. Drone bounties fund more defenses. Use **Start wave early** to skip the preparation countdown; **1x / 2x speed** controls combat speed.
+6. Survive all mission waves while keeping the base above 0 HP. Outpost Alpha starts with 500 battle credits and 1000 base HP. Drone bounties fund more defenses. Use **Start wave early** to skip the preparation countdown; combat always runs at normal speed. Selecting a slot temporarily slows simulation to 25%; closing it restores normal speed.
 
 Command-line desktop startup from the repository root:
 
@@ -46,12 +48,12 @@ The [visual validation gallery](docs/VISUAL_VALIDATION.md) also includes a live 
 - Compatibility renderer; 1280×720 reference canvas, expanding aspect layout, landscape orientation, mobile safe-area margins, scrollable campaign chapter rows.
 - Main menu, campaign map, mission briefing, gameplay HUD, pause/resume, results, Arsenal, and persistent volume/mute settings.
 - 25 playable territories grouped into the five requested chapters. Controlled, contested, enemy/locked, and secured checkpoint states use labels and colors.
-- Mission 1, **Outpost Alpha**: 51 enemies across five waves, entering from the top along three configurable paths toward the base at the bottom. Five fixed turret slots, automated target acquisition, rotating barrels, real projectiles, missile splash damage, health bars, muzzle flashes, hit flashes, explosions, selected range/target indicators and base damage feedback.
-- Machine Gun: 100 credits, 10 damage, 4 shots/s, 240 range. Cannon: 200 credits, 55 damage, 0.8 shots/s, 260 range. Missile Launcher: 350 credits, 80 damage, 0.5 shots/s, 300 range, 75 splash radius.
-- Scout: 40 HP, 120 units/s, 25 base damage, 10-credit bounty. Assault: 100 HP, 75 units/s, 50 base damage, 20-credit bounty. Heavy: 300 HP, 40 units/s, 100 base damage, 60-credit bounty.
+- Mission 1, **Outpost Alpha**: 61 enemies across five waves, entering from the top along three configurable paths toward the base at the bottom. Five fixed turret slots, automated target acquisition, rotating barrels, real projectiles, missile splash damage, health bars, muzzle flashes, hit flashes, explosions, selected range/target indicators and base damage feedback.
+- Machine Gun: 100 credits, 10 damage, 3.8 shots/s, 230 range. Cannon: 200 credits, 50 damage, 0.78 shots/s, 250 range. Missile Launcher: 350 credits, 75 damage, 0.48 shots/s, 290 range, 75 splash radius.
+- Scout: 40 HP, 180 nominal units/s, 25 base damage, 10-credit bounty. Assault: 100 HP, 112.5 nominal units/s, 50 base damage, 20-credit bounty. Heavy: 300 HP, 60 nominal units/s, 100 base damage, 60-credit bounty.
 - Turrets target the enemy with the shortest remaining path to the base; spawn order breaks ties. Projectiles use swept target-circle collision and consume themselves before impact resolution. Missiles apply one area hit per enemy, including the direct target.
-- Each turret can reach level 3. Per level: damage ×1.5, range +16; upgrade cost is `ceil(base cost × 0.65 × current level)`. Permanent Arsenal damage bonuses still apply. All tuning lives in JSON.
-- HUD displays base HP, wave, remaining enemies, battle credits, pause/resume, speed and build countdown. Native touch buttons own separate finger IDs, supporting slot selection and another finger on a build control without mouse emulation.
+- Each turret can reach level 3. Per level: damage ×1.35, range +12; upgrade cost is `ceil(base cost × 0.65 × current level)`. Permanent Arsenal damage bonuses still apply. All tuning lives in JSON.
+- HUD displays base HP, wave, remaining enemies, battle credits, pause/resume and build countdown. Native touch buttons own separate finger IDs, supporting slot selection and another finger on a build control without mouse emulation.
 - Mission victory rewards are 120 / 180 / 250 permanent credits for missions 1 / 2 / 3. Defeat grants **zero** credits. Permanent damage upgrades have five levels. Replays award once per new deployment but cannot advance past that mission; replay defeats obey the same retreat rule.
 - Frontline progression and chapter checkpoint floor rules are implemented independently of mission presentation.
 - A dedicated manually controlled primary cannon, loaded at the start without using a placement slot. Its projectiles fly straight, with range-limited swept collision, recoil, muzzle flashes, trails, hit markers and reload feedback.
@@ -104,7 +106,7 @@ Machine Gun, Cannon and Missile Launcher stay available from the start. All six 
 
 Abilities start available; mastery research improves their cooldowns. **REPAIR / EMP / BOOST** buttons display costs, remaining cooldown and active Overclock duration. Charges/cooldowns are consumed before applying an effect, so simultaneous/duplicate touch callbacks cannot activate twice. A full-health repair costs nothing and is unavailable. All durations, status recovery and effects use simulation time, freeze on pause, and reset with the mission.
 
-Selecting a placement slot opens the single **tactical build/upgrade panel** and sets the effective simulation speed to **0.25× normal**, even if the previous choice was 2×. **Close** restores the prior 1×/2× choice. Selecting another slot reuses this panel; pausing/focus loss closes it and clears held input. The speed toggle is disabled while building. Manual aim and FIRE remain available at the same slowed rate; another finger may build, upgrade or scroll. Touch swipes on build buttons scroll the list and cancel the purchase gesture. World input never starts from HUD touches.
+Selecting a placement slot opens the single **tactical build/upgrade panel** and sets the effective simulation speed to **0.25× normal**. **Close** always restores normal speed. Selecting another slot reuses this panel; pausing/focus loss closes it and clears held input. There is no combat speed selector. Manual aim and FIRE remain available at the same slowed rate; another finger may build, upgrade or scroll. Touch swipes on build buttons scroll the list and cancel the purchase gesture. World input never starts from HUD touches.
 
 The Veteran Commander objective grants 150 War Credits once at five victories; securing checkpoint 5 grants 250 once. Objectives are applied inside the existing mission result transaction, persist across defeat, and cannot be claimed again by duplicate results or loading the save. They appear in the RESEARCH tab.
 
@@ -135,7 +137,7 @@ The Veteran Commander objective grants 150 War Credits once at five victories; s
 | `scripts/game/player_turret_view.gd` | Cannon artwork, recoil, muzzle flash, crosshair and reload ring |
 | `scripts/game/player_input.gd` | Mouse/touch input abstraction, finger/source ownership, global release cleanup |
 | `scripts/ui/player_weapon_hud.gd` | Ammo, reload progress, touch FIRE and Reload controls |
-| `scripts/ui/battle_hud.gd` | Dedicated combat HUD, build shop, selection, upgrades, pause and speed |
+| `scripts/ui/battle_hud.gd` | Dedicated combat HUD, build shop, selection, upgrades and pause |
 | `scripts/ui/touch_button.gd` | Independent touch-pointer ownership with desktop mouse support |
 | `scripts/game/battle_view.gd` | Battlefield presentation, separate from simulation |
 | `scripts/game/drone.gd` | Waypoint movement, remaining path distance, health, breach/destruction signals and drone artwork |
@@ -186,19 +188,19 @@ Nominal primary damage is 90 DPS while firing and about 75 DPS including reload 
 
 | Wave | Enemies |
 | --- | --- |
-| 1 | 5 Scouts |
-| 2 | 8 Scouts |
-| 3 | 10 Scouts + 2 Assaults |
-| 4 | 12 Scouts + 5 Assaults |
-| 5 | 8 Assaults + 1 Heavy |
+| 1 | 6 Scouts |
+| 2 | 9 Scouts |
+| 3 | 12 Scouts + 3 Assaults |
+| 4 | 14 Scouts + 6 Assaults |
+| 5 | 9 Assaults + 2 Heavies |
 
-Missions 1–3 offer 27 seconds before each wave; missions 4–25 offer 22 seconds. Normal preparation targets 3–7 minute deployments at 1x. Early starts and 2x shorten wall-clock duration. Clear all active drones before the next build phase begins. Early start never overlaps active waves. The HUD's remaining enemy count includes pending spawns plus living enemies for the current wave (or the upcoming wave during a build phase).
+Preparation is 15 / 14 / 13 / 12 / 11 seconds by chapter, with optional early start. Missions target roughly 2–5 minutes at standardized normal speed; actual duration depends on play. M1 uses denser multi-route bursts, not a global time multiplier. Clear all active drones before the next build phase begins. Early start never overlaps active waves. The HUD's remaining enemy count includes pending spawns plus living enemies for the current wave (or the upcoming wave during a build phase).
 
 Bounties are **temporary battle credits**, as are turret purchases and upgrades. They reset on retry and are shown separately in results. Campaign rewards remain **permanent credits** for Arsenal: +120 / +180 / +250 on victory, **zero** on defeat. The earlier defeat-salvage reward is removed to follow the campaign rules. Existing saves and permanent upgrades migrate to schema v3.
 
 For an opening strategy, place Machine Guns on slots 1 and 3 and a Cannon on slot 2. Use bounties for more turrets or upgrades. Leaving the primary idle and every slot empty will lose the base. Manual fire can cover gaps in automatic defenses, but only covers one direction at a time.
 
-All simulation components consume the same locally scaled fixed-physics delta; 2x speed does not alter global engine time or menu behavior. Pausing stops movement, firing, projectiles, effects and wave timers; the UI remains interactive. No object pool has been introduced for the current five-to-eight turrets and bounded wave sizes. Effects are capped at 96 and expire after 0.45 simulation seconds; expired/consumed projectiles and ended drones are removed. Profile before introducing a pool.
+All simulation components consume the same fixed-physics delta, locally slowed only during tactical build mode; global engine time stays unchanged. Pausing stops movement, firing, projectiles, effects and wave timers; the UI remains interactive. No object pool has been introduced for the current five-to-eight turrets and bounded wave sizes. Effects are capped at 96 and expire after 0.45 simulation seconds; expired/consumed projectiles and ended drones are removed. Profile before introducing a pool.
 
 ## Validation
 
@@ -210,7 +212,7 @@ Run from the repository root on Linux with Godot, Bash, GNU timeout, and ripgrep
 
 The runner uses isolated temporary XDG saves, checks exit status and rejects script/engine errors even after a zero exit. The default watchdog is 60 seconds per engine process, extended to 180 for the 25-mission simulation and 90 for comparative simulations. It imports the native project and runs startup, combat, hybrid input, UI, corrupt-save/migration, research and campaign checks.
 
-The original suites retain mouse/two-finger input propagation, ammunition, single-use hits, splash, autonomous targeting, purchases, tactical slow time, pause, 2x speed, reload, research transactions, checkpoint retreat and fresh-process persistence. Added suites validate every territory/reference/phase, exercise enemy abilities and all five bosses, and play missions 1–25 through ordinary combat with earned research/battle funds. They then lose/reconquer the final frontier and verify the completed save in a fresh process. Separate endgame simulations compare automatic-only and manual-only defenses with the hybrid result. Synthetic phase and transaction fixtures are distinguished from these full battles.
+The original suites retain mouse/two-finger input propagation, ammunition, single-use hits, splash, autonomous targeting, purchases, tactical slow time, pause, standardized normal timing, reload, research transactions, checkpoint retreat and fresh-process persistence. Added suites validate every territory/reference/phase, exercise enemy abilities and all five bosses, and play missions 1–25 through ordinary combat with earned research/battle funds. They then lose/reconquer the final frontier and verify the completed save in a fresh process. Separate endgame simulations compare automatic-only and manual-only defenses with the hybrid result. Synthetic phase and transaction fixtures are distinguished from these full battles.
 
 To retain machine-readable balance output after the runner removes its temporary saves:
 
@@ -252,6 +254,6 @@ Settings includes Low/Medium/High particle budgets, Reduced combat effects, Redu
 
 Drag the strategic map to explore all 25 operations, then select a marker for its real briefing. Blue territories are controlled, orange is the contested frontline, red is enemy territory; secured floors carry checkpoint icons. Saved victories and retreats animate the same actual campaign state, with no reward or rule changes. Keyboard focus reveals offscreen nodes.
 
-The four Arsenal tabs now use weapon illustrations, real stat summaries, upgrade indicators and purchase feedback. Battle HP/wave/threat/credits use dedicated readouts; ammo/reload/FIRE/ammunition/abilities/build/pause/speed retain their existing functionality. Short-height layouts keep combat controls accessible. Menu atmosphere, short screen transitions and resource feedback respect Reduced motion/effects.
+The four Arsenal tabs now use weapon illustrations, real stat summaries, upgrade indicators and purchase feedback. Battle HP/wave/threat/credits use dedicated readouts; ammo/reload/FIRE/ammunition/abilities/build/pause retain their existing functionality. Short-height layouts keep combat controls accessible. Menu atmosphere, short screen transitions and resource feedback respect Reduced motion/effects.
 
 See [design/architecture and performance limits](docs/UI_DESIGN.md), [native gallery](docs/ui/README.md), and [validation](docs/ui/VALIDATION.md). Run `./tests/run_ui_capture.sh /tmp/frontline-g5-captures` with a real display. Android exports must also include `assets/ui/*.json`.

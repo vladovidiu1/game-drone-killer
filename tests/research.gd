@@ -72,7 +72,7 @@ func run() -> void:
  battle.select_slot(0)
  battle.build_turret("machine_gun")
  var turret: Node2D = battle.placed[0]
- check(is_equal_approx(turret.damage_value(),12.5) and is_equal_approx(turret.range_value(),276) and is_equal_approx(turret.fire_rate_value(),4.8),"automatic damage, range and fire rate research affects actual turret")
+ check(is_equal_approx(turret.damage_value(),12.5) and is_equal_approx(turret.range_value(),264.5) and is_equal_approx(turret.fire_rate_value(),4.56),"automatic damage, range and fire rate research affects actual turret")
  check(battle.credits == 650,"building spends only Battle Credits")
  balance = SaveManager.state.credits
  battle.health = 500
@@ -90,7 +90,7 @@ func run() -> void:
  enemy.tick(2)
  check(enemy.position != before and enemy.disable_remaining == 0,"disabled enemy recovers with exact remaining movement time")
  var old_rate: float = gun.fire_rate_value()
- check(battle.abilities.activate("overclock") and is_equal_approx(gun.fire_rate_value(),old_rate*1.5) and is_equal_approx(turret.fire_rate_value(),7.2),"Overclock boosts primary and automatic firing rates together")
+ check(battle.abilities.activate("overclock") and is_equal_approx(gun.fire_rate_value(),old_rate*1.5) and is_equal_approx(turret.fire_rate_value(),6.84),"Overclock boosts primary and automatic firing rates together")
  check(is_equal_approx(float(battle.abilities.cooldowns.overclock),32),"Overclock mastery reduces its cooldown to 32 seconds")
  battle.set_paused(true)
  var clock: float = battle.abilities.overclock_remaining
@@ -101,8 +101,7 @@ func run() -> void:
  battle.set_paused(false)
  battle.abilities.tick(6)
  check(battle.abilities.overclock_remaining == 0 and is_equal_approx(gun.fire_rate_value(),old_rate),"Overclock expires and restores normal firing rates")
- # Tactical mode must be fixed at 25% normal and restore the existing 2x choice.
- battle.game_speed = 2
+ # Tactical mode is temporary and always restores standardized normal speed.
  battle.select_slot(0)
  check(battle.build_mode and battle.effective_speed() == 0.25,"opening a build/upgrade panel enters 0.25x")
  var timer: float = battle.spawner.timer
@@ -113,17 +112,17 @@ func run() -> void:
  var bullet_origin: Vector2 = slow_bullet.position
  var ability_clock: float = battle.abilities.cooldowns.repair
  battle._physics_process(1)
- check(is_equal_approx(remaining_distance-moving.distance_remaining,30) and is_equal_approx(slow_bullet.position.distance_to(bullet_origin),float(gun.definition.projectile_speed)*0.25),"enemies and projectiles share tactical 0.25x time")
+ check(is_equal_approx(remaining_distance-moving.distance_remaining,45) and is_equal_approx(slow_bullet.position.distance_to(bullet_origin),float(gun.definition.projectile_speed)*0.25),"enemies and projectiles share tactical 0.25x time")
  check(is_equal_approx(ability_clock-battle.abilities.cooldowns.repair,0.25),"ability cooldowns share tactical 0.25x time")
  check(is_equal_approx(timer-battle.spawner.timer,0.25),"wave scheduler consumes tactical slow-motion time")
  battle.select_slot(1)
- check(battle.build_mode and battle.game_speed == 2,"selecting another slot reuses the same tactical mode")
+ check(battle.build_mode and battle.effective_speed() == 0.25,"selecting another slot reuses the same tactical mode")
  battle.close_build_mode()
- check(not battle.build_mode and battle.effective_speed() == 2,"closing tactical mode restores previous 2x speed")
+ check(not battle.build_mode and battle.effective_speed() == 1,"closing tactical mode restores normal speed")
  battle.select_slot(0)
  battle.set_paused(true)
  battle.set_paused(false)
- check(not battle.build_mode and battle.effective_speed() == 2,"pause/resume cannot leave tactical slow motion stuck")
+ check(not battle.build_mode and battle.effective_speed() == 1,"pause/resume cannot leave tactical slow motion stuck")
  battle.queue_free()
  await get_tree().process_frame
 
@@ -191,19 +190,19 @@ func run() -> void:
  var emp: Node2D = battle.placed[1]
  var slowed: Node2D = battle.spawn_enemy("scout")
  slowed.position = emp.position+Vector2(0,-100)
- emp.tick(0.1)
+ emp.tick(0.35)
  var remaining: float = slowed.distance_remaining
  slowed.tick(0.5)
- check(is_equal_approx(remaining-slowed.distance_remaining,21),"EMP Tower area pulse slows Scout movement to 35%")
+ check(is_equal_approx(remaining-slowed.distance_remaining,31.5),"EMP Tower area pulse slows Scout movement to 35%")
  battle.select_slot(2)
  check(battle.build_turret("heavy_aa"),"researched Heavy AA Cannon can be built")
  var heavy: Node2D = battle.placed[2]
  enemy.position = heavy.position+Vector2(0,-80)
  hp = enemy.health
- heavy.tick(0.1)
+ heavy.tick(0.3)
  shot = battle.projectiles.get_child(0)
  shot.tick(0.2)
- check(enemy.health < hp and heavy.damage_value() == 225,"Heavy AA deals high researched damage through a real projectile")
+ check(enemy.health < hp and heavy.damage_value() == 212.5,"Heavy AA deals high researched damage through a real projectile")
  battle.queue_free()
  await get_tree().process_frame
 

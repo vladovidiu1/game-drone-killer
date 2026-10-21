@@ -145,7 +145,7 @@ func run() -> void:
   app.battle.select_slot(0)
   await settle()
   check(app.hud.stat_cards.size() == 4,"Four real battle readouts replace dense text telemetry")
-  for control in [app.hud.player_panel.fire_button,app.hud.player_panel.reload_button,app.hud.ability_buttons.repair,app.hud.close_button,app.hud.pause_button,app.hud.speed_button]:
+  for control in [app.hud.player_panel.fire_button,app.hud.player_panel.reload_button,app.hud.ability_buttons.repair,app.hud.close_button,app.hud.pause_button]:
    check(viewport.encloses(control.get_global_rect()) and control.size.y >= 44,"HUD action fits viewport with touch target ≥44: "+str(dimensions))
   check(not app.hud.player_panel.fire_button.get_global_rect().intersects(app.hud.ability_buttons.repair.get_global_rect()),"FIRE does not overlap ability controls")
   var field_center: Vector2 = app.battle.get_global_transform_with_canvas()*Vector2(480,330)

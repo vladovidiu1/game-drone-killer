@@ -31,7 +31,7 @@
 - War Credits remain `state.credits`; Battle Credits remain `battle.credits`. Research/unlocks/objectives are in `data/progression.json`. Keep purchased legacy `damage_level` bonuses when migrating; new primary damage research is a separate +5% per level.
 - Permanent research purchases must validate the expected current level and persist/rollback the debit and grant together. Objectives belong inside the mission-result transaction; never re-award a claimed objective.
 - Research is applied before battle starts. Snapshot shot ammunition/critical damage at firing time, never refill magazines when switching ammunition, and retain autonomous secondary targeting.
-- Tactical build mode uses a single panel at 0.25x effective simulation speed; closing or pausing restores the prior chosen speed. Every cooldown/status/projectile/reload consumes the same simulated delta. Touch swipes inside a shop must scroll without purchasing.
+- Tactical build mode uses a single panel at 0.25x effective simulation speed; closing or pausing restores standardized normal speed. Every cooldown/status/projectile/reload consumes the same simulated delta. Touch swipes inside a shop must scroll without purchasing.
 - Run `tests/research.tscn` and its fresh-process verification in addition to the existing full suite. Physical Android performance/audio remain separate validation work.
 
 ## Visual foundation
@@ -82,3 +82,12 @@
 - Low removes extra runtime fake shadows/animated weather, not baked asset shading or texture resolution. Uniform caching must update body and articulated armor together on damage/cloak/suppression recovery. Never throttle manual aiming or simulation to the overlay redraw rate.
 - `python tools/build_asset_manifest.py` regenerates both `assets/manifest.json` and root `ASSET_MANIFEST.md`. Preserve generated-candidate/reference-only status and font licenses.
 - Run full checks including 75 mission/preset combinations, fresh-process graphics persistence and existing balance reports. `tests/run_graphics_profile.sh` requires a native display, records reproducible stress metrics, and must never be described as an Android FPS benchmark. Keep native capture runners sequential to avoid focus-loss pause interference.
+
+
+## M1 combat balance
+
+- All missions run at normal speed; no `game_speed`, selector or global Engine.time_scale modification. Only temporary build UI uses 0.25x, and closing/pausing always returns to 1.0.
+- Central movement/tracking/formation targets live in `data/definitions.json` (`balance`, enemy AI mobility and turret fields). `tools/rebalance_m1.py` rebuilds this tuning from the frozen G6 source in `docs/m1/baseline_definitions.json`; do not overwrite later manual balance changes by running it blindly.
+- Guard stale/freed targets before typed function calls. Acquisition, bounded turn rate, firing alignment and stable threat switching are real deterministic limitations. Do not add random automatic misses or forced drone survival.
+- Burst movement uses an integral so partial disable/slow windows and simulation-step partitioning preserve travel distance. Keep manual aiming/fire exclusively input driven.
+- Run mechanics/full regression plus `tests/run_m1_balance.sh` for balance changes. Compare fixed-seed records and the earned-research connected campaign; document fixture research, funds, limitations and human/device testing separately. See `docs/M1_BALANCE.md`.

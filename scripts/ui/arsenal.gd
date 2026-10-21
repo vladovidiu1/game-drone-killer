@@ -96,7 +96,7 @@ func refresh() -> void:
  if current_tab == "automatic":
   for id in CampaignManager.turrets:
    var turret: Dictionary = EconomyManager.automatic_stats(str(id))
-   var description := "%s / %d Battle Credits • %.1f damage • %.1f rate • %.1f range" % [turret.name,int(turret.cost),float(turret.damage),float(turret.fire_rate),float(turret.range)]
+   var description := "%s / %d Battle Credits • %.1f damage • %.1f rate • %.1f range\nTRACK %.0f°/s • LOCK %.2fs" % [turret.name,int(turret.cost),float(turret.damage),float(turret.fire_rate),float(turret.range),float(turret.turn_degrees),float(turret.acquisition_delay)]
    if SaveManager.catalog.unlocks.has(id):
     add_card(grid,str(id),SaveManager.catalog.unlocks[id],description)
    else:

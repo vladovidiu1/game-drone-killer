@@ -116,7 +116,7 @@ func weakpoint() -> Vector2:
  return enemy.position+Vector2(float(data.weakpoint[0]),float(data.weakpoint[1]))
 
 func damage_multiplier(manual: bool, armor_piercing: bool, point: Vector2) -> float:
- var multiplier := 1.0
+ var multiplier := 1.0 if armor_piercing else 1.0-float(data.get("armor_reduction",0.0))
  if boss:
   multiplier = float(settings().manual_hull_multiplier if manual else settings().automatic_hull_multiplier)
   multiplier *= 1.0-float(settings().armor_reduction)
@@ -134,3 +134,23 @@ func damage_multiplier(manual: bool, armor_piercing: bool, point: Vector2) -> fl
     multiplier *= 1.0-float(aura.shield_reduction)
     break
  return multiplier
+
+func movement_integral(time: float) -> float:
+ # Integral in nominal-speed seconds, so bursts stay deterministic across dt.
+ var mobility: Dictionary = data.get("mobility",{})
+ if mobility.is_empty():
+  return time
+ var t := maxf(0.0,time-float(mobility.delay))
+ var period := float(mobility.period)
+ var boosted := floorf(t/period)*float(mobility.duration)+minf(fmod(t,period),float(mobility.duration))
+ return time+(float(mobility.multiplier)-1.0)*boosted
+
+func movement_time(start: float, end: float) -> float:
+ return movement_integral(end)-movement_integral(start)
+
+func burst_warning() -> bool:
+ var mobility: Dictionary = data.get("mobility",{})
+ if mobility.is_empty() or enemy.disable_remaining > 0:
+  return false
+ var t := elapsed-float(mobility.delay)
+ return t < 0 and t >= -float(mobility.warning) or t >= 0 and (fmod(t,float(mobility.period)) < float(mobility.duration) or fmod(t,float(mobility.period)) > float(mobility.period)-float(mobility.warning))

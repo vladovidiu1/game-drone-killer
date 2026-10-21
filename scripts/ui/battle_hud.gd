@@ -5,7 +5,6 @@ var battle: Node2D
 var readout: Label
 var base_bar: ProgressBar
 var pause_button: Button
-var speed_button: Button
 var wave_button: Button
 var wave_label: Label
 var selection_label: Label
@@ -48,13 +47,9 @@ func setup(simulation: Node2D) -> void:
  telemetry.add_child(readout)
  base_bar = stat_cards.base.meter
  pause_button = UI.button("Pause",func(): battle.set_paused(not battle.paused),Vector2(110,50))
- speed_button = UI.button("1x speed",func(): battle.toggle_speed(),Vector2(130,50))
  pause_button.icon = UI.icon("pause")
- speed_button.icon = UI.icon("speed")
  pause_button.add_theme_font_size_override("font_size",16)
- speed_button.add_theme_font_size_override("font_size",15)
  top.add_child(pause_button)
- top.add_child(speed_button)
  var middle := HBoxContainer.new()
  middle.mouse_filter = Control.MOUSE_FILTER_IGNORE
  middle.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -176,8 +171,6 @@ func refresh() -> void:
  var wave_number: int = mini(spawner.wave+2 if spawner.intermission else spawner.wave+1,spawner.waves.size())
  readout.text = "BASE %d/%d | WAVE %d/%d | ENEMIES %d | BATTLE CREDITS %d" % [battle.health,battle.max_health,wave_number,spawner.waves.size(),spawner.remaining_to_spawn()+battle.living_count(),battle.credits]
  pause_button.text = "Resume" if battle.paused else "Pause"
- speed_button.text = "0.25x / BUILD" if battle.build_mode else "%dx speed" % int(battle.game_speed)
- speed_button.disabled = battle.build_mode
  wave_label.text = "BUILD %ds" % maxi(0,int(ceil(spawner.timer))) if spawner.intermission else "WAVE %d" % wave_number
  wave_button.disabled = battle.paused or not spawner.intermission or battle.finished
  stat_cards.base.update_value("%d / %d" % [battle.health,battle.max_health],-1,float(battle.health)/battle.max_health)
@@ -201,11 +194,12 @@ func refresh() -> void:
    details.text = "Laser / %.1f sustained DPS • %.0f range" % [turret.damage_value()*turret.fire_rate_value()/float(turret.definition.fire_rate),turret.range_value()]
   elif turret.kind == "emp_tower":
    details.text = "EMP / %.0f%% slow for %.1fs • %.1fs cycle" % [(1.0-float(turret.definition.slow_factor))*100,float(turret.definition.status_duration),1.0/turret.fire_rate_value()]
+  details.text += "\nTRACK %.0f°/s • LOCK %.2fs" % [float(turret.definition.turn_degrees),float(turret.definition.acquisition_delay)]
   var maximum: bool = turret.level >= int(CampaignManager.combat.max_turret_level)
   upgrade_button.text = "Maximum level" if maximum else "Upgrade → L%d • %d BC" % [turret.level+1,turret.upgrade_cost()]
   upgrade_button.disabled = maximum or battle.paused or battle.finished or battle.credits < turret.upgrade_cost()
  else:
-  details.text = "Tap a slot to build. Scroll to see all six designs. Close restores your previous speed."
+  details.text = "Tap a slot to build. Scroll to see all six designs. Close restores normal combat speed."
  for id in ability_buttons:
   var data: Dictionary = SaveManager.catalog.abilities[id]
   var cooldown: float = battle.abilities.cooldowns[id]

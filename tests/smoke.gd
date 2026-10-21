@@ -121,8 +121,7 @@ func run() -> void:
  app.battle.simulate(1)
  check(app.battle.paused and app.battle.spawner.timer == old_timer, "pause button freezes simulation")
  app.hud.pause_button.pressed.emit()
- app.hud.speed_button.pressed.emit()
- check(app.battle.game_speed == 2 and app.hud.speed_button.text == "2x speed", "speed button switches to 2x with visible state")
+ check(app.battle.effective_speed() == 1 and not app.battle.has_method("toggle_speed"), "pause/resume restores normal speed with no selector")
  app.hud.wave_button.pressed.emit()
  check(not app.battle.spawner.intermission, "HUD starts wave early")
  for frame in 20000:
@@ -143,9 +142,10 @@ func run() -> void:
   if battle.spawner.intermission:
    battle.start_wave()
   battle.close_build_mode()
+  preload("res://tests/m1_pilot.gd").aim(battle)
   battle._physics_process(1.0/60.0)
   await get_tree().process_frame
- check(app.screen == "results" and bool(app.result_data.get("victory",false)), "automatic defenses win full five-wave mission without direct damage injection")
+ check(app.screen == "results" and bool(app.result_data.get("victory",false)), "hybrid defenses win full five-wave mission without direct damage injection")
  check(int(app.result_data.get("shots",0)) > 0 and int(app.result_data.get("kills",0)) > 0, "turrets fire and destroy enemies during real battle")
  check(int(app.result_data.get("waves",0)) == 5, "victory follows all five mission waves")
  check(int(SaveManager.state.frontline) == 2, "victory advances frontline")
@@ -157,7 +157,7 @@ func run() -> void:
  await get_tree().process_frame
  app.battle.set_physics_process(false)
  check(app.battle.health == 1000 and app.battle.credits == 550 and app.battle.kills == 0, "restart resets health, budget and kills")
- check(app.battle.turrets.get_child_count() == 0 and app.battle.projectiles.get_child_count() == 0 and app.battle.game_speed == 1, "restart resets placements, projectiles and speed")
+ check(app.battle.turrets.get_child_count() == 0 and app.battle.projectiles.get_child_count() == 0 and app.battle.effective_speed() == 1, "restart resets placements, projectiles and speed")
  for frame in 20000:
   if app.screen == "results":
    break

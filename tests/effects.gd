@@ -68,9 +68,8 @@ func run() -> void:
  battle.simulate(.5)
  check(fx.clock == age and fx.shake_offset == offset,"Pause freezes particles, smoke and shake")
  battle.set_paused(false)
- battle.game_speed = 2
  battle._physics_process(.05)
- check(is_equal_approx(fx.clock-age,.1),"Combat effects share normal/2x simulation speed")
+ check(is_equal_approx(fx.clock-age,.05),"Combat effects share standardized normal simulation time")
  age = fx.clock
  battle.select_slot(0)
  battle._physics_process(.04)

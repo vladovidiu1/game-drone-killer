@@ -5,6 +5,7 @@ var missions: Array = []
 var enemies: Dictionary = {}
 var turrets: Dictionary = {}
 var combat: Dictionary = {}
+var balance: Dictionary = {}
 var player_cannon: Dictionary = {}
 
 func _ready() -> void:
@@ -13,6 +14,7 @@ func _ready() -> void:
  enemies = data.enemies
  turrets = data.turrets
  combat = data.combat
+ balance = data.balance
  player_cannon = data.player_cannon
 
 func mission(id: int) -> Dictionary:

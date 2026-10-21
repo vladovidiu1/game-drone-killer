@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-21",
+  "godot": "4.6.3 stable",
+  "assertions": 7611,
+  "suite_invocations": 24,
+  "failures": 0,
+  "suites": [
+    {
+      "suite": "M1 MECHANICS",
+      "assertions": 46,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT",
+      "assertions": 40,
+      "failures": 0
+    },
+    {
+      "suite": "HYBRID",
+      "assertions": 55,
+      "failures": 0
+    },
+    {
+      "suite": "SMOKE",
+      "assertions": 42,
+      "failures": 0
+    },
+    {
+      "suite": "SMOKE",
+      "assertions": 4,
+      "failures": 0
+    },
+    {
+      "suite": "SAVE/RULES",
+      "assertions": 38,
+      "failures": 0
+    },
+    {
+      "suite": "CAMPAIGN",
+      "assertions": 43,
+      "failures": 0
+    },
+    {
+      "suite": "CAMPAIGN",
+      "assertions": 5,
+      "failures": 0
+    },
+    {
+      "suite": "RESEARCH",
+      "assertions": 186,
+      "failures": 0
+    },
+    {
+      "suite": "RESEARCH",
+      "assertions": 4,
+      "failures": 0
+    },
+    {
+      "suite": "GRAPHICS AUDIT",
+      "assertions": 810,
+      "failures": 0
+    },
+    {
+      "suite": "GRAPHICS AUDIT",
+      "assertions": 2,
+      "failures": 0
+    },
+    {
+      "suite": "TACTICAL UI",
+      "assertions": 189,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT VFX",
+      "assertions": 310,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT VFX",
+      "assertions": 2,
+      "failures": 0
+    },
+    {
+      "suite": "VISUAL FOUNDATION",
+      "assertions": 452,
+      "failures": 0
+    },
+    {
+      "suite": "UNIT VISUALS",
+      "assertions": 195,
+      "failures": 0
+    },
+    {
+      "suite": "ENVIRONMENTS",
+      "assertions": 946,
+      "failures": 0
+    },
+    {
+      "suite": "ENVIRONMENTS",
+      "assertions": 2,
+      "failures": 0
+    },
+    {
+      "suite": "CATALOG",
+      "assertions": 3926,
+      "failures": 0
+    },
+    {
+      "suite": "ENEMY AI",
+      "assertions": 88,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "assertions": 184,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "assertions": 31,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "assertions": 11,
+      "failures": 0
+    }
+  ],
+  "comparison_cases": 55,
+  "comparison_repeat_identical": true,
+  "definition_sha256": "444d4737cc698e3c1f7afaec67cfa2f635630fea76f186a73fc1f537b40e312c",
+  "pilot_sha256": "e44aa481eed854ce3e19d753863f63b6a929e9acb98e79db31b628b2c8a243a0",
+  "native_ui_captures": 36,
+  "native_world_missions": 8,
+  "android_hardware_tested": false
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "capture": "mission_01",
+    "draw_calls": 140.0,
+    "quality": "medium"
+  },
+  {
+    "capture": "mission_02",
+    "draw_calls": 151.0,
+    "quality": "medium"
+  },
+  {
+    "capture": "mission_03",
+    "draw_calls": 155.0,
+    "quality": "medium"
+  },
+  {
+    "capture": "mission_05",
+    "draw_calls": 176.0,
+    "quality": "medium"
+  },
+  {
+    "capture": "mission_05_build",
+    "draw_calls": 187.0,
+    "quality": "medium"
+  },
+  {
+    "capture": "mission_10",
+    "draw_calls": 178.0,
+    "quality": "medium"
+  },
+  {
+    "capture": "mission_15",
+    "draw_calls": 200.0,
+    "quality": "medium"
+  },
+  {
+    "capture": "mission_20",
+    "draw_calls": 235.0,
+    "quality": "medium"
+  },
+  {
+    "capture": "mission_25",
+    "draw_calls": 224.0,
+    "quality": "medium"
+  },
+  {
+    "capture": "settings",
+    "draw_calls": 31.0,
+    "quality": "medium"
+  }
+]

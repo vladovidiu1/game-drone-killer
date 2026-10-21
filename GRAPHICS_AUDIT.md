@@ -1,5 +1,7 @@
 # Graphics audit — G6
 
+This report records the G6 snapshot. [M1 subsequently changes combat balance and removes selectable speed](docs/M1_BALANCE.md); G6 performance/control numbers below are historical, not measurements of M1.
+
 2026-10-21 · Godot 4.6.3 stable · Compatibility/GLES3 · existing G1–G5 project.
 
 The game has an integrated, playable visual system and passes the available regression checks. **It is not visually production-ready:** generated artwork still needs final artist review, and physical Android appearance, touch ergonomics, GPU performance, thermals and export packaging are unverified. No 60 FPS claim is made.
