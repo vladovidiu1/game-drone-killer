@@ -1,5 +1,7 @@
 # G5 tactical interface and campaign map
 
+M2 update: PROJECTILES is a fifth tab with six real technology/loadout cards; TURRETS adds actual researched specialization. Long next-tier/prerequisite copy wraps/clips within all four logical layouts. See [native M2 input/render validation](m2/VALIDATION.md).
+
 M1 update: the combat speed selector is removed; temporary tactical build closes back to normal speed. Tracking and lock stats are shown for automatic weapons. See [M1 validation](M1_BALANCE.md).
 
 G6 update: [the unified graphics policy and audit](../GRAPHICS_AUDIT.md) supersedes earlier independent preset/environment budgets. Existing captures below document their original increment.

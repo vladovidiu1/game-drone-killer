@@ -30,6 +30,8 @@ run_check --fixed-fps 120 --disable-render-loop res://tests/campaign.tscn
 run_check res://tests/campaign.tscn -- --verify-campaign
 run_check --fixed-fps 120 --disable-render-loop res://tests/research.tscn
 run_check res://tests/research.tscn -- --verify-research
+run_check res://tests/weapon_research.tscn
+run_check res://tests/weapon_research.tscn -- --verify-weapons
 
 run_check res://tests/graphics_audit.tscn
 run_check res://tests/graphics_audit.tscn -- --verify-graphics

@@ -6,6 +6,8 @@ Latest graphics increment: **G6 visual audit and optimization** unifies Low / Me
 
 M1 combat tuning adds 50% nominal drone speed, telegraphed Scout/Bomber acceleration, bounded automatic tracking/acquisition, revised upgrades and denser burst formations across all missions. [Baseline/comparison evidence and remaining difficulty limits](docs/M1_BALANCE.md).
 
+M2 adds **six projectile technologies**, three research tiers each, a three-slot mission loadout, twelve automatic-turret specialization branches and configurable enemy resistances. [Research/loadout rules and validation](docs/WEAPON_RESEARCH.md).
+
 ## Download
 
 Repository: https://github.com/vladovidiu1/game-drone-killer
@@ -63,7 +65,7 @@ The [visual validation gallery](docs/VISUAL_VALIDATION.md) also includes a live 
 
 **Battle Credits** are the temporary `battle.credits` balance: mission starting budget plus drone bounties. Construction, temporary turret levels and tactical abilities spend only this balance; a new mission resets it. **War Credits** are the persistent `SaveManager.state.credits` balance, spent only on research/unlocks. Mission victories and once-only objectives award War Credits. Defeat does not remove them or research.
 
-Open **Arsenal** from the main menu or campaign. Its four tabs are **PRIMARY CANNON**, **AUTOMATIC TURRETS**, **RESEARCH** and **SPECIAL ABILITIES**. Research cards show current level, next benefit, escalating War Credit cost, requirements and maximum status. A confirmation dialog reviews the actual purchase; cancellation spends nothing. Stale/double confirmations cannot buy a second level. Prices, five-level limits, coefficients, unlock requirements and objectives are configured in `data/progression.json`.
+Open **Arsenal** from the main menu or campaign. Its five tabs are **PRIMARY CANNON**, **PROJECTILES**, **TURRETS**, **RESEARCH** and **ABILITIES**. Research cards show current level, next benefit, escalating War Credit cost, requirements and maximum status. A confirmation dialog reviews the actual purchase; cancellation spends nothing. Stale/double confirmations cannot buy a second level. Prices, five-level legacy limits, three-tier technologies, coefficients, unlock requirements and objectives are configured in `data/progression.json`.
 
 | Permanent upgrade | Per-level effect (5 levels each) |
 | --- | --- |
@@ -82,13 +84,11 @@ Open **Arsenal** from the main menu or campaign. Its four tabs are **PRIMARY CAN
 
 Bonuses apply to the existing base stats. Five primary levels produce 18.75 damage, 7.2 shots/s, 110 rounds, 1.4s reload, 1062.5 projectile speed, 10% critical chance and 2× critical damage, before legacy bonuses or ammunition. Existing purchased 15%-per-level Kinetic Amplifier bonuses remain as a separate legacy modifier; they are neither erased nor converted into the new 5% research. Research is snapshotted before a battle starts.
 
-| Primary ammunition | Effect / tradeoff | Unlock |
-| --- | --- | --- |
-| Standard | Normal damage/rate, 1 round per shot | Available initially |
-| Armor Piercing | 1.75× damage against Assault/Heavy armor, 25% slower fire | Highest mission 2, 180 War Credits |
-| Explosive | 45-unit splash, 75% damage, 3 rounds per shot | Highest mission 3, 260 War Credits |
+M2 extends the existing ammunition catalog to **Standard / Armor Piercing / High Explosive / EMP / Cryo / Railgun**. Open PROJECTILES to see illustrations, current/next-tier stats, unlock costs, prerequisites and three-tier research. Equip **1–3 unlocked types** before deployment; the HUD exposes those three chips. Standard remains available without purchase. Existing AP/HE unlocks retain their original profile and cost.
 
-Use **STD / AP / EXP** in the battle HUD. Each has a distinct color for shots and crosshair; critical hits flash a red hit indicator. Changing types preserves ammunition and the firing cooldown, cannot refill the magazine, and is disabled while reloading. In-flight shots keep the profile they were fired with. The equipped type is saved. The Arsenal shows base researched statistics plus equipped-ammunition modifiers.
+Every type spends units from one shared magazine: **1 / 1 / 3 / 2 / 2 / 6** respectively. Reload fills shared capacity; switching preserves units, cooldown and weapon heat/recoil and is blocked during reload. Profile, critical damage and control payloads are frozen at firing. EMP disrupts electronics, Cryo slows movement, Railgun physically penetrates aligned targets once each with energy loss. [Full tree, stat tables and resistance rules](docs/WEAPON_RESEARCH.md).
+
+TURRETS adds two three-tier specializations for every design. Research both for flexibility, equip one per design before deployment, or return to standard tuning. War Credits buy research; existing Battle Credit construction/upgrades remain separate.
 
 | New autonomous defense | Battle cost | Behavior | Research unlock |
 | --- | --- | --- | --- |
@@ -168,7 +168,7 @@ The map derives control from the active frontline, independently of historical c
 
 Every deployment receives a unique persisted attempt token. Only its matching result may update records, rewards, frontline, highest and checkpoints. The outcome and consumed token are saved together; duplicate, mismatched and stale events are rejected, including after reload. Replaying a controlled mission is a new paid attempt, not a duplicate event, and cannot advance past that mission. Defeats, including replay defeats, follow the same checkpoint-bounded retreat rule and grant no rewards.
 
-Campaign schema v3 stores `frontline`, `highest`, `checkpoints`, derived `checkpoint`, `credits`, `damage_level`, `wins`, `records`, `active_run` and `last_result`. Per-mission records include victory/defeat counts, best remaining base HP and cumulative rewards. Research levels, weapon/ammunition unlocks, equipped ammunition and claimed objectives are added without resetting campaign data. The optional `campaign_complete` v3 field defaults false for older saves; validation requires frontline 25 plus an actual mission 25 victory record. Defeat below 25 clears it. Settings have an independent versioned wrapper with validated volume and boolean preferences. Schema v1 saves retain their credits/upgrades/wins, gain a highest-reached index, and migrate old chapter-start floors 6/11/16/21 to completed-mission floors 5/10/15/20. Schema v2 upgrades directly to v3 with zero new research, preserving legacy bonuses, records, balances and checkpoints. Schema v1 lacked detailed per-mission records; new outcomes populate them.
+Campaign schema v3 stores `frontline`, `highest`, `checkpoints`, derived `checkpoint`, `credits`, `damage_level`, `wins`, `records`, `active_run` and `last_result`. Per-mission records include victory/defeat counts, best remaining base HP and cumulative rewards. Research levels, weapon/ammunition unlocks, equipped ammunition and claimed objectives are added without resetting campaign data. M2 adds `weapon_schema=1`, a validated ordered `ammo_loadout` (1–3 types) and selected `turret_specializations`; legacy active ammunition/AP/HE purchases migrate without repurchase. The optional `campaign_complete` v3 field defaults false for older saves; validation requires frontline 25 plus an actual mission 25 victory record. Defeat below 25 clears it. Settings have an independent versioned wrapper with validated volume and boolean preferences. Schema v1 saves retain their credits/upgrades/wins, gain a highest-reached index, and migrate old chapter-start floors 6/11/16/21 to completed-mission floors 5/10/15/20. Schema v2 upgrades directly to v3 with zero new research, preserving legacy bonuses, records, balances and checkpoints. Schema v1 lacked detailed per-mission records; new outcomes populate them.
 
 Writes serialize to a temporary file, flush and validate it, preserve the previous valid file as `.bak`, then replace the primary file. A malformed primary recovers its validated backup. Missing files use safe defaults; if both campaign copies are invalid, Continue is disabled and a recovery notice appears. Unknown schemas are not interpreted as current data. Invalid originals are archived as `.invalid-*` before a subsequent successful replacement. Upgrades and results roll back in memory if persistence fails; a result save failure offers retry. A running battle is not restored after closing the app; the next deployment starts fresh with a new token.
 
@@ -254,6 +254,6 @@ Settings includes Low/Medium/High particle budgets, Reduced combat effects, Redu
 
 Drag the strategic map to explore all 25 operations, then select a marker for its real briefing. Blue territories are controlled, orange is the contested frontline, red is enemy territory; secured floors carry checkpoint icons. Saved victories and retreats animate the same actual campaign state, with no reward or rule changes. Keyboard focus reveals offscreen nodes.
 
-The four Arsenal tabs now use weapon illustrations, real stat summaries, upgrade indicators and purchase feedback. Battle HP/wave/threat/credits use dedicated readouts; ammo/reload/FIRE/ammunition/abilities/build/pause retain their existing functionality. Short-height layouts keep combat controls accessible. Menu atmosphere, short screen transitions and resource feedback respect Reduced motion/effects.
+The original four Arsenal tabs use weapon illustrations, real stat summaries, upgrade indicators and purchase feedback. Battle HP/wave/threat/credits use dedicated readouts; ammo/reload/FIRE/ammunition/abilities/build/pause retain their existing functionality. M2 extends this to five tabs including PROJECTILES and per-design specialization. Short-height layouts keep combat controls accessible. Menu atmosphere, short screen transitions and resource feedback respect Reduced motion/effects.
 
 See [design/architecture and performance limits](docs/UI_DESIGN.md), [native gallery](docs/ui/README.md), and [validation](docs/ui/VALIDATION.md). Run `./tests/run_ui_capture.sh /tmp/frontline-g5-captures` with a real display. Android exports must also include `assets/ui/*.json`.

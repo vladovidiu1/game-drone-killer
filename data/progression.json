@@ -223,6 +223,304 @@
       "tab": "abilities",
       "highest": 1,
       "per_level": -0.04
+    },
+    "ammo_standard": {
+      "name": "Standard Rounds / Technology",
+      "benefit": "Three tiers: Balanced, inexpensive interception.",
+      "costs": [
+        60,
+        120,
+        220
+      ],
+      "highest": 1,
+      "tab": "projectiles",
+      "per_level": 0,
+      "requires": {},
+      "ammo_technology": "standard"
+    },
+    "ammo_armor_piercing": {
+      "name": "Armor Piercing / Technology",
+      "benefit": "Three tiers: Concentrated hull damage; bypasses armor and shield aura.",
+      "costs": [
+        90,
+        170,
+        300
+      ],
+      "highest": 2,
+      "tab": "projectiles",
+      "per_level": 0,
+      "requires": {
+        "armor_piercing": 1
+      },
+      "ammo_technology": "armor_piercing"
+    },
+    "ammo_explosive": {
+      "name": "High Explosive / Technology",
+      "benefit": "Three tiers: Blast damage for compact enemy groups.",
+      "costs": [
+        100,
+        190,
+        330
+      ],
+      "highest": 3,
+      "tab": "projectiles",
+      "per_level": 0,
+      "requires": {
+        "explosive": 1
+      },
+      "ammo_technology": "explosive"
+    },
+    "ammo_emp": {
+      "name": "EMP Projectiles / Technology",
+      "benefit": "Three tiers: Disrupts movement, attacks, stealth and shield emitters.",
+      "costs": [
+        120,
+        220,
+        360
+      ],
+      "highest": 6,
+      "tab": "projectiles",
+      "per_level": 0,
+      "requires": {
+        "emp": 1
+      },
+      "ammo_technology": "emp"
+    },
+    "ammo_cryo": {
+      "name": "Cryo Rounds / Technology",
+      "benefit": "Three tiers: Slows fast targets for automatic crossfire.",
+      "costs": [
+        140,
+        260,
+        420
+      ],
+      "highest": 11,
+      "tab": "projectiles",
+      "per_level": 0,
+      "requires": {
+        "cryo": 1
+      },
+      "ammo_technology": "cryo"
+    },
+    "ammo_railgun": {
+      "name": "Railgun Projectiles / Technology",
+      "benefit": "Three tiers: High velocity, hull penetration and multiple aligned hits.",
+      "costs": [
+        200,
+        360,
+        580
+      ],
+      "highest": 16,
+      "tab": "projectiles",
+      "per_level": 0,
+      "requires": {
+        "railgun": 1
+      },
+      "ammo_technology": "railgun"
+    },
+    "spec_machine_gun_rapid": {
+      "name": "Cycling Assembly",
+      "benefit": "Faster fire; less damage per round. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 4,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "machine_gun": 1
+      },
+      "specialization_for": "machine_gun",
+      "branch": "rapid"
+    },
+    "spec_machine_gun_armor": {
+      "name": "Hardened Feed",
+      "benefit": "Armor damage; slower firing. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 4,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "machine_gun": 1
+      },
+      "specialization_for": "machine_gun",
+      "branch": "armor"
+    },
+    "spec_cannon_impact": {
+      "name": "Impact Chamber",
+      "benefit": "Higher impact; longer firing cycle. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 4,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "cannon": 1
+      },
+      "specialization_for": "cannon",
+      "branch": "impact"
+    },
+    "spec_cannon_blast": {
+      "name": "Fragmentation",
+      "benefit": "Small splash; lower direct damage. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 4,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "cannon": 1
+      },
+      "specialization_for": "cannon",
+      "branch": "blast"
+    },
+    "spec_missile_blast": {
+      "name": "Wide Warhead",
+      "benefit": "Larger splash; slower missile flight. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 4,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "missile": 1
+      },
+      "specialization_for": "missile",
+      "branch": "blast"
+    },
+    "spec_missile_guidance": {
+      "name": "Guidance Package",
+      "benefit": "Faster travel and lock; slightly lower damage. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 4,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "missile": 1
+      },
+      "specialization_for": "missile",
+      "branch": "guidance"
+    },
+    "spec_laser_sustained": {
+      "name": "Thermal Capacitor",
+      "benefit": "More sustained DPS; longer acquisition. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 6,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "laser": 1
+      },
+      "specialization_for": "laser",
+      "branch": "sustained"
+    },
+    "spec_laser_shield": {
+      "name": "Shield Harmonics",
+      "benefit": "Bypasses shield protection; less hull damage. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 6,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "laser": 1
+      },
+      "specialization_for": "laser",
+      "branch": "shield"
+    },
+    "spec_emp_tower_radius": {
+      "name": "Field Antenna",
+      "benefit": "Wider field; slightly shorter slow duration. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 6,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "emp_tower": 1
+      },
+      "specialization_for": "emp_tower",
+      "branch": "radius"
+    },
+    "spec_emp_tower_duration": {
+      "name": "Disruption Coil",
+      "benefit": "Longer slow plus short disable; shorter range. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 6,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "emp_tower": 1
+      },
+      "specialization_for": "emp_tower",
+      "branch": "duration"
+    },
+    "spec_heavy_aa_precision": {
+      "name": "Precision Breech",
+      "benefit": "Higher damage; tighter required firing alignment. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 6,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "heavy_aa": 1
+      },
+      "specialization_for": "heavy_aa",
+      "branch": "precision"
+    },
+    "spec_heavy_aa_armor": {
+      "name": "Penetrator Sabot",
+      "benefit": "Armored damage and bypass; lower ordinary damage. Equip one branch per design before deployment.",
+      "costs": [
+        120,
+        220,
+        380
+      ],
+      "highest": 6,
+      "tab": "specializations",
+      "per_level": 0,
+      "requires": {
+        "heavy_aa": 1
+      },
+      "specialization_for": "heavy_aa",
+      "branch": "armor"
     }
   },
   "unlocks": {
@@ -255,6 +553,35 @@
       "cost": 300,
       "highest": 3,
       "benefit": "180 damage per shot with a slow firing cycle."
+    },
+    "emp": {
+      "name": "EMP Projectiles",
+      "cost": 360,
+      "highest": 6,
+      "requires": {
+        "ammo_standard": 1
+      },
+      "benefit": "Disrupts movement, attacks, stealth and shield emitters. Low damage; bosses resist disruption; 2 units/shot."
+    },
+    "cryo": {
+      "name": "Cryo Rounds",
+      "cost": 480,
+      "highest": 11,
+      "requires": {
+        "emp": 1,
+        "ammo_emp": 1
+      },
+      "benefit": "Slows fast targets for automatic crossfire. Reduced damage; resistant targets slow less; 2 units/shot."
+    },
+    "railgun": {
+      "name": "Railgun Projectiles",
+      "cost": 800,
+      "highest": 16,
+      "requires": {
+        "ammo_armor_piercing": 2,
+        "ammo_standard": 2
+      },
+      "benefit": "High velocity, hull penetration and multiple aligned hits. 6 units/shot, long firing cooldown, damage falls after penetration."
     }
   },
   "ammunition": {
@@ -265,7 +592,8 @@
       "fire_rate_multiplier": 1.0,
       "round_cost": 1,
       "splash_radius": 0,
-      "color": "82e8fc"
+      "color": "82e8fc",
+      "speed_multiplier": 1.0
     },
     "armor_piercing": {
       "name": "Armor Piercing",
@@ -274,7 +602,8 @@
       "fire_rate_multiplier": 0.75,
       "round_cost": 1,
       "splash_radius": 0,
-      "color": "efbd6b"
+      "color": "efbd6b",
+      "speed_multiplier": 1.0
     },
     "explosive": {
       "name": "Explosive",
@@ -283,7 +612,43 @@
       "fire_rate_multiplier": 1.0,
       "round_cost": 3,
       "splash_radius": 45,
-      "color": "ff857c"
+      "color": "ff857c",
+      "speed_multiplier": 1.0
+    },
+    "emp": {
+      "name": "EMP Projectiles",
+      "damage_multiplier": 0.35,
+      "armor_multiplier": 1.0,
+      "fire_rate_multiplier": 0.65,
+      "round_cost": 2,
+      "splash_radius": 22,
+      "color": "B29AFF",
+      "disable_duration": 0.7,
+      "speed_multiplier": 1.0
+    },
+    "cryo": {
+      "name": "Cryo Rounds",
+      "damage_multiplier": 0.5,
+      "armor_multiplier": 1.0,
+      "fire_rate_multiplier": 0.85,
+      "round_cost": 2,
+      "splash_radius": 0,
+      "color": "85DDEB",
+      "slow_factor": 0.7,
+      "status_duration": 1.5,
+      "speed_multiplier": 1.0
+    },
+    "railgun": {
+      "name": "Railgun Projectiles",
+      "damage_multiplier": 4.0,
+      "armor_multiplier": 1.4,
+      "fire_rate_multiplier": 0.15,
+      "round_cost": 6,
+      "splash_radius": 0,
+      "color": "D5E6FA",
+      "speed_multiplier": 2.2,
+      "penetration": 3,
+      "penetration_falloff": 0.78
     }
   },
   "abilities": {
@@ -331,6 +696,239 @@
       "wins": 0,
       "checkpoint": 5,
       "reward": 250
+    }
+  },
+  "projectile_technologies": {
+    "standard": {
+      "name": "Standard Rounds",
+      "role": "Balanced, inexpensive interception.",
+      "tradeoff": "Full 60-unit shared magazine; no control effect.",
+      "unlock_cost": 0,
+      "highest": 1,
+      "requires": {},
+      "tier_steps": {
+        "damage_multiplier": 0.08
+      },
+      "short": "STD"
+    },
+    "armor_piercing": {
+      "name": "Armor Piercing",
+      "role": "Concentrated hull damage; bypasses armor and shield aura.",
+      "tradeoff": "25% slower fire; no splash against swarms.",
+      "unlock_cost": 180,
+      "highest": 2,
+      "requires": {},
+      "tier_steps": {
+        "armor_multiplier": 0.2,
+        "speed_multiplier": 0.08
+      },
+      "short": "AP"
+    },
+    "explosive": {
+      "name": "High Explosive",
+      "role": "Blast damage for compact enemy groups.",
+      "tradeoff": "Consumes 3 magazine units per shot; reduced direct damage.",
+      "unlock_cost": 260,
+      "highest": 3,
+      "requires": {},
+      "tier_steps": {
+        "splash_radius": 6,
+        "damage_multiplier": 0.045
+      },
+      "short": "HE"
+    },
+    "emp": {
+      "name": "EMP Projectiles",
+      "role": "Disrupts movement, attacks, stealth and shield emitters.",
+      "tradeoff": "Low damage; bosses resist disruption; 2 units/shot.",
+      "unlock_cost": 360,
+      "highest": 6,
+      "requires": {
+        "ammo_standard": 1
+      },
+      "tier_steps": {
+        "disable_duration": 0.2,
+        "splash_radius": 4
+      },
+      "short": "EMP"
+    },
+    "cryo": {
+      "name": "Cryo Rounds",
+      "role": "Slows fast targets for automatic crossfire.",
+      "tradeoff": "Reduced damage; resistant targets slow less; 2 units/shot.",
+      "unlock_cost": 480,
+      "highest": 11,
+      "requires": {
+        "emp": 1,
+        "ammo_emp": 1
+      },
+      "tier_steps": {
+        "slow_factor": -0.05,
+        "status_duration": 0.35
+      },
+      "short": "CRYO"
+    },
+    "railgun": {
+      "name": "Railgun Projectiles",
+      "role": "High velocity, hull penetration and multiple aligned hits.",
+      "tradeoff": "6 units/shot, long firing cooldown, damage falls after penetration.",
+      "unlock_cost": 800,
+      "highest": 16,
+      "requires": {
+        "ammo_armor_piercing": 2,
+        "ammo_standard": 2
+      },
+      "tier_steps": {
+        "damage_multiplier": 0.35,
+        "penetration": 1,
+        "speed_multiplier": 0.15
+      },
+      "short": "RAIL"
+    }
+  },
+  "turret_specializations": {
+    "machine_gun": {
+      "rapid": {
+        "research": "spec_machine_gun_rapid",
+        "name": "Cycling Assembly",
+        "benefit": "Faster fire; less damage per round.",
+        "factors": {
+          "fire_rate": 0.12,
+          "damage": -0.04
+        },
+        "add": {}
+      },
+      "armor": {
+        "research": "spec_machine_gun_armor",
+        "name": "Hardened Feed",
+        "benefit": "Armor damage; slower firing.",
+        "factors": {
+          "fire_rate": -0.05
+        },
+        "add": {
+          "armor_multiplier": 0.3,
+          "armor_bypass": 0.2
+        }
+      }
+    },
+    "cannon": {
+      "impact": {
+        "research": "spec_cannon_impact",
+        "name": "Impact Chamber",
+        "benefit": "Higher impact; longer firing cycle.",
+        "factors": {
+          "damage": 0.18,
+          "fire_rate": -0.05
+        },
+        "add": {}
+      },
+      "blast": {
+        "research": "spec_cannon_blast",
+        "name": "Fragmentation",
+        "benefit": "Small splash; lower direct damage.",
+        "factors": {
+          "damage": -0.1
+        },
+        "add": {
+          "splash_radius": 14
+        }
+      }
+    },
+    "missile": {
+      "blast": {
+        "research": "spec_missile_blast",
+        "name": "Wide Warhead",
+        "benefit": "Larger splash; slower missile flight.",
+        "factors": {
+          "projectile_speed": -0.08
+        },
+        "add": {
+          "splash_radius": 12
+        }
+      },
+      "guidance": {
+        "research": "spec_missile_guidance",
+        "name": "Guidance Package",
+        "benefit": "Faster travel and lock; slightly lower damage.",
+        "factors": {
+          "projectile_speed": 0.25,
+          "acquisition_delay": -0.12,
+          "damage": -0.03
+        },
+        "add": {}
+      }
+    },
+    "laser": {
+      "sustained": {
+        "research": "spec_laser_sustained",
+        "name": "Thermal Capacitor",
+        "benefit": "More sustained DPS; longer acquisition.",
+        "factors": {
+          "damage": 0.16,
+          "acquisition_delay": 0.2
+        },
+        "add": {}
+      },
+      "shield": {
+        "research": "spec_laser_shield",
+        "name": "Shield Harmonics",
+        "benefit": "Bypasses shield protection; less hull damage.",
+        "factors": {
+          "damage": -0.05
+        },
+        "add": {
+          "shield_bypass": 0.3
+        }
+      }
+    },
+    "emp_tower": {
+      "radius": {
+        "research": "spec_emp_tower_radius",
+        "name": "Field Antenna",
+        "benefit": "Wider field; slightly shorter slow duration.",
+        "factors": {
+          "status_duration": -0.04
+        },
+        "add": {
+          "range": 20
+        }
+      },
+      "duration": {
+        "research": "spec_emp_tower_duration",
+        "name": "Disruption Coil",
+        "benefit": "Longer slow plus short disable; shorter range.",
+        "factors": {
+          "range": -0.04
+        },
+        "add": {
+          "status_duration": 0.5,
+          "disable_duration": 0.25
+        }
+      }
+    },
+    "heavy_aa": {
+      "precision": {
+        "research": "spec_heavy_aa_precision",
+        "name": "Precision Breech",
+        "benefit": "Higher damage; tighter required firing alignment.",
+        "factors": {
+          "damage": 0.22,
+          "firing_arc_degrees": -0.1
+        },
+        "add": {}
+      },
+      "armor": {
+        "research": "spec_heavy_aa_armor",
+        "name": "Penetrator Sabot",
+        "benefit": "Armored damage and bypass; lower ordinary damage.",
+        "factors": {
+          "damage": -0.06
+        },
+        "add": {
+          "armor_multiplier": 0.4,
+          "armor_bypass": 0.2
+        }
+      }
     }
   }
 }

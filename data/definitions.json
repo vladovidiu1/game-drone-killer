@@ -10781,6 +10781,12 @@
           "delay": 1.4,
           "warning": 0.35
         }
+      },
+      "resistances": {
+        "armor": 0.0,
+        "shield": 0,
+        "emp": 0,
+        "cryo": 0
       }
     },
     "assault": {
@@ -10791,7 +10797,13 @@
       "reward": 20,
       "color": "e8b968",
       "size": 1.2,
-      "armored": true
+      "armored": true,
+      "resistances": {
+        "armor": 0.0,
+        "shield": 0,
+        "emp": 0,
+        "cryo": 0
+      }
     },
     "heavy": {
       "name": "Heavy Drone",
@@ -10804,6 +10816,12 @@
       "armored": true,
       "ai": {
         "armor_reduction": 0.2
+      },
+      "resistances": {
+        "armor": 0.2,
+        "shield": 0,
+        "emp": 0,
+        "cryo": 0.2
       }
     },
     "shield": {
@@ -10818,6 +10836,12 @@
       "ai": {
         "aura_radius": 125,
         "shield_reduction": 0.55
+      },
+      "resistances": {
+        "armor": 0.0,
+        "shield": 0,
+        "emp": 0,
+        "cryo": 0
       }
     },
     "emp": {
@@ -10836,6 +10860,12 @@
         "windup": 1.8,
         "disable_time": 2.5,
         "initial_delay": 0.6
+      },
+      "resistances": {
+        "armor": 0.0,
+        "shield": 0,
+        "emp": 0.25,
+        "cryo": 0
       }
     },
     "bomber": {
@@ -10856,6 +10886,12 @@
           "warning": 0.35
         },
         "armor_reduction": 0.15
+      },
+      "resistances": {
+        "armor": 0.15,
+        "shield": 0,
+        "emp": 0,
+        "cryo": 0
       }
     },
     "sniper": {
@@ -10874,6 +10910,12 @@
         "windup": 2.2,
         "disable_time": 3.5,
         "initial_delay": 0.6
+      },
+      "resistances": {
+        "armor": 0.0,
+        "shield": 0,
+        "emp": 0,
+        "cryo": 0
       }
     },
     "carrier": {
@@ -10895,6 +10937,12 @@
         ],
         "support_limit": 6,
         "armor_reduction": 0.25
+      },
+      "resistances": {
+        "armor": 0.25,
+        "shield": 0,
+        "emp": 0,
+        "cryo": 0.2
       }
     },
     "stealth": {
@@ -10909,6 +10957,12 @@
       "ai": {
         "cloak_period": 6,
         "cloak_duration": 3
+      },
+      "resistances": {
+        "armor": 0.0,
+        "shield": 0,
+        "emp": 0,
+        "cryo": 0
       }
     },
     "assault_carrier": {
@@ -10992,6 +11046,12 @@
         "overload_damage": 350,
         "overload_interval": 2.5,
         "silhouette": "carrier"
+      },
+      "resistances": {
+        "armor": 0.0,
+        "shield": 0,
+        "emp": 0.75,
+        "cryo": 0.65
       }
     },
     "emp_warship": {
@@ -11075,6 +11135,12 @@
         "overload_damage": 350,
         "overload_interval": 2.5,
         "silhouette": "warship"
+      },
+      "resistances": {
+        "armor": 0.0,
+        "shield": 0,
+        "emp": 0.75,
+        "cryo": 0.65
       }
     },
     "border_guardian": {
@@ -11158,6 +11224,12 @@
         "overload_damage": 350,
         "overload_interval": 2.5,
         "silhouette": "guardian"
+      },
+      "resistances": {
+        "armor": 0.0,
+        "shield": 0,
+        "emp": 0.75,
+        "cryo": 0.65
       }
     },
     "factory_ship": {
@@ -11241,6 +11313,12 @@
         "overload_damage": 350,
         "overload_interval": 2.5,
         "silhouette": "factory"
+      },
+      "resistances": {
+        "armor": 0.0,
+        "shield": 0,
+        "emp": 0.75,
+        "cryo": 0.65
       }
     },
     "hive_core": {
@@ -11327,6 +11405,12 @@
         "overload_damage": 350,
         "overload_interval": 2.5,
         "silhouette": "hive"
+      },
+      "resistances": {
+        "armor": 0.0,
+        "shield": 0,
+        "emp": 0.75,
+        "cryo": 0.65
       }
     }
   },

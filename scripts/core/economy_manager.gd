@@ -45,6 +45,8 @@ func purchase_state(id: String) -> Dictionary:
   reason = "MAXIMUM" if is_upgrade else "UNLOCKED"
  elif int(SaveManager.state.highest) < int(item.highest):
   reason = "Requires highest mission %d" % int(item.highest)
+ elif not prerequisites_met(item.get("requires",{})):
+  reason = "Requires "+prerequisite_text(item.get("requires",{}))
  elif int(SaveManager.state.credits) < cost:
   reason = "Insufficient War Credits (%d short)" % (cost-int(SaveManager.state.credits))
  return {"allowed":reason == "Available","reason":reason,"cost":cost,"level":level}
@@ -57,6 +59,9 @@ func purchase(id: String, expected_level: int) -> bool:
  SaveManager.state.credits -= int(offer.cost)
  if SaveManager.catalog.upgrades.has(id):
   SaveManager.state.research[id] = expected_level+1
+  var item: Dictionary = SaveManager.catalog.upgrades[id]
+  if expected_level == 0 and item.has("specialization_for") and not SaveManager.state.turret_specializations.has(str(item.specialization_for)):
+   SaveManager.state.turret_specializations[str(item.specialization_for)] = str(item.branch)
  else:
   SaveManager.state.unlocks.append(id)
  if not SaveManager.persist():
@@ -71,6 +76,10 @@ func equip_ammunition(id: String) -> bool:
  if SaveManager.state.equipped_ammo == id:
   return true
  var previous := SaveManager.state.duplicate(true)
+ if not SaveManager.state.ammo_loadout.has(id):
+  if SaveManager.state.ammo_loadout.size() >= 3:
+   return false
+  SaveManager.state.ammo_loadout.append(id)
  SaveManager.state.equipped_ammo = id
  if not SaveManager.persist():
   SaveManager.state = previous
@@ -103,8 +112,54 @@ func grant_objectives() -> int:
  return reward
 
 func automatic_stats(kind: String) -> Dictionary:
- var stats: Dictionary = CampaignManager.turrets[kind].duplicate(true)
+ var stats: Dictionary = preload("res://scripts/core/weapon_technology.gd").turret(kind,SaveManager.state.get("research",{}),SaveManager.state.get("turret_specializations",{}))
  stats.damage *= (1.0+int(SaveManager.state.get("damage_level",0))*float(CampaignManager.combat.permanent_damage_step))*(1.0+modifier("turret_damage"))
  stats.range *= 1.0+modifier("turret_range")
  stats.fire_rate *= 1.0+modifier("turret_rate")
  return stats
+
+func prerequisites_met(requirements: Dictionary) -> bool:
+ for id in requirements:
+  var level := research_level(str(id)) if SaveManager.catalog.upgrades.has(id) else (1 if unlocked(str(id)) else 0)
+  if level < int(requirements[id]):
+   return false
+ return true
+
+func prerequisite_text(requirements: Dictionary) -> String:
+ var labels: PackedStringArray = []
+ for id in requirements:
+  var item: Dictionary = SaveManager.catalog.upgrades.get(id,SaveManager.catalog.unlocks.get(id,{}))
+  labels.append(str(item.get("name",id))+" L"+str(requirements[id]))
+ return ", ".join(labels) if not labels.is_empty() else "None"
+
+func set_loadout(ids: Array) -> bool:
+ if not SaveManager.has_campaign() or ids.is_empty() or ids.size() > 3:
+  return false
+ var unique: Array = []
+ for id in ids:
+  if not id is String or not SaveManager.catalog.ammunition.has(id) or not unlocked(id) or unique.has(id):
+   return false
+  unique.append(id)
+ var previous := SaveManager.state.duplicate(true)
+ SaveManager.state.ammo_loadout = unique
+ if not unique.has(SaveManager.state.equipped_ammo):
+  SaveManager.state.equipped_ammo = unique[0]
+ if not SaveManager.persist():
+  SaveManager.state = previous
+  return false
+ return true
+
+func select_specialization(kind: String, branch: String) -> bool:
+ if not SaveManager.has_campaign() or not SaveManager.catalog.turret_specializations.has(kind):
+  return false
+ if not branch.is_empty():
+  var branches: Dictionary = SaveManager.catalog.turret_specializations[kind]
+  if not branches.has(branch) or research_level(str(branches[branch].research)) < 1:
+   return false
+ var previous := SaveManager.state.duplicate(true)
+ SaveManager.state.turret_specializations[kind] = branch
+ if not SaveManager.persist():
+  SaveManager.state = previous
+  return false
+ balance_changed.emit()
+ return true

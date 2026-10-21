@@ -21,6 +21,7 @@ func run() -> void:
    SaveManager.state.frontline = id
    SaveManager.state.highest = id
    SaveManager.state.unlocks = ["armor_piercing","explosive","laser","emp_tower","heavy_aa"] if id >= 6 else []
+   SaveManager.state.ammo_loadout = ["standard","armor_piercing","explosive"] if id >= 6 else ["standard"]
    SaveManager.state.equipped_ammo = "armor_piercing" if id >= 6 else "standard"
    var tier := mini(5,id/5)
    for key in SaveManager.state.research:

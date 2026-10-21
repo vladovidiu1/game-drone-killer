@@ -77,6 +77,8 @@ The original G1 set of five 1536×1024 RGBA PNGs costs approximately 40 MiB of G
 
 M1 retains this art direction and adds short orange propulsion arcs before/during Scout/Bomber acceleration. They are threat cues driven by existing enemy state; do not animate collision positions in presentation. Automatic weapon heads now follow actual bounded tracking rotation. There is no combat speed selector; temporary tactical build remains 0.25x. See [M1 evidence](docs/M1_BALANCE.md).
 
+M2 adds original SVG projectile cutaways for research and EMP/Cryo/Rail slugs, existing Standard/AP/HE variations and bounded electric/frost/penetration impacts. Keep six technologies visually distinct at phone scale; reserve fireball blasts for explosive hits. Five Arsenal tabs and wrapping/clipped research copy must fit native safe areas. See [M2 system and art scope](docs/WEAPON_RESEARCH.md).
+
 ## Graphics presets and draw order (G6)
 
 The canonical policy is `scripts/visual/graphics_profile.gd`, using `assets/effects/quality.json` and the existing validated schema-v3 `effects_quality` setting. Medium remains the default. Settings provides three 54px native touch buttons, with explicit save-error rollback. Presets apply to the next deployed mission; menu atmosphere reads the selected preset when composed.

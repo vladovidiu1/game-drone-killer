@@ -14,6 +14,8 @@ func _ready() -> void:
 
 func run() -> void:
  SaveManager.new_campaign()
+ SaveManager.state.unlocks = ["laser","emp_tower","heavy_aa","armor_piercing","explosive"]
+ SaveManager.state.ammo_loadout = ["standard","armor_piercing","explosive"]
  var battle := preload("res://scenes/gameplay.tscn").instantiate()
  add_child(battle)
  battle.set_physics_process(false)
@@ -50,6 +52,7 @@ func run() -> void:
  check(CampaignManager.enemies == originals,"Enemy definitions remain byte-equivalent data")
  battle.credits = 15000
  SaveManager.state.unlocks = ["laser","emp_tower","heavy_aa","armor_piercing","explosive"]
+ SaveManager.state.ammo_loadout = ["standard","armor_piercing","explosive"]
  var gun_ids: Array[String] = []
  for kind in CampaignManager.turrets:
   battle.select_slot(0)

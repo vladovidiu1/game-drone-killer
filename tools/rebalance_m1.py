@@ -3,6 +3,11 @@ from pathlib import Path
 import json, math
 root=Path(__file__).resolve().parents[1]
 data=json.loads((root/'docs/m1/baseline_definitions.json').read_text())
+# M2's additive enemy resistance definitions must survive an intentional M1 rebuild.
+current=json.loads((root/'data/definitions.json').read_text())
+for key,unit in current['enemies'].items():
+ if 'resistances' in unit and key in data['enemies']:
+  data['enemies'][key]['resistances']=unit['resistances']
 data['balance']={
  'version':'M1',
  'movement_multiplier':1.5,

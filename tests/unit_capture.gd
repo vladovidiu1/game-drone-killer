@@ -66,6 +66,7 @@ func run() -> void:
  SaveManager.state.frontline = 25
  SaveManager.state.highest = 25
  SaveManager.state.unlocks = ["laser","emp_tower","heavy_aa","armor_piercing","explosive"]
+ SaveManager.state.ammo_loadout = ["standard","armor_piercing","explosive"]
  app = preload("res://scenes/main.tscn").instantiate()
  add_child(app)
  await get_tree().process_frame

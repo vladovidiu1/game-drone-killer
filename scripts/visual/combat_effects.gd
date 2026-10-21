@@ -105,12 +105,23 @@ func trail(point: Vector2, heading: Vector2, kind: String, tint: Color) -> void:
  if kind == "missile":
   particle("smoke",point-heading*16,Vector2(0,-8),.65,12,Color("9c9b96"))
   particle("exhaust",point-heading*18,-heading*13,.10,17,Color("ffad67"))
- elif kind == "armor_piercing":
+ elif kind in ["armor_piercing","railgun"]:
   particle("streak",point,-heading*90,.12,26,tint)
+ elif kind == "cryo":
+  particle("spark",point,Vector2(0,-10),.2,3,tint)
+ elif kind == "emp":
+  particle("light",point,Vector2.ZERO,.07,8,tint)
  elif kind == "explosive":
   particle("smoke",point,Vector2(0,-9),.3,6,Color("c8b293"))
 
 func impact(point: Vector2, kind: String, tint: Color, radius: float, critical: bool) -> void:
+ if kind == "emp":
+  pulse(point,maxf(22,radius),tint)
+ elif kind == "cryo":
+  particle("area",point,Vector2.ZERO,.3,22,tint)
+  burst(point,4,40,tint)
+ elif kind == "railgun":
+  particle("streak",point,Vector2.UP*100,.16,50,tint)
  var heavy := kind in ["cannon","heavy_aa","missile","explosive"]
  if kind in ["machine_gun","cannon","heavy_aa","missile"]:
   tint = Color("ffcc8c")

@@ -21,7 +21,7 @@ func apply_disable(duration: float) -> void:
 func configure(owner_battle: Node2D, type: String) -> void:
  battle = owner_battle
  kind = type
- definition = CampaignManager.turrets[kind]
+ definition = preload("res://scripts/core/weapon_technology.gd").turret(kind,battle.research_levels,battle.specializations)
  art = preload("res://scripts/visual/unit_visual.gd").new()
  art.configure(str(ASSETS.catalog.turret_aliases[kind]))
  add_child(art)
@@ -74,13 +74,15 @@ func tick(delta: float) -> void:
   if acquisition_remaining <= 0 and aligned:
    var mode := str(definition.get("mode","projectile"))
    if mode == "laser":
-    target.hit(damage_value()*delta*fire_rate_value()/float(definition.fire_rate))
+    target.hit(damage_value()*delta*fire_rate_value()/float(definition.fire_rate),false,false,Vector2.INF,definition)
     muzzle = 0.06
    if cooldown <= 0:
     if mode == "emp":
      for enemy in battle.drones.get_children():
       if not enemy.ended and enemy.position.distance_to(position) <= range_value():
        enemy.apply_slow(float(definition.slow_factor),float(definition.status_duration))
+       if float(definition.disable_duration) > 0:
+        enemy.apply_disable(float(definition.disable_duration))
      battle.view.effect(position,"pulse",range_value(),Color(str(definition.color)))
     elif mode != "laser":
      battle.launch_projectile(self,target)

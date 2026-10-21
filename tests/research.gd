@@ -49,16 +49,19 @@ func run() -> void:
  SaveManager.state.highest = 3
  SaveManager.persist()
  for id in SaveManager.catalog.upgrades:
+  if SaveManager.catalog.upgrades[id].costs.size() != 5:
+   continue
   for level in range(EconomyManager.research_level(id),5):
    check(EconomyManager.purchase(id,level),"purchase %s level %d" % [id,level+1])
   check(not EconomyManager.purchase(id,5),"%s cannot exceed five levels" % id)
  # Prices are intentionally meaningful: refill the fixture bank only between test categories.
  SaveManager.state.credits = 10000
  SaveManager.persist()
- for id in SaveManager.catalog.unlocks:
+ for id in ["armor_piercing","explosive","laser","emp_tower","heavy_aa"]:
   check(EconomyManager.purchase(id,0),"research unlocks "+id)
   balance = SaveManager.state.credits
   check(not EconomyManager.purchase(id,0) and SaveManager.state.credits == balance,"unlock cannot be purchased twice: "+id)
+ check(EconomyManager.set_loadout(["standard","armor_piercing","explosive"]),"Legacy ammunition is explicitly equipped before deployment")
  var stats := EconomyManager.primary_stats()
  check(is_equal_approx(float(stats.damage),18.75),"five damage levels add 25% to existing primary damage")
  check(is_equal_approx(float(stats.fire_rate),7.2),"five fire-rate levels add 20%")
@@ -227,6 +230,7 @@ func run() -> void:
  for id in SaveManager.catalog.unlocks:
   SaveManager.state.unlocks.append(id)
  SaveManager.state.damage_level = 0
+ SaveManager.state.ammo_loadout = ["standard","armor_piercing","explosive"]
  SaveManager.state.equipped_ammo = "armor_piercing"
  SaveManager.persist()
  var retained := SaveManager.state.duplicate(true)

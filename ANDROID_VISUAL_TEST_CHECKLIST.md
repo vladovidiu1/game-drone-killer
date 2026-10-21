@@ -90,3 +90,13 @@ Cover at least one lower-spec Android device, one mid-range Adreno device and on
 - [ ] Real victory, real defeat/retreat, checkpoint floor, retry, final boss/campaign completion and replay. Art/VFX never alter reward or collision behavior.
 
 Release review must retain device evidence, close blocking readability/input/render errors, and obtain final art approval. Passing this desktop audit alone does not complete Android QA.
+
+
+## M2 additions — still pending physical hardware
+
+- [ ] Open all five Arsenal tabs at device safe areas; scroll each technology/branch to its unlock, next-tier and equip actions. Confirm long prerequisites never expand content outside the viewport.
+- [ ] Equip 1–3 researched types, remove/reorder slots, reject a fourth, restart app and deploy the saved loadout. Check legacy AP/HE save migration on a disposable QA copy.
+- [ ] Aim with one finger and hold FIRE with another for Standard/AP/HE/EMP/Cryo/Rail; tap another equipped chip without stealing aim or firing a world shot. Release/cancel/background never leaves FIRE stuck.
+- [ ] Verify shared units (1/1/3/2/2/6), partial-magazine reload, empty-magazine reload and long Rail cooldown. Switching must not refill units, erase heat/recoil or skip cooldown/reload.
+- [ ] Check electric/frost/rail cues, large direct EMP hits, per-target rail penetration/falloff and boss resistance. Review all 12 specializations with real waves and primary support.
+- [ ] Profile worst-case splash/penetration/control combinations and long-session memory/thermals. Current Linux captures are functional evidence only, not an Android FPS or human-balance result.

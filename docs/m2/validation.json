@@ -1,0 +1,159 @@
+{
+  "date": "2026-10-21",
+  "godot": "4.6.3 stable",
+  "assertions": 9067,
+  "suite_invocations": 26,
+  "failures": 0,
+  "results": [
+    {
+      "suite": "M1 MECHANICS",
+      "assertions": 46,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT",
+      "assertions": 40,
+      "failures": 0
+    },
+    {
+      "suite": "HYBRID",
+      "assertions": 55,
+      "failures": 0
+    },
+    {
+      "suite": "SMOKE",
+      "assertions": 42,
+      "failures": 0
+    },
+    {
+      "suite": "SMOKE",
+      "assertions": 4,
+      "failures": 0
+    },
+    {
+      "suite": "SAVE/RULES",
+      "assertions": 38,
+      "failures": 0
+    },
+    {
+      "suite": "CAMPAIGN",
+      "assertions": 43,
+      "failures": 0
+    },
+    {
+      "suite": "CAMPAIGN",
+      "assertions": 5,
+      "failures": 0
+    },
+    {
+      "suite": "RESEARCH",
+      "assertions": 187,
+      "failures": 0
+    },
+    {
+      "suite": "RESEARCH",
+      "assertions": 4,
+      "failures": 0
+    },
+    {
+      "suite": "WEAPON RESEARCH",
+      "assertions": 1424,
+      "failures": 0
+    },
+    {
+      "suite": "WEAPON RESEARCH",
+      "assertions": 3,
+      "failures": 0
+    },
+    {
+      "suite": "GRAPHICS AUDIT",
+      "assertions": 810,
+      "failures": 0
+    },
+    {
+      "suite": "GRAPHICS AUDIT",
+      "assertions": 2,
+      "failures": 0
+    },
+    {
+      "suite": "TACTICAL UI",
+      "assertions": 193,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT VFX",
+      "assertions": 310,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT VFX",
+      "assertions": 2,
+      "failures": 0
+    },
+    {
+      "suite": "VISUAL FOUNDATION",
+      "assertions": 476,
+      "failures": 0
+    },
+    {
+      "suite": "UNIT VISUALS",
+      "assertions": 195,
+      "failures": 0
+    },
+    {
+      "suite": "ENVIRONMENTS",
+      "assertions": 946,
+      "failures": 0
+    },
+    {
+      "suite": "ENVIRONMENTS",
+      "assertions": 2,
+      "failures": 0
+    },
+    {
+      "suite": "CATALOG",
+      "assertions": 3926,
+      "failures": 0
+    },
+    {
+      "suite": "ENEMY AI",
+      "assertions": 88,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "assertions": 184,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "assertions": 31,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "assertions": 11,
+      "failures": 0
+    }
+  ],
+  "technology_impact_matrix": {
+    "technologies": 6,
+    "levels_including_base": 4,
+    "archetypes": 14,
+    "real_swept_impact_cases": 336,
+    "critical_levels": [
+      1,
+      3
+    ]
+  },
+  "native_captures": 25,
+  "native_failures": 0,
+  "connected_combat_records_unchanged": 28,
+  "endgame_comparison_records_unchanged": 2,
+  "mission_definitions_unchanged": 25,
+  "physical_android_tested": false,
+  "data_hashes": {
+    "data/definitions.json": "55ac7ea5b7935bf0f58e39b4994a01096904c806d5a5893a858f9a4e2488f22c",
+    "data/progression.json": "cfe19f6d74b876811b51846dc3f65d593907229bc075dc3a48f12eca610e320c"
+  }
+}

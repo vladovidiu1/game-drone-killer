@@ -39,11 +39,16 @@ func setup(simulation: Node2D) -> void:
  var types := HBoxContainer.new()
  types.add_theme_constant_override("separation",4)
  add_child(types)
- for pair in [["standard","STD"],["armor_piercing","AP"],["explosive","EXP"]]:
-  var button := UI.button(str(pair[1]),_select.bind(str(pair[0])),Vector2(85,44))
+ var ids: Array = battle.player_turret.loadout.duplicate()
+ # Empty slots retain labeled legacy placeholders; no fourth combat control.
+ for id in ["standard","armor_piercing","explosive"]:
+  if ids.size() < 3 and not ids.has(id):
+   ids.append(id)
+ for id in ids:
+  var button := UI.button(str(SaveManager.catalog.projectile_technologies[id].short),_select.bind(str(id)),Vector2(85,44))
   button.add_theme_font_size_override("font_size",14)
   types.add_child(button)
-  ammo_buttons[pair[0]] = button
+  ammo_buttons[id] = button
  battle.status_changed.connect(refresh)
  refresh()
 
@@ -55,8 +60,8 @@ func refresh() -> void:
  var reloading: bool = cannon.reload_remaining > 0
  for id in ammo_buttons:
   var button: Button = ammo_buttons[id]
-  button.disabled = battle.paused or battle.finished or reloading or not EconomyManager.unlocked(id) or cannon.ammunition_type == id
-  button.text = ({"standard":"STD","armor_piercing":"AP","explosive":"EXP"}[id]+(" ✓" if cannon.ammunition_type == id else "")) if EconomyManager.unlocked(id) else "LOCKED"
+  button.disabled = battle.paused or battle.finished or reloading or not cannon.loadout.has(id) or cannon.ammunition_type == id
+  button.text = (str(SaveManager.catalog.projectile_technologies[id].short)+(" ✓" if cannon.ammunition_type == id else "")) if cannon.loadout.has(id) else "EMPTY"
  ammo_label.text = "RELOAD • %.1fs" % cannon.reload_remaining if reloading else "PRIMARY / %02d : %02d" % [cannon.ammo,int(cannon.definition.magazine_size)]
  progress.value = cannon.reload_progress()*100 if reloading else 100.0*cannon.ammo/int(cannon.definition.magazine_size)
  fire_button.disabled = battle.paused or battle.finished

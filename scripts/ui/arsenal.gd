@@ -19,11 +19,12 @@ func _ready() -> void:
  var tabs := HBoxContainer.new()
  tabs.add_theme_constant_override("separation",8)
  add_child(tabs)
- for item in [["primary","PRIMARY CANNON"],["automatic","AUTOMATIC TURRETS"],["research","RESEARCH"],["abilities","SPECIAL ABILITIES"]]:
+ for item in [["primary","PRIMARY CANNON"],["projectiles","PROJECTILES"],["automatic","TURRETS"],["research","RESEARCH"],["abilities","ABILITIES"]]:
   var button := UI.button(str(item[1]),select_tab.bind(str(item[0])),Vector2(0,54))
+  button.clip_text = true
   button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
   button.add_theme_font_size_override("font_size",14)
-  button.icon = UI.icon({"primary":"target","automatic":"arsenal","research":"research","abilities":"ability"}[str(item[0])])
+  button.icon = UI.icon({"primary":"target","projectiles":"ammo","automatic":"arsenal","research":"research","abilities":"ability"}[str(item[0])])
   tabs.add_child(button)
   tab_buttons[item[0]] = button
  feedback = UI.label("Choose a research card to review and confirm its purchase.",17,UI.MUTED)
@@ -75,11 +76,17 @@ func refresh() -> void:
    var ability: Dictionary = SaveManager.catalog.abilities[id]
    paragraph("%s / %d Battle Credits • %.1fs cooldown • %.1fs duration" % [ability.name,int(ability.cost),float(ability.cooldown)*(1.0+EconomyManager.modifier(str(ability.mastery))),float(ability.duration)],19,UI.CYAN)
   paragraph("Emergency Repair restores %d HP. EMP disables drones; Overclock boosts both combat styles by 50%%. Abilities start available and are purchased per activation using Battle Credits." % int(float(SaveManager.catalog.abilities.repair.heal)*(1.0+EconomyManager.modifier("repair_efficiency"))))
- else:
+ elif current_tab == "research":
   paragraph("CURRENT BASE / %d extra HP • +%d starting Battle Credits • +%.0f%% turret damage • +%.0f%% range • +%.0f%% rate • +%.0f%% repair" % [int(EconomyManager.modifier("base_health")),int(EconomyManager.modifier("starting_credits")),EconomyManager.modifier("turret_damage")*100,EconomyManager.modifier("turret_range")*100,EconomyManager.modifier("turret_rate")*100,EconomyManager.modifier("repair_efficiency")*100],19,UI.CYAN)
   for id in SaveManager.catalog.objectives:
    var objective: Dictionary = SaveManager.catalog.objectives[id]
    paragraph("%s: %s • %d War Credits • %s" % [objective.name,objective.description,int(objective.reward),"CLAIMED" if SaveManager.state.get("claimed_objectives",[]).has(id) else "awarded on eligible victory"])
+ if current_tab == "projectiles":
+  var technology := preload("res://scripts/ui/projectile_research.gd").new()
+  body.add_child(technology)
+  technology.purchase_requested.connect(confirm)
+  technology.changed.connect(refresh)
+  return
  grid = GridContainer.new()
  grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  grid.columns = 2 if size.x >= 980 else 1
@@ -90,9 +97,6 @@ func refresh() -> void:
   var upgrade: Dictionary = SaveManager.catalog.upgrades[id]
   if upgrade.tab == current_tab:
    add_card(grid,str(id),upgrade)
- if current_tab == "primary":
-  for id in ["armor_piercing","explosive"]:
-   add_card(grid,str(id),SaveManager.catalog.unlocks[id])
  if current_tab == "automatic":
   for id in CampaignManager.turrets:
    var turret: Dictionary = EconomyManager.automatic_stats(str(id))
@@ -114,7 +118,27 @@ func refresh() -> void:
     text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     stack.add_child(text)
 
-func add_card(grid: GridContainer, id: String, item: Dictionary, extra: String = "") -> void:
+  for kind in SaveManager.catalog.turret_specializations:
+   var reset := UI.button(str(CampaignManager.turrets[kind].name)+" / Standard tuning",_branch.bind(str(kind),""))
+   body.add_child(reset)
+   for branch in SaveManager.catalog.turret_specializations[kind]:
+    var entry: Dictionary = SaveManager.catalog.turret_specializations[kind][branch]
+    var id := str(entry.research)
+    var preview_levels: Dictionary = SaveManager.state.get("research",{}).duplicate(true)
+    preview_levels[id] = 3
+    var preview := preload("res://scripts/core/weapon_technology.gd").turret(str(kind),preview_levels,{kind:branch})
+    var summary := "%s / TIER 3: %.1f damage • %.2f rate • %.0f range\n%.0f splash • %.0f%% armor bypass • %.0f%% shield bypass\nOne branch per design; changes apply next deployment." % [CampaignManager.turrets[kind].name,float(preview.damage),float(preview.fire_rate),float(preview.range),float(preview.splash_radius),float(preview.armor_bypass)*100,float(preview.shield_bypass)*100]
+    var card := add_card(grid,id,SaveManager.catalog.upgrades[id],summary)
+    var selected: bool = SaveManager.state.get("turret_specializations",{}).get(kind,"") == branch
+    var equip := UI.button("EQUIPPED" if selected else "Equip branch",_branch.bind(str(kind),str(branch)))
+    equip.disabled = selected or EconomyManager.research_level(id) == 0
+    card.add_child(equip)
+
+func _branch(kind: String, branch: String) -> void:
+ feedback.text = "Specialization saved for next deployment." if EconomyManager.select_specialization(kind,branch) else (SaveManager.last_error if not SaveManager.last_error.is_empty() else "Research this branch first.")
+ refresh()
+
+func add_card(grid: GridContainer, id: String, item: Dictionary, extra: String = "") -> VBoxContainer:
  var panel := PanelContainer.new()
  panel.custom_minimum_size.x = 0
  panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -146,7 +170,9 @@ func add_card(grid: GridContainer, id: String, item: Dictionary, extra: String =
  text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  stack.add_child(text)
  var upgrade: bool = SaveManager.catalog.upgrades.has(id)
- stack.add_child(UI.label("Level %d / %d • Next: %s" % [int(offer.level),item.costs.size(),item.benefit] if upgrade else "Requirement: highest mission %d" % int(item.highest),16,UI.MUTED))
+ var level_label := UI.label("Level %d / %d • Next: %s" % [int(offer.level),item.costs.size(),item.benefit] if upgrade else "Requirement: highest mission %d" % int(item.highest),16,UI.MUTED)
+ level_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ stack.add_child(level_label)
  var levels := HBoxContainer.new()
  levels.add_theme_constant_override("separation",5)
  stack.add_child(levels)
@@ -159,8 +185,10 @@ func add_card(grid: GridContainer, id: String, item: Dictionary, extra: String =
   levels.add_child(pip)
  var purchase_text := str(offer.reason) if str(offer.reason) in ["MAXIMUM","UNLOCKED"] else "%d War Credits • %s" % [int(offer.cost),str(offer.reason)]
  var buy := UI.button(purchase_text,confirm.bind(id,int(offer.level)))
+ buy.clip_text = true
  buy.disabled = not bool(offer.allowed) or pending
  stack.add_child(buy)
+ return stack
 
 func confirm(id: String, expected_level: int) -> void:
  if pending:

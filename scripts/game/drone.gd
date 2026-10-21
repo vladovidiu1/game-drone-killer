@@ -19,6 +19,7 @@ var spawn_id := 0
 var hit_flash := 0.0
 var body_scale := 1.0
 var armored := false
+var resistances: Dictionary = {}
 var slow_remaining := 0.0
 var slow_factor := 1.0
 var disable_remaining := 0.0
@@ -37,6 +38,7 @@ func configure(data: Dictionary, path: Array, identity: int) -> void:
  tint = Color(data.color)
  body_scale = float(data.size)
  armored = bool(data.get("armored",false))
+ resistances = data.get("resistances",{}).duplicate(true)
  designation = "B" if str(data.get("name", "")) == "Bomber Drone" else ""
  if is_instance_valid(art):
   art.queue_free()
@@ -91,20 +93,21 @@ func tick(delta: float) -> void:
  queue_redraw()
 
 func apply_slow(factor: float, duration: float) -> void:
- slow_factor = minf(slow_factor,clampf(factor,0.05,1.0))
- slow_remaining = maxf(slow_remaining,duration)
+ var resistance := resistance_value("cryo")
+ slow_factor = minf(slow_factor,clampf(1.0-(1.0-factor)*(1.0-resistance),0.05,1.0))
+ slow_remaining = maxf(slow_remaining,duration*(1.0-resistance))
 
 func apply_disable(duration: float) -> void:
- disable_remaining = maxf(disable_remaining,duration)
+ disable_remaining = maxf(disable_remaining,duration*(1.0-resistance_value("emp")))
 
 func automatically_targetable() -> bool:
  return brain == null or not brain.cloaked()
 
-func hit(amount: float, manual: bool = false, armor_piercing: bool = false, point: Vector2 = Vector2.INF) -> void:
+func hit(amount: float, manual: bool = false, armor_piercing: bool = false, point: Vector2 = Vector2.INF, traits: Dictionary = {}) -> void:
  if ended or amount <= 0:
   return
  if brain != null:
-  amount *= brain.damage_multiplier(manual,armor_piercing,point)
+  amount *= brain.damage_multiplier(manual,armor_piercing,point,traits)
  health = maxf(0.0,health-amount)
  hit_flash = 0.12
  damaged.emit(position)
@@ -154,3 +157,6 @@ func _draw_ability() -> void:
    destination = brain.target.position
   if str(config.attack) != "spawn":
    draw_dashed_line(Vector2.ZERO,destination-position,Color(1,0.4,0.3,0.55),2,10)
+
+func resistance_value(id: String) -> float:
+ return clampf(float(resistances.get(id,0.0)),0.0,.9)

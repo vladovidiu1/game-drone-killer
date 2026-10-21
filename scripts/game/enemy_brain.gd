@@ -115,8 +115,11 @@ func weakpoint() -> Vector2:
   return enemy.position
  return enemy.position+Vector2(float(data.weakpoint[0]),float(data.weakpoint[1]))
 
-func damage_multiplier(manual: bool, armor_piercing: bool, point: Vector2) -> float:
- var multiplier := 1.0 if armor_piercing else 1.0-float(data.get("armor_reduction",0.0))
+func damage_multiplier(manual: bool, armor_piercing: bool, point: Vector2, traits: Dictionary = {}) -> float:
+ var armor_bypass := 1.0 if armor_piercing else clampf(float(traits.get("armor_bypass",0)),0,1)
+ var shield_bypass := 1.0 if armor_piercing else clampf(float(traits.get("shield_bypass",0)),0,1)
+ var armor: float = enemy.resistance_value("armor")
+ var multiplier := 1.0-armor*(1.0-armor_bypass)
  if boss:
   multiplier = float(settings().manual_hull_multiplier if manual else settings().automatic_hull_multiplier)
   multiplier *= 1.0-float(settings().armor_reduction)
@@ -125,13 +128,14 @@ func damage_multiplier(manual: bool, armor_piercing: bool, point: Vector2) -> fl
    multiplier = float(settings().weakpoint_multiplier)
    battle.weakpoint_hits += 1
    battle.view.effect(weakpoint(),"hit",24,Color("69ffff"))
- if not armor_piercing:
+ multiplier *= 1.0-enemy.resistance_value("shield")*(1.0-shield_bypass)
+ if shield_bypass < 1.0:
   for unit in battle.drones.get_children():
    if unit == enemy or unit.ended or unit.brain == null:
     continue
    var aura: Dictionary = unit.brain.data
    if aura.has("aura_radius") and unit.disable_remaining <= 0 and unit.position.distance_to(enemy.position) <= float(aura.aura_radius):
-    multiplier *= 1.0-float(aura.shield_reduction)
+    multiplier *= 1.0-float(aura.shield_reduction)*(1.0-shield_bypass)
     break
  return multiplier
 

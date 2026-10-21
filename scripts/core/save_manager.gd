@@ -20,7 +20,7 @@ func integer(value: Variant, fallback: int, low: int, high: int) -> int:
  return fallback
 
 func fresh_state() -> Dictionary:
- return {"version":VERSION,"frontline":1,"highest":1,"checkpoint":1,"checkpoints":[1],"credits":0,"damage_level":0,"wins":0,"records":{},"active_run":{},"last_result":{},"research":{},"unlocks":[],"equipped_ammo":"standard","claimed_objectives":[],"campaign_complete":false}
+ return {"version":VERSION,"frontline":1,"highest":1,"checkpoint":1,"checkpoints":[1],"credits":0,"damage_level":0,"wins":0,"records":{},"active_run":{},"last_result":{},"research":{},"unlocks":[],"equipped_ammo":"standard","weapon_schema":1,"ammo_loadout":["standard"],"turret_specializations":{},"claimed_objectives":[],"campaign_complete":false}
 
 func validate_campaign(value: Variant) -> Dictionary:
  if not value is Dictionary:
@@ -72,6 +72,29 @@ func validate_campaign(value: Variant) -> Dictionary:
  var ammo: Variant = value.get("equipped_ammo","standard")
  if ammo is String and catalog.ammunition.has(ammo) and (ammo == "standard" or result.unlocks.has(ammo)):
   result.equipped_ammo = ammo
+ # Additive weapon-schema migration keeps v1/v2/v3 campaign transactions intact.
+ var loadout: Variant = value.get("ammo_loadout")
+ result.ammo_loadout = []
+ if loadout is Array:
+  for id in loadout:
+   if result.ammo_loadout.size() < 3 and id is String and catalog.ammunition.has(id) and (id == "standard" or result.unlocks.has(id)) and not result.ammo_loadout.has(id):
+    result.ammo_loadout.append(id)
+ else:
+  # Old active preference plus the two legacy purchases retain their loadout.
+  result.ammo_loadout.append(result.equipped_ammo)
+  for id in ["standard","armor_piercing","explosive"]:
+   if result.ammo_loadout.size() < 3 and (id == "standard" or result.unlocks.has(id)) and not result.ammo_loadout.has(id):
+    result.ammo_loadout.append(id)
+ if result.ammo_loadout.is_empty():
+  result.ammo_loadout = ["standard"]
+ if not result.ammo_loadout.has(result.equipped_ammo):
+  result.equipped_ammo = result.ammo_loadout[0]
+ var choices: Variant = value.get("turret_specializations",{})
+ if choices is Dictionary:
+  for kind in catalog.turret_specializations:
+   var choice: Variant = choices.get(kind)
+   if choice is String and catalog.turret_specializations[kind].has(choice) and int(result.research.get(catalog.turret_specializations[kind][choice].research,0)) > 0:
+    result.turret_specializations[kind] = choice
  var active: Variant = value.get("active_run",{})
  if active is Dictionary and valid_token(active.get("id")):
   var mission_id := integer(active.get("mission_id"),0,0,25)

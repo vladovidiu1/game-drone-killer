@@ -83,6 +83,8 @@ Run `FRONTLINE_REPORT_DIR=/tmp/frontline-reports ./tests/run_checks.sh`. No test
 
 The machine-readable files `campaign_balance.json` and `campaign_comparison.json` contain duration, health, kills, manual shots/hits, core hits, ability executions, support spawns, environmental pulses, research and War balance. `BALANCE_RESULTS.md` summarizes the latest checked data. Tests control the input adapter; runtime code never aims or fires for the player.
 
+M2 adds optional projectile technologies and turret branches without changing these mission definitions, checkpoint rules or baseline connected combat results. See [M2 research and migration](WEAPON_RESEARCH.md).
+
 ## Remaining validation
 
 These runs establish valid data, connected completion, affordable progression and meaningful counter behavior. The assisted commander has precise targeting, instant build decisions and perfect timer knowledge. It is not evidence that humans will find every mission balanced or enjoyable. Early missions can still be won primarily with automatic fire; later boss cores make manual shooting substantially more efficient.

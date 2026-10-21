@@ -91,3 +91,14 @@
 - Guard stale/freed targets before typed function calls. Acquisition, bounded turn rate, firing alignment and stable threat switching are real deterministic limitations. Do not add random automatic misses or forced drone survival.
 - Burst movement uses an integral so partial disable/slow windows and simulation-step partitioning preserve travel distance. Keep manual aiming/fire exclusively input driven.
 - Run mechanics/full regression plus `tests/run_m1_balance.sh` for balance changes. Compare fixed-seed records and the earned-research connected campaign; document fixture research, funds, limitations and human/device testing separately. See `docs/M1_BALANCE.md`.
+
+
+## M2 weapon research
+
+- Follow `docs/WEAPON_RESEARCH.md`. Extend the existing ammo/projectile and EconomyManager/save paths, never create duplicate combat systems. Catalog costs/prerequisites/tier steps/specializations are in `data/progression.json`; enemy resistances in `data/definitions.json`.
+- Schema v3 gains additive `weapon_schema=1`, validated ordered 1–3 `ammo_loadout` and `turret_specializations`; preserve v1/v2/v3 migrations, legacy AP/HE purchases, state tokens and atomic rollback/backup recovery.
+- Snapshot ammo tiers/loadout and specialization at deployment, payload/criticals at firing. Shared magazine units and rail cooldown survive switching; switching never resets heat/recoil or bypasses reload. Only equipped slots appear as enabled combat chips.
+- Rail is a straight swept projectile with bounded distinct actor IDs/penetration and per-hit falloff; mark hit ownership before damage. Include the direct collision target in its own splash even when its center lies outside a small radius. EMP uses electrical pulses, not fireball blast art.
+- AP bypasses ordinary armor/shields; automatic armor/anti-shield branches use partial traits. Status duration/strength respects clamped enemy resistance and does not scale with critical damage. Keep boss core/phase rules intact.
+- Run the full runner with weapon-research/fresh-process suites. Native `tests/weapon_capture.tscn` uses the existing isolated graphics wrapper; injected confirmation touches must target the dialog's own viewport. Check all five tabs/long research copy on short/wide/tablet layouts. Physical Android/device difficulty validation remains separate.
+- `tools/build_projectile_vectors.py` owns the six authored SVG utility illustrations. Regenerate both manifests after asset changes. Keep fixture screenshots under `.gdignore`; never describe authored utility vectors as approved painted production art.

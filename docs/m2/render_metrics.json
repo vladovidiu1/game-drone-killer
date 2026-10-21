@@ -1,0 +1,202 @@
+[
+  {
+    "capture": "projectiles_locked",
+    "draw_calls": 43.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "projectiles_researched",
+    "draw_calls": 45.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "projectiles_railgun",
+    "draw_calls": 57.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "projectiles_1280x600",
+    "draw_calls": 57.0,
+    "size": [
+      1280,
+      600
+    ]
+  },
+  {
+    "capture": "projectiles_1024x768",
+    "draw_calls": 45.0,
+    "size": [
+      1024,
+      768
+    ]
+  },
+  {
+    "capture": "projectiles_1600x720",
+    "draw_calls": 57.0,
+    "size": [
+      1600,
+      720
+    ]
+  },
+  {
+    "capture": "turret_specialization",
+    "draw_calls": 79.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "standard_flight",
+    "draw_calls": 146.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "standard_impact",
+    "draw_calls": 144.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "standard_reload",
+    "draw_calls": 143.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "armor_piercing_flight",
+    "draw_calls": 148.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "armor_piercing_impact",
+    "draw_calls": 143.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "armor_piercing_reload",
+    "draw_calls": 142.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "explosive_flight",
+    "draw_calls": 146.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "explosive_impact",
+    "draw_calls": 150.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "explosive_reload",
+    "draw_calls": 149.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "emp_flight",
+    "draw_calls": 146.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "emp_impact",
+    "draw_calls": 168.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "emp_reload",
+    "draw_calls": 167.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "cryo_flight",
+    "draw_calls": 146.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "cryo_impact",
+    "draw_calls": 153.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "cryo_reload",
+    "draw_calls": 152.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "railgun_flight",
+    "draw_calls": 149.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "railgun_impact",
+    "draw_calls": 144.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "railgun_reload",
+    "draw_calls": 143.0,
+    "size": [
+      1280,
+      720
+    ]
+  }
+]

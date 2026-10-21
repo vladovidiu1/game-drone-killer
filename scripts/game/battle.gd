@@ -14,6 +14,7 @@ var mission_data: Dictionary
 var health := 1000
 var max_health := 1000
 var research_levels: Dictionary = {}
+var specializations: Dictionary = {}
 var abilities: Node
 var build_mode := false
 var credits := 0
@@ -64,6 +65,7 @@ func tick_environment(delta: float) -> void:
 func _ready() -> void:
  mission_data = CampaignManager.mission(mission_id)
  research_levels = SaveManager.state.get("research",{}).duplicate(true)
+ specializations = SaveManager.state.get("turret_specializations",{}).duplicate(true)
  max_health = int(mission_data.base_health)+int(EconomyManager.modifier("base_health",research_levels))
  health = max_health
  credits = int(mission_data.starting_credits)+int(EconomyManager.modifier("starting_credits",research_levels))
@@ -253,14 +255,15 @@ func resolve_impact(projectile: Node2D) -> void:
  impacts += 1
  view.combat_fx.impact(projectile.destination,projectile.visual_kind,projectile.tint,projectile.splash_radius,projectile.critical)
  if projectile.splash_radius > 0:
-  view.effect(projectile.destination,"blast",projectile.splash_radius,projectile.tint)
+  if projectile.visual_kind != "emp":
+   view.effect(projectile.destination,"blast",projectile.splash_radius,projectile.tint)
   for enemy in drones.get_children():
-   if not enemy.ended and enemy.position.distance_squared_to(projectile.destination) <= projectile.splash_radius*projectile.splash_radius:
-    enemy.hit(projectile.damage_for(enemy),projectile.manual and enemy == projectile.target,projectile.armor_multiplier > 1.0,projectile.precision_point(enemy))
+   if not enemy.ended and (enemy == projectile.target or enemy.position.distance_squared_to(projectile.destination) <= projectile.splash_radius*projectile.splash_radius):
+    projectile.apply_payload(enemy,projectile.manual and enemy == projectile.target)
     if projectile.manual:
      player_turret.notify_hit(projectile.critical)
  elif is_instance_valid(projectile.target) and not projectile.target.ended:
-  projectile.target.hit(projectile.damage_for(projectile.target),projectile.manual,projectile.armor_multiplier > 1.0,projectile.precision_point(projectile.target))
+  projectile.apply_payload(projectile.target,projectile.manual)
   if projectile.manual:
    player_turret.notify_hit(projectile.critical)
 

@@ -16,13 +16,19 @@ var shots_fired := 0
 var hits := 0
 var ammunition_type := "standard"
 var last_critical := false
+var loadout: Array = []
+var ammunition_profiles: Dictionary = {}
 var rng := RandomNumberGenerator.new()
 
 func configure(owner_battle: Node2D, data: Dictionary) -> void:
  battle = owner_battle
  definition = data
  rng.randomize()
- ammunition_type = str(SaveManager.state.get("equipped_ammo","standard"))
+ loadout = SaveManager.state.get("ammo_loadout",["standard"]).duplicate()
+ for id in loadout:
+  ammunition_profiles[id] = preload("res://scripts/core/weapon_technology.gd").ammunition(str(id),battle.research_levels)
+ var preferred := str(SaveManager.state.get("equipped_ammo","standard"))
+ ammunition_type = preferred if loadout.has(preferred) else str(loadout[0])
  var location: Array = battle.mission_data.get("player_position",definition.position)
  position = Vector2(float(location[0]),float(location[1]))
  ammo = int(definition.magazine_size)
@@ -32,13 +38,13 @@ func damage_value() -> float:
  return float(definition.damage)*float(ammunition().damage_multiplier)
 
 func ammunition() -> Dictionary:
- return SaveManager.catalog.ammunition[ammunition_type]
+ return ammunition_profiles[ammunition_type]
 
 func fire_rate_value() -> float:
  return float(definition.fire_rate)*float(ammunition().fire_rate_multiplier)*battle.abilities.fire_multiplier()
 
 func select_ammunition(id: String) -> bool:
- if battle.paused or battle.finished or reload_remaining > 0 or not SaveManager.catalog.ammunition.has(id) or not EconomyManager.unlocked(id):
+ if battle.paused or battle.finished or reload_remaining > 0 or not loadout.has(id):
   return false
  if not EconomyManager.equip_ammunition(id):
   return false
