@@ -1,0 +1,318 @@
+{
+  "version": 1,
+  "war": {
+    "first_clear": {
+      "1": 100,
+      "2": 120,
+      "3": 140,
+      "4": 160,
+      "5": 180,
+      "6": 200,
+      "7": 220,
+      "8": 240,
+      "9": 260,
+      "10": 280,
+      "11": 300,
+      "12": 320,
+      "13": 340,
+      "14": 360,
+      "15": 380,
+      "16": 400,
+      "17": 420,
+      "18": 440,
+      "19": 460,
+      "20": 480,
+      "21": 500,
+      "22": 520,
+      "23": 540,
+      "24": 560,
+      "25": 580
+    },
+    "replay_percent": 15,
+    "legacy_damage_costs": [
+      100,
+      175,
+      250,
+      325,
+      400
+    ]
+  },
+  "battle": {
+    "bounties": {
+      "scout": 7,
+      "assault": 13,
+      "heavy": 40,
+      "shield": 20,
+      "emp": 20,
+      "bomber": 27,
+      "sniper": 24,
+      "carrier": 34,
+      "stealth": 17,
+      "assault_carrier": 120,
+      "emp_warship": 120,
+      "border_guardian": 120,
+      "factory_ship": 120,
+      "hive_core": 120
+    },
+    "starting_credits": {
+      "1": 500,
+      "2": 550,
+      "3": 650,
+      "4": 650,
+      "5": 650,
+      "6": 770,
+      "7": 770,
+      "8": 770,
+      "9": 770,
+      "10": 770,
+      "11": 890,
+      "12": 890,
+      "13": 890,
+      "14": 890,
+      "15": 890,
+      "16": 1010,
+      "17": 1010,
+      "18": 1010,
+      "19": 1010,
+      "20": 1010,
+      "21": 1130,
+      "22": 1130,
+      "23": 1130,
+      "24": 1130,
+      "25": 1130
+    },
+    "construction": {
+      "machine_gun": 100,
+      "cannon": 200,
+      "missile": 350,
+      "laser": 250,
+      "emp_tower": 230,
+      "heavy_aa": 450
+    },
+    "upgrade_cost_multiplier": 0.65,
+    "support_bounty_percent": 50,
+    "ability_costs": {
+      "repair": 90,
+      "emp_blast": 120,
+      "overclock": 100
+    }
+  },
+  "research_costs": {
+    "cannon_damage": [
+      60,
+      115,
+      220,
+      385,
+      650
+    ],
+    "cannon_rate": [
+      70,
+      135,
+      245,
+      420,
+      705
+    ],
+    "magazine": [
+      60,
+      125,
+      225,
+      395,
+      665
+    ],
+    "reload": [
+      75,
+      140,
+      250,
+      435,
+      725
+    ],
+    "velocity": [
+      50,
+      105,
+      200,
+      345,
+      590
+    ],
+    "crit_chance": [
+      90,
+      170,
+      300,
+      515,
+      855
+    ],
+    "crit_damage": [
+      70,
+      135,
+      245,
+      420,
+      705
+    ],
+    "base_health": [
+      80,
+      150,
+      260,
+      435,
+      685
+    ],
+    "starting_credits": [
+      100,
+      185,
+      325,
+      545,
+      875
+    ],
+    "turret_damage": [
+      85,
+      160,
+      270,
+      460,
+      745
+    ],
+    "turret_range": [
+      75,
+      140,
+      245,
+      420,
+      675
+    ],
+    "turret_rate": [
+      90,
+      170,
+      295,
+      490,
+      800
+    ],
+    "repair_efficiency": [
+      60,
+      115,
+      210,
+      360,
+      610
+    ],
+    "repair_mastery": [
+      80,
+      145,
+      260,
+      440,
+      725
+    ],
+    "emp_mastery": [
+      95,
+      175,
+      305,
+      515,
+      840
+    ],
+    "overclock_mastery": [
+      95,
+      175,
+      305,
+      515,
+      840
+    ],
+    "ammo_standard": [
+      60,
+      145,
+      330
+    ],
+    "ammo_armor_piercing": [
+      90,
+      205,
+      450
+    ],
+    "ammo_explosive": [
+      100,
+      230,
+      495
+    ],
+    "ammo_emp": [
+      120,
+      265,
+      540
+    ],
+    "ammo_cryo": [
+      140,
+      315,
+      630
+    ],
+    "ammo_railgun": [
+      200,
+      435,
+      870
+    ],
+    "spec_machine_gun_rapid": [
+      120,
+      265,
+      570
+    ],
+    "spec_machine_gun_armor": [
+      120,
+      265,
+      570
+    ],
+    "spec_cannon_impact": [
+      120,
+      265,
+      570
+    ],
+    "spec_cannon_blast": [
+      120,
+      265,
+      570
+    ],
+    "spec_missile_blast": [
+      120,
+      265,
+      570
+    ],
+    "spec_missile_guidance": [
+      120,
+      265,
+      570
+    ],
+    "spec_laser_sustained": [
+      120,
+      265,
+      570
+    ],
+    "spec_laser_shield": [
+      120,
+      265,
+      570
+    ],
+    "spec_emp_tower_radius": [
+      120,
+      265,
+      570
+    ],
+    "spec_emp_tower_duration": [
+      120,
+      265,
+      570
+    ],
+    "spec_heavy_aa_precision": [
+      120,
+      265,
+      570
+    ],
+    "spec_heavy_aa_armor": [
+      120,
+      265,
+      570
+    ]
+  },
+  "unlock_costs": {
+    "armor_piercing": 180,
+    "explosive": 260,
+    "laser": 220,
+    "emp_tower": 250,
+    "heavy_aa": 300,
+    "emp": 360,
+    "cryo": 480,
+    "railgun": 800
+  },
+  "objective_rewards": {
+    "veteran": 60,
+    "chapter_five": 80
+  }
+}

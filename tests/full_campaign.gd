@@ -55,6 +55,12 @@ func aim() -> void:
    selected = enemy
    priority = score
  if selected != null:
+  # Counter the visible target rather than spending AP's slower fire on scouts.
+  if battle.player_turret.reload_remaining <= 0:
+   var armored: bool = selected.armored or selected.brain.boss
+   var desired := "armor_piercing" if armored and EconomyManager.unlocked("armor_piercing") else "standard"
+   if battle.player_turret.ammunition_type != desired:
+    battle.player_turret.select_ammunition(desired)
   var point: Vector2 = selected.brain.weakpoint() if selected.brain.boss else selected.position
   if not selected.brain.boss and selected.waypoint < selected.route.size():
    point += selected.position.direction_to(selected.route[selected.waypoint])*selected.speed*selected.position.distance_to(battle.player_turret.position)/850.0
@@ -82,6 +88,10 @@ func fight(id: int, defend: bool, manual: bool = true, expected_win: int = -1, b
     build_defenses()
    if battle.health < battle.max_health-250:
     battle.abilities.activate("repair")
+   if manual and battle.living_count() >= 8 and battle.credits >= int(SaveManager.catalog.abilities.emp_blast.cost)+int(SaveManager.catalog.abilities.repair.cost):
+    battle.abilities.activate("emp_blast")
+   if manual and battle.living_count() >= 10 and battle.credits >= int(SaveManager.catalog.abilities.overclock.cost)+int(SaveManager.catalog.abilities.repair.cost):
+    battle.abilities.activate("overclock")
   if defend and manual:
    aim()
   battle.simulate(1.0/60.0)
@@ -98,9 +108,14 @@ func fight(id: int, defend: bool, manual: bool = true, expected_win: int = -1, b
    check(battle.weakpoint_hits > 0,"mission %d boss weakpoint was actually hit" % id)
    check(battle.enemy_actions > 0,"mission %d boss uses live abilities" % id)
  var row := {"id":id,"mode":"hybrid" if defend and manual and build_enabled else "manual_only" if defend and manual else "automatic" if defend else "undefended","victory":outcome.get("victory",false),"seconds":snappedf(battle.elapsed,.1),"health":battle.health,"kills":battle.kills,"battle_earned":battle.earned,"manual_shots":battle.player_turret.shots_fired,"manual_hits":battle.player_turret.hits,"weakpoint_hits":battle.weakpoint_hits,"enemy_actions":battle.enemy_actions,"support_spawned":battle.support_spawned,"environmental_pulses":battle.environmental_pulses,"research":battle.research_levels.duplicate(),"war_balance":SaveManager.state.credits}
+ var resolved := CampaignManager.resolve(bool(outcome.get("victory",false)),id,battle.run_id,outcome)
+ row.starting_battle_credits = int(battle.mission_data.starting_credits)+int(EconomyManager.modifier("starting_credits",battle.research_levels))
+ row.battle_remaining = battle.credits
+ row.battle_spent = row.starting_battle_credits+battle.earned-battle.credits
+ row.war_reward = int(resolved.get("reward",0))
+ row.war_balance_after = int(SaveManager.state.credits)
  rows.append(row)
  print("BALANCE: "+JSON.stringify(row))
- var resolved := CampaignManager.resolve(bool(outcome.get("victory",false)),id,battle.run_id,outcome)
  check(not resolved.is_empty(),"mission %d result persisted" % id)
  check(CampaignManager.resolve(true,id,battle.run_id,outcome).is_empty(),"mission %d duplicate result rejected" % id)
  battle.queue_free()

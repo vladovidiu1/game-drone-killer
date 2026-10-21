@@ -29,7 +29,7 @@ func run() -> void:
   check(SaveManager.has_campaign(), "campaign restored in a fresh process")
   check(int(SaveManager.state.damage_level) == 1, "permanent upgrade restored")
   check(int(SaveManager.state.frontline) == 1, "retreat persisted")
-  check(int(SaveManager.state.credits) == 20, "economy persisted")
+  check(int(SaveManager.state.credits) == 0, "economy persisted")
   finish()
   return
  SaveManager.new_campaign()
@@ -149,9 +149,9 @@ func run() -> void:
  check(int(app.result_data.get("shots",0)) > 0 and int(app.result_data.get("kills",0)) > 0, "turrets fire and destroy enemies during real battle")
  check(int(app.result_data.get("waves",0)) == 5, "victory follows all five mission waves")
  check(int(SaveManager.state.frontline) == 2, "victory advances frontline")
- check(int(SaveManager.state.credits) == 120, "victory saves campaign reward separately from battle credits")
+ check(int(SaveManager.state.credits) == 100, "victory saves campaign reward separately from battle credits")
  check(EconomyManager.buy_damage(), "permanent upgrade purchase succeeds")
- check(int(SaveManager.state.credits) == 20, "permanent upgrade costs 100 credits")
+ check(int(SaveManager.state.credits) == 0, "permanent upgrade costs 100 credits")
  check(not EconomyManager.buy_damage(), "insufficient campaign credits rejected")
  app._play(2)
  await get_tree().process_frame
@@ -174,7 +174,7 @@ func run() -> void:
  check(has_retry, "defeat screen provides retry")
  check(int(SaveManager.state.frontline) == 1, "defeat retreats frontline")
  check(int(SaveManager.state.damage_level) == 1, "permanent upgrade survives defeat")
- check(int(SaveManager.state.credits) == 20, "defeat grants no victory or salvage reward")
+ check(int(SaveManager.state.credits) == 0, "defeat grants no victory or salvage reward")
  check(SaveManager.last_error.is_empty(), "save writes succeeded")
  var snapshot := SaveManager.state.duplicate(true)
  SaveManager.state.frontline = 6

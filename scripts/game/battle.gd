@@ -155,7 +155,7 @@ func spawn_enemy(kind: String, path_index: int = 0) -> Node2D:
 func spawn_support(kind: String, parent_unit: Node2D) -> Node2D:
  var child := spawn_enemy(kind,0)
  child.is_support = true
- child.reward = int(child.reward/2.0)
+ child.reward = int(child.reward*int(preload("res://scripts/core/economy_config.gd").values.battle.support_bounty_percent)/100.0)
  child.route.assign([parent_unit.position,Vector2(parent_unit.position.x,minf(550,maxf(450,parent_unit.position.y+30))),Vector2(560,600)])
  child.position = parent_unit.position+Vector2((support_spawned%3-1)*25,15)
  child.waypoint = 1
@@ -175,8 +175,10 @@ func _breached(damage: int) -> void:
   _finish(false)
 
 func _destroyed(reward: int, enemy: Node2D) -> void:
- if finished:
+ if finished or not is_instance_valid(enemy) or bool(enemy.get_meta("bounty_paid",false)):
   return
+ enemy.set_meta("bounty_paid",true)
+ reward = maxi(0,reward)
  kills += 1
  credits += reward
  earned += reward

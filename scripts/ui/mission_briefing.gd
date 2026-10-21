@@ -17,7 +17,7 @@ func setup(id: int) -> void:
  var preview := UI.mission_image(id)
  preview.custom_minimum_size = Vector2(200,90)
  overview_row.add_child(preview)
- var overview_text := UI.label("OPERATION %02d  /  %s\n%d WAVES   •   %d SLOTS   •   VICTORY +%d WC" % [id,CampaignManager.CHAPTERS[(id-1)/5].to_upper(),definition.waves.size(),definition.slots.size(),int(definition.reward)],21,UI.CYAN)
+ var overview_text := UI.label("OPERATION %02d  /  %s\n%d WAVES   •   %d SLOTS   •   VICTORY +%d WC" % [id,CampaignManager.CHAPTERS[(id-1)/5].to_upper(),definition.waves.size(),definition.slots.size(),int(EconomyManager.victory_quote(id).reward)],21,UI.CYAN)
  overview_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  overview_text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  overview_row.add_child(overview_text)
@@ -34,7 +34,8 @@ func setup(id: int) -> void:
   paragraph.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
   body.add_child(paragraph)
  var record: Dictionary = SaveManager.state.get("records",{}).get(str(id),{})
- body.add_child(UI.label("Reward: %d War Credits on victory. Defeat grants no reward." % int(definition.reward),18,UI.MUTED))
+ var quote := EconomyManager.victory_quote(id)
+ body.add_child(UI.label("%s: %d War Credits. Later victories: %d WC. Defeat: 0." % ["First clear" if quote.first_clear else "Replay victory",int(quote.reward),int(int(quote.first_reward)*int(preload("res://scripts/core/economy_config.gd").values.war.replay_percent)/100.0)],18,UI.MUTED))
  if bool(definition.playable):
   body.add_child(UI.label("%d waves • %d slots • %d starting battle credits" % [definition.waves.size(),definition.slots.size(),int(definition.starting_credits)],18,UI.MUTED))
  if not record.is_empty():

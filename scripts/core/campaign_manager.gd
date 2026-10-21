@@ -9,7 +9,7 @@ var balance: Dictionary = {}
 var player_cannon: Dictionary = {}
 
 func _ready() -> void:
- var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/definitions.json"))
+ var data: Dictionary = preload("res://scripts/core/economy_config.gd").definitions()
  missions = data.missions
  enemies = data.enemies
  turrets = data.turrets
@@ -49,7 +49,8 @@ func resolve(victory: bool, mission_id: int, run_id: String, stats: Dictionary =
   return {}
  var previous := SaveManager.state.duplicate(true)
  var before := int(SaveManager.state.frontline)
- var reward := int(mission(mission_id).get("reward",0)) if victory else 0
+ var quote := EconomyManager.victory_quote(mission_id)
+ var reward := int(quote.reward) if victory else 0
  var record: Dictionary = SaveManager.state.records.get(str(mission_id),{"victories":0,"defeats":0,"best_health":0,"rewards":0,"last_outcome":"defeat"})
  if victory:
   record.victories += 1
@@ -87,6 +88,8 @@ func resolve(victory: bool, mission_id: int, run_id: String, stats: Dictionary =
   message = "Checkpoint holds at %02d. No territory lost." % after
  else:
   message = "Replay defeated. Active frontline remains %02d." % after
+ if victory:
+  message += "\n%s: +%d War Credits." % ["First-clear reward" if quote.first_clear else "Replay reward",reward]
  if victory and not str(mission(mission_id).get("narrative","")).is_empty():
   message += "\n"+str(mission(mission_id).narrative)
  var result := {"run_id":run_id,"mission_id":mission_id,"victory":victory,"reward":reward+objective_reward,"mission_reward":reward,"objective_reward":objective_reward,"from":before,"to":after,"message":message}

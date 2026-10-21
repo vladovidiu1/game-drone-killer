@@ -104,7 +104,7 @@ func run() -> void:
  var victim: Node2D = battle.spawn_enemy("scout")
  var credits: int = battle.credits
  victim.hit(1000,true,true,victim.position)
- check(victim.ended and battle.credits == credits+10 and battle.view.destruction.wrecks.size() == 1,"Dead enemy removal/reward immediate, detached wreck presentation retained")
+ check(victim.ended and battle.credits == credits+int(CampaignManager.enemies.scout.reward) and battle.view.destruction.wrecks.size() == 1,"Dead enemy removal/reward immediate, detached wreck presentation retained")
  var kills: int = battle.kills
  victim.hit(1000)
  check(battle.kills == kills,"Death visuals cannot award a duplicate kill")

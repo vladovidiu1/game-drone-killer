@@ -4,7 +4,7 @@
 - Keep the game offline and Android-first. Preserve landscape, 1280×720 reference layout, safe-area handling, mouse testing and independent touch-pointer ownership.
 - Use the existing checkout; tasks already have isolated environments. Do not create worktrees unless explicitly requested.
 - Runtime service autoload order matters: SaveManager, CampaignManager, EconomyManager, AudioManager.
-- Keep tunable mission, enemy, and turret definitions in `data/definitions.json`. Keep campaign credits separate from temporary battle supply.
+- Keep tunable mission, enemy, and turret combat definitions in `data/definitions.json`; M3 currency values and costs live in `data/economy.json`. Keep campaign credits separate from temporary battle supply.
 - Use typed GDScript where concrete types are known, reusable scenes/Controls and signals. Keep battle rendering in `battle_view.gd`; do not put campaign persistence inside enemies.
 - Treat `main.gd` as navigation/UI composition. Split screen builders into dedicated components when subsequent features make them larger.
 - Migrations must preserve existing permanent upgrades. Replaying a completed mission must not advance the frontline beyond that mission. Defeat cannot cross the chapter checkpoint floor.
@@ -28,7 +28,7 @@
 - Commit the requested project changes and push them to `main` when complete. Use the platform's existing Git authentication. Do not ask for publication confirmation again within this authorized scope.
 - Fetch and inspect remote updates before publishing. Preserve concurrent work; never force-push or overwrite remote history. If direct publication is blocked by access or branch rules, report the exact blocker and preserve the completed local changes.
 
-- War Credits remain `state.credits`; Battle Credits remain `battle.credits`. Research/unlocks/objectives are in `data/progression.json`. Keep purchased legacy `damage_level` bonuses when migrating; new primary damage research is a separate +5% per level.
+- War Credits remain `state.credits`; Battle Credits remain `battle.credits`. Research/unlock/objective effects and requirements are in `data/progression.json`; their prices/rewards are in `data/economy.json`. Keep purchased legacy `damage_level` bonuses when migrating; new primary damage research is a separate +5% per level.
 - Permanent research purchases must validate the expected current level and persist/rollback the debit and grant together. Objectives belong inside the mission-result transaction; never re-award a claimed objective.
 - Research is applied before battle starts. Snapshot shot ammunition/critical damage at firing time, never refill magazines when switching ammunition, and retain autonomous secondary targeting.
 - Tactical build mode uses a single panel at 0.25x effective simulation speed; closing or pausing restores standardized normal speed. Every cooldown/status/projectile/reload consumes the same simulated delta. Touch swipes inside a shop must scroll without purchasing.
@@ -95,10 +95,18 @@
 
 ## M2 weapon research
 
-- Follow `docs/WEAPON_RESEARCH.md`. Extend the existing ammo/projectile and EconomyManager/save paths, never create duplicate combat systems. Catalog costs/prerequisites/tier steps/specializations are in `data/progression.json`; enemy resistances in `data/definitions.json`.
+- Follow `docs/WEAPON_RESEARCH.md`. Extend the existing ammo/projectile and EconomyManager/save paths, never create duplicate combat systems. Catalog prerequisites/tier steps/specializations are in `data/progression.json`; M3 costs are in `data/economy.json`; enemy resistances in `data/definitions.json`.
 - Schema v3 gains additive `weapon_schema=1`, validated ordered 1–3 `ammo_loadout` and `turret_specializations`; preserve v1/v2/v3 migrations, legacy AP/HE purchases, state tokens and atomic rollback/backup recovery.
 - Snapshot ammo tiers/loadout and specialization at deployment, payload/criticals at firing. Shared magazine units and rail cooldown survive switching; switching never resets heat/recoil or bypasses reload. Only equipped slots appear as enabled combat chips.
 - Rail is a straight swept projectile with bounded distinct actor IDs/penetration and per-hit falloff; mark hit ownership before damage. Include the direct collision target in its own splash even when its center lies outside a small radius. EMP uses electrical pulses, not fireball blast art.
 - AP bypasses ordinary armor/shields; automatic armor/anti-shield branches use partial traits. Status duration/strength respects clamped enemy resistance and does not scale with critical damage. Keep boss core/phase rules intact.
 - Run the full runner with weapon-research/fresh-process suites. Native `tests/weapon_capture.tscn` uses the existing isolated graphics wrapper; injected confirmation touches must target the dialog's own viewport. Check all five tabs/long research copy on short/wide/tablet layouts. Physical Android/device difficulty validation remains separate.
 - `tools/build_projectile_vectors.py` owns the six authored SVG utility illustrations. Regenerate both manifests after asset changes. Keep fixture screenshots under `.gdignore`; never describe authored utility vectors as approved painted production art.
+
+
+## M3 economy
+
+- Follow `ECONOMY_BALANCE.md`. `economy_config.gd` hydrates both existing catalogs from `data/economy.json`; do not add duplicate prices/rewards to combat or progression data. All reward, construction, ability, research, unlock and objective values, support/replay percentages and temporary upgrade price scaling belong there.
+- First clears pay the configured reward; all later clears/reconquests pay integer-floor 15%. Existing victories and implicit cleared territory below highest-ever reached prevent repeat first-clear bonuses on old saves. Preserve saved balances, bought levels and schema-v3 transactions.
+- BC stays temporary and never converts to WC. Restart grants neither partial bounties nor victory income. Enemy payout ownership is consumed before credit/effects; tokens and objective claims remain atomic with the result save.
+- Run economy/fresh-process suites, the earned-budget connected campaign and fixed-policy comparison after tuning. Record actual budgets/purchases, distinguish accounting fixtures from combat, and do not claim human or Android balance from assisted simulations. Regenerate measured tables with `python tools/report_m3_economy.py` after reports are current.

@@ -61,7 +61,7 @@ func run() -> void:
  var reward_before: int = battle.credits
  scout.hit(100)
  scout.hit(100)
- check(battle.credits == reward_before+10,"New ability damage retains once-only enemy rewards")
+ check(battle.credits == reward_before+int(CampaignManager.enemies.scout.reward),"New ability damage retains once-only enemy rewards")
  await clear_units()
  # Cloaked drones are hittable by straight manual rounds and revealed by EMP.
  var stealth := unit("stealth",turret.position+Vector2(0,-80))
@@ -101,7 +101,7 @@ func run() -> void:
  carrier.brain.tick(3)
  check(battle.support_spawned == 2 and battle.living_count() == 3,"Carrier launches real supporting drones")
  var child: Node2D = battle.drones.get_children()[1]
- check(child.is_support and child.reward == 5 and child.position.y > 300,"Support spawns at its carrier with reduced bounty")
+ check(child.is_support and child.reward == 3 and child.position.y > 300,"Support spawns at its carrier with reduced bounty")
  for index in range(8):
   carrier.brain.cooldown = 0
   carrier.brain.tick(.01)

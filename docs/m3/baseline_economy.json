@@ -1,0 +1,377 @@
+{
+  "missions": [
+    {
+      "id": 1,
+      "reward": 120,
+      "starting_credits": 500
+    },
+    {
+      "id": 2,
+      "reward": 180,
+      "starting_credits": 550
+    },
+    {
+      "id": 3,
+      "reward": 250,
+      "starting_credits": 650
+    },
+    {
+      "id": 4,
+      "reward": 350,
+      "starting_credits": 650
+    },
+    {
+      "id": 5,
+      "reward": 270,
+      "starting_credits": 650
+    },
+    {
+      "id": 6,
+      "reward": 385,
+      "starting_credits": 770
+    },
+    {
+      "id": 7,
+      "reward": 405,
+      "starting_credits": 770
+    },
+    {
+      "id": 8,
+      "reward": 425,
+      "starting_credits": 770
+    },
+    {
+      "id": 9,
+      "reward": 445,
+      "starting_credits": 770
+    },
+    {
+      "id": 10,
+      "reward": 365,
+      "starting_credits": 770
+    },
+    {
+      "id": 11,
+      "reward": 480,
+      "starting_credits": 890
+    },
+    {
+      "id": 12,
+      "reward": 500,
+      "starting_credits": 890
+    },
+    {
+      "id": 13,
+      "reward": 520,
+      "starting_credits": 890
+    },
+    {
+      "id": 14,
+      "reward": 540,
+      "starting_credits": 890
+    },
+    {
+      "id": 15,
+      "reward": 460,
+      "starting_credits": 890
+    },
+    {
+      "id": 16,
+      "reward": 575,
+      "starting_credits": 1010
+    },
+    {
+      "id": 17,
+      "reward": 595,
+      "starting_credits": 1010
+    },
+    {
+      "id": 18,
+      "reward": 615,
+      "starting_credits": 1010
+    },
+    {
+      "id": 19,
+      "reward": 635,
+      "starting_credits": 1010
+    },
+    {
+      "id": 20,
+      "reward": 555,
+      "starting_credits": 1010
+    },
+    {
+      "id": 21,
+      "reward": 670,
+      "starting_credits": 1130
+    },
+    {
+      "id": 22,
+      "reward": 690,
+      "starting_credits": 1130
+    },
+    {
+      "id": 23,
+      "reward": 710,
+      "starting_credits": 1130
+    },
+    {
+      "id": 24,
+      "reward": 730,
+      "starting_credits": 1130
+    },
+    {
+      "id": 25,
+      "reward": 650,
+      "starting_credits": 1130
+    }
+  ],
+  "bounties": {
+    "scout": 10,
+    "assault": 20,
+    "heavy": 60,
+    "shield": 30,
+    "emp": 30,
+    "bomber": 40,
+    "sniper": 35,
+    "carrier": 50,
+    "stealth": 25,
+    "assault_carrier": 180,
+    "emp_warship": 180,
+    "border_guardian": 180,
+    "factory_ship": 180,
+    "hive_core": 180
+  },
+  "construction": {
+    "machine_gun": 100,
+    "cannon": 200,
+    "missile": 350,
+    "laser": 250,
+    "emp_tower": 230,
+    "heavy_aa": 450
+  },
+  "upgrade_multiplier": 0.65,
+  "research": {
+    "cannon_damage": [
+      60,
+      100,
+      160,
+      240,
+      340
+    ],
+    "cannon_rate": [
+      70,
+      115,
+      180,
+      260,
+      370
+    ],
+    "magazine": [
+      60,
+      105,
+      165,
+      245,
+      350
+    ],
+    "reload": [
+      75,
+      120,
+      185,
+      270,
+      380
+    ],
+    "velocity": [
+      50,
+      90,
+      145,
+      215,
+      310
+    ],
+    "crit_chance": [
+      90,
+      145,
+      220,
+      320,
+      450
+    ],
+    "crit_damage": [
+      70,
+      115,
+      180,
+      260,
+      370
+    ],
+    "base_health": [
+      80,
+      130,
+      190,
+      270,
+      360
+    ],
+    "starting_credits": [
+      100,
+      160,
+      240,
+      340,
+      460
+    ],
+    "turret_damage": [
+      85,
+      135,
+      200,
+      285,
+      390
+    ],
+    "turret_range": [
+      75,
+      120,
+      180,
+      260,
+      355
+    ],
+    "turret_rate": [
+      90,
+      145,
+      215,
+      305,
+      420
+    ],
+    "repair_efficiency": [
+      60,
+      100,
+      155,
+      225,
+      320
+    ],
+    "repair_mastery": [
+      80,
+      125,
+      190,
+      275,
+      380
+    ],
+    "emp_mastery": [
+      95,
+      150,
+      225,
+      320,
+      440
+    ],
+    "overclock_mastery": [
+      95,
+      150,
+      225,
+      320,
+      440
+    ],
+    "ammo_standard": [
+      60,
+      120,
+      220
+    ],
+    "ammo_armor_piercing": [
+      90,
+      170,
+      300
+    ],
+    "ammo_explosive": [
+      100,
+      190,
+      330
+    ],
+    "ammo_emp": [
+      120,
+      220,
+      360
+    ],
+    "ammo_cryo": [
+      140,
+      260,
+      420
+    ],
+    "ammo_railgun": [
+      200,
+      360,
+      580
+    ],
+    "spec_machine_gun_rapid": [
+      120,
+      220,
+      380
+    ],
+    "spec_machine_gun_armor": [
+      120,
+      220,
+      380
+    ],
+    "spec_cannon_impact": [
+      120,
+      220,
+      380
+    ],
+    "spec_cannon_blast": [
+      120,
+      220,
+      380
+    ],
+    "spec_missile_blast": [
+      120,
+      220,
+      380
+    ],
+    "spec_missile_guidance": [
+      120,
+      220,
+      380
+    ],
+    "spec_laser_sustained": [
+      120,
+      220,
+      380
+    ],
+    "spec_laser_shield": [
+      120,
+      220,
+      380
+    ],
+    "spec_emp_tower_radius": [
+      120,
+      220,
+      380
+    ],
+    "spec_emp_tower_duration": [
+      120,
+      220,
+      380
+    ],
+    "spec_heavy_aa_precision": [
+      120,
+      220,
+      380
+    ],
+    "spec_heavy_aa_armor": [
+      120,
+      220,
+      380
+    ]
+  },
+  "unlocks": {
+    "armor_piercing": 180,
+    "explosive": 260,
+    "laser": 220,
+    "emp_tower": 250,
+    "heavy_aa": 300,
+    "emp": 360,
+    "cryo": 480,
+    "railgun": 800
+  },
+  "abilities": {
+    "repair": 90,
+    "emp_blast": 120,
+    "overclock": 100
+  },
+  "objectives": {
+    "veteran": 150,
+    "chapter_five": 250
+  }
+}

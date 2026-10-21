@@ -50,7 +50,7 @@ func _ready() -> void:
  objective.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  intel.add_child(objective)
  intel.add_child(UI.label("%d waves  /  %d emplacements" % [mission.waves.size(),mission.slots.size()],16,UI.MUTED))
- intel.add_child(UI.label("VICTORY  /  +%d WC" % int(mission.reward),18,UI.CYAN))
+ intel.add_child(UI.label("VICTORY  /  +%d WC" % int(EconomyManager.victory_quote(int(mission.id)).reward),18,UI.CYAN))
  intel.add_child(UI.label("SECURED FLOOR  /  %02d" % int(SaveManager.state.get("checkpoint",1)),16,UI.MUTED))
  var hint := UI.label("Select an operation marker to inspect its briefing. Enemy territories remain locked until the frontline reaches them.",16,UI.MUTED)
  hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

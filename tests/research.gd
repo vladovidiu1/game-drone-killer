@@ -37,7 +37,7 @@ func run() -> void:
   return
  SaveManager.new_campaign()
  check(not EconomyManager.purchase("cannon_damage",0) and SaveManager.state.credits == 0,"insufficient War Credits cannot buy research")
- SaveManager.state.credits = 20000
+ SaveManager.state.credits = 40000
  SaveManager.persist()
  check(not EconomyManager.purchase("laser",0),"weapon research enforces highest-mission requirement")
  var balance: int = SaveManager.state.credits
@@ -45,7 +45,7 @@ func run() -> void:
  check(SaveManager.state.credits == balance-60 and SaveManager.state.research.cannon_damage == 1,"research deducts exact configurable cost")
  balance = SaveManager.state.credits
  check(not EconomyManager.purchase("cannon_damage",0) and SaveManager.state.credits == balance,"duplicate purchase callback with stale level cannot charge again")
- check(EconomyManager.purchase_state("cannon_damage").cost == 100,"next research level has escalating cost")
+ check(EconomyManager.purchase_state("cannon_damage").cost == 115,"next research level has escalating cost")
  SaveManager.state.highest = 3
  SaveManager.persist()
  for id in SaveManager.catalog.upgrades:
@@ -215,8 +215,8 @@ func run() -> void:
  SaveManager.persist()
  var token := CampaignManager.begin_mission(1)
  var outcome := CampaignManager.resolve(true,1,token)
- check(outcome.objective_reward == 150 and SaveManager.state.credits == 270,"fifth victory grants one persistent Veteran objective reward")
- check(CampaignManager.resolve(true,1,token).is_empty() and SaveManager.state.credits == 270,"duplicate result cannot re-award the mission or objective")
+ check(outcome.objective_reward == 60 and SaveManager.state.credits == 160,"fifth victory grants one persistent Veteran objective reward")
+ check(CampaignManager.resolve(true,1,token).is_empty() and SaveManager.state.credits == 160,"duplicate result cannot re-award the mission or objective")
  SaveManager.reload_from_disk()
  check(SaveManager.state.claimed_objectives.has("veteran"),"objective claim survives reload")
  var legacy := SaveManager.validate_campaign({"version":2,"frontline":3,"highest":3,"credits":456,"damage_level":4,"checkpoints":[1],"records":{"2":{"victories":2}},"wins":3})

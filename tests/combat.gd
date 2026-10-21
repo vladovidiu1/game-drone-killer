@@ -54,8 +54,8 @@ func run() -> void:
  var before: int = battle.credits
  second.hit(100)
  second.hit(100)
- check(battle.credits == before+10 and battle.kills == 1, "Scout reward paid once after destruction")
- check(battle.upgrade_selected() and turret.level == 2 and battle.credits == before+10-65, "upgrade deducts credits and increments level")
+ check(battle.credits == before+7 and battle.kills == 1, "Scout reward paid once after destruction")
+ check(battle.upgrade_selected() and turret.level == 2 and battle.credits == before+7-65, "upgrade deducts credits and increments level")
  check(is_equal_approx(turret.damage_value(),13.5) and turret.range_value() == 242, "upgrade improves damage and range")
  check(battle.upgrade_selected() and turret.level == 3, "second upgrade reaches level cap")
  check(not battle.upgrade_selected(), "maximum level prevents further upgrades")
@@ -79,10 +79,10 @@ func run() -> void:
  shot.tick(0.2)
  check(heavy.health == 240 and scout.ended and outside.health == 100, "missile splash damages each enemy inside 75 radius only once")
  shot.impact()
- check(heavy.health == 240 and battle.kills == 1 and battle.credits == 160, "missile direct target and kill reward are not duplicated")
+ check(heavy.health == 240 and battle.kills == 1 and battle.credits == 157, "missile direct target and kill reward are not duplicated")
  heavy.hit(500)
  outside.hit(500)
- check(battle.credits == 240, "Heavy and Assault rewards are 60 and 20")
+ check(battle.credits == 210, "Heavy and Assault rewards are 40 and 13")
  check(battle.view.effects.size() > 0, "hits and destruction create combat effects")
  battle.queue_free()
  await get_tree().process_frame

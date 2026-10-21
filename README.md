@@ -52,11 +52,11 @@ The [visual validation gallery](docs/VISUAL_VALIDATION.md) also includes a live 
 - 25 playable territories grouped into the five requested chapters. Controlled, contested, enemy/locked, and secured checkpoint states use labels and colors.
 - Mission 1, **Outpost Alpha**: 61 enemies across five waves, entering from the top along three configurable paths toward the base at the bottom. Five fixed turret slots, automated target acquisition, rotating barrels, real projectiles, missile splash damage, health bars, muzzle flashes, hit flashes, explosions, selected range/target indicators and base damage feedback.
 - Machine Gun: 100 credits, 10 damage, 3.8 shots/s, 230 range. Cannon: 200 credits, 50 damage, 0.78 shots/s, 250 range. Missile Launcher: 350 credits, 75 damage, 0.48 shots/s, 290 range, 75 splash radius.
-- Scout: 40 HP, 180 nominal units/s, 25 base damage, 10-credit bounty. Assault: 100 HP, 112.5 nominal units/s, 50 base damage, 20-credit bounty. Heavy: 300 HP, 60 nominal units/s, 100 base damage, 60-credit bounty.
+- Scout: 40 HP, 180 nominal units/s, 25 base damage, 7-credit bounty. Assault: 100 HP, 112.5 nominal units/s, 50 base damage, 13-credit bounty. Heavy: 300 HP, 60 nominal units/s, 100 base damage, 40-credit bounty.
 - Turrets target the enemy with the shortest remaining path to the base; spawn order breaks ties. Projectiles use swept target-circle collision and consume themselves before impact resolution. Missiles apply one area hit per enemy, including the direct target.
 - Each turret can reach level 3. Per level: damage ×1.35, range +12; upgrade cost is `ceil(base cost × 0.65 × current level)`. Permanent Arsenal damage bonuses still apply. All tuning lives in JSON.
 - HUD displays base HP, wave, remaining enemies, battle credits, pause/resume and build countdown. Native touch buttons own separate finger IDs, supporting slot selection and another finger on a build control without mouse emulation.
-- Mission victory rewards are 120 / 180 / 250 permanent credits for missions 1 / 2 / 3. Defeat grants **zero** credits. Permanent damage upgrades have five levels. Replays award once per new deployment but cannot advance past that mission; replay defeats obey the same retreat rule.
+- First-clear rewards are 100 / 120 / 140 War Credits for missions 1 / 2 / 3; subsequent victories pay 15%, rounded down. Defeat grants **zero** credits. Permanent damage upgrades have five levels. Replays award once per new deployment but cannot advance past that mission; replay defeats obey the same retreat rule.
 - Frontline progression and chapter checkpoint floor rules are implemented independently of mission presentation.
 - A dedicated manually controlled primary cannon, loaded at the start without using a placement slot. Its projectiles fly straight, with range-limited swept collision, recoil, muzzle flashes, trails, hit markers and reload feedback.
 - Generated rendered artwork, authored vector UI/effects, licensed bundled fonts and synthesized shot/hit/reload/result sounds; no paid assets or external runtime services.
@@ -65,7 +65,7 @@ The [visual validation gallery](docs/VISUAL_VALIDATION.md) also includes a live 
 
 **Battle Credits** are the temporary `battle.credits` balance: mission starting budget plus drone bounties. Construction, temporary turret levels and tactical abilities spend only this balance; a new mission resets it. **War Credits** are the persistent `SaveManager.state.credits` balance, spent only on research/unlocks. Mission victories and once-only objectives award War Credits. Defeat does not remove them or research.
 
-Open **Arsenal** from the main menu or campaign. Its five tabs are **PRIMARY CANNON**, **PROJECTILES**, **TURRETS**, **RESEARCH** and **ABILITIES**. Research cards show current level, next benefit, escalating War Credit cost, requirements and maximum status. A confirmation dialog reviews the actual purchase; cancellation spends nothing. Stale/double confirmations cannot buy a second level. Prices, five-level legacy limits, three-tier technologies, coefficients, unlock requirements and objectives are configured in `data/progression.json`.
+Open **Arsenal** from the main menu or campaign. Its five tabs are **PRIMARY CANNON**, **PROJECTILES**, **TURRETS**, **RESEARCH** and **ABILITIES**. Research cards show current level, next benefit, escalating War Credit cost, requirements and maximum status. A confirmation dialog reviews the actual purchase; cancellation spends nothing. Stale/double confirmations cannot buy a second level. Prices and currency rules are centralized in `data/economy.json`; research effects, level counts, unlock requirements and objectives are defined in `data/progression.json`. See [M3 economy balance](ECONOMY_BALANCE.md) for costs, expected income, replay rules and validation.
 
 | Permanent upgrade | Per-level effect (5 levels each) |
 | --- | --- |
@@ -128,8 +128,9 @@ The Veteran Commander objective grants 150 War Credits once at five victories; s
 | `assets/`, `VISUAL_STYLE.md` | Bundled artwork/fonts/theme/shaders, provenance manifest and exact artist replacement specifications |
 | `scripts/ui/main_menu.gd` | Native illustrated menu composition and navigation signals |
 | `scripts/game/tactical_abilities.gd` | Battle-credit activations, cooldowns, disable pulses and shared Overclock timing |
-| `data/progression.json` | Upgrade coefficients/costs, unlocks, ammunition, tactical abilities and once-only objectives |
-| `scripts/ui/arsenal.gd` | Four research tabs, effective stats and guarded purchase confirmations |
+| `data/economy.json`, `scripts/core/economy_config.gd` | Central integer rewards/prices and runtime catalog hydration |
+| `data/progression.json` | Upgrade effects, unlock requirements, ammunition, tactical abilities and once-only objectives |
+| `scripts/ui/arsenal.gd` | Five research tabs, effective stats and guarded purchase confirmations |
 | `scripts/game/wave_spawner.gd` | Reusable mixed-group waves, intermissions, early start, deterministic route cycling |
 | `scripts/game/turret.gd`, `scenes/turret.tscn` | Target priority, range, rotation, fire cadence and upgrades |
 | `scripts/game/projectile.gd`, `scenes/projectile.tscn` | Existing secondary homing/splash and additive straight manual rounds; swept collision and single-use impact lifecycle |
@@ -154,19 +155,19 @@ Save files are `user://campaign.json` and `user://settings.json`, outside the ch
 
 ## Connected campaign and save recovery
 
-| Mission | Setting / location | Slots | Waves | Approaches | Victory reward |
+| Mission | Setting / location | Slots | Waves | Approaches | First-clear WC |
 | --- | --- | --- | --- | --- | --- |
-| 1. Outpost Alpha | Dry military terrain / Ardent Drylands | 5 | 5 | Three top entries | 120 |
-| 2. Red Hill Village | Rural farms and homes / Red Hill district | 6 | 6 | Two approach paths | 180 |
-| 3. East Supply Depot | Warehouses and loading yards / Meridian logistics belt | 7 | 7 | Top, west and east | 250 |
+| 1. Outpost Alpha | Dry military terrain / Ardent Drylands | 5 | 5 | Three top entries | 100 |
+| 2. Red Hill Village | Rural farms and homes / Red Hill district | 6 | 6 | Two approach paths | 120 |
+| 3. East Supply Depot | Warehouses and loading yards / Meridian logistics belt | 7 | 7 | Top, west and east | 140 |
 
-Each briefing contains its fictional location, story, enemy intelligence, preparation advice, reward and mission record. **Start Mission** is enabled only for playable territories at or behind the current frontline. Mission 3 adds seven mixed waves and multiple Heavy/Assault groups late in the mission. All layouts, waves, briefings, colors and rewards are in `data/definitions.json`.
+Each briefing contains its fictional location, story, enemy intelligence, preparation advice, reward and mission record. **Start Mission** is enabled only for playable territories at or behind the current frontline. Mission 3 adds seven mixed waves and multiple Heavy/Assault groups late in the mission. Layouts, waves, briefings and colors are in `data/definitions.json`; all currency values are in `data/economy.json`.
 
 New campaigns begin with frontline/highest/checkpoint floor 1. A frontline victory controls that territory and advances one index. Defeat retreats one index, bounded by the latest secured checkpoint, and makes the returned territory contested. The highest reached index, mission records, credits, upgrades and settings survive retreat. Win mission 5 / 10 / 15 / 20 to secure **that completed mission** as a permanent floor. For example: win 5 → frontline 6, floor 5; lose 6 → frontline 5; lose 5 → still 5. Each checkpoint is earned by defeating its chapter boss in an actual playable encounter.
 
 The map derives control from the active frontline, independently of historical completion: blue below the frontline, orange contested frontline, red enemy/locked beyond it, and ◆ on secured checkpoints. A previously reached territory beyond the retreated frontline must be reconquered before deployment is enabled again. Result and map messages explicitly name territory gained/lost. After winning mission 3, Broken Bridge becomes the playable frontline. Completing The Hive Core marks territory 25 controlled and shows the liberation ending. A subsequent replay defeat still follows the normal retreat rule and clears the active liberation flag; historical victories remain in records.
 
-Every deployment receives a unique persisted attempt token. Only its matching result may update records, rewards, frontline, highest and checkpoints. The outcome and consumed token are saved together; duplicate, mismatched and stale events are rejected, including after reload. Replaying a controlled mission is a new paid attempt, not a duplicate event, and cannot advance past that mission. Defeats, including replay defeats, follow the same checkpoint-bounded retreat rule and grant no rewards.
+Every deployment receives a unique persisted attempt token. Only its matching result may update records, rewards, frontline, highest and checkpoints. The outcome and consumed token are saved together; duplicate, mismatched and stale events are rejected, including after reload. Replaying a controlled mission is a new reward-eligible attempt, and cannot advance past that mission. Defeats, including replay defeats, follow the same checkpoint-bounded retreat rule and grant no rewards.
 
 Campaign schema v3 stores `frontline`, `highest`, `checkpoints`, derived `checkpoint`, `credits`, `damage_level`, `wins`, `records`, `active_run` and `last_result`. Per-mission records include victory/defeat counts, best remaining base HP and cumulative rewards. Research levels, weapon/ammunition unlocks, equipped ammunition and claimed objectives are added without resetting campaign data. M2 adds `weapon_schema=1`, a validated ordered `ammo_loadout` (1–3 types) and selected `turret_specializations`; legacy active ammunition/AP/HE purchases migrate without repurchase. The optional `campaign_complete` v3 field defaults false for older saves; validation requires frontline 25 plus an actual mission 25 victory record. Defeat below 25 clears it. Settings have an independent versioned wrapper with validated volume and boolean preferences. Schema v1 saves retain their credits/upgrades/wins, gain a highest-reached index, and migrate old chapter-start floors 6/11/16/21 to completed-mission floors 5/10/15/20. Schema v2 upgrades directly to v3 with zero new research, preserving legacy bonuses, records, balances and checkpoints. Schema v1 lacked detailed per-mission records; new outcomes populate them.
 
@@ -196,7 +197,7 @@ Nominal primary damage is 90 DPS while firing and about 75 DPS including reload 
 
 Preparation is 15 / 14 / 13 / 12 / 11 seconds by chapter, with optional early start. Missions target roughly 2–5 minutes at standardized normal speed; actual duration depends on play. M1 uses denser multi-route bursts, not a global time multiplier. Clear all active drones before the next build phase begins. Early start never overlaps active waves. The HUD's remaining enemy count includes pending spawns plus living enemies for the current wave (or the upcoming wave during a build phase).
 
-Bounties are **temporary battle credits**, as are turret purchases and upgrades. They reset on retry and are shown separately in results. Campaign rewards remain **permanent credits** for Arsenal: +120 / +180 / +250 on victory, **zero** on defeat. The earlier defeat-salvage reward is removed to follow the campaign rules. Existing saves and permanent upgrades migrate to schema v3.
+Bounties are **temporary battle credits**, as are turret purchases and upgrades. They reset on retry and are shown separately in results. Campaign rewards remain **permanent credits** for Arsenal: +100 / +120 / +140 on first victory, with 15% rewards for later victories, **zero** on defeat. The earlier defeat-salvage reward is removed to follow the campaign rules. Existing saves and permanent upgrades migrate to schema v3.
 
 For an opening strategy, place Machine Guns on slots 1 and 3 and a Cannon on slot 2. Use bounties for more turrets or upgrades. Leaving the primary idle and every slot empty will lose the base. Manual fire can cover gaps in automatic defenses, but only covers one direction at a time.
 

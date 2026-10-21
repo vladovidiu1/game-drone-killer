@@ -98,7 +98,6 @@
         }
       ],
       "base_health": 1000,
-      "starting_credits": 500,
       "build_time": 15,
       "slots": [
         [
@@ -190,7 +189,6 @@
           ]
         ]
       ],
-      "reward": 120,
       "location": "South Asteria / Ardent Drylands",
       "story": "The Varkon Empire has crossed the southern border. Sentinel-7 must hold Outpost Alpha while the last civilian convoy escapes.",
       "intel": "Scout screens followed by Assault drones. A Heavy leads the final wave.",
@@ -347,12 +345,10 @@
         }
       ],
       "base_health": 1000,
-      "reward": 180,
       "location": "Central Asteria / Red Hill agricultural district",
       "story": "Outpost Alpha is secure. Varkon drones now hunt supply trucks around Red Hill. Protect the village relay to reopen the northbound evacuation road.",
       "intel": "Two approach corridors. Scouts probe both flanks; Assaults and Heavies pressure the later waves.",
       "preparation": "Cover split entry lanes; use the primary cannon during reload gaps. Cover both roads early. Use Cannons against armor and Missile splash against groups. The sixth slot protects the western approach.",
-      "starting_credits": 550,
       "build_time": 15,
       "slots": [
         [
@@ -604,12 +600,10 @@
         }
       ],
       "base_health": 1000,
-      "reward": 250,
       "location": "Eastern Asteria / Meridian logistics belt",
       "story": "Red Hill has restored our supply route. The Empire is converging on the eastern warehouse depot. Hold its power hub so Asterian forces can prepare a counterattack.",
       "intel": "Top, west and east entries. Mixed late-wave groups contain multiple Heavies escorted by Assault drones.",
       "preparation": "Cover split entry lanes; use the primary cannon during reload gaps. Use all seven slots. Build Cannons on both flanks and Missile coverage near the merge. Save your manual magazine for leaks during Heavy pushes.",
-      "starting_credits": 650,
       "build_time": 15,
       "slots": [
         [
@@ -922,7 +916,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 350,
       "location": "Sector 04 / Asteria",
       "story": "The northern bridge has fallen. Sentinel-7 must hold the surviving causeway while engineers evacuate.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -1005,7 +998,6 @@
           503
         ]
       ],
-      "starting_credits": 650,
       "build_time": 15,
       "terrain": {
         "kind": "bridge",
@@ -1212,7 +1204,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 270,
       "location": "Sector 05 / Asteria",
       "story": "A Varkon assault carrier commands Greyford. Break its exposed underside reactor and reopen the evacuation corridor.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone. Priority targets have colored markings and telegraphed abilities. Boss: Heavy Assault Carrier. Three phases; cyan core takes bonus manual damage. Eliminate charging escorts.",
@@ -1295,7 +1286,6 @@
           509
         ]
       ],
-      "starting_credits": 650,
       "build_time": 15,
       "terrain": {
         "kind": "metro",
@@ -1579,7 +1569,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 385,
       "location": "Sector 06 / Asteria",
       "story": "Asteria needs this power station online. Protect the switching yard from electronic warfare units.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -1666,7 +1655,6 @@
           440
         ]
       ],
-      "starting_credits": 770,
       "build_time": 14,
       "terrain": {
         "kind": "power",
@@ -1943,7 +1931,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 405,
       "location": "Sector 07 / Asteria",
       "story": "Refugees are crossing the river. Defend both banks until the final convoy clears the district.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -2030,7 +2017,6 @@
           446
         ]
       ],
-      "starting_credits": 770,
       "build_time": 14,
       "terrain": {
         "kind": "river",
@@ -2301,7 +2287,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 425,
       "location": "Sector 08 / Asteria",
       "story": "Varkon formations are racing along the highway. Intercept the bombers before they reach our supply column.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -2388,7 +2373,6 @@
           428
         ]
       ],
-      "starting_credits": 770,
       "build_time": 14,
       "terrain": {
         "kind": "highway",
@@ -2665,7 +2649,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 445,
       "location": "Sector 09 / Asteria",
       "story": "Recover Falcon Airbase. Shield escorts are screening the drones above the abandoned runway.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -2770,7 +2753,6 @@
           434
         ]
       ],
-      "starting_credits": 770,
       "build_time": 14,
       "terrain": {
         "kind": "airbase",
@@ -3033,7 +3015,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 365,
       "location": "Sector 10 / Asteria",
       "story": "An EMP warship has anchored over Metro Asteria. Keep the manual cannon firing while the grid recovers.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone. Priority targets have colored markings and telegraphed abilities. Boss: EMP Warship. Three phases; cyan core takes bonus manual damage. Eliminate charging escorts.",
@@ -3138,7 +3119,6 @@
           440
         ]
       ],
-      "starting_credits": 770,
       "build_time": 14,
       "terrain": {
         "kind": "metro",
@@ -3526,7 +3506,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 480,
       "location": "Sector 11 / Asteria",
       "story": "The counterattack begins among the western ruins. Watch the gaps between ruined apartment blocks.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -3635,7 +3614,6 @@
           461
         ]
       ],
-      "starting_credits": 890,
       "build_time": 13,
       "terrain": {
         "kind": "ruins",
@@ -4028,7 +4006,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 500,
       "location": "Sector 12 / Asteria",
       "story": "Clear Liberation Road for our relief convoy. Cloaked drones are slipping through the armored escort.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -4137,7 +4114,6 @@
           443
         ]
       ],
-      "starting_credits": 890,
       "build_time": 13,
       "terrain": {
         "kind": "highway",
@@ -4530,7 +4506,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 520,
       "location": "Sector 13 / Asteria",
       "story": "Black Ridge overlooks the frontier. Use the firing lanes to break coordinated shield formations.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -4639,7 +4614,6 @@
           449
         ]
       ],
-      "starting_credits": 890,
       "build_time": 13,
       "terrain": {
         "kind": "ridge",
@@ -5032,7 +5006,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 540,
       "location": "Sector 14 / Asteria",
       "story": "Enemy snipers are entrenched above the border fortress. Silence their targeting beams before they suppress our guns.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -5141,7 +5114,6 @@
           455
         ]
       ],
-      "starting_credits": 890,
       "build_time": 13,
       "terrain": {
         "kind": "fortress",
@@ -5508,7 +5480,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 460,
       "location": "Sector 15 / Asteria",
       "story": "Destroy the armored guardian to open the last border crossing. Its core is vulnerable between barrages.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities. Boss: Armored Border Guardian. Three phases; cyan core takes bonus manual damage. Eliminate charging escorts.",
@@ -5617,7 +5588,6 @@
           461
         ]
       ],
-      "starting_credits": 890,
       "build_time": 13,
       "terrain": {
         "kind": "fortress",
@@ -6011,7 +5981,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 575,
       "location": "Sector 16 / Varkon Empire",
       "story": "Sentinel-7 crosses into Varkon territory. Two flanking approaches threaten our temporary command post.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -6120,7 +6089,6 @@
           443
         ]
       ],
-      "starting_credits": 1010,
       "build_time": 12,
       "terrain": {
         "kind": "ridge",
@@ -6513,7 +6481,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 595,
       "location": "Sector 17 / Varkon Empire",
       "story": "Steel Valley channels enemy aircraft into narrow formations. Explosive shells can break their overlapping screens.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -6622,7 +6589,6 @@
           449
         ]
       ],
-      "starting_credits": 1010,
       "build_time": 12,
       "terrain": {
         "kind": "valley",
@@ -7015,7 +6981,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 615,
       "location": "Sector 18 / Varkon Empire",
       "story": "Disrupt the assembly plant. Carriers are delivering fresh drones from the production halls.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -7142,7 +7107,6 @@
           455
         ]
       ],
-      "starting_credits": 1010,
       "build_time": 12,
       "terrain": {
         "kind": "factory",
@@ -7535,7 +7499,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 635,
       "location": "Sector 19 / Varkon Empire",
       "story": "Secure Red Harbor before the empire can reinforce by sea. Bombers approach along the docks.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -7662,7 +7625,6 @@
           461
         ]
       ],
-      "starting_credits": 1010,
       "build_time": 12,
       "terrain": {
         "kind": "harbor",
@@ -8029,7 +7991,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 555,
       "location": "Sector 20 / Varkon Empire",
       "story": "The factory command ship controls the citadel. Destroy its assembly core before replacements overwhelm the defense.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities. Boss: Drone Factory Command Ship. Three phases; cyan core takes bonus manual damage. Eliminate charging escorts.",
@@ -8156,7 +8117,6 @@
           443
         ]
       ],
-      "starting_credits": 1010,
       "build_time": 12,
       "terrain": {
         "kind": "factory",
@@ -8550,7 +8510,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 670,
       "location": "Sector 21 / Varkon Empire",
       "story": "The final offensive crosses a dust-choked wasteland. Short sight lines demand close manual support.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -8677,7 +8636,6 @@
           449
         ]
       ],
-      "starting_credits": 1130,
       "build_time": 11,
       "terrain": {
         "kind": "deadlands",
@@ -9070,7 +9028,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 690,
       "location": "Sector 22 / Varkon Empire",
       "story": "Breach the capital defense ring. Shield drones and EMP escorts protect each attack group.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -9197,7 +9154,6 @@
           455
         ]
       ],
-      "starting_credits": 1130,
       "build_time": 11,
       "terrain": {
         "kind": "fortress",
@@ -9590,7 +9546,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 710,
       "location": "Sector 23 / Varkon Empire",
       "story": "Seize Central Command and cut the empire communications network. Eliminate its sniper cover first.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -9717,7 +9672,6 @@
           461
         ]
       ],
-      "starting_credits": 1130,
       "build_time": 11,
       "terrain": {
         "kind": "metro",
@@ -10110,7 +10064,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 730,
       "location": "Sector 24 / Varkon Empire",
       "story": "The capital is surrounded. Hold the siege perimeter against a final coordinated sortie.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities.",
@@ -10237,7 +10190,6 @@
           443
         ]
       ],
-      "starting_credits": 1130,
       "build_time": 11,
       "terrain": {
         "kind": "capital",
@@ -10604,7 +10556,6 @@
       ],
       "base_health": 1000,
       "starting_supply": 80,
-      "reward": 650,
       "location": "Sector 25 / Varkon Empire",
       "story": "The Hive Core directs every remaining Varkon squadron. Sentinel-7 must sever its core and end the invasion.",
       "intel": "Scout Drone / Assault Drone / Heavy Drone / Shield Drone / EMP Drone / Bomber Drone / Sniper Drone / Stealth Drone / Carrier Drone. Priority targets have colored markings and telegraphed abilities. Boss: The Hive Core. Three phases; cyan core takes bonus manual damage. Eliminate charging escorts.",
@@ -10731,7 +10682,6 @@
           449
         ]
       ],
-      "starting_credits": 1130,
       "build_time": 11,
       "terrain": {
         "kind": "hive",
@@ -10769,7 +10719,6 @@
       "health": 40,
       "speed": 120,
       "damage": 25,
-      "reward": 10,
       "color": "f18470",
       "size": 1.0,
       "armored": false,
@@ -10794,7 +10743,6 @@
       "health": 100,
       "speed": 75,
       "damage": 50,
-      "reward": 20,
       "color": "e8b968",
       "size": 1.2,
       "armored": true,
@@ -10810,7 +10758,6 @@
       "health": 300,
       "speed": 40,
       "damage": 100,
-      "reward": 60,
       "color": "b197ee",
       "size": 1.55,
       "armored": true,
@@ -10829,7 +10776,6 @@
       "health": 130,
       "speed": 65,
       "damage": 35,
-      "reward": 30,
       "color": "65dbea",
       "size": 1.25,
       "armored": false,
@@ -10849,7 +10795,6 @@
       "health": 130,
       "speed": 85,
       "damage": 35,
-      "reward": 30,
       "color": "a6a0ff",
       "size": 1.1,
       "armored": false,
@@ -10873,7 +10818,6 @@
       "health": 160,
       "speed": 95,
       "damage": 180,
-      "reward": 40,
       "color": "ff8d43",
       "size": 1.4,
       "armored": true,
@@ -10899,7 +10843,6 @@
       "health": 140,
       "speed": 52,
       "damage": 30,
-      "reward": 35,
       "color": "f6de7e",
       "size": 1.1,
       "armored": false,
@@ -10923,7 +10866,6 @@
       "health": 220,
       "speed": 45,
       "damage": 70,
-      "reward": 50,
       "color": "dd8bc9",
       "size": 1.6,
       "armored": true,
@@ -10950,7 +10892,6 @@
       "health": 65,
       "speed": 115,
       "damage": 40,
-      "reward": 25,
       "color": "8398bc",
       "size": 1.0,
       "armored": false,
@@ -10970,7 +10911,6 @@
       "health": 1600,
       "speed": 45,
       "damage": 500,
-      "reward": 180,
       "color": "ee9e67",
       "size": 2.4,
       "armored": true,
@@ -11059,7 +10999,6 @@
       "health": 1900,
       "speed": 45,
       "damage": 500,
-      "reward": 180,
       "color": "a89aff",
       "size": 2.4,
       "armored": true,
@@ -11148,7 +11087,6 @@
       "health": 2200,
       "speed": 45,
       "damage": 500,
-      "reward": 180,
       "color": "dfc17a",
       "size": 2.4,
       "armored": true,
@@ -11237,7 +11175,6 @@
       "health": 2500,
       "speed": 45,
       "damage": 500,
-      "reward": 180,
       "color": "e18fcc",
       "size": 2.4,
       "armored": true,
@@ -11326,7 +11263,6 @@
       "health": 3000,
       "speed": 45,
       "damage": 500,
-      "reward": 180,
       "color": "ff687c",
       "size": 2.4,
       "armored": true,
@@ -11417,7 +11353,6 @@
   "turrets": {
     "machine_gun": {
       "name": "Machine Gun",
-      "cost": 100,
       "damage": 10,
       "fire_rate": 3.8,
       "range": 230,
@@ -11430,7 +11365,6 @@
     },
     "cannon": {
       "name": "Cannon",
-      "cost": 200,
       "damage": 50,
       "fire_rate": 0.78,
       "range": 250,
@@ -11443,7 +11377,6 @@
     },
     "missile": {
       "name": "Missile Launcher",
-      "cost": 350,
       "damage": 75,
       "fire_rate": 0.48,
       "range": 290,
@@ -11456,7 +11389,6 @@
     },
     "laser": {
       "name": "Laser Turret",
-      "cost": 250,
       "damage": 22,
       "fire_rate": 1,
       "range": 255,
@@ -11470,7 +11402,6 @@
     },
     "emp_tower": {
       "name": "EMP Tower",
-      "cost": 230,
       "damage": 0,
       "fire_rate": 0.2,
       "range": 215,
@@ -11486,7 +11417,6 @@
     },
     "heavy_aa": {
       "name": "Heavy AA Cannon",
-      "cost": 450,
       "damage": 170,
       "fire_rate": 0.25,
       "range": 320,
@@ -11503,7 +11433,6 @@
     "max_turret_level": 3,
     "upgrade_damage_multiplier": 1.35,
     "upgrade_range_step": 12,
-    "upgrade_cost_multiplier": 0.65,
     "permanent_damage_step": 0.15,
     "projectile_lifetime": 5.0,
     "hit_radius": 18,

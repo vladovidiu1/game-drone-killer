@@ -2,12 +2,20 @@ extends Node
 signal balance_changed
 const MAX_LEVEL := 5
 
-func add_credits(amount: int) -> void:
- SaveManager.state.credits = maxi(0, int(SaveManager.state.get("credits", 0)) + amount)
- balance_changed.emit()
+const CONFIG := preload("res://scripts/core/economy_config.gd")
+
+func victory_quote(mission_id: int) -> Dictionary:
+ var record: Dictionary = SaveManager.state.get("records",{}).get(str(mission_id),{})
+ var first_clear := int(record.get("victories",0)) == 0 and mission_id >= int(SaveManager.state.get("highest",1))
+ var full_reward := int(CONFIG.values.war.first_clear.get(str(mission_id),0))
+ # Records are the clear ledger; highest also covers v1 saves without records.
+ # Integer percent, rounded down; no replay can recover first-clear eligibility.
+ var reward := full_reward if first_clear else int(full_reward*int(CONFIG.values.war.replay_percent)/100.0)
+ return {"reward":reward,"first_clear":first_clear,"first_reward":full_reward}
 
 func upgrade_cost() -> int:
- return 100 + int(SaveManager.state.get("damage_level", 0)) * 75
+ var costs: Array = CONFIG.values.war.legacy_damage_costs
+ return int(costs[mini(int(SaveManager.state.get("damage_level",0)),costs.size()-1)])
 
 func buy_damage() -> bool:
  if not SaveManager.has_campaign() or int(SaveManager.state.damage_level) >= MAX_LEVEL:

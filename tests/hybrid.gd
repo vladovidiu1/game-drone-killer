@@ -96,7 +96,7 @@ func run() -> void:
  cannon.tick(0.2)
  bullet = battle.projectiles.get_child(battle.projectiles.get_child_count()-1)
  bullet.tick(0.2)
- check(enemy.ended and battle.kills == 1 and battle.credits == 410,"combined attacks destroy drone and award credits once")
+ check(enemy.ended and battle.kills == 1 and battle.credits == 407,"combined attacks destroy drone and award credits once")
  battle.player_controls.set_fire(&"test",false)
  var shots: int = cannon.shots_fired
  for i in 30:
@@ -282,7 +282,7 @@ func run() -> void:
   await get_tree().process_frame
  check(app.screen == "results" and bool(app.result_data.get("victory",false)),"full hybrid mission reaches victory using ordinary attacks and earned credits")
  check(int(app.result_data.get("manual_shots",0)) > 0 and int(app.result_data.get("manual_hits",0)) > 0 and auto_shots > 0,"manual and automatic guns both contribute throughout the mission")
- check(int(SaveManager.state.credits) == 120 and int(SaveManager.state.frontline) == 2,"hybrid victory retains campaign rewards and progression")
+ check(int(SaveManager.state.credits) == 100 and int(SaveManager.state.frontline) == 2,"hybrid victory retains campaign rewards and progression")
  app.queue_free()
  await get_tree().process_frame
  print("HYBRID: %d checks, %d failures" % [checks,failures])

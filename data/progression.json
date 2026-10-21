@@ -3,13 +3,6 @@
     "cannon_damage": {
       "name": "Cannon Damage",
       "benefit": "+5% primary damage per level",
-      "costs": [
-        60,
-        100,
-        160,
-        240,
-        340
-      ],
       "tab": "primary",
       "highest": 1,
       "per_level": 0.05
@@ -17,13 +10,6 @@
     "cannon_rate": {
       "name": "Fire Rate",
       "benefit": "+4% primary fire rate per level",
-      "costs": [
-        70,
-        115,
-        180,
-        260,
-        370
-      ],
       "tab": "primary",
       "highest": 1,
       "per_level": 0.04
@@ -31,13 +17,6 @@
     "magazine": {
       "name": "Magazine Capacity",
       "benefit": "+10 magazine rounds per level",
-      "costs": [
-        60,
-        105,
-        165,
-        245,
-        350
-      ],
       "tab": "primary",
       "highest": 1,
       "per_level": 10
@@ -45,13 +24,6 @@
     "reload": {
       "name": "Reload Speed",
       "benefit": "-6% reload duration per level",
-      "costs": [
-        75,
-        120,
-        185,
-        270,
-        380
-      ],
       "tab": "primary",
       "highest": 1,
       "per_level": -0.06
@@ -59,13 +31,6 @@
     "velocity": {
       "name": "Projectile Velocity",
       "benefit": "+5% projectile velocity per level",
-      "costs": [
-        50,
-        90,
-        145,
-        215,
-        310
-      ],
       "tab": "primary",
       "highest": 1,
       "per_level": 0.05
@@ -73,13 +38,6 @@
     "crit_chance": {
       "name": "Critical Hit Chance",
       "benefit": "+2 percentage points per level",
-      "costs": [
-        90,
-        145,
-        220,
-        320,
-        450
-      ],
       "tab": "primary",
       "highest": 1,
       "per_level": 0.02
@@ -87,13 +45,6 @@
     "crit_damage": {
       "name": "Critical Damage",
       "benefit": "+10 percentage points to critical bonus per level",
-      "costs": [
-        70,
-        115,
-        180,
-        260,
-        370
-      ],
       "tab": "primary",
       "highest": 1,
       "per_level": 0.1
@@ -101,13 +52,6 @@
     "base_health": {
       "name": "Base Health",
       "benefit": "+100 maximum base HP per level",
-      "costs": [
-        80,
-        130,
-        190,
-        270,
-        360
-      ],
       "tab": "research",
       "highest": 1,
       "per_level": 100
@@ -115,13 +59,6 @@
     "starting_credits": {
       "name": "Starting Battle Credits",
       "benefit": "+50 starting Battle Credits per level",
-      "costs": [
-        100,
-        160,
-        240,
-        340,
-        460
-      ],
       "tab": "research",
       "highest": 1,
       "per_level": 50
@@ -129,13 +66,6 @@
     "turret_damage": {
       "name": "Automatic Turret Damage",
       "benefit": "+5% automatic damage per level",
-      "costs": [
-        85,
-        135,
-        200,
-        285,
-        390
-      ],
       "tab": "research",
       "highest": 1,
       "per_level": 0.05
@@ -143,13 +73,6 @@
     "turret_range": {
       "name": "Automatic Turret Range",
       "benefit": "+3% automatic range per level",
-      "costs": [
-        75,
-        120,
-        180,
-        260,
-        355
-      ],
       "tab": "research",
       "highest": 1,
       "per_level": 0.03
@@ -157,13 +80,6 @@
     "turret_rate": {
       "name": "Automatic Turret Fire Rate",
       "benefit": "+4% automatic fire rate per level",
-      "costs": [
-        90,
-        145,
-        215,
-        305,
-        420
-      ],
       "tab": "research",
       "highest": 1,
       "per_level": 0.04
@@ -171,13 +87,6 @@
     "repair_efficiency": {
       "name": "Repair Efficiency",
       "benefit": "+5% repaired HP per level",
-      "costs": [
-        60,
-        100,
-        155,
-        225,
-        320
-      ],
       "tab": "research",
       "highest": 1,
       "per_level": 0.05
@@ -185,13 +94,6 @@
     "repair_mastery": {
       "name": "Repair Mastery",
       "benefit": "-4% repair cooldown per level",
-      "costs": [
-        80,
-        125,
-        190,
-        275,
-        380
-      ],
       "tab": "abilities",
       "highest": 1,
       "per_level": -0.04
@@ -199,13 +101,6 @@
     "emp_mastery": {
       "name": "EMP Mastery",
       "benefit": "-4% EMP Blast cooldown per level",
-      "costs": [
-        95,
-        150,
-        225,
-        320,
-        440
-      ],
       "tab": "abilities",
       "highest": 1,
       "per_level": -0.04
@@ -213,13 +108,6 @@
     "overclock_mastery": {
       "name": "Overclock Mastery",
       "benefit": "-4% Overclock cooldown per level",
-      "costs": [
-        95,
-        150,
-        225,
-        320,
-        440
-      ],
       "tab": "abilities",
       "highest": 1,
       "per_level": -0.04
@@ -227,11 +115,6 @@
     "ammo_standard": {
       "name": "Standard Rounds / Technology",
       "benefit": "Three tiers: Balanced, inexpensive interception.",
-      "costs": [
-        60,
-        120,
-        220
-      ],
       "highest": 1,
       "tab": "projectiles",
       "per_level": 0,
@@ -241,11 +124,6 @@
     "ammo_armor_piercing": {
       "name": "Armor Piercing / Technology",
       "benefit": "Three tiers: Concentrated hull damage; bypasses armor and shield aura.",
-      "costs": [
-        90,
-        170,
-        300
-      ],
       "highest": 2,
       "tab": "projectiles",
       "per_level": 0,
@@ -257,11 +135,6 @@
     "ammo_explosive": {
       "name": "High Explosive / Technology",
       "benefit": "Three tiers: Blast damage for compact enemy groups.",
-      "costs": [
-        100,
-        190,
-        330
-      ],
       "highest": 3,
       "tab": "projectiles",
       "per_level": 0,
@@ -273,11 +146,6 @@
     "ammo_emp": {
       "name": "EMP Projectiles / Technology",
       "benefit": "Three tiers: Disrupts movement, attacks, stealth and shield emitters.",
-      "costs": [
-        120,
-        220,
-        360
-      ],
       "highest": 6,
       "tab": "projectiles",
       "per_level": 0,
@@ -289,11 +157,6 @@
     "ammo_cryo": {
       "name": "Cryo Rounds / Technology",
       "benefit": "Three tiers: Slows fast targets for automatic crossfire.",
-      "costs": [
-        140,
-        260,
-        420
-      ],
       "highest": 11,
       "tab": "projectiles",
       "per_level": 0,
@@ -305,11 +168,6 @@
     "ammo_railgun": {
       "name": "Railgun Projectiles / Technology",
       "benefit": "Three tiers: High velocity, hull penetration and multiple aligned hits.",
-      "costs": [
-        200,
-        360,
-        580
-      ],
       "highest": 16,
       "tab": "projectiles",
       "per_level": 0,
@@ -321,11 +179,6 @@
     "spec_machine_gun_rapid": {
       "name": "Cycling Assembly",
       "benefit": "Faster fire; less damage per round. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 4,
       "tab": "specializations",
       "per_level": 0,
@@ -338,11 +191,6 @@
     "spec_machine_gun_armor": {
       "name": "Hardened Feed",
       "benefit": "Armor damage; slower firing. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 4,
       "tab": "specializations",
       "per_level": 0,
@@ -355,11 +203,6 @@
     "spec_cannon_impact": {
       "name": "Impact Chamber",
       "benefit": "Higher impact; longer firing cycle. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 4,
       "tab": "specializations",
       "per_level": 0,
@@ -372,11 +215,6 @@
     "spec_cannon_blast": {
       "name": "Fragmentation",
       "benefit": "Small splash; lower direct damage. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 4,
       "tab": "specializations",
       "per_level": 0,
@@ -389,11 +227,6 @@
     "spec_missile_blast": {
       "name": "Wide Warhead",
       "benefit": "Larger splash; slower missile flight. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 4,
       "tab": "specializations",
       "per_level": 0,
@@ -406,11 +239,6 @@
     "spec_missile_guidance": {
       "name": "Guidance Package",
       "benefit": "Faster travel and lock; slightly lower damage. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 4,
       "tab": "specializations",
       "per_level": 0,
@@ -423,11 +251,6 @@
     "spec_laser_sustained": {
       "name": "Thermal Capacitor",
       "benefit": "More sustained DPS; longer acquisition. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 6,
       "tab": "specializations",
       "per_level": 0,
@@ -440,11 +263,6 @@
     "spec_laser_shield": {
       "name": "Shield Harmonics",
       "benefit": "Bypasses shield protection; less hull damage. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 6,
       "tab": "specializations",
       "per_level": 0,
@@ -457,11 +275,6 @@
     "spec_emp_tower_radius": {
       "name": "Field Antenna",
       "benefit": "Wider field; slightly shorter slow duration. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 6,
       "tab": "specializations",
       "per_level": 0,
@@ -474,11 +287,6 @@
     "spec_emp_tower_duration": {
       "name": "Disruption Coil",
       "benefit": "Longer slow plus short disable; shorter range. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 6,
       "tab": "specializations",
       "per_level": 0,
@@ -491,11 +299,6 @@
     "spec_heavy_aa_precision": {
       "name": "Precision Breech",
       "benefit": "Higher damage; tighter required firing alignment. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 6,
       "tab": "specializations",
       "per_level": 0,
@@ -508,11 +311,6 @@
     "spec_heavy_aa_armor": {
       "name": "Penetrator Sabot",
       "benefit": "Armored damage and bypass; lower ordinary damage. Equip one branch per design before deployment.",
-      "costs": [
-        120,
-        220,
-        380
-      ],
       "highest": 6,
       "tab": "specializations",
       "per_level": 0,
@@ -526,37 +324,31 @@
   "unlocks": {
     "armor_piercing": {
       "name": "Armor Piercing Ammunition",
-      "cost": 180,
       "highest": 2,
       "benefit": "1.75\u00d7 damage versus armored drones; 25% slower firing."
     },
     "explosive": {
       "name": "Explosive Ammunition",
-      "cost": 260,
       "highest": 3,
       "benefit": "45-unit splash, 75% damage, consumes 3 rounds per shot."
     },
     "laser": {
       "name": "Laser Turret",
-      "cost": 220,
       "highest": 2,
       "benefit": "Accurate continuous beam; 24 base damage per second."
     },
     "emp_tower": {
       "name": "EMP Tower",
-      "cost": 250,
       "highest": 3,
       "benefit": "Area pulse slows nearby drones to 35% speed for 2 seconds."
     },
     "heavy_aa": {
       "name": "Heavy AA Cannon",
-      "cost": 300,
       "highest": 3,
       "benefit": "180 damage per shot with a slow firing cycle."
     },
     "emp": {
       "name": "EMP Projectiles",
-      "cost": 360,
       "highest": 6,
       "requires": {
         "ammo_standard": 1
@@ -565,7 +357,6 @@
     },
     "cryo": {
       "name": "Cryo Rounds",
-      "cost": 480,
       "highest": 11,
       "requires": {
         "emp": 1,
@@ -575,7 +366,6 @@
     },
     "railgun": {
       "name": "Railgun Projectiles",
-      "cost": 800,
       "highest": 16,
       "requires": {
         "ammo_armor_piercing": 2,
@@ -654,7 +444,6 @@
   "abilities": {
     "repair": {
       "name": "Emergency Repair",
-      "cost": 90,
       "cooldown": 30.0,
       "heal": 250,
       "duration": 0.0,
@@ -664,7 +453,6 @@
     },
     "emp_blast": {
       "name": "EMP Blast",
-      "cost": 120,
       "cooldown": 45.0,
       "duration": 2.5,
       "radius": 650,
@@ -673,7 +461,6 @@
     },
     "overclock": {
       "name": "Overclock",
-      "cost": 100,
       "cooldown": 40.0,
       "duration": 6.0,
       "multiplier": 1.5,
@@ -687,15 +474,13 @@
       "name": "Veteran Commander",
       "description": "Win five deployments",
       "wins": 5,
-      "checkpoint": 1,
-      "reward": 150
+      "checkpoint": 1
     },
     "chapter_five": {
       "name": "Chapter Secured",
       "description": "Secure checkpoint 5",
       "wins": 0,
-      "checkpoint": 5,
-      "reward": 250
+      "checkpoint": 5
     }
   },
   "projectile_technologies": {
