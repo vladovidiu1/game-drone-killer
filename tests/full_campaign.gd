@@ -129,6 +129,10 @@ func fight(id: int, defend: bool, manual: bool = true, expected_win: int = -1, b
  row.starting_battle_credits = int(battle.mission_data.starting_credits)+int(EconomyManager.modifier("starting_credits",battle.research_levels))
  row.battle_remaining = battle.credits
  row.battle_spent = row.starting_battle_credits+battle.earned-battle.credits
+ row.performance = outcome.get("performance",{})
+ row.stars = int(resolved.get("stars",0))
+ row.star_reward = int(resolved.get("star_reward",0))
+ row.attempt_mode = resolved.get("mode","frontline")
  row.war_reward = int(resolved.get("reward",0))
  row.war_balance_after = int(SaveManager.state.credits)
  rows.append(row)
@@ -195,7 +199,7 @@ func run() -> void:
   check(SaveManager.state.checkpoints == [1,5,10,15,20],"all five chapters interconnected through real combat")
   var retained: Dictionary = SaveManager.state.research.duplicate(true)
   await fight(25,false)
-  check(SaveManager.state.frontline == 24 and not SaveManager.state.campaign_complete,"final replay defeat returns territory 24 to contest")
+  check(SaveManager.state.frontline == 24 and not SaveManager.state.campaign_complete,"explicit frontline finale defeat returns territory 24 to contest")
   check(SaveManager.state.research == retained,"late-campaign defeat retains permanent research")
   for recovery in range(16):
    if SaveManager.state.campaign_complete or failures > 0:

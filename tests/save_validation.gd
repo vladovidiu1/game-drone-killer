@@ -105,7 +105,7 @@ func run() -> void:
  check(not outcome.is_empty() and CampaignManager.resolve(true,20,token).is_empty() and SaveManager.state == snapshot,"duplicate reward remains blocked after restarting from disk")
  var current := CampaignManager.begin_mission(20)
  check(CampaignManager.resolve(false,20,token).is_empty() and SaveManager.state.active_run.id == current,"stale result cannot consume a newer deployment")
- check(not CampaignManager.resolve(false,20,current).is_empty() and SaveManager.state.frontline == 20,"replay defeat obeys the same checkpoint-bounded retreat rule")
+ check(not CampaignManager.resolve(false,20,current).is_empty() and SaveManager.state.frontline == 21,"optional replay defeat protects the active frontline and checkpoint")
  # A directory at the temporary-file path simulates a real write failure.
  var retry_token := CampaignManager.begin_mission(20)
  var retained := SaveManager.state.duplicate(true)

@@ -7,9 +7,11 @@ var tint := UI.CYAN
 var checkpoint := false
 var locked := false
 var current := false
+var best_stars := 0
 var clock := 0.0
 func setup(id: int) -> void:
  mission_id = id
+ best_stars = int(SaveManager.state.get("records",{}).get(str(id),{}).get("best_stars",0))
  custom_minimum_size = Vector2(190,64)
  size = custom_minimum_size
  tooltip_text = "%02d  %s" % [id,CampaignManager.mission(id).name]
@@ -17,7 +19,7 @@ func setup(id: int) -> void:
   add_theme_stylebox_override(state,StyleBoxEmpty.new())
  var label := UI.label(tooltip_text,15)
  label.position = Vector2(60,6)
- label.size = Vector2(126,54)
+ label.size = Vector2(126,44)
  label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  label.mouse_filter = Control.MOUSE_FILTER_IGNORE
  add_child(label)
@@ -27,6 +29,12 @@ func setup(id: int) -> void:
  tint = UI.ORANGE if current else UI.CYAN if CampaignManager.territory_state(id) == "CONTROLLED" else Color("F04B45")
 func _draw() -> void:
  var center := Vector2(27,32)
+ if best_stars > 0:
+  for star in 3:
+   var points := PackedVector2Array()
+   for point in 10:
+    points.append(Vector2(67+star*15,59)+Vector2.from_angle(-PI/2+point*PI/5)*(6 if point%2 == 0 else 2.7))
+   draw_colored_polygon(points,UI.ORANGE if star < best_stars else Color("52626f"))
  draw_circle(center+Vector2(0,3),26,Color(0,0,0,.4))
  draw_circle(center,24,Color("101d29"))
  draw_arc(center,24,0,TAU,40,Color(tint,.8),1.4,true)

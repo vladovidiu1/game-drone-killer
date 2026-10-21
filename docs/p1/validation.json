@@ -1,0 +1,14 @@
+{
+  "date_utc": "2026-10-21",
+  "combined_regression": "../m8/validation.json",
+  "headless_main_checks": 37,
+  "headless_fresh_process_checks": 3,
+  "native_checks": 118,
+  "native_captures": 41,
+  "failures": 0,
+  "scripted_guided_seconds": 6.44,
+  "normal_mission_1_reward": 125,
+  "pacing_note": "Automation skips intro and performs actions immediately. This is not a measured human duration; around two minutes remains a playtest target.",
+  "android_hardware_tested": false,
+  "focused_run": "tutorial_focused.log"
+}

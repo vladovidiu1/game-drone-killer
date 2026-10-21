@@ -18,6 +18,7 @@ func _ready() -> void:
  header.add_child(title)
  title.add_child(UI.label("SENTINEL COMMAND / CAMPAIGN OPERATIONS",14,UI.CYAN))
  title.add_child(UI.label("ASTERIA / STRATEGIC MAP",34))
+ title.add_child(UI.label("CAMPAIGN RATING / %d / 75 STARS" % CampaignManager.total_stars(),17,UI.ORANGE))
  bank = UI.label("WAR CREDITS  /  %s" % int(SaveManager.state.get("credits",0)),22,UI.CYAN)
  header.add_child(bank)
  EconomyManager.balance_changed.connect(_balance_changed)
@@ -60,7 +61,7 @@ func _ready() -> void:
  ad_offer.compact = true
  intel.add_child(ad_offer)
  intel.add_child(UI.label("SECURED FLOOR  /  %02d" % int(SaveManager.state.get("checkpoint",1)),16,UI.MUTED))
- var hint := UI.label("Select an operation marker to inspect its briefing. Enemy territories remain locked until the frontline reaches them.",16,UI.MUTED)
+ var hint := UI.label("Select an operation marker to inspect its briefing. Completed operations may be replayed safely for stars, including previously cleared territory beyond the current frontline.",16,UI.MUTED)
  hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  intel.add_child(hint)
  var feedback := UI.label(str(SaveManager.state.get("last_result",{}).get("message","Secure Asteria, one territory at a time.")),17,UI.CYAN)

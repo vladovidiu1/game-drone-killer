@@ -1,4 +1,7 @@
 extends Node2D
+var telemetry_registered := false
+var accuracy_recorded := false
+var critical_recorded := false
 var battle: Node2D
 var precision_critical := false
 var hit_component: Node2D
@@ -78,17 +81,19 @@ func apply_payload(enemy: Node2D, direct_manual: bool, area: bool = false) -> vo
  precision_critical = false # per impact, not inherited by the next penetrated actor
  if enemy.ended or (enemy.components != null and enemy.components.falling):
   return
+ var source: StringName = &"manual" if manual else &"automatic"
  var piercing: bool = manual and armor_multiplier > 1.0
  if direct_manual and not area and is_instance_valid(hit_component) and hit_component.kind != "body":
   precision_critical = hit_component.kind == "core" and hit_component.open()
-  hit_component.receive(damage_for(enemy,hit_component),true,piercing,payload)
+  hit_component.receive(damage_for(enemy,hit_component),true,piercing,payload,source)
   if precision_critical:
    battle.view.combat_fx.particle("critical",destination,Vector2.ZERO,.28,26,Color("ffcf83"))
  else:
   var point := Vector2.INF if area and enemy.components != null else precision_point(enemy)
-  enemy.hit(damage_for(enemy),direct_manual,piercing,point,payload)
+  enemy.hit(damage_for(enemy),direct_manual,piercing,point,payload,source)
  if area and enemy.components != null and not enemy.ended:
-  enemy.components.area(damage*damage_scale,destination,splash_radius,piercing,payload)
+  enemy.components.area(damage*damage_scale,destination,splash_radius,piercing,payload,source)
+ battle.performance.impact(self,critical or precision_critical)
  if not enemy.ended:
   if float(payload.get("disable_duration",0)) > 0:
    enemy.apply_disable(float(payload.disable_duration))

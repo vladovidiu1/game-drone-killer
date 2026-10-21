@@ -19,7 +19,7 @@
 - Campaign schema is version 3. Preserve v1/v2 migration and validated `.bak` recovery. Settings remain independent of campaign reset. Validate types before converting untrusted JSON.
 - Results require the matching persisted deployment token. Rewards, mission records, token consumption and territorial state must be one saved transaction; stale/duplicate results must do nothing.
 - Defeat gives no reward and retreats the current frontline by one, bounded by the highest secured floor. Floors are 1 initially and completed missions 5, 10, 15 and 20 (never 6/11/16/21). Highest reached and permanent upgrades never decrease on defeat.
-- Mission IDs 1–25 are playable. Enemy abilities and boss phases are shared through `enemy_brain.gd`; only data varies between territories. Optional `campaign_complete` extends schema v3 and must be validated against a mission 25 victory record. Gate deployment by current frontline, not highest-ever reach. Replay wins cannot advance beyond their territory; replay defeats obey the standard retreat rule.
+- Mission IDs 1–25 are playable. Enemy abilities and boss phases are shared through `enemy_brain.gd`; only data varies between territories. Optional `campaign_complete` extends schema v3 and must be validated against a mission 25 victory record. Gate frontline deployment by the current frontline, not highest-ever reach. M8 additionally permits optional replay of completed records after retreat; neither replay victories nor replay defeats may move the frontline. Only `frontline` deployments follow advance/retreat/checkpoint rules.
 - Run the campaign and recovery suites along with combat checks. Distinguish actual full-mission combat validation from synthetic future-checkpoint rule fixtures.
 
 ## GitHub publication preference
@@ -145,3 +145,18 @@
 - Direct manual rays select one surface component or hull. Preserve explicit configured hull spill, center-based quarter-strength blast packets and one distinct-actor rail ledger. AP/critical/status routing must not be applied twice. Automatic direct attacks retain body targeting.
 - Component destruction pays no bounty. Consume part ownership before effects. Critical-engine loss delays the ordinary `Drone.die()` by the configured crash duration; keep it live for wave completion, stop attacks/shields/navigation and pay the existing reward once. Temporary components never write campaign saves.
 - Run component/full regression, fixed-policy combat comparisons, the native component scene through the isolated graphics wrapper, all-archetype/VFX captures and relevant UI regression. Record actual failures/losses, staged fixture state and Android hardware limits; do not weaken earned-campaign assertions to hide balance regressions.
+
+## M8 mission performance
+
+- Follow `docs/MISSION_PERFORMANCE.md`. Keep thresholds/objectives/score tuning in `data/mission_performance.json`, currency milestones in `data/economy.json`. Battle owns attempt counters; pure evaluation never writes saves or changes damage.
+- One launched manual shell contributes at most one successful/critical round, including splash and rail. Count clamped effective hull damage by source, not raw overkill or component HP; preserve delayed engine-crash source and ordinary bounty ownership.
+- Preserve additive v3 `performance_schema`, historical first clears and claimed numeric tiers after JSON reload. Bests, bonus claims, credits and consumed deployment token are one rollback-safe result transaction. UI animations must never grant rewards.
+- Persist explicit active-run `frontline`/`replay` mode. Only the former may change territory/floors; completed optional replays protect the frontline even on failure. Current contested reconquest remains available separately.
+- Run performance/fresh-process suites plus full regression and fixed-policy comparisons. Distinguish accounting witnesses from actual combat and human three-star feasibility.
+
+## P1 first-mission guidance
+
+- Follow `docs/FIRST_MISSION_TUTORIAL.md`. Reuse Battle, PlayerInput/PlayerTurret, actual training enemies/projectiles and the real turret shop. Tutorial data lives in `data/tutorial.json`; controller and overlay are separate scenes. Never auto-aim/fire the primary for guidance.
+- Guided rehearsal pauses ordinary waves and excludes training from bounty, performance and campaign progression. Practice supply/turrets/ammo are discarded before fresh ordinary Mission 1 under the same persisted run token. Settings replay has no token/result/reward.
+- Settings `tutorial_status` is independent of campaign reset. Persist completed/skipped once; failed settings writes must leave guidance retryable. Accept earlier valid actions, share pause/build simulation delta, preserve independent touch IDs and clean up overlays/held input.
+- Run tutorial/fresh-process suites and native tutorial capture through the existing isolated graphics wrapper. Native wrappers run sequentially. Injected touch, scripted duration and desktop rendering never establish physical Android behavior or two-minute human pacing.

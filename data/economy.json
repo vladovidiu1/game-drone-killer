@@ -35,7 +35,11 @@
       250,
       325,
       400
-    ]
+    ],
+    "star_milestones": {
+      "2": 10,
+      "3": 15
+    }
   },
   "battle": {
     "bounties": {

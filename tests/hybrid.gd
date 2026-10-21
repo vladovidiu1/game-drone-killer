@@ -282,7 +282,7 @@ func run() -> void:
   await get_tree().process_frame
  check(app.screen == "results" and bool(app.result_data.get("victory",false)),"full hybrid mission reaches victory using ordinary attacks and earned credits")
  check(int(app.result_data.get("manual_shots",0)) > 0 and int(app.result_data.get("manual_hits",0)) > 0 and auto_shots > 0,"manual and automatic guns both contribute throughout the mission")
- check(int(SaveManager.state.credits) == 100 and int(SaveManager.state.frontline) == 2,"hybrid victory retains campaign rewards and progression")
+ check(int(SaveManager.state.credits) == 100+int(app.result_data.campaign.star_reward) and int(SaveManager.state.frontline) == 2,"hybrid victory retains campaign rewards and progression")
  app.queue_free()
  await get_tree().process_frame
  print("HYBRID: %d checks, %d failures" % [checks,failures])

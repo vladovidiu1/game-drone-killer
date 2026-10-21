@@ -1,0 +1,23 @@
+{
+  "source": "Native Godot 4.6.3 X11/OpenGL Compatibility viewport; llvmpipe; no edited pixels",
+  "command": "DISPLAY=:91 LIBGL_ALWAYS_SOFTWARE=1 FRONTLINE_CAPTURE_SCENE=res://tests/tutorial.tscn ./tests/run_graphics_profile.sh /tmp/p1-native-final-persist --attack-seed=808",
+  "fixture": "Actual guided events/actors then ordinary-budget M1 victory; layout_* phases staged, actual receipt re-presented for ratings/briefing/map; no Android hardware",
+  "frames": [
+    {
+      "file": "actual_m1_stars.png",
+      "sha256": "29bfe809ada47b228e496882c7812e1d2fe1ab1ae40b3daaac397983649b6bba"
+    },
+    {
+      "file": "ratings_1024x768.png",
+      "sha256": "7c2f46ce27c18515485ab73114d751ace93e564720c1f7d880ca7e05c7b4d22f"
+    },
+    {
+      "file": "star_requirements_1280x600.png",
+      "sha256": "b450e485571db92bdf43c7341921c681c16b16a09ee98825cd75768a3b525f00"
+    },
+    {
+      "file": "stars_map_1280x720.png",
+      "sha256": "b87c049f5f3c2962f475bc961aed378d5d8fa46b7f2476104da38658c0e234b2"
+    }
+  ]
+}

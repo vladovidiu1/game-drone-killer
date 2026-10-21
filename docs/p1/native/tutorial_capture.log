@@ -1,0 +1,47 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+TUTORIAL CAPTURE: intro
+TUTORIAL CAPTURE: aim
+TUTORIAL CAPTURE: fire
+TUTORIAL CAPTURE: reload
+TUTORIAL CAPTURE: build
+TUTORIAL CAPTURE: sectors
+TUTORIAL CAPTURE: upgrade
+TUTORIAL CAPTURE: objective
+TUTORIAL CAPTURE: actual_m1_stars
+TUTORIAL CAPTURE: layout_1280x720_step0
+TUTORIAL CAPTURE: layout_1280x720_step1
+TUTORIAL CAPTURE: layout_1280x720_step2
+TUTORIAL CAPTURE: layout_1280x720_step4
+TUTORIAL CAPTURE: layout_1280x720_step6
+TUTORIAL CAPTURE: ratings_1280x720
+TUTORIAL CAPTURE: star_requirements_1280x720
+TUTORIAL CAPTURE: stars_map_1280x720
+TUTORIAL CAPTURE: layout_1600x720_step0
+TUTORIAL CAPTURE: layout_1600x720_step1
+TUTORIAL CAPTURE: layout_1600x720_step2
+TUTORIAL CAPTURE: layout_1600x720_step4
+TUTORIAL CAPTURE: layout_1600x720_step6
+TUTORIAL CAPTURE: ratings_1600x720
+TUTORIAL CAPTURE: star_requirements_1600x720
+TUTORIAL CAPTURE: stars_map_1600x720
+TUTORIAL CAPTURE: layout_1280x600_step0
+TUTORIAL CAPTURE: layout_1280x600_step1
+TUTORIAL CAPTURE: layout_1280x600_step2
+TUTORIAL CAPTURE: layout_1280x600_step4
+TUTORIAL CAPTURE: layout_1280x600_step6
+TUTORIAL CAPTURE: ratings_1280x600
+TUTORIAL CAPTURE: star_requirements_1280x600
+TUTORIAL CAPTURE: stars_map_1280x600
+TUTORIAL CAPTURE: layout_1024x768_step0
+TUTORIAL CAPTURE: layout_1024x768_step1
+TUTORIAL CAPTURE: layout_1024x768_step2
+TUTORIAL CAPTURE: layout_1024x768_step4
+TUTORIAL CAPTURE: layout_1024x768_step6
+TUTORIAL CAPTURE: ratings_1024x768
+TUTORIAL CAPTURE: star_requirements_1024x768
+TUTORIAL CAPTURE: stars_map_1024x768
+MISSION TUTORIAL: 118 checks, 0 failures

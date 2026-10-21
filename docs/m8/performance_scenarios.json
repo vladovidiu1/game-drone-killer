@@ -1,0 +1,88 @@
+{
+  "cases": [
+    {
+      "frontline": 2,
+      "mission": 1,
+      "mode": "frontline",
+      "reward": 110,
+      "star_reward": 10,
+      "stars": 2,
+      "victory": true
+    },
+    {
+      "frontline": 2,
+      "mission": 1,
+      "mode": "replay",
+      "reward": 30,
+      "star_reward": 15,
+      "stars": 3,
+      "victory": true
+    },
+    {
+      "frontline": 2,
+      "mission": 1,
+      "mode": "replay",
+      "reward": 15,
+      "star_reward": 0,
+      "stars": 1,
+      "victory": true
+    },
+    {
+      "frontline": 2,
+      "mission": 1,
+      "mode": "replay",
+      "reward": 0,
+      "star_reward": 0,
+      "stars": 0,
+      "victory": false
+    },
+    {
+      "frontline": 6,
+      "mission": 8,
+      "mode": "replay",
+      "reward": 0,
+      "star_reward": 0,
+      "stars": 0,
+      "victory": false
+    },
+    {
+      "frontline": 5,
+      "mission": 6,
+      "mode": "frontline",
+      "reward": 0,
+      "star_reward": 0,
+      "stars": 0,
+      "victory": false
+    },
+    {
+      "frontline": 5,
+      "mission": 5,
+      "mode": "frontline",
+      "reward": 0,
+      "star_reward": 0,
+      "stars": 0,
+      "victory": false
+    },
+    {
+      "frontline": 5,
+      "mission": 5,
+      "mode": "replay",
+      "reward": 132,
+      "star_reward": 25,
+      "stars": 3,
+      "victory": true
+    },
+    {
+      "frontline": 6,
+      "mission": 5,
+      "mode": "frontline",
+      "reward": 87,
+      "star_reward": 0,
+      "stars": 3,
+      "victory": true
+    }
+  ],
+  "checks": 163,
+  "failures": 0,
+  "fixture": "synthetic star/transaction witnesses plus actual projectile/actor attribution; no Android hardware"
+}

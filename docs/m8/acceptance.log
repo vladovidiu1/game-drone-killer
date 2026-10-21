@@ -1,0 +1,608 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started Registering global classes... (3 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  25% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  50% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+MISSION TUTORIAL: 36 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+MISSION TUTORIAL: 3 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+MISSION PERFORMANCE: 163 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+MISSION PERFORMANCE: 6 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+M1 MECHANICS: 46 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+DRONE COMPONENTS: 5406 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PLACEMENT: 1337 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+TACTICAL CASE: {"battle_earned":20,"bounty_cap":482,"breaches":23,"budget":101,"case":"A","coverage":{"CENTER":39.0,"EAST":90.0,"WEST":0.0},"health":0,"kills":2,"manual_hits":0,"manual_shots":0,"mission":12,"paid_turret_upgrades":false,"pattern":"west_flank","placement":[1,3,7],"research_tier":0,"seconds":18.4,"sector_outcomes":{"CENTER":{"breaches":3,"kills":1,"supports":0},"EAST":{"breaches":3,"kills":1,"supports":0},"WEST":{"breaches":17,"kills":0,"supports":0}},"sectors":{"CENTER":6,"EAST":4,"WEST":20},"seed":601,"spent":101,"victory":false}
+TACTICAL CASE: {"battle_earned":54,"bounty_cap":482,"breaches":21,"budget":101,"case":"A-control","coverage":{"CENTER":78.0,"EAST":0.0,"WEST":96.5},"health":0,"kills":5,"manual_hits":0,"manual_shots":0,"mission":12,"paid_turret_upgrades":false,"pattern":"west_flank","placement":[0,2,6],"research_tier":0,"seconds":18.62,"sector_outcomes":{"CENTER":{"breaches":4,"kills":1,"supports":0},"EAST":{"breaches":4,"kills":0,"supports":0},"WEST":{"breaches":13,"kills":4,"supports":0}},"sectors":{"CENTER":6,"EAST":4,"WEST":20},"seed":601,"spent":101,"victory":false}
+TACTICAL CASE: {"battle_earned":27,"bounty_cap":482,"breaches":22,"budget":101,"case":"B","coverage":{"CENTER":64.33,"EAST":13.0,"WEST":44.83},"health":0,"kills":3,"manual_hits":0,"manual_shots":0,"mission":12,"paid_turret_upgrades":false,"pattern":"split","placement":[0,1,4],"research_tier":0,"seconds":18.1,"sector_outcomes":{"CENTER":{"breaches":0,"kills":0,"supports":0},"EAST":{"breaches":12,"kills":0,"supports":0},"WEST":{"breaches":10,"kills":3,"supports":0}},"sectors":{"CENTER":1,"EAST":14,"WEST":15},"seed":602,"spent":101,"victory":false}
+TACTICAL CASE: {"battle_earned":20,"bounty_cap":482,"breaches":23,"budget":101,"case":"C","coverage":{"CENTER":65.0,"EAST":26.0,"WEST":26.0},"health":0,"kills":2,"manual_hits":0,"manual_shots":0,"mission":12,"paid_turret_upgrades":false,"pattern":"split","placement":[4,5],"research_tier":0,"seconds":18.1,"sector_outcomes":{"CENTER":{"breaches":0,"kills":0,"supports":0},"EAST":{"breaches":12,"kills":0,"supports":0},"WEST":{"breaches":11,"kills":2,"supports":0}},"sectors":{"CENTER":1,"EAST":14,"WEST":15},"seed":603,"spent":101,"victory":false}
+TACTICAL CASE: {"battle_earned":20,"bounty_cap":482,"breaches":22,"budget":101,"case":"D","coverage":{"CENTER":50.67,"EAST":25.33,"WEST":25.33},"health":0,"kills":2,"manual_hits":0,"manual_shots":0,"mission":12,"paid_turret_upgrades":false,"pattern":"center_breakthrough","placement":[4,5],"research_tier":0,"seconds":17.15,"sector_outcomes":{"CENTER":{"breaches":12,"kills":2,"supports":0},"EAST":{"breaches":4,"kills":0,"supports":0},"WEST":{"breaches":6,"kills":0,"supports":0}},"sectors":{"CENTER":19,"EAST":5,"WEST":6},"seed":604,"spent":101,"victory":false}
+TACTICAL CASE: {"battle_earned":117,"bounty_cap":482,"breaches":20,"budget":101,"case":"E","coverage":{"CENTER":144.34,"EAST":20.85,"WEST":71.9},"health":205,"kills":10,"manual_hits":76,"manual_shots":80,"mission":12,"paid_turret_upgrades":true,"pattern":"west_flank","placement":[0,1,4],"research_tier":2,"seconds":21.82,"sector_outcomes":{"CENTER":{"breaches":4,"kills":2,"supports":0},"EAST":{"breaches":3,"kills":1,"supports":0},"WEST":{"breaches":13,"kills":7,"supports":0}},"sectors":{"CENTER":6,"EAST":4,"WEST":20},"seed":605,"spent":101,"victory":true}
+TACTICAL CASE: {"battle_earned":224,"bounty_cap":605,"breaches":21,"budget":116,"case":"F","coverage":{"CENTER":123.49,"EAST":62.01,"WEST":92.75},"health":215,"kills":13,"manual_hits":72,"manual_shots":73,"mission":20,"paid_turret_upgrades":true,"pattern":"split","placement":[0,1,4],"research_tier":2,"seconds":19.58,"sector_outcomes":{"CENTER":{"breaches":2,"kills":0,"supports":0},"EAST":{"breaches":10,"kills":6,"supports":0},"WEST":{"breaches":9,"kills":7,"supports":0}},"sectors":{"CENTER":2,"EAST":16,"WEST":16},"seed":701,"spent":112,"victory":true}
+TACTICAL CASE: {"battle_earned":147,"bounty_cap":605,"breaches":18,"budget":116,"case":"F","coverage":{"CENTER":123.49,"EAST":62.01,"WEST":92.75},"health":15,"kills":12,"manual_hits":68,"manual_shots":69,"mission":20,"paid_turret_upgrades":true,"pattern":"elite","placement":[0,1,4],"research_tier":2,"seconds":18.58,"sector_outcomes":{"CENTER":{"breaches":12,"kills":6,"supports":0},"EAST":{"breaches":2,"kills":4,"supports":0},"WEST":{"breaches":4,"kills":2,"supports":0}},"sectors":{"CENTER":18,"EAST":6,"WEST":6},"seed":702,"spent":112,"victory":true}
+TACTICAL CASE: {"battle_earned":258,"bounty_cap":605,"breaches":21,"budget":116,"case":"F","coverage":{"CENTER":123.49,"EAST":62.01,"WEST":92.75},"health":480,"kills":17,"manual_hits":72,"manual_shots":76,"mission":20,"paid_turret_upgrades":true,"pattern":"swarm","placement":[0,1,4],"research_tier":2,"seconds":19.42,"sector_outcomes":{"CENTER":{"breaches":5,"kills":8,"supports":0},"EAST":{"breaches":7,"kills":5,"supports":0},"WEST":{"breaches":9,"kills":4,"supports":0}},"sectors":{"CENTER":13,"EAST":12,"WEST":13},"seed":703,"spent":107,"victory":true}
+TACTICAL CASE: {"battle_earned":111,"bounty_cap":605,"breaches":18,"budget":116,"case":"F","coverage":{"CENTER":123.49,"EAST":62.01,"WEST":92.75},"health":0,"kills":10,"manual_hits":62,"manual_shots":63,"mission":20,"paid_turret_upgrades":true,"pattern":"elite","placement":[0,1,4],"research_tier":2,"seconds":17.68,"sector_outcomes":{"CENTER":{"breaches":13,"kills":5,"supports":0},"EAST":{"breaches":2,"kills":4,"supports":0},"WEST":{"breaches":3,"kills":1,"supports":0}},"sectors":{"CENTER":18,"EAST":6,"WEST":6},"seed":704,"spent":112,"victory":false}
+TACTICAL CASE: {"battle_earned":224,"bounty_cap":605,"breaches":21,"budget":116,"case":"F-repeat","coverage":{"CENTER":123.49,"EAST":62.01,"WEST":92.75},"health":215,"kills":13,"manual_hits":72,"manual_shots":73,"mission":20,"paid_turret_upgrades":true,"pattern":"split","placement":[0,1,4],"research_tier":2,"seconds":19.58,"sector_outcomes":{"CENTER":{"breaches":2,"kills":0,"supports":0},"EAST":{"breaches":10,"kills":6,"supports":0},"WEST":{"breaches":9,"kills":7,"supports":0}},"sectors":{"CENTER":2,"EAST":16,"WEST":16},"seed":701,"spent":112,"victory":true}
+TACTICAL DIRECTOR: 58559 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS: 1000 HP base and five turret slots
+PASS: purchase requires selected slot
+PASS: unknown turret rejected
+PASS: Machine Gun costs 100
+PASS: occupied slot cannot be purchased twice
+PASS: Machine Gun base stats match specification
+PASS: target most advanced enemy within range
+PASS: spawn order breaks targeting ties
+PASS: out-of-range enemies excluded
+PASS: target acquisition fires a real projectile
+PASS: swept projectile hit applies 10 damage
+PASS: consumed projectile cannot damage twice
+PASS: Scout reward paid once after destruction
+PASS: upgrade deducts credits and increments level
+PASS: upgrade improves damage and range
+PASS: second upgrade reaches level cap
+PASS: maximum level prevents further upgrades
+PASS: unaffordable turret rejected
+PASS: Cannon builds for 200 with configured damage
+PASS: Missile Launcher costs 350
+PASS: missile splash damages each enemy inside 75 radius only once
+PASS: missile direct target and kill reward are not duplicated
+PASS: Heavy and Assault rewards are 40 and 13
+PASS: hits and destruction create combat effects
+PASS: Scout travels 180 nominal path units per second
+PASS: enemies enter from the top and move down
+PASS: pause freezes movement and wave scheduler
+PASS: paused battle cannot start waves
+PASS: paused battle cannot purchase
+PASS: normal speed uses unscaled movement
+PASS: normal speed uses the same wave delta
+PASS: combat speed selection API removed
+PASS: Scout breach deals 25 base damage once
+PASS: Assault and Heavy breaches deal 50 and 100
+PASS: early start cannot skip radar warning
+PASS: early start begins first wave
+PASS: early start cannot overlap active wave
+PASS: wave scheduler completes all waves
+PASS: all configured M1 wave enemies spawn exactly once
+PASS: wave spawns use all configured entry paths
+PASS: full enemy roster pays configured bounty exactly once
+COMBAT: 41 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS: primary cannon is a dedicated scene outside all five slots
+PASS: primary cannon starts loaded at bottom center
+PASS: primary never acquires targets or fires without input
+PASS: rotation responds smoothly rather than snapping
+PASS: trigger consumes exactly one round per shot
+PASS: shots drive muzzle flash and recoil feedback
+PASS: manual projectiles use the requested configurable speed and damage
+PASS: straight projectile collides and applies 15 damage
+PASS: manual projectile cannot hit twice
+PASS: manual hits create crosshair and impact feedback
+PASS: secondary turret can be built while manual trigger is held
+PASS: automatic turret still acquires and shoots with primary active
+PASS: automatic damage stacks with manual damage
+PASS: combined attacks destroy drone and award credits once
+PASS: releasing trigger stops continuous fire
+PASS: holding fire depletes all 60 rounds
+PASS: empty magazine starts two-second reload automatically
+PASS: reload halfway progress is visible and no rounds refill early
+PASS: pause freezes reload countdown
+PASS: reload refills magazine after two simulation seconds
+PASS: full magazine cannot reload
+PASS: partial magazine can be reloaded manually
+PASS: reload cannot be restarted mid-cycle
+PASS: held trigger cannot fire during reload
+PASS: normal speed advances primary reload with the rest of combat
+PASS: pause clears all held firing sources
+PASS: resume requires fresh fire input
+PASS: swept manual collision hits nearest drone on the ray, not every drone
+PASS: manual rounds expire at 400-unit range
+PASS: off-axis aim misses instead of homing toward an enemy
+PASS: FIRE and Reload fit 1280x720 and remain visible
+PASS: desktop mouse position controls aiming
+PASS: unhandled left mouse press fires
+PASS: global mouse release over UI prevents stuck firing
+PASS: moving a held mouse over UI cancels world firing
+PASS: UI interaction never starts desktop aiming or firing
+PASS: slot selection takes priority over manual mouse fire
+PASS: R key starts a partial-magazine reload
+PASS: HUD shows reload text and progress
+PASS: left-zone touch owns aiming gesture
+PASS: second finger holds FIRE while first owns aim
+PASS: owned aim drag adjusts direction while firing
+PASS: third finger builds automatic defense during aim and fire
+PASS: touch hold fires continuously through shared combat logic
+PASS: unrelated right-side touch cannot steal aim
+PASS: FIRE release stops shots without dropping the aim finger
+PASS: aim release clears ownership
+PASS: ESC pauses battle and releases FIRE
+PASS: resume does not resume a stale touch hold
+PASS: retry resets primary ammo, reload and trigger
+PASS: retry clears input ownership and temporary defenses
+PASS: retry releases previous battle scene
+PASS: full hybrid mission reaches victory using ordinary attacks and earned credits
+PASS: manual and automatic guns both contribute throughout the mission
+PASS: hybrid victory retains campaign rewards and progression
+HYBRID: 55 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS: 25 mission definitions retained
+PASS: five campaign chapters
+PASS: main scene starts on menu
+PASS: Continue enabled for an existing save
+PASS: Continue button exists
+PASS: Continue disabled without a campaign
+PASS: 25 interactive map nodes and working navigation remain alongside optional ads
+PASS: future mission is playable content but remains frontline-locked
+PASS: settings screen opens
+PASS: Arsenal opens
+PASS: build controls fit the 1280x720 reference viewport
+PASS: build sidebar leaves turret slots unobstructed
+PASS: mission starts with 1000 base HP
+PASS: deployment begins with build budget and empty slots
+PASS: mouse selects turret slot through gameplay HUD
+PASS: selected slot exposes affordable build option
+PASS: build button places a Machine Gun
+PASS: touch selects another slot
+PASS: independent second finger builds Cannon through native touch button
+PASS: HUD upgrades selected turret
+PASS: pause button freezes simulation
+PASS: pause/resume restores normal speed with no selector
+PASS: radar preparation prevents instant launch
+PASS: HUD starts wave early
+PASS: hybrid defenses win full five-wave mission without direct damage injection
+PASS: turrets fire and destroy enemies during real battle
+PASS: victory follows all five mission waves
+PASS: victory advances frontline
+PASS: victory saves base reward plus earned star milestones separately from BC
+PASS: permanent upgrade purchase succeeds
+PASS: permanent upgrade still costs exactly 100 credits
+PASS: insufficient campaign credits rejected
+PASS: restart resets health, budget and kills
+PASS: restart resets placements, projectiles and speed
+PASS: unattended battle reaches defeat through natural breaches
+PASS: base destroyed at zero HP
+PASS: defeat screen provides retry
+PASS: defeat retreats frontline
+PASS: permanent upgrade survives defeat
+PASS: defeat preserves prior star income and grants no new reward
+PASS: save writes succeeded
+PASS: retreat stops at the completed mission checkpoint
+PASS: replaying Outpost cannot advance beyond mission 2
+SMOKE: 43 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS: campaign restored in a fresh process
+PASS: permanent upgrade restored
+PASS: retreat persisted
+PASS: earned one-time star economy persisted
+SMOKE: 4 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS: missing files recover to no campaign and default settings
+PASS: unsupported or malformed campaign shape rejected: <null>
+PASS: unsupported or malformed campaign shape rejected: []
+PASS: unsupported or malformed campaign shape rejected: text
+PASS: unsupported or malformed campaign shape rejected: { "version": 99, "frontline": 1 }
+PASS: unsupported or malformed campaign shape rejected: { "version": 2.5, "frontline": 1 }
+PASS: unsupported or malformed campaign shape rejected: { "version": 2, "frontline": "three" }
+PASS: legacy chapter-start checkpoint migrates to completed mission floor
+PASS: migration retains existing credits, upgrades and reached frontline
+PASS: legacy file migrates and is saved in current schema
+PASS: wrong value types default safely and upgrades are bounded
+PASS: unreached or malformed checkpoint values cannot unlock territory
+PASS: malformed records and active runs sanitized
+PASS: settings ranges and boolean types validated
+PASS: future settings schema rejected
+PASS: legacy settings migrate without resetting preferences
+PASS: migrated settings can be persisted
+PASS: corrupt primary recovers last known-good backup with progression intact
+PASS: recovered campaign can be saved while preserving corrupt original
+PASS: two invalid saves safely disable Continue instead of crashing
+PASS: new campaign works after invalid-data recovery
+PASS: settings corruption also recovers its backup
+PASS: win mission 5 secures floor 5 and advances to 6
+PASS: lose mission 6 retreats to checkpoint 5 with no reward
+PASS: losing at checkpoint 5 cannot retreat to 4 or remove upgrades
+PASS: checkpoint floor survives disk reload
+PASS: all four chapter checkpoints secure at completed mission indices
+PASS: latest checkpoint and highest survive repeated defeat
+PASS: mismatched mission result cannot settle an active attempt
+PASS: duplicate reward remains blocked after restarting from disk
+PASS: stale result cannot consume a newer deployment
+PASS: optional replay defeat protects the active frontline and checkpoint
+PASS: write-failure fixture created in isolated user data
+PASS: failed new-campaign write retains the old campaign
+PASS: failed upgrade write rolls back credits and permanent upgrade
+PASS: failed deployment write cannot replace active attempt
+PASS: failed result write rolls back progression and leaves attempt retryable
+PASS: retrying after write recovery completes the original result once
+SAVE/RULES: 38 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS: new campaign starts at mission 1 checkpoint
+PASS: future missions locked at campaign start
+PASS: locked mission briefing cannot deploy
+PASS: mission 1 has full briefing intelligence and preparation
+PASS: mission 2 has full briefing intelligence and preparation
+PASS: mission 3 has full briefing intelligence and preparation
+PASS: Red Hill preserves side routes and adds a central approach
+PASS: depot includes opposing side approaches
+PASS: mission 1 briefing enables Start Mission at the frontline
+PASS: mission 1 loads its own slot and wave configuration
+PASS: mission 1 completes through real winning combat
+PASS: win mission 1 advances to 2
+PASS: mission 1 grants reward and controls its territory
+PASS: duplicate result cannot grant credits or advance twice
+PASS: permanent upgrade purchased before further campaigning
+PASS: mission 2 briefing enables Start Mission at the frontline
+PASS: mission 2 loads its own slot and wave configuration
+PASS: mission 2 completes through real winning combat
+PASS: win mission 2 advances to 3
+PASS: mission 2 grants its configured reward
+PASS: mission 3 briefing enables Start Mission at the frontline
+PASS: mission 3 loads its own slot and wave configuration
+PASS: mission 3 completes through real losing combat
+PASS: lose mission 3 retreats to 2 while keeping highest reached
+PASS: previous territory becomes contested and lost advance is locked
+PASS: defeat grants no rewards and preserves permanent progression
+PASS: retreat feedback names the lost territory
+PASS: save reload retains requested retreat position
+PASS: returned frontline briefing allows reconquest
+PASS: mission 2 briefing enables Start Mission at the frontline
+PASS: mission 2 loads its own slot and wave configuration
+PASS: mission 2 completes through real winning combat
+PASS: winning mission 2 again reconquers and rewards once
+PASS: completed mission record retains both legitimate victories
+PASS: reloaded reconquest unlocks mission 3 again
+PASS: mission 3 briefing enables Start Mission at the frontline
+PASS: mission 3 loads its own slot and wave configuration
+PASS: mission 3 completes through real winning combat
+PASS: first three missions link to playable Broken Bridge
+PASS: depot victory grants reward and records best base health
+PASS: new frontline and controlled missions are playable
+PASS: results transition back to campaign with territory feedback
+PASS: versioned settings saved independently of campaign
+CAMPAIGN: 43 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS: fresh process restores frontline and highest reached
+PASS: fresh process restores permanent upgrade and exact rewards
+PASS: fresh process retains reconquest mission record
+PASS: fresh process retains victory and defeat records
+PASS: fresh process restores versioned settings
+CAMPAIGN: 5 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS: insufficient War Credits cannot buy research
+PASS: weapon research enforces highest-mission requirement
+PASS: War Credits buy first permanent research level
+PASS: research deducts exact configurable cost
+PASS: duplicate purchase callback with stale level cannot charge again
+PASS: next research level has escalating cost
+PASS: purchase cannon_damage level 2
+PASS: purchase cannon_damage level 3
+PASS: purchase cannon_damage level 4
+PASS: purchase cannon_damage level 5
+PASS: cannon_damage cannot exceed five levels
+PASS: purchase cannon_rate level 1
+PASS: purchase cannon_rate level 2
+PASS: purchase cannon_rate level 3
+PASS: purchase cannon_rate level 4
+PASS: purchase cannon_rate level 5
+PASS: cannon_rate cannot exceed five levels
+PASS: purchase magazine level 1
+PASS: purchase magazine level 2
+PASS: purchase magazine level 3
+PASS: purchase magazine level 4
+PASS: purchase magazine level 5
+PASS: magazine cannot exceed five levels
+PASS: purchase reload level 1
+PASS: purchase reload level 2
+PASS: purchase reload level 3
+PASS: purchase reload level 4
+PASS: purchase reload level 5
+PASS: reload cannot exceed five levels
+PASS: purchase velocity level 1
+PASS: purchase velocity level 2
+PASS: purchase velocity level 3
+PASS: purchase velocity level 4
+PASS: purchase velocity level 5
+PASS: velocity cannot exceed five levels
+PASS: purchase crit_chance level 1
+PASS: purchase crit_chance level 2
+PASS: purchase crit_chance level 3
+PASS: purchase crit_chance level 4
+PASS: purchase crit_chance level 5
+PASS: crit_chance cannot exceed five levels
+PASS: purchase crit_damage level 1
+PASS: purchase crit_damage level 2
+PASS: purchase crit_damage level 3
+PASS: purchase crit_damage level 4
+PASS: purchase crit_damage level 5
+PASS: crit_damage cannot exceed five levels
+PASS: purchase base_health level 1
+PASS: purchase base_health level 2
+PASS: purchase base_health level 3
+PASS: purchase base_health level 4
+PASS: purchase base_health level 5
+PASS: base_health cannot exceed five levels
+PASS: purchase starting_credits level 1
+PASS: purchase starting_credits level 2
+PASS: purchase starting_credits level 3
+PASS: purchase starting_credits level 4
+PASS: purchase starting_credits level 5
+PASS: starting_credits cannot exceed five levels
+PASS: purchase turret_damage level 1
+PASS: purchase turret_damage level 2
+PASS: purchase turret_damage level 3
+PASS: purchase turret_damage level 4
+PASS: purchase turret_damage level 5
+PASS: turret_damage cannot exceed five levels
+PASS: purchase turret_range level 1
+PASS: purchase turret_range level 2
+PASS: purchase turret_range level 3
+PASS: purchase turret_range level 4
+PASS: purchase turret_range level 5
+PASS: turret_range cannot exceed five levels
+PASS: purchase turret_rate level 1
+PASS: purchase turret_rate level 2
+PASS: purchase turret_rate level 3
+PASS: purchase turret_rate level 4
+PASS: purchase turret_rate level 5
+PASS: turret_rate cannot exceed five levels
+PASS: purchase repair_efficiency level 1
+PASS: purchase repair_efficiency level 2
+PASS: purchase repair_efficiency level 3
+PASS: purchase repair_efficiency level 4
+PASS: purchase repair_efficiency level 5
+PASS: repair_efficiency cannot exceed five levels
+PASS: purchase repair_mastery level 1
+PASS: purchase repair_mastery level 2
+PASS: purchase repair_mastery level 3
+PASS: purchase repair_mastery level 4
+PASS: purchase repair_mastery level 5
+PASS: repair_mastery cannot exceed five levels
+PASS: purchase emp_mastery level 1
+PASS: purchase emp_mastery level 2
+PASS: purchase emp_mastery level 3
+PASS: purchase emp_mastery level 4
+PASS: purchase emp_mastery level 5
+PASS: emp_mastery cannot exceed five levels
+PASS: purchase overclock_mastery level 1
+PASS: purchase overclock_mastery level 2
+PASS: purchase overclock_mastery level 3
+PASS: purchase overclock_mastery level 4
+PASS: purchase overclock_mastery level 5
+PASS: overclock_mastery cannot exceed five levels
+PASS: research unlocks armor_piercing
+PASS: unlock cannot be purchased twice: armor_piercing
+PASS: research unlocks explosive
+PASS: unlock cannot be purchased twice: explosive
+PASS: research unlocks laser
+PASS: unlock cannot be purchased twice: laser
+PASS: research unlocks emp_tower
+PASS: unlock cannot be purchased twice: emp_tower
+PASS: research unlocks heavy_aa
+PASS: unlock cannot be purchased twice: heavy_aa
+PASS: Legacy ammunition is explicitly equipped before deployment
+PASS: five damage levels add 25% to existing primary damage
+PASS: five fire-rate levels add 20%
+PASS: capacity and reload research yield 110 rounds and 1.4 seconds
+PASS: velocity research yields +25%
+PASS: critical research yields 10% chance and 2x critical damage
+PASS: base health and starting Battle Credits are researched
+PASS: primary loads actual researched stats before first tick
+PASS: automatic damage, range and fire rate research affects actual turret
+PASS: building spends only Battle Credits
+PASS: repair efficiency research increases real healed HP
+PASS: tactical advantage spends Battle Credits, preserving War Credits
+PASS: duplicate repair activation cannot heal or charge twice
+PASS: ability mastery reduces actual cooldown
+PASS: EMP Blast disables live drones
+PASS: EMP mastery reduces its cooldown to 36 seconds
+PASS: disabled enemy cannot move
+PASS: disabled enemy recovers with exact remaining movement time
+PASS: Overclock boosts primary and automatic firing rates together
+PASS: Overclock mastery reduces its cooldown to 32 seconds
+PASS: pause freezes ability duration and cooldown
+PASS: paused battle rejects tactical activation
+PASS: Overclock expires and restores normal firing rates
+PASS: opening a build/upgrade panel enters 0.25x
+PASS: enemies and projectiles share tactical 0.25x time
+PASS: ability cooldowns share tactical 0.25x time
+PASS: wave scheduler consumes tactical slow-motion time
+PASS: selecting another slot reuses the same tactical mode
+PASS: closing tactical mode restores normal speed
+PASS: pause/resume cannot leave tactical slow motion stuck
+PASS: ammo switching preserves rounds instead of refilling
+PASS: armor-piercing ammunition pays the 25% fire-rate penalty
+PASS: AP damage bonus applies only against armored drones
+PASS: armor-piercing projectile collides and damages armored target
+PASS: switching to explosive ammo does not create rounds
+PASS: explosive shot spends three rounds and carries configured splash
+PASS: explosive manual shot damages both nearby drones
+PASS: explosive impact cannot deal area damage twice
+PASS: ammo changes are blocked during reload
+PASS: researched magazine refills after reload
+PASS: critical projectile carries researched damage multiplier
+PASS: critical projectile carries researched damage multiplier
+PASS: critical projectile carries researched damage multiplier
+PASS: critical projectile carries researched damage multiplier
+PASS: critical projectile carries researched damage multiplier
+PASS: critical projectile carries researched damage multiplier
+PASS: critical projectile carries researched damage multiplier
+PASS: critical projectile carries researched damage multiplier
+PASS: critical projectile carries researched damage multiplier
+PASS: critical projectile carries researched damage multiplier
+PASS: critical chance affects actual shots without making all shots critical
+PASS: researched Laser can be built
+PASS: Laser applies continuous accurate damage without projectile misses
+PASS: researched EMP Tower can be built
+PASS: EMP Tower area pulse slows Scout movement to 35%
+PASS: researched Heavy AA Cannon can be built
+PASS: Heavy AA deals high researched damage through a real projectile
+PASS: fifth victory grants one persistent Veteran objective reward
+PASS: duplicate result cannot re-award the mission or objective
+PASS: objective claim survives reload
+PASS: schema v2 migration preserves money, legacy bonuses and campaign records
+PASS: old saves gain zero new research without losing existing bonuses
+PASS: all research, unlocks and War Credits survive defeat and territory regression
+PASS: failed research save rolls back level and War Credits
+PASS: Arsenal opens on PRIMARY CANNON
+PASS: Arsenal tab renders actual data: automatic
+PASS: Arsenal tab renders actual data: research
+PASS: Arsenal tab renders actual data: abilities
+PASS: Arsenal tab renders actual data: primary
+PASS: Arsenal requires a concrete purchase confirmation
+PASS: confirming twice buys and charges only one research level
+PASS: mission restart applies persistent researched stats
+PASS: expanded FIRE and ability controls fit reference layout
+PASS: two rapid touch repair taps activate and charge once
+PASS: touch swipe scrolls build designs without buying a turret
+PASS: Close button restores normal combat speed
+RESEARCH: 187 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS: schema v3 and research survive fresh process
+PASS: unlocks survive fresh process
+PASS: equipped ammunition survives fresh process
+PASS: restored research is applied before combat begins
+RESEARCH: 4 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ECONOMY: 419 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ECONOMY: 3 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+REWARDED ADS: 97 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+REWARDED ADS: 6 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ADMOB BOUNDARY CONTRACT: 17 checks, 0 failures (test doubles; no native SDK)
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+WEAPON RESEARCH: 1424 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+WEAPON RESEARCH: 3 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+GRAPHICS AUDIT: 810 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+GRAPHICS AUDIT: 2 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+TACTICAL UI: 193 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+COMBAT VFX: 310 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+COMBAT VFX: 2 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+VISUAL FOUNDATION: 476 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+UNIT VISUALS: 195 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ENVIRONMENTS: 953 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ENVIRONMENTS: 2 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+CATALOG: 4006 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ENEMY AI: 88 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+BALANCE: {"attack_seed":1001,"attempt_mode":"frontline","battle_earned":588,"battle_remaining":168,"battle_spent":920,"component_destructions":0,"component_hits":0,"enemy_actions":0,"environmental_pulses":0,"health":950,"id":1,"kills":60,"manual_hits":85,"manual_shots":159,"mode":"hybrid","performance":{"accuracy":0.534591194968553,"armored_components":0,"automatic_damage":2936.29999999999,"base_damage":50.0,"breaches":1,"components":0,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":50.0,"generators":0,"health":950,"heavy_engines":0,"hp_ratio":0.95,"kills":60,"manual_damage":1100.15,"manual_hits":85,"manual_kills":23,"manual_share":0.272553853014407,"manual_shots":159,"max_health":1000,"mission_id":1,"other_damage":0.0,"seconds":116.466666666661,"version":1,"weapons":0},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":0,"cannon_damage":0,"cannon_rate":0,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":0,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":0,"turret_damage":0,"turret_range":0,"turret_rate":0,"velocity":0},"seconds":116.5,"star_reward":25,"stars":3,"starting_battle_credits":500,"support_spawned":0,"victory":true,"war_balance":0,"war_balance_after":125,"war_reward":125,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1002,"attempt_mode":"frontline","battle_earned":948,"battle_remaining":228,"battle_spent":1270,"component_destructions":0,"component_hits":0,"enemy_actions":0,"environmental_pulses":0,"health":925,"id":2,"kills":75,"manual_hits":152,"manual_shots":206,"mode":"hybrid","performance":{"accuracy":0.737864077669903,"armored_components":0,"automatic_damage":4903.76500000001,"base_damage":75.0,"breaches":2,"components":0,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":925,"heavy_engines":0,"hp_ratio":0.925,"kills":75,"manual_damage":1964.5075,"manual_hits":152,"manual_kills":31,"manual_share":0.28602643532271,"manual_shots":206,"max_health":1000,"mission_id":2,"other_damage":0.0,"seconds":141.133333333338,"version":1,"weapons":0},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":0,"cannon_damage":0,"cannon_rate":0,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":0,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":0,"turret_damage":1,"turret_range":0,"turret_rate":0,"velocity":0},"seconds":141.1,"star_reward":25,"stars":3,"starting_battle_credits":550,"support_spawned":0,"victory":true,"war_balance":40,"war_balance_after":185,"war_reward":145,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1003,"attempt_mode":"frontline","battle_earned":1580,"battle_remaining":72,"battle_spent":2158,"component_destructions":0,"component_hits":0,"enemy_actions":0,"environmental_pulses":0,"health":1000,"id":3,"kills":116,"manual_hits":163,"manual_shots":226,"mode":"hybrid","performance":{"accuracy":0.721238938053097,"armored_components":0,"automatic_damage":7978.43049999999,"base_damage":0.0,"breaches":0,"components":0,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":1000,"heavy_engines":0,"hp_ratio":1.0,"kills":116,"manual_damage":3361.5695,"manual_hits":163,"manual_kills":36,"manual_share":0.296434700176367,"manual_shots":226,"max_health":1000,"mission_id":3,"other_damage":0.0,"seconds":176.483333333366,"version":1,"weapons":0},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":0,"cannon_damage":0,"cannon_rate":0,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":0,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":0,"turret_damage":1,"turret_range":0,"turret_rate":0,"velocity":0},"seconds":176.5,"star_reward":25,"stars":3,"starting_battle_credits":650,"support_spawned":0,"victory":true,"war_balance":5,"war_balance_after":170,"war_reward":165,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1004,"attempt_mode":"frontline","battle_earned":1245,"battle_remaining":67,"battle_spent":1828,"component_destructions":0,"component_hits":1,"enemy_actions":0,"environmental_pulses":0,"health":1000,"id":4,"kills":90,"manual_hits":151,"manual_shots":188,"mode":"hybrid","performance":{"accuracy":0.803191489361702,"armored_components":0,"automatic_damage":6136.36125,"base_damage":0.0,"breaches":0,"components":0,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":1000,"heavy_engines":0,"hp_ratio":1.0,"kills":90,"manual_damage":2503.63875,"manual_hits":151,"manual_kills":29,"manual_share":0.289773003472222,"manual_shots":188,"max_health":1000,"mission_id":4,"other_damage":0.0,"seconds":149.683333333345,"version":1,"weapons":0},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":0,"cannon_damage":1,"cannon_rate":0,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":0,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":0,"turret_damage":1,"turret_range":1,"turret_rate":0,"velocity":0},"seconds":149.7,"star_reward":10,"stars":2,"starting_battle_credits":650,"support_spawned":0,"victory":true,"war_balance":35,"war_balance_after":205,"war_reward":170,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1005,"attempt_mode":"frontline","battle_earned":1209,"battle_remaining":269,"battle_spent":1590,"component_destructions":1,"component_hits":19,"enemy_actions":1,"environmental_pulses":0,"health":950,"id":5,"kills":83,"manual_hits":214,"manual_shots":239,"mode":"hybrid","performance":{"accuracy":0.895397489539749,"armored_components":0,"automatic_damage":4647.24277656249,"base_damage":50.0,"breaches":2,"components":1,"core_hits":19,"critical_hits":19,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":950,"heavy_engines":0,"hp_ratio":0.95,"kills":83,"manual_damage":4701.1072234375,"manual_hits":214,"manual_kills":37,"manual_share":0.502880960109271,"manual_shots":239,"max_health":1000,"mission_id":5,"other_damage":0.0,"seconds":152.750000000014,"version":1,"weapons":0},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":0,"cannon_damage":1,"cannon_rate":1,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":1,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":0,"turret_damage":1,"turret_range":1,"turret_rate":0,"velocity":0},"seconds":152.8,"star_reward":25,"stars":3,"starting_battle_credits":650,"support_spawned":2,"victory":true,"war_balance":60,"war_balance_after":405,"war_reward":345,"weakpoint_hits":19}
+BALANCE: {"attack_seed":1006,"attempt_mode":"frontline","battle_earned":1688,"battle_remaining":278,"battle_spent":2230,"component_destructions":19,"component_hits":56,"enemy_actions":4,"environmental_pulses":5,"health":1075,"id":6,"kills":123,"manual_hits":251,"manual_shots":283,"mode":"hybrid","performance":{"accuracy":0.886925795053004,"armored_components":4,"automatic_damage":8684.89256874999,"base_damage":525.0,"breaches":10,"components":19,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":4,"health":1075,"heavy_engines":0,"hp_ratio":0.977272727272727,"kills":123,"manual_damage":3804.73621875,"manual_hits":251,"manual_kills":49,"manual_share":0.304631649465667,"manual_shots":283,"max_health":1100,"mission_id":6,"other_damage":0.0,"seconds":177.650000000034,"version":1,"weapons":15},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":1,"cannon_damage":2,"cannon_rate":1,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":1,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":1,"turret_damage":1,"turret_range":1,"turret_rate":1,"velocity":0},"seconds":177.7,"star_reward":10,"stars":2,"starting_battle_credits":820,"support_spawned":0,"victory":true,"war_balance":20,"war_balance_after":230,"war_reward":210,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1007,"attempt_mode":"frontline","battle_earned":2042,"battle_remaining":184,"battle_spent":2678,"component_destructions":14,"component_hits":46,"enemy_actions":3,"environmental_pulses":0,"health":1100,"id":7,"kills":141,"manual_hits":205,"manual_shots":265,"mode":"hybrid","performance":{"accuracy":0.773584905660377,"armored_components":3,"automatic_damage":10833.2414375,"base_damage":0.0,"breaches":0,"components":14,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":3,"health":1100,"heavy_engines":0,"hp_ratio":1.0,"kills":141,"manual_damage":3166.7585625,"manual_hits":205,"manual_kills":42,"manual_share":0.226197040178572,"manual_shots":265,"max_health":1100,"mission_id":7,"other_damage":0.0,"seconds":178.733333333368,"version":1,"weapons":11},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":1,"cannon_damage":2,"cannon_rate":1,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":1,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":1,"turret_damage":2,"turret_range":1,"turret_rate":1,"velocity":0},"seconds":178.7,"star_reward":25,"stars":3,"starting_battle_credits":820,"support_spawned":0,"victory":true,"war_balance":70,"war_balance_after":315,"war_reward":245,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1008,"attempt_mode":"frontline","battle_earned":2058,"battle_remaining":340,"battle_spent":2538,"component_destructions":11,"component_hits":55,"enemy_actions":2,"environmental_pulses":0,"health":925,"id":8,"kills":143,"manual_hits":228,"manual_shots":300,"mode":"hybrid","performance":{"accuracy":0.76,"armored_components":4,"automatic_damage":10946.938534375,"base_damage":175.0,"breaches":5,"components":11,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":4,"health":925,"heavy_engines":0,"hp_ratio":0.840909090909091,"kills":143,"manual_damage":3464.570653125,"manual_hits":228,"manual_kills":36,"manual_share":0.240403042321899,"manual_shots":300,"max_health":1100,"mission_id":8,"other_damage":0.0,"seconds":183.683333333372,"version":1,"weapons":7},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":1,"cannon_damage":2,"cannon_rate":2,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":1,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":1,"turret_damage":2,"turret_range":2,"turret_rate":1,"velocity":0},"seconds":183.7,"star_reward":10,"stars":2,"starting_battle_credits":820,"support_spawned":0,"victory":true,"war_balance":40,"war_balance_after":290,"war_reward":250,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1009,"attempt_mode":"frontline","battle_earned":1876,"battle_remaining":198,"battle_spent":2498,"component_destructions":14,"component_hits":41,"enemy_actions":3,"environmental_pulses":0,"health":1025,"id":9,"kills":127,"manual_hits":224,"manual_shots":285,"mode":"hybrid","performance":{"accuracy":0.785964912280702,"armored_components":0,"automatic_damage":9598.24831249997,"base_damage":175.0,"breaches":7,"components":14,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":1025,"heavy_engines":1,"hp_ratio":0.854166666666667,"kills":127,"manual_damage":3531.7741875,"manual_hits":224,"manual_kills":52,"manual_share":0.268984625692759,"manual_shots":285,"max_health":1200,"mission_id":9,"other_damage":0.0,"seconds":174.716666666698,"version":1,"weapons":13},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":2,"cannon_damage":2,"cannon_rate":2,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":2,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":1,"turret_damage":2,"turret_range":2,"turret_rate":1,"velocity":0},"seconds":174.7,"star_reward":25,"stars":3,"starting_battle_credits":820,"support_spawned":0,"victory":true,"war_balance":0,"war_balance_after":285,"war_reward":285,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1010,"attempt_mode":"frontline","battle_earned":1785,"battle_remaining":407,"battle_spent":2248,"component_destructions":14,"component_hits":82,"enemy_actions":2,"environmental_pulses":0,"health":1170,"id":10,"kills":118,"manual_hits":212,"manual_shots":251,"mode":"hybrid","performance":{"accuracy":0.844621513944223,"armored_components":1,"automatic_damage":8861.103696875,"base_damage":280.0,"breaches":4,"components":14,"core_hits":12,"critical_hits":12,"defense_sectors":3,"final_wave_damage":180.0,"generators":1,"health":1170,"heavy_engines":0,"hp_ratio":0.975,"kills":118,"manual_damage":4601.852053125,"manual_hits":212,"manual_kills":31,"manual_share":0.341815878962909,"manual_shots":251,"max_health":1200,"mission_id":10,"other_damage":0.0,"seconds":175.466666666698,"version":1,"weapons":12},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":2,"cannon_damage":2,"cannon_rate":2,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":2,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":2,"turret_damage":2,"turret_range":2,"turret_rate":1,"velocity":0},"seconds":175.5,"star_reward":25,"stars":3,"starting_battle_credits":870,"support_spawned":0,"victory":true,"war_balance":100,"war_balance_after":405,"war_reward":305,"weakpoint_hits":12}
+BALANCE: {"attack_seed":1011,"attempt_mode":"frontline","battle_earned":3390,"battle_remaining":182,"battle_spent":4198,"component_destructions":40,"component_hits":154,"enemy_actions":20,"environmental_pulses":0,"health":1055,"id":11,"kills":221,"manual_hits":391,"manual_shots":427,"mode":"hybrid","performance":{"accuracy":0.915690866510539,"armored_components":0,"automatic_damage":18964.04025,"base_damage":895.0,"breaches":18,"components":40,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":1055,"heavy_engines":0,"hp_ratio":0.879166666666667,"kills":221,"manual_damage":5565.26325,"manual_hits":391,"manual_kills":48,"manual_share":0.226882236994621,"manual_shots":427,"max_health":1200,"mission_id":11,"other_damage":0.0,"seconds":210.716666666726,"version":1,"weapons":27},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":2,"cannon_damage":3,"cannon_rate":2,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":2,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":2,"turret_damage":2,"turret_range":2,"turret_rate":2,"velocity":0},"seconds":210.7,"star_reward":10,"stars":2,"starting_battle_credits":990,"support_spawned":0,"victory":true,"war_balance":15,"war_balance_after":325,"war_reward":310,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1012,"attempt_mode":"frontline","battle_earned":1258,"battle_remaining":188,"battle_spent":2060,"component_destructions":24,"component_hits":130,"enemy_actions":14,"environmental_pulses":0,"health":0,"id":12,"kills":93,"manual_hits":247,"manual_shots":264,"mode":"hybrid","performance":{"accuracy":0.935606060606061,"armored_components":0,"automatic_damage":8904.13418749999,"base_damage":2200.0,"breaches":44,"components":24,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":0,"heavy_engines":0,"hp_ratio":0.0,"kills":93,"manual_damage":2780.87175,"manual_hits":247,"manual_kills":22,"manual_share":0.237986336068133,"manual_shots":264,"max_health":1200,"mission_id":12,"other_damage":0.0,"seconds":145.866666666675,"version":1,"weapons":14},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":2,"cannon_damage":3,"cannon_rate":2,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":2,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":2,"turret_damage":3,"turret_range":2,"turret_rate":2,"velocity":0},"seconds":145.9,"star_reward":0,"stars":0,"starting_battle_credits":990,"support_spawned":0,"victory":false,"war_balance":55,"war_balance_after":55,"war_reward":0,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1111,"attempt_mode":"frontline","battle_earned":3492,"battle_remaining":374,"battle_spent":4108,"component_destructions":35,"component_hits":122,"enemy_actions":16,"environmental_pulses":0,"health":1030,"id":11,"kills":234,"manual_hits":348,"manual_shots":390,"mode":"hybrid","performance":{"accuracy":0.892307692307692,"armored_components":0,"automatic_damage":19911.85615625,"base_damage":670.0,"breaches":13,"components":35,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":25.0,"generators":0,"health":1030,"heavy_engines":0,"hp_ratio":0.858333333333333,"kills":234,"manual_damage":4699.441475,"manual_hits":348,"manual_kills":52,"manual_share":0.190946513483829,"manual_shots":390,"max_health":1200,"mission_id":11,"other_damage":0.0,"seconds":206.83333333339,"version":1,"weapons":27},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":2,"cannon_damage":3,"cannon_rate":2,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":2,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":2,"turret_damage":3,"turret_range":2,"turret_rate":2,"velocity":0},"seconds":206.8,"star_reward":0,"stars":2,"starting_battle_credits":990,"support_spawned":0,"victory":true,"war_balance":55,"war_balance_after":100,"war_reward":45,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1112,"attempt_mode":"frontline","battle_earned":2620,"battle_remaining":150,"battle_spent":3460,"component_destructions":46,"component_hits":174,"enemy_actions":19,"environmental_pulses":0,"health":656,"id":12,"kills":184,"manual_hits":399,"manual_shots":441,"mode":"hybrid","performance":{"accuracy":0.904761904761905,"armored_components":0,"automatic_damage":15732.26540625,"base_damage":2044.0,"breaches":53,"components":46,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":250.0,"generators":0,"health":656,"heavy_engines":0,"hp_ratio":0.546666666666667,"kills":184,"manual_damage":4840.4419375,"manual_hits":399,"manual_kills":48,"manual_share":0.235284634959362,"manual_shots":441,"max_health":1200,"mission_id":12,"other_damage":0.0,"seconds":208.316666666725,"version":1,"weapons":29},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":2,"cannon_damage":3,"cannon_rate":2,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":2,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":2,"turret_damage":3,"turret_range":2,"turret_rate":2,"velocity":0},"seconds":208.3,"star_reward":0,"stars":1,"starting_battle_credits":990,"support_spawned":0,"victory":true,"war_balance":100,"war_balance_after":420,"war_reward":320,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1013,"attempt_mode":"frontline","battle_earned":2878,"battle_remaining":220,"battle_spent":3648,"component_destructions":32,"component_hits":148,"enemy_actions":17,"environmental_pulses":0,"health":224,"id":13,"kills":197,"manual_hits":356,"manual_shots":403,"mode":"hybrid","performance":{"accuracy":0.883374689826303,"armored_components":0,"automatic_damage":17628.7643515624,"base_damage":1976.0,"breaches":39,"components":32,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":775.0,"generators":0,"health":224,"heavy_engines":0,"hp_ratio":0.186666666666667,"kills":197,"manual_damage":4396.9275125,"manual_hits":356,"manual_kills":51,"manual_share":0.19962721442018,"manual_shots":403,"max_health":1200,"mission_id":13,"other_damage":0.0,"seconds":204.916666666722,"version":1,"weapons":23},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":2,"cannon_damage":3,"cannon_rate":2,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":2,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":2,"turret_damage":3,"turret_range":3,"turret_rate":2,"velocity":0},"seconds":204.9,"star_reward":0,"stars":1,"starting_battle_credits":990,"support_spawned":0,"victory":true,"war_balance":175,"war_balance_after":515,"war_reward":340,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1014,"attempt_mode":"frontline","battle_earned":3770,"battle_remaining":114,"battle_spent":4646,"component_destructions":46,"component_hits":159,"enemy_actions":11,"environmental_pulses":0,"health":1150,"id":14,"kills":243,"manual_hits":339,"manual_shots":391,"mode":"hybrid","performance":{"accuracy":0.867007672634271,"armored_components":0,"automatic_damage":21378.178546875,"base_damage":50.0,"breaches":1,"components":46,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":1150,"heavy_engines":2,"hp_ratio":0.958333333333333,"kills":243,"manual_damage":4577.774578125,"manual_hits":339,"manual_kills":49,"manual_share":0.176367038269761,"manual_shots":391,"max_health":1200,"mission_id":14,"other_damage":0.0,"seconds":202.133333333386,"version":1,"weapons":40},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":2,"cannon_damage":3,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":2,"turret_damage":3,"turret_range":3,"turret_rate":2,"velocity":0},"seconds":202.1,"star_reward":25,"stars":3,"starting_battle_credits":990,"support_spawned":0,"victory":true,"war_balance":20,"war_balance_after":405,"war_reward":385,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1015,"attempt_mode":"frontline","battle_earned":2814,"battle_remaining":296,"battle_spent":3558,"component_destructions":31,"component_hits":171,"enemy_actions":14,"environmental_pulses":0,"health":1035,"id":15,"kills":174,"manual_hits":343,"manual_shots":403,"mode":"hybrid","performance":{"accuracy":0.851116625310174,"armored_components":0,"automatic_damage":15699.71173125,"base_damage":915.0,"breaches":24,"components":31,"core_hits":23,"critical_hits":23,"defense_sectors":3,"final_wave_damage":25.0,"generators":0,"health":1035,"heavy_engines":0,"hp_ratio":0.8625,"kills":174,"manual_damage":5949.51626875,"manual_hits":343,"manual_kills":44,"manual_share":0.274814245974499,"manual_shots":403,"max_health":1200,"mission_id":15,"other_damage":0.0,"seconds":195.116666666714,"version":1,"weapons":20},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":2,"cannon_damage":3,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":3,"turret_range":3,"turret_rate":2,"velocity":0},"seconds":195.1,"star_reward":25,"stars":3,"starting_battle_credits":1040,"support_spawned":0,"victory":true,"war_balance":80,"war_balance_after":485,"war_reward":405,"weakpoint_hits":23}
+BALANCE: {"attack_seed":1016,"attempt_mode":"frontline","battle_earned":1858,"battle_remaining":198,"battle_spent":2820,"component_destructions":21,"component_hits":130,"enemy_actions":13,"environmental_pulses":0,"health":0,"id":16,"kills":131,"manual_hits":264,"manual_shots":297,"mode":"hybrid","performance":{"accuracy":0.888888888888889,"armored_components":20,"automatic_damage":12207.0896484375,"base_damage":2300.0,"breaches":39,"components":21,"core_hits":5,"critical_hits":5,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":0,"heavy_engines":0,"hp_ratio":0.0,"kills":131,"manual_damage":3246.07134375,"manual_hits":264,"manual_kills":37,"manual_share":0.210058728139251,"manual_shots":297,"max_health":1300,"mission_id":16,"other_damage":0.0,"seconds":138.350000000002,"version":1,"weapons":13},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":3,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":3,"turret_range":3,"turret_rate":2,"velocity":0},"seconds":138.4,"star_reward":0,"stars":0,"starting_battle_credits":1160,"support_spawned":0,"victory":false,"war_balance":225,"war_balance_after":225,"war_reward":0,"weakpoint_hits":5}
+BALANCE: {"attack_seed":1115,"attempt_mode":"frontline","battle_earned":2306,"battle_remaining":206,"battle_spent":3140,"component_destructions":42,"component_hits":190,"enemy_actions":17,"environmental_pulses":0,"health":420,"id":15,"kills":151,"manual_hits":387,"manual_shots":420,"mode":"hybrid","performance":{"accuracy":0.921428571428571,"armored_components":2,"automatic_damage":13685.7760375,"base_damage":2130.0,"breaches":47,"components":42,"core_hits":23,"critical_hits":23,"defense_sectors":3,"final_wave_damage":25.0,"generators":2,"health":420,"heavy_engines":0,"hp_ratio":0.323076923076923,"kills":151,"manual_damage":6568.96449375,"manual_hits":387,"manual_kills":36,"manual_share":0.324317385533282,"manual_shots":420,"max_health":1300,"mission_id":15,"other_damage":0.0,"seconds":199.066666666717,"version":1,"weapons":28},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":3,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":3,"turret_range":3,"turret_rate":2,"velocity":0},"seconds":199.1,"star_reward":0,"stars":1,"starting_battle_credits":1040,"support_spawned":0,"victory":true,"war_balance":225,"war_balance_after":282,"war_reward":57,"weakpoint_hits":23}
+BALANCE: {"attack_seed":1116,"attempt_mode":"frontline","battle_earned":917,"battle_remaining":167,"battle_spent":1910,"component_destructions":18,"component_hits":89,"enemy_actions":12,"environmental_pulses":0,"health":0,"id":16,"kills":67,"manual_hits":161,"manual_shots":180,"mode":"hybrid","performance":{"accuracy":0.894444444444444,"armored_components":18,"automatic_damage":7076.287125,"base_damage":2050.0,"breaches":43,"components":18,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":0,"heavy_engines":0,"hp_ratio":0.0,"kills":67,"manual_damage":1759.050625,"manual_hits":161,"manual_kills":12,"manual_share":0.199092629480973,"manual_shots":180,"max_health":1300,"mission_id":16,"other_damage":0.0,"seconds":90.8333333333295,"version":1,"weapons":10},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":3,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":3,"turret_range":3,"turret_rate":2,"velocity":0},"seconds":90.8,"star_reward":0,"stars":0,"starting_battle_credits":1160,"support_spawned":0,"victory":false,"war_balance":282,"war_balance_after":282,"war_reward":0,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1215,"attempt_mode":"frontline","battle_earned":2695,"battle_remaining":347,"battle_spent":3388,"component_destructions":35,"component_hits":164,"enemy_actions":13,"environmental_pulses":0,"health":1052,"id":15,"kills":175,"manual_hits":367,"manual_shots":420,"mode":"hybrid","performance":{"accuracy":0.873809523809524,"armored_components":1,"automatic_damage":14946.8799,"base_damage":1248.0,"breaches":31,"components":35,"core_hits":23,"critical_hits":23,"defense_sectors":3,"final_wave_damage":75.0,"generators":1,"health":1052,"heavy_engines":0,"hp_ratio":0.809230769230769,"kills":175,"manual_damage":6309.72369375,"manual_hits":367,"manual_kills":43,"manual_share":0.296835929875703,"manual_shots":420,"max_health":1300,"mission_id":15,"other_damage":0.0,"seconds":195.316666666714,"version":1,"weapons":24},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":3,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":3,"turret_range":3,"turret_rate":2,"velocity":0},"seconds":195.3,"star_reward":0,"stars":2,"starting_battle_credits":1040,"support_spawned":0,"victory":true,"war_balance":282,"war_balance_after":339,"war_reward":57,"weakpoint_hits":23}
+BALANCE: {"attack_seed":1216,"attempt_mode":"frontline","battle_earned":1161,"battle_remaining":161,"battle_spent":2160,"component_destructions":17,"component_hits":106,"enemy_actions":11,"environmental_pulses":0,"health":0,"id":16,"kills":87,"manual_hits":211,"manual_shots":230,"mode":"hybrid","performance":{"accuracy":0.917391304347826,"armored_components":16,"automatic_damage":7420.8343359375,"base_damage":2050.0,"breaches":32,"components":17,"core_hits":4,"critical_hits":4,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":0,"heavy_engines":0,"hp_ratio":0.0,"kills":87,"manual_damage":2527.192125,"manual_hits":211,"manual_kills":25,"manual_share":0.254039545926362,"manual_shots":230,"max_health":1300,"mission_id":16,"other_damage":0.0,"seconds":110.216666666662,"version":1,"weapons":8},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":3,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":3,"turret_range":3,"turret_rate":3,"velocity":0},"seconds":110.2,"star_reward":0,"stars":0,"starting_battle_credits":1160,"support_spawned":0,"victory":false,"war_balance":44,"war_balance_after":44,"war_reward":0,"weakpoint_hits":4}
+BALANCE: {"attack_seed":1315,"attempt_mode":"frontline","battle_earned":2895,"battle_remaining":347,"battle_spent":3588,"component_destructions":40,"component_hits":176,"enemy_actions":13,"environmental_pulses":0,"health":1157,"id":15,"kills":179,"manual_hits":355,"manual_shots":402,"mode":"hybrid","performance":{"accuracy":0.883084577114428,"armored_components":1,"automatic_damage":15932.72171875,"base_damage":643.0,"breaches":15,"components":40,"core_hits":23,"critical_hits":23,"defense_sectors":3,"final_wave_damage":25.0,"generators":1,"health":1157,"heavy_engines":0,"hp_ratio":0.89,"kills":179,"manual_damage":6127.2981875,"manual_hits":355,"manual_kills":43,"manual_share":0.277755786873249,"manual_shots":402,"max_health":1300,"mission_id":15,"other_damage":0.0,"seconds":196.883333333382,"version":1,"weapons":24},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":3,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":3,"turret_range":3,"turret_rate":3,"velocity":0},"seconds":196.9,"star_reward":0,"stars":3,"starting_battle_credits":1040,"support_spawned":0,"victory":true,"war_balance":44,"war_balance_after":101,"war_reward":57,"weakpoint_hits":23}
+BALANCE: {"attack_seed":1316,"attempt_mode":"frontline","battle_earned":3206,"battle_remaining":278,"battle_spent":4088,"component_destructions":36,"component_hits":180,"enemy_actions":27,"environmental_pulses":0,"health":110,"id":16,"kills":210,"manual_hits":383,"manual_shots":426,"mode":"hybrid","performance":{"accuracy":0.89906103286385,"armored_components":31,"automatic_damage":19932.4269296875,"base_damage":2690.0,"breaches":50,"components":36,"core_hits":9,"critical_hits":9,"defense_sectors":3,"final_wave_damage":505.0,"generators":0,"health":110,"heavy_engines":0,"hp_ratio":0.0846153846153846,"kills":210,"manual_damage":4564.1089921875,"manual_hits":383,"manual_kills":57,"manual_share":0.18631650641313,"manual_shots":426,"max_health":1300,"mission_id":16,"other_damage":0.0,"seconds":192.600000000045,"version":1,"weapons":21},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":3,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":3,"turret_range":3,"turret_rate":3,"velocity":0},"seconds":192.6,"star_reward":0,"stars":1,"starting_battle_credits":1160,"support_spawned":0,"victory":true,"war_balance":101,"war_balance_after":501,"war_reward":400,"weakpoint_hits":9}
+BALANCE: {"attack_seed":1017,"attempt_mode":"frontline","battle_earned":3624,"battle_remaining":146,"battle_spent":4638,"component_destructions":31,"component_hits":201,"enemy_actions":21,"environmental_pulses":0,"health":925,"id":17,"kills":228,"manual_hits":398,"manual_shots":429,"mode":"hybrid","performance":{"accuracy":0.927738927738928,"armored_components":28,"automatic_damage":20860.0011874999,"base_damage":1625.0,"breaches":30,"components":31,"core_hits":10,"critical_hits":10,"defense_sectors":3,"final_wave_damage":605.0,"generators":1,"health":925,"heavy_engines":0,"hp_ratio":0.711538461538462,"kills":228,"manual_damage":5036.2801875,"manual_hits":398,"manual_kills":51,"manual_share":0.194478895041741,"manual_shots":429,"max_health":1300,"mission_id":17,"other_damage":0.0,"seconds":195.283333333381,"version":1,"weapons":19},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":3,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":4,"turret_range":3,"turret_rate":3,"velocity":0},"seconds":195.3,"star_reward":10,"stars":2,"starting_battle_credits":1160,"support_spawned":0,"victory":true,"war_balance":41,"war_balance_after":471,"war_reward":430,"weakpoint_hits":10}
+BALANCE: {"attack_seed":1018,"attempt_mode":"frontline","battle_earned":3357,"battle_remaining":341,"battle_spent":4176,"component_destructions":39,"component_hits":183,"enemy_actions":24,"environmental_pulses":5,"health":957,"id":18,"kills":211,"manual_hits":366,"manual_shots":402,"mode":"hybrid","performance":{"accuracy":0.91044776119403,"armored_components":33,"automatic_damage":19224.29421875,"base_damage":1593.0,"breaches":32,"components":39,"core_hits":12,"critical_hits":12,"defense_sectors":3,"final_wave_damage":25.0,"generators":0,"health":957,"heavy_engines":1,"hp_ratio":0.736153846153846,"kills":211,"manual_damage":4586.01140625,"manual_hits":366,"manual_kills":50,"manual_share":0.192606154598657,"manual_shots":402,"max_health":1300,"mission_id":18,"other_damage":0.0,"seconds":186.616666666707,"version":1,"weapons":21},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":3,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":4,"turret_range":4,"turret_rate":3,"velocity":0},"seconds":186.6,"star_reward":10,"stars":2,"starting_battle_credits":1160,"support_spawned":0,"victory":true,"war_balance":51,"war_balance_after":501,"war_reward":450,"weakpoint_hits":12}
+BALANCE: {"attack_seed":1019,"attempt_mode":"frontline","battle_earned":3602,"battle_remaining":214,"battle_spent":4548,"component_destructions":33,"component_hits":180,"enemy_actions":19,"environmental_pulses":0,"health":1120,"id":19,"kills":235,"manual_hits":395,"manual_shots":446,"mode":"hybrid","performance":{"accuracy":0.885650224215247,"armored_components":31,"automatic_damage":20353.3125625,"base_damage":1180.0,"breaches":25,"components":33,"core_hits":10,"critical_hits":10,"defense_sectors":3,"final_wave_damage":75.0,"generators":0,"health":1120,"heavy_engines":0,"hp_ratio":0.861538461538462,"kills":235,"manual_damage":5492.0086875,"manual_hits":395,"manual_kills":52,"manual_share":0.212495276587054,"manual_shots":446,"max_health":1300,"mission_id":19,"other_damage":0.0,"seconds":198.483333333383,"version":1,"weapons":20},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":4,"cannon_rate":3,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":4,"turret_range":4,"turret_rate":3,"velocity":0},"seconds":198.5,"star_reward":10,"stars":2,"starting_battle_credits":1160,"support_spawned":2,"victory":true,"war_balance":116,"war_balance_after":586,"war_reward":470,"weakpoint_hits":10}
+BALANCE: {"attack_seed":1020,"attempt_mode":"frontline","battle_earned":3233,"battle_remaining":465,"battle_spent":3928,"component_destructions":31,"component_hits":242,"enemy_actions":22,"environmental_pulses":0,"health":1172,"id":20,"kills":202,"manual_hits":439,"manual_shots":472,"mode":"hybrid","performance":{"accuracy":0.930084745762712,"armored_components":28,"automatic_damage":18148.8208875001,"base_damage":1128.0,"breaches":31,"components":31,"core_hits":23,"critical_hits":23,"defense_sectors":3,"final_wave_damage":0.0,"generators":3,"health":1172,"heavy_engines":0,"hp_ratio":0.901538461538462,"kills":202,"manual_damage":7285.8751125,"manual_hits":439,"manual_kills":45,"manual_share":0.286454184964506,"manual_shots":472,"max_health":1300,"mission_id":20,"other_damage":0.0,"seconds":201.066666666719,"version":1,"weapons":18},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":4,"cannon_rate":4,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":3,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":4,"turret_range":4,"turret_rate":3,"velocity":0},"seconds":201.1,"star_reward":25,"stars":3,"starting_battle_credits":1160,"support_spawned":4,"victory":true,"war_balance":166,"war_balance_after":671,"war_reward":505,"weakpoint_hits":23}
+BALANCE: {"attack_seed":1021,"attempt_mode":"frontline","battle_earned":3836,"battle_remaining":218,"battle_spent":4898,"component_destructions":45,"component_hits":220,"enemy_actions":17,"environmental_pulses":0,"health":955,"id":21,"kills":242,"manual_hits":392,"manual_shots":421,"mode":"hybrid","performance":{"accuracy":0.931116389548694,"armored_components":37,"automatic_damage":21472.8284375,"base_damage":1345.0,"breaches":19,"components":45,"core_hits":17,"critical_hits":17,"defense_sectors":3,"final_wave_damage":25.0,"generators":1,"health":955,"heavy_engines":0,"hp_ratio":0.734615384615385,"kills":242,"manual_damage":5485.004296875,"manual_hits":392,"manual_kills":46,"manual_share":0.203466070545088,"manual_shots":421,"max_health":1300,"mission_id":21,"other_damage":0.0,"seconds":177.5166666667,"version":1,"weapons":30},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":4,"cannon_rate":4,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":4,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":3,"turret_damage":4,"turret_range":4,"turret_rate":3,"velocity":0},"seconds":177.5,"star_reward":10,"stars":2,"starting_battle_credits":1280,"support_spawned":0,"victory":true,"war_balance":236,"war_balance_after":746,"war_reward":510,"weakpoint_hits":17}
+BALANCE: {"attack_seed":1022,"attempt_mode":"frontline","battle_earned":3825,"battle_remaining":359,"battle_spent":4796,"component_destructions":40,"component_hits":222,"enemy_actions":22,"environmental_pulses":5,"health":1080,"id":22,"kills":225,"manual_hits":401,"manual_shots":464,"mode":"hybrid","performance":{"accuracy":0.864224137931034,"armored_components":39,"automatic_damage":22488.9430124999,"base_damage":1470.0,"breaches":22,"components":40,"core_hits":6,"critical_hits":6,"defense_sectors":3,"final_wave_damage":320.0,"generators":0,"health":1080,"heavy_engines":0,"hp_ratio":0.830769230769231,"kills":225,"manual_damage":4738.1127375,"manual_hits":401,"manual_kills":43,"manual_share":0.1740222219033,"manual_shots":464,"max_health":1300,"mission_id":22,"other_damage":0.0,"seconds":187.166666666708,"version":1,"weapons":26},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":3,"cannon_damage":4,"cannon_rate":4,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":4,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":4,"turret_damage":4,"turret_range":4,"turret_rate":3,"velocity":0},"seconds":187.2,"star_reward":10,"stars":2,"starting_battle_credits":1330,"support_spawned":0,"victory":true,"war_balance":201,"war_balance_after":731,"war_reward":530,"weakpoint_hits":6}
+BALANCE: {"attack_seed":1023,"attempt_mode":"frontline","battle_earned":4006,"battle_remaining":380,"battle_spent":4956,"component_destructions":44,"component_hits":221,"enemy_actions":23,"environmental_pulses":0,"health":1250,"id":23,"kills":247,"manual_hits":403,"manual_shots":446,"mode":"hybrid","performance":{"accuracy":0.903587443946188,"armored_components":44,"automatic_damage":24160.405953125,"base_damage":1400.0,"breaches":35,"components":44,"core_hits":1,"critical_hits":1,"defense_sectors":3,"final_wave_damage":0.0,"generators":1,"health":1250,"heavy_engines":0,"hp_ratio":0.892857142857143,"kills":247,"manual_damage":4408.036296875,"manual_hits":403,"manual_kills":29,"manual_share":0.154297397747509,"manual_shots":446,"max_health":1400,"mission_id":23,"other_damage":0.0,"seconds":184.400000000039,"version":1,"weapons":34},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":4,"cannon_damage":4,"cannon_rate":4,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":4,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":4,"turret_damage":4,"turret_range":4,"turret_rate":3,"velocity":0},"seconds":184.4,"star_reward":25,"stars":3,"starting_battle_credits":1330,"support_spawned":2,"victory":true,"war_balance":296,"war_balance_after":861,"war_reward":565,"weakpoint_hits":1}
+BALANCE: {"attack_seed":1024,"attempt_mode":"frontline","battle_earned":4124,"battle_remaining":233,"battle_spent":5221,"component_destructions":28,"component_hits":157,"enemy_actions":13,"environmental_pulses":0,"health":1350,"id":24,"kills":261,"manual_hits":331,"manual_shots":410,"mode":"hybrid","performance":{"accuracy":0.807317073170732,"armored_components":27,"automatic_damage":23652.058765625,"base_damage":50.0,"breaches":2,"components":28,"core_hits":2,"critical_hits":2,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":1350,"heavy_engines":0,"hp_ratio":0.964285714285714,"kills":261,"manual_damage":4236.941234375,"manual_hits":331,"manual_kills":47,"manual_share":0.15192159038958,"manual_shots":410,"max_health":1400,"mission_id":24,"other_damage":0.0,"seconds":180.266666666702,"version":1,"weapons":20},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":4,"cannon_damage":4,"cannon_rate":4,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":4,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":4,"turret_damage":4,"turret_range":4,"turret_rate":4,"velocity":0},"seconds":180.3,"star_reward":10,"stars":2,"starting_battle_credits":1330,"support_spawned":0,"victory":true,"war_balance":371,"war_balance_after":941,"war_reward":570,"weakpoint_hits":2}
+BALANCE: {"attack_seed":1025,"attempt_mode":"frontline","battle_earned":3422,"battle_remaining":366,"battle_spent":4386,"component_destructions":33,"component_hits":231,"enemy_actions":17,"environmental_pulses":5,"health":1222,"id":25,"kills":208,"manual_hits":344,"manual_shots":422,"mode":"hybrid","performance":{"accuracy":0.815165876777251,"armored_components":27,"automatic_damage":21615.0644746094,"base_damage":1178.0,"breaches":24,"components":33,"core_hits":30,"critical_hits":30,"defense_sectors":3,"final_wave_damage":25.0,"generators":1,"health":1222,"heavy_engines":2,"hp_ratio":0.872857142857143,"kills":208,"manual_damage":5693.10333789063,"manual_hits":344,"manual_kills":32,"manual_share":0.208476210377054,"manual_shots":422,"max_health":1400,"mission_id":25,"other_damage":0.0,"seconds":184.083333333372,"version":1,"weapons":13},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":4,"cannon_damage":4,"cannon_rate":4,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":4,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":4,"turret_damage":5,"turret_range":4,"turret_rate":4,"velocity":0},"seconds":184.1,"star_reward":25,"stars":3,"starting_battle_credits":1330,"support_spawned":3,"victory":true,"war_balance":196,"war_balance_after":801,"war_reward":605,"weakpoint_hits":30}
+BALANCE: {"attack_seed":1125,"attempt_mode":"frontline","battle_earned":0,"battle_remaining":1330,"battle_spent":0,"component_destructions":0,"component_hits":0,"enemy_actions":0,"environmental_pulses":1,"health":0,"id":25,"kills":0,"manual_hits":0,"manual_shots":0,"mode":"undefended","performance":{"accuracy":0.0,"armored_components":0,"automatic_damage":0.0,"base_damage":1400.0,"breaches":40,"components":0,"core_hits":0,"critical_hits":0,"defense_sectors":0,"final_wave_damage":0.0,"generators":0,"health":0,"heavy_engines":0,"hp_ratio":0.0,"kills":0,"manual_damage":0.0,"manual_hits":0,"manual_kills":0,"manual_share":0.0,"manual_shots":0,"max_health":1400,"mission_id":25,"other_damage":0.0,"seconds":39.5833333333324,"version":1,"weapons":0},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":4,"cannon_damage":4,"cannon_rate":4,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":4,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":4,"turret_damage":5,"turret_range":4,"turret_rate":4,"velocity":0},"seconds":39.6,"star_reward":0,"stars":0,"starting_battle_credits":1330,"support_spawned":0,"victory":false,"war_balance":801,"war_balance_after":801,"war_reward":0,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1124,"attempt_mode":"frontline","battle_earned":4080,"battle_remaining":189,"battle_spent":5221,"component_destructions":20,"component_hits":117,"enemy_actions":14,"environmental_pulses":0,"health":1200,"id":24,"kills":268,"manual_hits":252,"manual_shots":331,"mode":"hybrid","performance":{"accuracy":0.761329305135952,"armored_components":20,"automatic_damage":24558.8010234375,"base_damage":200.0,"breaches":6,"components":20,"core_hits":1,"critical_hits":1,"defense_sectors":3,"final_wave_damage":0.0,"generators":1,"health":1200,"heavy_engines":0,"hp_ratio":0.857142857142857,"kills":268,"manual_damage":3226.2819453125,"manual_hits":252,"manual_kills":36,"manual_share":0.116115613149009,"manual_shots":331,"max_health":1400,"mission_id":24,"other_damage":0.0,"seconds":176.016666666699,"version":1,"weapons":13},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":4,"cannon_damage":4,"cannon_rate":4,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":4,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":4,"turret_damage":5,"turret_range":5,"turret_rate":4,"velocity":0},"seconds":176.0,"star_reward":0,"stars":2,"starting_battle_credits":1330,"support_spawned":0,"victory":true,"war_balance":126,"war_balance_after":210,"war_reward":84,"weakpoint_hits":1}
+BALANCE: {"attack_seed":1225,"attempt_mode":"frontline","battle_earned":3664,"battle_remaining":358,"battle_spent":4636,"component_destructions":34,"component_hits":206,"enemy_actions":13,"environmental_pulses":5,"health":1157,"id":25,"kills":232,"manual_hits":363,"manual_shots":410,"mode":"hybrid","performance":{"accuracy":0.885365853658537,"armored_components":31,"automatic_damage":20875.5724921875,"base_damage":493.0,"breaches":12,"components":34,"core_hits":26,"critical_hits":26,"defense_sectors":3,"final_wave_damage":50.0,"generators":1,"health":1157,"heavy_engines":0,"hp_ratio":0.826428571428571,"kills":232,"manual_damage":6690.06875781251,"manual_hits":363,"manual_kills":33,"manual_share":0.24269592341925,"manual_shots":410,"max_health":1400,"mission_id":25,"other_damage":0.0,"seconds":181.816666666703,"version":1,"weapons":26},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":4,"cannon_damage":4,"cannon_rate":4,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":4,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":4,"turret_damage":5,"turret_range":5,"turret_rate":4,"velocity":0},"seconds":181.8,"star_reward":0,"stars":2,"starting_battle_credits":1330,"support_spawned":0,"victory":true,"war_balance":210,"war_balance_after":297,"war_reward":87,"weakpoint_hits":26}
+BALANCE_REPORT: /tmp/frontline-checks.HjGhyh/data/godot/app_userdata/DRONE KILLER- FRONTLINE/campaign_balance.json
+FULL CAMPAIGN: 260 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+FULL CAMPAIGN: 31 checks, 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+BALANCE: {"attack_seed":1025,"attempt_mode":"frontline","battle_earned":1940,"battle_remaining":300,"battle_spent":2970,"component_destructions":0,"component_hits":0,"enemy_actions":16,"environmental_pulses":4,"health":0,"id":25,"kills":122,"manual_hits":0,"manual_shots":0,"mode":"automatic","performance":{"accuracy":0.0,"armored_components":0,"automatic_damage":15200.1787109375,"base_damage":2400.0,"breaches":55,"components":0,"core_hits":0,"critical_hits":0,"defense_sectors":3,"final_wave_damage":0.0,"generators":0,"health":0,"heavy_engines":0,"hp_ratio":0.0,"kills":122,"manual_damage":0.0,"manual_hits":0,"manual_kills":0,"manual_share":0.0,"manual_shots":0,"max_health":1400,"mission_id":25,"other_damage":0.0,"seconds":136.933333333334,"version":1,"weapons":0},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":4,"cannon_damage":4,"cannon_rate":4,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":4,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":4,"turret_damage":5,"turret_range":5,"turret_rate":4,"velocity":0},"seconds":136.9,"star_reward":0,"stars":0,"starting_battle_credits":1330,"support_spawned":0,"victory":false,"war_balance":297,"war_balance_after":297,"war_reward":0,"weakpoint_hits":0}
+BALANCE: {"attack_seed":1125,"attempt_mode":"frontline","battle_earned":168,"battle_remaining":878,"battle_spent":620,"component_destructions":5,"component_hits":59,"enemy_actions":0,"environmental_pulses":1,"health":0,"id":25,"kills":16,"manual_hits":164,"manual_shots":175,"mode":"manual_only","performance":{"accuracy":0.937142857142857,"armored_components":5,"automatic_damage":0.0,"base_damage":1900.0,"breaches":54,"components":5,"core_hits":0,"critical_hits":0,"defense_sectors":0,"final_wave_damage":0.0,"generators":0,"health":0,"heavy_engines":0,"hp_ratio":0.0,"kills":16,"manual_damage":2040.71125,"manual_hits":164,"manual_kills":16,"manual_share":1.0,"manual_shots":175,"max_health":1400,"mission_id":25,"other_damage":0.0,"seconds":63.7999999999977,"version":1,"weapons":4},"research":{"ammo_armor_piercing":0,"ammo_cryo":0,"ammo_emp":0,"ammo_explosive":0,"ammo_railgun":0,"ammo_standard":0,"base_health":4,"cannon_damage":4,"cannon_rate":4,"crit_chance":0,"crit_damage":0,"emp_mastery":0,"magazine":0,"overclock_mastery":0,"reload":4,"repair_efficiency":0,"repair_mastery":0,"spec_cannon_blast":0,"spec_cannon_impact":0,"spec_emp_tower_duration":0,"spec_emp_tower_radius":0,"spec_heavy_aa_armor":0,"spec_heavy_aa_precision":0,"spec_laser_shield":0,"spec_laser_sustained":0,"spec_machine_gun_armor":0,"spec_machine_gun_rapid":0,"spec_missile_blast":0,"spec_missile_guidance":0,"starting_credits":4,"turret_damage":5,"turret_range":5,"turret_rate":4,"velocity":0},"seconds":63.8,"star_reward":0,"stars":0,"starting_battle_credits":1330,"support_spawned":0,"victory":false,"war_balance":297,"war_balance_after":297,"war_reward":0,"weakpoint_hits":0}
+FULL CAMPAIGN: 11 checks, 0 failures

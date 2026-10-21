@@ -20,6 +20,10 @@ run_check() {
 }
 run_check --editor --import --quit
 run_check --quit-after 120
+run_check res://tests/tutorial.tscn -- --attack-seed=808
+run_check res://tests/tutorial.tscn -- --verify-tutorial
+run_check res://tests/mission_performance.tscn
+run_check res://tests/mission_performance.tscn -- --verify-performance
 run_check res://tests/m1_mechanics.tscn
 run_check res://tests/drone_components.tscn
 run_check res://tests/placement.tscn
@@ -57,6 +61,8 @@ run_check res://tests/full_campaign.tscn -- --verify-full
 FRONTLINE_CHECK_TIMEOUT=90 run_check --fixed-fps 120 --disable-render-loop res://tests/full_campaign.tscn -- --compare
 if [ -n "${FRONTLINE_REPORT_DIR:-}" ]; then
  mkdir -p "$FRONTLINE_REPORT_DIR"
+ cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/tutorial_scenarios.json" "$FRONTLINE_REPORT_DIR/"
+ cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/performance_scenarios.json" "$FRONTLINE_REPORT_DIR/"
  cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/component_scenarios.json" "$FRONTLINE_REPORT_DIR/"
  cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/placement_scenarios.json" "$FRONTLINE_REPORT_DIR/"
  cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/tactical_scenarios.json" "$FRONTLINE_REPORT_DIR/"

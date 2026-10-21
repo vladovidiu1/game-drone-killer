@@ -1,0 +1,336 @@
+{
+  "checks": 118,
+  "failures": 0,
+  "fixture": "actual guided input/actors then ordinary-budget M1 victory; archived receipt re-presented on four layouts, staged tutorial phases for layout coverage; practice supply never funds campaign; fixed attack seed808; no physical Android",
+  "frames": [
+    {
+      "capture": "intro",
+      "draw_calls": 136.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "aim",
+      "draw_calls": 141.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "fire",
+      "draw_calls": 138.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "reload",
+      "draw_calls": 147.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "build",
+      "draw_calls": 138.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "sectors",
+      "draw_calls": 176.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "upgrade",
+      "draw_calls": 183.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "objective",
+      "draw_calls": 164.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "actual_m1_stars",
+      "draw_calls": 57.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "layout_1280x720_step0",
+      "draw_calls": 158.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "layout_1280x720_step1",
+      "draw_calls": 141.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "layout_1280x720_step2",
+      "draw_calls": 138.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "layout_1280x720_step4",
+      "draw_calls": 138.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "layout_1280x720_step6",
+      "draw_calls": 165.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "ratings_1280x720",
+      "draw_calls": 57.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "star_requirements_1280x720",
+      "draw_calls": 62.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "stars_map_1280x720",
+      "draw_calls": 309.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "layout_1600x720_step0",
+      "draw_calls": 158.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "layout_1600x720_step1",
+      "draw_calls": 141.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "layout_1600x720_step2",
+      "draw_calls": 138.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "layout_1600x720_step4",
+      "draw_calls": 138.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "layout_1600x720_step6",
+      "draw_calls": 165.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "ratings_1600x720",
+      "draw_calls": 57.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "star_requirements_1600x720",
+      "draw_calls": 62.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "stars_map_1600x720",
+      "draw_calls": 338.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "layout_1280x600_step0",
+      "draw_calls": 157.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "layout_1280x600_step1",
+      "draw_calls": 140.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "layout_1280x600_step2",
+      "draw_calls": 137.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "layout_1280x600_step4",
+      "draw_calls": 137.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "layout_1280x600_step6",
+      "draw_calls": 162.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "ratings_1280x600",
+      "draw_calls": 54.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "star_requirements_1280x600",
+      "draw_calls": 60.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "stars_map_1280x600",
+      "draw_calls": 305.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "layout_1024x768_step0",
+      "draw_calls": 158.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "layout_1024x768_step1",
+      "draw_calls": 141.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "layout_1024x768_step2",
+      "draw_calls": 138.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "layout_1024x768_step4",
+      "draw_calls": 138.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "layout_1024x768_step6",
+      "draw_calls": 165.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "ratings_1024x768",
+      "draw_calls": 58.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "star_requirements_1024x768",
+      "draw_calls": 63.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "stars_map_1024x768",
+      "draw_calls": 274.0,
+      "size": [
+        1024,
+        768
+      ]
+    }
+  ],
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)"
+}

@@ -14,6 +14,10 @@ M6 adds **real mounted firing arcs, optional coverage analysis and paid redeploy
 
 M7 adds **local destructible engines, weapons, shields, sensors and cores**, precision manual hits, bounded crash sequences and component-aware ammunition. [Damage rules and tuning](docs/DRONE_COMPONENTS.md) · [Validation and native evidence](docs/m7/VALIDATION.md).
 
+M8 adds **1–3 mission stars, 25 secondary objectives, real combat statistics, saved personal bests and bounded one-time bonuses**. Completed territories can be replayed without moving the frontline, even on defeat. [Rules](docs/MISSION_PERFORMANCE.md) · [Validation](docs/m8/VALIDATION.md).
+
+P1 adds **interactive first-mission guidance**: aim, fire, reload, build, defend another sector and upgrade using real controls. Skip is always available; **Settings → Replay Tutorial** rehearses without campaign rewards. Practice resources are discarded before ordinary Mission 1 starts. [Tutorial rules](docs/FIRST_MISSION_TUTORIAL.md) · [Tests and native captures](docs/p1/VALIDATION.md).
+
 ## Download
 
 Repository: https://github.com/vladovidiu1/game-drone-killer
@@ -26,10 +30,10 @@ Use **Godot 4.6.3 stable**, standard GDScript edition. No plugins, external asse
 
 1. Import `project.godot` in the Godot project manager.
 2. Press **F6** only when testing an individual scene; use **F5** to launch the complete game.
-3. Choose **New Campaign → 01 Outpost Alpha → Start Mission**.
+3. Choose **New Campaign → 01 Outpost Alpha → Start Mission**. On first play, follow the short interactive drill or use **Skip tutorial**. After it, place ordinary defenses and press **Launch wave**.
 4. Click or touch a glowing build slot, then choose Machine Gun, Cannon, or Missile Launcher in the sidebar. Turrets fire automatically. Select an existing turret to upgrade it.
 5. Aim the primary cannon with the mouse and hold left click over the battlefield to fire; press **R** to reload. On Android, drag a finger in the left aiming area and hold the large **FIRE** button on the right with another finger.
-6. Survive all mission waves while keeping the base above 0 HP. Outpost Alpha starts with 500 battle credits and 1000 base HP. Drone bounties fund more defenses. Use **Start wave early** to skip the preparation countdown; combat always runs at normal speed. Selecting a slot temporarily slows simulation to 25%; closing it restores normal speed.
+6. Survive all mission waves while keeping the base above 0 HP. Outpost Alpha starts with 500 battle credits and 1000 base HP. Drone bounties fund more defenses. Use **Launch wave** for initial preparation, then **Start wave early** to skip later preparation countdowns; combat always runs at normal speed. Selecting a slot temporarily slows simulation to 25%; closing it restores normal speed.
 
 Command-line desktop startup from the repository root:
 
@@ -40,7 +44,7 @@ godot --path .
 
 After victory, use **Next: [mission]** or the campaign map to read the next briefing and deploy. After defeat, use **Retry [returned territory]** to defend the retreated frontline. All 25 missions use the same reusable battle scene.
 
-New Campaign requires confirmation when replacing an existing save. Continue is disabled until a campaign exists. Escape / Android Back pauses a battle and returns to the main menu from other screens. Losing focus pauses the battle; press Resume after returning. Aborting counts as defeat.
+New Campaign requires confirmation when replacing an existing save. Continue is disabled until a campaign exists. Escape / Android Back pauses a battle and returns to the main menu from other screens. Losing focus pauses the battle; press Resume after returning. Aborting a frontline battle counts as defeat. Optional replay abort/defeat protects the frontline; tutorial practice never changes campaign progress.
 
 ## Visual foundation G1
 
@@ -62,7 +66,7 @@ The [visual validation gallery](docs/VISUAL_VALIDATION.md) also includes a live 
 - Turrets target the enemy with the shortest remaining path to the base; spawn order breaks ties. Projectiles use swept target-circle collision and consume themselves before impact resolution. Missiles apply one area hit per enemy, including the direct target.
 - Each turret can reach level 3. Per level: damage ×1.35, range +12; upgrade cost is `ceil(base cost × 0.65 × current level)`. Permanent Arsenal damage bonuses still apply. All tuning lives in JSON.
 - HUD displays base HP, wave, remaining enemies, battle credits, pause/resume and build countdown. Native touch buttons own separate finger IDs, supporting slot selection and another finger on a build control without mouse emulation.
-- First-clear rewards are 100 / 120 / 140 War Credits for missions 1 / 2 / 3; subsequent victories pay 15%, rounded down. Defeat grants **zero** credits. Permanent damage upgrades have five levels. Replays award once per new deployment but cannot advance past that mission; replay defeats obey the same retreat rule.
+- First-clear rewards are 100 / 120 / 140 War Credits for missions 1 / 2 / 3; subsequent victories pay 15%, rounded down. Defeat grants **zero** credits. Permanent damage upgrades have five levels. Optional replays award once per new completed deployment and never move the frontline on victory or defeat. One-time 2/3-star milestones add 10/15 WC per mission.
 - Frontline progression and chapter checkpoint floor rules are implemented independently of mission presentation.
 - A dedicated manually controlled primary cannon, loaded at the start without using a placement slot. Its projectiles fly straight, with range-limited swept collision, recoil, muzzle flashes, trails, hit markers and reload feedback.
 - Generated rendered artwork, authored vector UI/effects, licensed bundled fonts and synthesized shot/hit/reload/result sounds; no paid assets or external runtime services.

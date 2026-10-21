@@ -1,0 +1,279 @@
+{
+  "date_utc": "2026-10-21",
+  "baseline_commit": "f4d1c89166c818f36e877ccfe2e5201c4378358f",
+  "godot": "4.6.3 stable",
+  "renderer": "Compatibility",
+  "checks": 75284,
+  "suite_invocations": 38,
+  "failures": 0,
+  "suites": [
+    {
+      "suite": "MISSION TUTORIAL",
+      "checks": 36,
+      "failures": 0
+    },
+    {
+      "suite": "MISSION TUTORIAL",
+      "checks": 3,
+      "failures": 0
+    },
+    {
+      "suite": "MISSION PERFORMANCE",
+      "checks": 163,
+      "failures": 0
+    },
+    {
+      "suite": "MISSION PERFORMANCE",
+      "checks": 6,
+      "failures": 0
+    },
+    {
+      "suite": "M1 MECHANICS",
+      "checks": 46,
+      "failures": 0
+    },
+    {
+      "suite": "DRONE COMPONENTS",
+      "checks": 5406,
+      "failures": 0
+    },
+    {
+      "suite": "PLACEMENT",
+      "checks": 1337,
+      "failures": 0
+    },
+    {
+      "suite": "TACTICAL DIRECTOR",
+      "checks": 58559,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT",
+      "checks": 41,
+      "failures": 0
+    },
+    {
+      "suite": "HYBRID",
+      "checks": 55,
+      "failures": 0
+    },
+    {
+      "suite": "SMOKE",
+      "checks": 43,
+      "failures": 0
+    },
+    {
+      "suite": "SMOKE",
+      "checks": 4,
+      "failures": 0
+    },
+    {
+      "suite": "SAVE/RULES",
+      "checks": 38,
+      "failures": 0
+    },
+    {
+      "suite": "CAMPAIGN",
+      "checks": 43,
+      "failures": 0
+    },
+    {
+      "suite": "CAMPAIGN",
+      "checks": 5,
+      "failures": 0
+    },
+    {
+      "suite": "RESEARCH",
+      "checks": 187,
+      "failures": 0
+    },
+    {
+      "suite": "RESEARCH",
+      "checks": 4,
+      "failures": 0
+    },
+    {
+      "suite": "ECONOMY",
+      "checks": 419,
+      "failures": 0
+    },
+    {
+      "suite": "ECONOMY",
+      "checks": 3,
+      "failures": 0
+    },
+    {
+      "suite": "REWARDED ADS",
+      "checks": 97,
+      "failures": 0
+    },
+    {
+      "suite": "REWARDED ADS",
+      "checks": 6,
+      "failures": 0
+    },
+    {
+      "suite": "ADMOB BOUNDARY CONTRACT",
+      "checks": 17,
+      "failures": 0
+    },
+    {
+      "suite": "WEAPON RESEARCH",
+      "checks": 1424,
+      "failures": 0
+    },
+    {
+      "suite": "WEAPON RESEARCH",
+      "checks": 3,
+      "failures": 0
+    },
+    {
+      "suite": "GRAPHICS AUDIT",
+      "checks": 810,
+      "failures": 0
+    },
+    {
+      "suite": "GRAPHICS AUDIT",
+      "checks": 2,
+      "failures": 0
+    },
+    {
+      "suite": "TACTICAL UI",
+      "checks": 193,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT VFX",
+      "checks": 310,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT VFX",
+      "checks": 2,
+      "failures": 0
+    },
+    {
+      "suite": "VISUAL FOUNDATION",
+      "checks": 476,
+      "failures": 0
+    },
+    {
+      "suite": "UNIT VISUALS",
+      "checks": 195,
+      "failures": 0
+    },
+    {
+      "suite": "ENVIRONMENTS",
+      "checks": 953,
+      "failures": 0
+    },
+    {
+      "suite": "ENVIRONMENTS",
+      "checks": 2,
+      "failures": 0
+    },
+    {
+      "suite": "CATALOG",
+      "checks": 4006,
+      "failures": 0
+    },
+    {
+      "suite": "ENEMY AI",
+      "checks": 88,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "checks": 260,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "checks": 31,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "checks": 11,
+      "failures": 0
+    }
+  ],
+  "first_campaign_completion": {
+    "deployments": 33,
+    "losses": {
+      "12": 1,
+      "16": 3
+    },
+    "war_income": 9256,
+    "star_income": 400,
+    "ending_bank": 801,
+    "war_spent": 8455
+  },
+  "full_campaign_with_deliberate_final_defeat_recovery": {
+    "deployments": 36,
+    "losses": {
+      "12": 1,
+      "16": 3,
+      "25": 1
+    },
+    "war_income": 9427,
+    "star_income": 400,
+    "ending_bank": 297,
+    "war_spent": 9130
+  },
+  "best_stars_end": 59,
+  "fixed_policy": {
+    "simulations": 55,
+    "unfinished": 0,
+    "strategies": {
+      "two_mg": {
+        "wins": 1,
+        "attempts": 6
+      },
+      "two_cannon": {
+        "wins": 1,
+        "attempts": 6
+      },
+      "two_mixed": {
+        "wins": 1,
+        "attempts": 25
+      },
+      "automatic": {
+        "wins": 1,
+        "attempts": 6
+      },
+      "manual_only": {
+        "wins": 2,
+        "attempts": 6
+      },
+      "hybrid": {
+        "wins": 6,
+        "attempts": 6
+      }
+    },
+    "peak_enemies": 23
+  },
+  "native_tutorial": {
+    "checks": 118,
+    "captures": 41,
+    "failures": 0,
+    "renderer": "Linux llvmpipe"
+  },
+  "native_regression_captures": {
+    "ui": 36,
+    "all_archetypes": 27,
+    "vfx": 36
+  },
+  "unverified": [
+    "physical Android multitouch/export/audio/performance",
+    "human tutorial pacing near two minutes",
+    "human three-star completion of every mission",
+    "final late-game difficulty"
+  ],
+  "focused_tutorial": {
+    "checks": 37,
+    "fresh_process_checks": 3,
+    "failures": 0,
+    "note": "Adds completed-status disk-reload assertion after the full runner; see ../p1/tutorial_focused.log"
+  }
+}

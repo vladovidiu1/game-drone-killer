@@ -1,0 +1,33 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+CAPTURE: drone_catalog
+CAPTURE: drone_damage
+CAPTURE: drone_destruction
+CAPTURE: boss_assault_carrier
+CAPTURE: boss_assault_carrier_phase3
+CAPTURE: boss_assault_carrier_destroyed
+CAPTURE: boss_emp_warship
+CAPTURE: boss_emp_warship_phase3
+CAPTURE: boss_emp_warship_destroyed
+CAPTURE: boss_border_guardian
+CAPTURE: boss_border_guardian_phase3
+CAPTURE: boss_border_guardian_destroyed
+CAPTURE: boss_factory_ship
+CAPTURE: boss_factory_ship_phase3
+CAPTURE: boss_factory_ship_destroyed
+CAPTURE: boss_hive_core
+CAPTURE: boss_hive_core_phase3
+CAPTURE: boss_hive_core_destroyed
+CAPTURE: arsenal_level1
+CAPTURE: arsenal_level3
+CAPTURE: primary_standard_heat
+CAPTURE: primary_armor_piercing
+CAPTURE: primary_explosive
+CAPTURE: primary_reload
+CAPTURE: primary_pause
+CAPTURE: boss_victory_outro
+CAPTURE: boss_victory_results
+NATIVE UNIT VISUALS: 14 enemy archetypes, 7 weapons, 27 captures, 0 failures

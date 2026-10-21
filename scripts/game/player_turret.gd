@@ -4,6 +4,7 @@ signal state_changed
 var battle: Node2D
 var definition: Dictionary = {}
 var ammo := 0
+var reloads_completed := 0
 var reload_remaining := 0.0
 var cooldown := 0.0
 var trigger_held := false
@@ -46,7 +47,7 @@ func fire_rate_value() -> float:
 func select_ammunition(id: String) -> bool:
  if battle.paused or battle.finished or reload_remaining > 0 or not loadout.has(id):
   return false
- if not EconomyManager.equip_ammunition(id):
+ if not battle.guided and not EconomyManager.equip_ammunition(id):
   return false
  ammunition_type = id
  # Preserve ammo and reload state; changing types never accelerates the next shot.
@@ -83,6 +84,7 @@ func tick(delta: float) -> void:
   reload_remaining = maxf(0.0,reload_remaining-delta)
   if reload_remaining <= 0.00001:
    reload_remaining = 0.0
+   reloads_completed += 1
    ammo = int(definition.magazine_size)
    AudioManager.combat_cue("ready")
    state_changed.emit()

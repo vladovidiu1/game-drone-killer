@@ -1,0 +1,42 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+CAPTURE: weapon_machine_gun_fire
+CAPTURE: weapon_machine_gun_impact
+CAPTURE: weapon_cannon_fire
+CAPTURE: weapon_cannon_impact
+CAPTURE: weapon_missile_fire
+CAPTURE: weapon_missile_impact
+CAPTURE: weapon_laser_fire
+CAPTURE: weapon_laser_impact
+CAPTURE: weapon_emp_tower_fire
+CAPTURE: weapon_emp_tower_impact
+CAPTURE: weapon_heavy_aa_fire
+CAPTURE: weapon_heavy_aa_impact
+CAPTURE: primary_standard_flight
+CAPTURE: primary_standard_impact
+CAPTURE: primary_armor_piercing_flight
+CAPTURE: primary_armor_piercing_impact
+CAPTURE: primary_explosive_flight
+CAPTURE: primary_explosive_impact
+CAPTURE: primary_reload
+CAPTURE: primary_critical
+CAPTURE: destroy_scout_flash
+CAPTURE: destroy_scout_smoke
+CAPTURE: destroy_heavy_flash
+CAPTURE: destroy_heavy_smoke
+CAPTURE: destroy_assault_carrier_flash
+CAPTURE: destroy_assault_carrier_smoke
+CAPTURE: critical_base_damage
+CAPTURE: boss_arrival
+CAPTURE: stress_high
+CAPTURE: stress_low
+CAPTURE: reduced_effects_motion
+CAPTURE: settings_audio
+CAPTURE: settings_quality
+CAPTURE: settings_effects
+CAPTURE: victory_outro
+CAPTURE: victory_results
+NATIVE COMBAT VFX: 36 captures, 0 failures

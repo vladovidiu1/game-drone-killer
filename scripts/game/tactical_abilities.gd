@@ -23,7 +23,7 @@ func cooldown_value(id: String) -> float:
  return float(data.cooldown)*(1.0+EconomyManager.modifier(str(data.mastery),battle.research_levels))
 
 func can_activate(id: String) -> bool:
- if not cooldowns.has(id) or battle.paused or battle.finished or float(cooldowns[id]) > 0:
+ if battle.guided or not cooldowns.has(id) or battle.paused or battle.finished or float(cooldowns[id]) > 0:
   return false
  var data: Dictionary = SaveManager.catalog.abilities[id]
  return battle.credits >= int(data.cost) and (id != "repair" or battle.health < battle.max_health)

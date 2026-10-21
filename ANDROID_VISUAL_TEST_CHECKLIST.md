@@ -111,3 +111,16 @@ Release review must retain device evidence, close blocking readability/input/ren
 - [ ] Compare AP, HE, EMP, Cryo and Rail against armored parts, shielded cores and moving formations; verify reload/ammo selection/build remain responsive.
 - [ ] Pause or background during a crash/window; resume and restart without rewards or stale component state.
 - [ ] Profile sustained component-heavy late waves for CPU/GPU frame time, memory, heat and touch latency. Desktop llvmpipe measurements in `docs/m7/VALIDATION.md` are not Android evidence.
+
+## M8/P1 release acceptance — hardware still pending
+
+Desktop evidence: combined import/regression 75,284 checks in 38 suite invocations; native tutorial/rating scene 118 checks and 41 captures at four logical layouts. Injected aim/FIRE/build touch IDs, mouse/R, persistence, skip, practice isolation and normal five-wave Mission 1 pass. See [P1](docs/p1/VALIDATION.md) and [M8](docs/m8/VALIDATION.md). These do not complete any physical-device item below.
+
+- [ ] Fresh installation: first Mission-1 briefing enters guidance; verify story readability, visible Skip and approximately two-minute human pacing with novices. Record actual time/success.
+- [ ] Two real fingers aim/FIRE while a third selects/builds/upgrades; no overlay/panel button assigns aim or fires a shot. Check both finger orders, drag cancellation and cutouts.
+- [ ] Reload button/R fallback, magazine depletion, tactical quarter-speed, pause/background/resume and return from system UI preserve guide state and clear held inputs.
+- [ ] Complete/skip, relaunch and replace campaign: status persists; Replay Tutorial remains available in Settings and cannot grant currency, stars or territory. Abort/restart an unfinished drill safely.
+- [ ] Confirm the disclosed practice-to-live reset is understandable: normal supply, empty slots, full magazine and Launch wave are discoverable without assistance.
+- [ ] Three-star reveal, objective/HP thresholds and detailed results remain readable/scrollable on smallest supported screen; Continue/Replay never overlap or block combat controls.
+- [ ] Optional replay defeat protects frontline/checkpoints, improvements persist, worse runs preserve bests, and reward callbacks/relaunch never repeat milestone payouts.
+- [ ] Test human three-star reachability across all 25 missions, especially late-game precision-engine/final-wave conditions, with varied research and ammunition. Record failures rather than assuming accounting witnesses establish gameplay balance.

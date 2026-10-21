@@ -1,0 +1,350 @@
+{
+  "version": 1,
+  "defaults": {
+    "two_star_hp": 0.6,
+    "three_star_hp": 0.85,
+    "score": {
+      "health": 10000,
+      "kill": 10,
+      "manual_kill": 5,
+      "component": 60,
+      "secondary": 500,
+      "breach_penalty": 30,
+      "time_budget": 6000,
+      "time_penalty_per_second": 10
+    }
+  },
+  "missions": {
+    "1": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m01_secondary",
+        "name": "GUNNER INDUCTION",
+        "description": "Destroy 5 drones with the primary cannon.",
+        "rules": {
+          "manual_kills": 5
+        }
+      }
+    },
+    "2": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m02_secondary",
+        "name": "CONTROLLED BURSTS",
+        "description": "Destroy 8 manually; land 40% of at least 10 primary shots.",
+        "rules": {
+          "manual_kills": 8,
+          "accuracy": 0.4,
+          "manual_shots": 10
+        }
+      }
+    },
+    "3": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m03_secondary",
+        "name": "BROAD DEFENSE",
+        "description": "Operate defenses in two sectors simultaneously.",
+        "rules": {
+          "defense_sectors": 2
+        }
+      }
+    },
+    "4": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m04_secondary",
+        "name": "CLIP ITS WINGS",
+        "description": "Destroy one Heavy engine with a direct manual shot.",
+        "rules": {
+          "heavy_engines": 1
+        }
+      }
+    },
+    "5": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m05_secondary",
+        "name": "FIND THE CORE",
+        "description": "Land 3 direct core hits and destroy 8 drones manually.",
+        "rules": {
+          "core_hits": 3,
+          "manual_kills": 8
+        }
+      }
+    },
+    "6": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m06_secondary",
+        "name": "INTERCEPTION",
+        "description": "Destroy 12 manually; allow no more than 3 breaches.",
+        "rules": {
+          "manual_kills": 12,
+          "breaches": {
+            "max": 3
+          }
+        }
+      }
+    },
+    "7": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m07_secondary",
+        "name": "SHIELD BREAKER",
+        "description": "Destroy one Shield generator.",
+        "rules": {
+          "generators": 1
+        }
+      }
+    },
+    "8": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m08_secondary",
+        "name": "WEAPON DENIAL",
+        "description": "Destroy an enemy weapon module.",
+        "rules": {
+          "weapons": 1
+        }
+      }
+    },
+    "9": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m09_secondary",
+        "name": "DEFENSE IN DEPTH",
+        "description": "Operate three sectors; destroy 12 drones manually.",
+        "rules": {
+          "defense_sectors": 3,
+          "manual_kills": 12
+        }
+      }
+    },
+    "10": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m10_secondary",
+        "name": "WARSHIP DISMANTLING",
+        "description": "Destroy a generator and land 3 direct core hits.",
+        "rules": {
+          "generators": 1,
+          "core_hits": 3
+        }
+      }
+    },
+    "11": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m11_secondary",
+        "name": "PRECISION PATROL",
+        "description": "Disable one Heavy engine directly; destroy 15 manually.",
+        "rules": {
+          "heavy_engines": 1,
+          "manual_kills": 15
+        }
+      }
+    },
+    "12": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m12_secondary",
+        "name": "CLOSE THE GAP",
+        "description": "Destroy a generator; allow no more than 5 breaches.",
+        "rules": {
+          "generators": 1,
+          "breaches": {
+            "max": 5
+          }
+        }
+      }
+    },
+    "13": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m13_secondary",
+        "name": "CROSS-SECTOR SUPPRESSION",
+        "description": "Destroy a weapon module; operate two sectors.",
+        "rules": {
+          "weapons": 1,
+          "defense_sectors": 2
+        }
+      }
+    },
+    "14": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m14_secondary",
+        "name": "STRIP THEIR ARMOR",
+        "description": "Destroy 3 components.",
+        "rules": {
+          "components": 3
+        }
+      }
+    },
+    "15": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m15_secondary",
+        "name": "GUARDIAN HUNTER",
+        "description": "Land 4 direct core hits; take at most 150 base damage in the final wave.",
+        "rules": {
+          "core_hits": 4,
+          "final_wave_damage": {
+            "max": 150
+          }
+        }
+      }
+    },
+    "16": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m16_secondary",
+        "name": "ARMORED PRECISION",
+        "description": "Destroy 3 armored components and 15 drones manually.",
+        "rules": {
+          "armored_components": 3,
+          "manual_kills": 15
+        }
+      }
+    },
+    "17": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m17_secondary",
+        "name": "SUPPORT COLLAPSE",
+        "description": "Destroy 2 generators.",
+        "rules": {
+          "generators": 2
+        }
+      }
+    },
+    "18": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m18_secondary",
+        "name": "WEAPONS AND ENGINES",
+        "description": "Destroy 2 weapon modules and directly disable one Heavy engine.",
+        "rules": {
+          "weapons": 2,
+          "heavy_engines": 1
+        }
+      }
+    },
+    "19": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m19_secondary",
+        "name": "ACTIVE COMMAND",
+        "description": "Deal at least 25% of hull damage manually; destroy 10 manually.",
+        "rules": {
+          "manual_share": 0.25,
+          "manual_kills": 10
+        }
+      }
+    },
+    "20": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m20_secondary",
+        "name": "FACTORY SHUTDOWN",
+        "description": "Land 5 direct core hits; operate three sectors.",
+        "rules": {
+          "core_hits": 5,
+          "defense_sectors": 3
+        }
+      }
+    },
+    "21": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m21_secondary",
+        "name": "ELITE INTERCEPTION",
+        "description": "Destroy 25 manually; allow no more than 4 breaches.",
+        "rules": {
+          "manual_kills": 25,
+          "breaches": {
+            "max": 4
+          }
+        }
+      }
+    },
+    "22": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m22_secondary",
+        "name": "DISMANTLE THE ASSAULT",
+        "description": "Destroy 6 components including one generator.",
+        "rules": {
+          "components": 6,
+          "generators": 1
+        }
+      }
+    },
+    "23": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m23_secondary",
+        "name": "DISCIPLINED FIRE",
+        "description": "Destroy 3 weapons; land 45% of at least 20 primary shots.",
+        "rules": {
+          "weapons": 3,
+          "accuracy": 0.45,
+          "manual_shots": 20
+        }
+      }
+    },
+    "24": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m24_secondary",
+        "name": "FINAL APPROACH",
+        "description": "Directly disable 2 Heavy engines; take at most 100 final-wave base damage.",
+        "rules": {
+          "heavy_engines": 2,
+          "final_wave_damage": {
+            "max": 100
+          }
+        }
+      }
+    },
+    "25": {
+      "two_star_hp": 0.6,
+      "three_star_hp": 0.85,
+      "secondary": {
+        "id": "m25_secondary",
+        "name": "HIVE BREAKER",
+        "description": "Land 8 direct core hits, destroy a generator and destroy 20 drones manually.",
+        "rules": {
+          "core_hits": 8,
+          "generators": 1,
+          "manual_kills": 20
+        }
+      }
+    }
+  }
+}

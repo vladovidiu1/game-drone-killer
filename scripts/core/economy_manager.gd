@@ -171,3 +171,13 @@ func select_specialization(kind: String, branch: String) -> bool:
   return false
  balance_changed.emit()
  return true
+
+
+func grant_star_milestones(record: Dictionary, stars: int) -> int:
+ # Called only inside CampaignManager's atomic outcome; no independent save/debit.
+ var reward := 0
+ for tier in [2,3]:
+  if stars >= tier and not record.star_claims.has(tier):
+   record.star_claims.append(tier)
+   reward += int(CONFIG.values.war.star_milestones[str(tier)])
+ return reward

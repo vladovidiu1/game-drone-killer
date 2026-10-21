@@ -10,6 +10,7 @@ var smoke_timer := 0.0
 var pose_angle := 0.0
 var armor_open := 0.0
 var falling := false
+var crash_source: StringName = &"other"
 var fall_time := 0.0
 var feedback := ""
 var feedback_time := 0.0
@@ -88,7 +89,7 @@ func tick(delta: float) -> void:
  if falling:
   fall_time += delta
   if fall_time >= float(CONFIG.crash_seconds):
-   enemy.die()
+   enemy.die(crash_source)
   return
  var loss := 1.0-speed_multiplier()
  pose_angle = sin(clock*3.2)*float(CONFIG.instability_radians) if loss > 0 else 0.0
@@ -127,13 +128,13 @@ func contact(start: Vector2, direction: Vector2, remaining: float) -> Dictionary
   nearest = selected.segment(start,finish)
  return {"distance":nearest,"component":selected}
 
-func area(amount: float, at: Vector2, radius: float, armor_piercing: bool, traits: Dictionary) -> void:
+func area(amount: float, at: Vector2, radius: float, armor_piercing: bool, traits: Dictionary, source: StringName = &"other") -> void:
  # Explicit blast model: one hull packet plus one reduced packet per part in radius.
  for part in parts:
   if enemy.ended or falling:
    break
   if part.kind != "body" and not part.broken and part.point().distance_to(at) <= radius:
-   part.receive(amount*float(CONFIG.area_component_fraction),false,armor_piercing,traits)
+   part.receive(amount*float(CONFIG.area_component_fraction),false,armor_piercing,traits,source)
 
 func _destroyed(part: Node2D) -> void:
  if part.kind == "body":
@@ -141,6 +142,7 @@ func _destroyed(part: Node2D) -> void:
  destroyed_parts += 1
  var battle: Node2D = enemy.brain.battle
  battle.component_destructions += 1
+ battle.performance.component(part)
  feedback = {"engine":"ENGINE DISABLED","weapon":"WEAPON OFFLINE","shield":"SHIELD DESTROYED","sensor":"SENSOR DESTROYED","core":"CORE BREACHED"}.get(str(part.kind),"COMPONENT DESTROYED")
  feedback_time = 1.4
  var point: Vector2 = part.point()
@@ -155,7 +157,7 @@ func _destroyed(part: Node2D) -> void:
   if not attack_allowed(str(enemy.brain.pending_attack.get("attack",""))):
    enemy.brain.charging = false
  if part.kind == "core":
-  enemy.apply_body_damage(enemy.maximum_health*float(part.definition.get("burst_fraction",0)))
+  enemy.apply_body_damage(enemy.maximum_health*float(part.definition.get("burst_fraction",0)),part.last_source)
  if part.kind == "engine":
   var engines := 0
   var remaining := 0
@@ -165,6 +167,7 @@ func _destroyed(part: Node2D) -> void:
     remaining += int(not other.broken)
   if engines > 0 and remaining == 0 and not enemy.ended:
    falling = true
+   crash_source = part.last_source
    fall_time = 0
    enemy.brain.charging = false
    feedback = "PROPULSION LOST / CRASHING"

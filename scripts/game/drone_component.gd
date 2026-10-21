@@ -6,6 +6,8 @@ var definition: Dictionary
 var binding: Dictionary
 var id := ""
 var kind := ""
+var last_source: StringName = &"other"
+var last_direct := false
 var stored_health := 0.0
 var stored_maximum := 0.0
 var health: float:
@@ -78,11 +80,11 @@ func segment(start: Vector2, finish: Vector2) -> float:
   return INF
  return maxf(0,entry)*start.distance_to(finish)
 
-func receive(amount: float, direct: bool, armor_piercing: bool, traits: Dictionary) -> void:
+func receive(amount: float, direct: bool, armor_piercing: bool, traits: Dictionary, source: StringName = &"other") -> void:
  if amount <= 0 or not is_finite(amount) or rig.enemy.ended or rig.falling:
   return
  if kind == "body":
-  rig.enemy.hit(amount,direct,armor_piercing,Vector2.INF,traits)
+  rig.enemy.hit(amount,direct,armor_piercing,Vector2.INF,traits,source)
   return
  if rig.enemy.ended or (broken and not bool(definition.get("wreck_vulnerable",false))):
   return
@@ -96,11 +98,13 @@ func receive(amount: float, direct: bool, armor_piercing: bool, traits: Dictiona
   amount *= float(definition.damage_multiplier)
  elif direct and rig.enemy.brain.boss:
   amount *= float(rig.enemy.brain.settings().manual_hull_multiplier)
+ last_source = source
+ last_direct = direct
  flash = .15
  if not broken:
   health = maxf(0,health-amount)
   if health <= 0:
    broken = true # consume destruction ownership before consequences/re-entrant signals
    destroyed.emit(self)
- rig.enemy.apply_body_damage(amount*float(definition.hull_transfer))
+ rig.enemy.apply_body_damage(amount*float(definition.hull_transfer),source)
  rig.hit_feedback(self,direct)

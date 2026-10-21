@@ -1,0 +1,39 @@
+{
+  "source": "Native Godot 4.6.3 X11/OpenGL Compatibility viewport; llvmpipe; no edited pixels",
+  "command": "DISPLAY=:91 LIBGL_ALWAYS_SOFTWARE=1 FRONTLINE_CAPTURE_SCENE=res://tests/tutorial.tscn ./tests/run_graphics_profile.sh /tmp/p1-native-final-persist --attack-seed=808",
+  "fixture": "Actual guided events/actors then ordinary-budget M1 victory; layout_* phases staged, actual receipt re-presented for ratings/briefing/map; no Android hardware",
+  "frames": [
+    {
+      "file": "intro.png",
+      "sha256": "473dc7fe3f2142c8a3a92b15613374a9f69edbe02bb5eee592a1dae9ecaee462"
+    },
+    {
+      "file": "aim.png",
+      "sha256": "740023ed1c8cdfadbf98138c5d86998e8599e5c04e1347298aa94b4ef9548f1f"
+    },
+    {
+      "file": "fire.png",
+      "sha256": "e270c54b8a6e32ca94283708d73e30b6a36e796fb4ac06100e256f96488ca5cb"
+    },
+    {
+      "file": "reload.png",
+      "sha256": "e0675b12b73a771b1065698b4f3a5b6237cfa231e1c4cf8786c1f52e54d5cf5a"
+    },
+    {
+      "file": "layout_1280x600_step4.png",
+      "sha256": "84f1182337646e718cad31d6b1f8bbde3236d89193c94ad13f0f67cf214c526a"
+    },
+    {
+      "file": "sectors.png",
+      "sha256": "084cec800136c2131a9cfad5977da13d372a9bc0825f45dae9d28a94ce27817a"
+    },
+    {
+      "file": "upgrade.png",
+      "sha256": "f8d29625a5bf4aae21b7104862c1f936be780888042b3da8f1fb30a1e4b774f1"
+    },
+    {
+      "file": "objective.png",
+      "sha256": "5a5087130dd0cc4af62887d096c8fcb7319fda789f69033e83a954887f471b70"
+    }
+  ]
+}

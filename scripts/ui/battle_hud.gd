@@ -26,6 +26,7 @@ var close_button: Button
 var ability_buttons: Dictionary = {}
 var stat_cards: Dictionary = {}
 var stack: VBoxContainer
+var secondary_status: Label
 var radar: Control
 var wave_row: HBoxContainer
 
@@ -171,9 +172,17 @@ func setup(simulation: Node2D) -> void:
  var input_hint := UI.label("LEFT DRAG: AIM • HOLD FIRE • BUILD: 0.25x" if OS.has_feature("mobile") else "AIM + HOLD LMB • R: RELOAD • BUILD: 0.25x",14,UI.MUTED)
  input_hint.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  input_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ input_hint.visible = false
  bottom.add_child(input_hint)
+ secondary_status = UI.label("",13,UI.ORANGE)
+ secondary_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ secondary_status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ bottom.add_child(secondary_status)
  var operation := UI.label("%02d / %s" % [battle.mission_id,str(battle.mission_data.name).to_upper()],16,UI.CYAN)
  operation.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+ operation.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ operation.custom_minimum_size.x = 170
+ operation.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  bottom.add_child(operation)
  battle.player_controls.ui_hit_test = blocks_pointer
  resized.connect(_layout)
@@ -209,6 +218,17 @@ func refresh() -> void:
  readout.text = "BASE %d/%d | WAVE %d/%d | ENEMIES %d | BATTLE CREDITS %d" % [battle.health,battle.max_health,wave_number,spawner.waves.size(),spawner.remaining_to_spawn()+battle.living_count(),battle.credits]
  pause_button.text = "Resume" if battle.paused else "Pause"
  wave_label.text = "PREPARE" if spawner.wave < 0 else "BUILD %ds" % maxi(0,int(ceil(spawner.timer))) if spawner.intermission else "WAVE %d" % wave_number
+ var secondary: Dictionary = battle.performance.objective()
+ secondary_status.text = "%s / %s" % [str(secondary.name),"ON TRACK" if secondary.complete else "IN PROGRESS"]
+ if battle.guided:
+  secondary_status.text = "GUIDED DRILL / live waves and ratings start after training"
+ secondary_status.tooltip_text = str(secondary.description)
+ for condition in secondary.conditions:
+  if not battle.guided and not condition.met:
+   secondary_status.text += "\n"+str(condition.text)
+   break
+ radar.visible = not battle.guided
+ battle.view.radar.visible = not battle.guided
  radar.queue_redraw()
  wave_button.text = "Radar %ds" % int(ceil(spawner.warning_remaining)) if spawner.warning_remaining > 0 else "Launch wave" if spawner.wave < 0 else "Start early"
  wave_button.disabled = battle.paused or not spawner.intermission or battle.finished or spawner.warning_remaining > 0
@@ -216,6 +236,12 @@ func refresh() -> void:
  stat_cards.wave.update_value("%02d / %02d" % [wave_number,spawner.waves.size()])
  stat_cards.enemies.update_value("%02d" % (spawner.remaining_to_spawn()+battle.living_count()))
  stat_cards.credits.update_value("%04d" % battle.credits,battle.credits)
+ if battle.guided:
+  stat_cards.wave.update_value("DRILL")
+  stat_cards.enemies.update_value("%02d" % battle.living_count())
+  wave_label.text = "TRAINING"
+  wave_button.text = "After drill"
+  wave_button.disabled = true
  var selected: int = battle.selected_slot
  var turret: Node2D = battle.placed[selected] if selected >= 0 else null
  selection_label.text = "SLOT %d / L%d" % [selected+1,turret.level if turret != null else 0] if selected >= 0 else "SELECT A SLOT"
@@ -258,4 +284,4 @@ func refresh() -> void:
   button.disabled = not battle.abilities.can_activate(id)
 
 func blocks_pointer(point: Vector2) -> bool:
- return side_panel.get_global_rect().has_point(point) or top_panel.get_global_rect().has_point(point) or bottom_panel.get_global_rect().has_point(point)
+ return (is_instance_valid(battle.tutorial_overlay) and battle.tutorial_overlay.blocks_pointer(point)) or side_panel.get_global_rect().has_point(point) or top_panel.get_global_rect().has_point(point) or bottom_panel.get_global_rect().has_point(point)

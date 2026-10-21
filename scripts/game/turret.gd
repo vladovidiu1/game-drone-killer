@@ -103,7 +103,7 @@ func tick(delta: float) -> void:
   if acquisition_remaining <= 0 and aligned:
    var mode := str(definition.get("mode","projectile"))
    if mode == "laser":
-    target.hit(damage_value()*delta*fire_rate_value()/float(definition.fire_rate),false,false,Vector2.INF,definition)
+    target.hit(damage_value()*delta*fire_rate_value()/float(definition.fire_rate),false,false,Vector2.INF,definition,&"automatic")
     muzzle = 0.06
    if cooldown <= 0:
     if mode == "emp":

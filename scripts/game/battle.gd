@@ -8,7 +8,11 @@ const PROJECTILE := preload("res://scenes/projectile.tscn")
 const PLAYER_TURRET := preload("res://scenes/player_turret.tscn")
 const PLAYER_INPUT := preload("res://scripts/game/player_input.gd")
 const WAVES := preload("res://scripts/game/wave_spawner.gd")
+var guided := false
+var tutorial: Node
+var tutorial_overlay: Control
 var attack_seed := -1
+var performance: RefCounted
 var director: RefCounted
 var mission_id := 1
 var run_id := ""
@@ -70,6 +74,8 @@ func tick_environment(delta: float) -> void:
 
 func _ready() -> void:
  mission_data = CampaignManager.mission(mission_id)
+ performance = preload("res://scripts/game/battle_performance.gd").new()
+ performance.configure(self)
  research_levels = SaveManager.state.get("research",{}).duplicate(true)
  specializations = SaveManager.state.get("turret_specializations",{}).duplicate(true)
  max_health = int(mission_data.base_health)+int(EconomyManager.modifier("base_health",research_levels))
@@ -127,9 +133,14 @@ func simulate(delta: float) -> void:
  if paused or finished:
   return
  movement.tick(delta)
- tick_environment(delta)
- abilities.tick(delta)
- spawner.tick(delta,living_count())
+ performance.tick()
+ if guided:
+  if is_instance_valid(tutorial):
+   tutorial.tick(delta)
+ else:
+  tick_environment(delta)
+  abilities.tick(delta)
+  spawner.tick(delta,living_count())
  for enemy in drones.get_children():
   enemy.tick(delta)
   if finished:
@@ -145,7 +156,7 @@ func simulate(delta: float) -> void:
  if refresh_timer <= 0:
   refresh_timer = 0.1
   status_changed.emit()
- if spawner.finished and living_count() == 0:
+ if not guided and spawner.finished and living_count() == 0:
   _finish(true)
 
 func living_count() -> int:
@@ -161,13 +172,20 @@ func spawn_directed_enemy(kind: String, path_index: int) -> void:
  enemy.set_meta("attack_sector",str(mission_data.approaches.sectors[path_index]))
 
 func _drone_breached(damage: int, enemy: Node2D) -> void:
- if not finished:
+ if enemy.training_drone:
+  return
+ if not finished and not enemy.get_meta("breach_recorded",false):
+  enemy.set_meta("breach_recorded",true)
+  performance.counters.breaches += 1
   director.record(enemy,"breaches")
+ else:
+  return
  _breached(damage)
 
 func spawn_enemy(kind: String, path_index: int = 0) -> Node2D:
  var enemy = DRONE.instantiate()
  spawn_identity += 1
+ enemy.enemy_type = kind
  enemy.configure(CampaignManager.enemies[kind],mission_data.paths[path_index % mission_data.paths.size()],spawn_identity)
  enemy.speed = minf(float(CampaignManager.balance.maximum_drone_speed),enemy.speed*float(mission_data.get("speed_multiplier",1.0))*float(CampaignManager.balance.movement_multiplier))
  enemy.brain = preload("res://scripts/game/enemy_brain.gd").new()
@@ -209,6 +227,7 @@ func spawn_support(kind: String, parent_unit: Node2D) -> Node2D:
 func _breached(damage: int) -> void:
  if finished:
   return
+ performance.base_damage(mini(health,maxi(0,damage)))
  health = maxi(0,health-damage)
  view.base_flash = 0.12 if SaveManager.settings.get("reduced_effects",false) else 0.35
  view.combat_fx.base_damaged(float(health)/max_health)
@@ -221,9 +240,16 @@ func _destroyed(reward: int, enemy: Node2D) -> void:
  if finished or not is_instance_valid(enemy) or bool(enemy.get_meta("bounty_paid",false)):
   return
  enemy.set_meta("bounty_paid",true)
+ if enemy.training_drone:
+  view.combat_fx.destroyed(enemy)
+  view.effect(enemy.position,"blast",24,enemy.tint)
+  return
  director.record(enemy,"kills")
  reward = maxi(0,reward)
  kills += 1
+ performance.counters.kills += 1
+ if enemy.last_damage_source == &"manual":
+  performance.counters.manual_kills += 1
  credits += reward
  earned += reward
  view.destruction.snapshot(enemy)
@@ -297,6 +323,7 @@ func launch_projectile(turret: Node2D, target: Node2D) -> void:
 func launch_player_projectile(direction: Vector2) -> void:
  var projectile = PROJECTILE.instantiate()
  projectile.configure_manual(self,direction)
+ performance.shot(projectile)
  projectiles.add_child(projectile)
  view.combat_fx.shot(projectile.position,direction,projectile.visual_kind,projectile.tint)
  shots_fired += 1
@@ -319,7 +346,7 @@ func resolve_impact(projectile: Node2D) -> void:
    player_turret.notify_hit(projectile.critical or projectile.precision_critical)
 
 func start_wave() -> bool:
- return not paused and not finished and spawner.start_early()
+ return not guided and not paused and not finished and spawner.start_early()
 
 func effective_speed() -> float:
  return 0.25 if build_mode else 1.0
@@ -362,7 +389,8 @@ func _finish(victory: bool) -> void:
  director.finish(victory)
  finished = true
  set_paused(true)
- completed.emit(victory,{"mission_id":mission_id,"run_id":run_id,"victory":victory,"kills":kills,"health":health,"waves":spawner.wave+1,"earned":earned,"shots":shots_fired,"manual_shots":player_turret.shots_fired,"manual_hits":player_turret.hits,"seconds":elapsed,"enemy_actions":enemy_actions,"weakpoint_hits":weakpoint_hits,"attack_seed":attack_seed,"tactical_plans":director.plans.duplicate(true),"component_hits":component_hits,"component_destructions":component_destructions,"redeployments":movement.moves,"redeploy_spent":movement.spent,"redeploy_refunded":movement.refunded})
+ performance.tick()
+ completed.emit(victory,{"performance":performance.snapshot(),"mission_id":mission_id,"run_id":run_id,"victory":victory,"kills":kills,"health":health,"waves":spawner.wave+1,"earned":earned,"shots":shots_fired,"manual_shots":player_turret.shots_fired,"manual_hits":player_turret.hits,"seconds":elapsed,"enemy_actions":enemy_actions,"weakpoint_hits":weakpoint_hits,"attack_seed":attack_seed,"tactical_plans":director.plans.duplicate(true),"component_hits":component_hits,"component_destructions":component_destructions,"redeployments":movement.moves,"redeploy_spent":movement.spent,"redeploy_refunded":movement.refunded})
 
 func _exit_tree() -> void:
  if is_instance_valid(movement):

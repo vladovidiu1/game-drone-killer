@@ -2,6 +2,9 @@ extends Control
 const UI := preload("res://scripts/ui/ui_kit.gd")
 const BATTLE := preload("res://scenes/gameplay.tscn")
 const BATTLE_HUD := preload("res://scripts/ui/battle_hud.gd")
+var tutorial_allowed := true
+var tutorial_overlay: Control
+var training_only := false
 var background: Control
 var content: MarginContainer
 var battle: Node2D
@@ -48,6 +51,9 @@ func _resize() -> void:
   battle.position = (size-Vector2(1280,720)*battle.scale)*0.5
 
 func _clear(next: String) -> void:
+ if is_instance_valid(tutorial_overlay):
+  tutorial_overlay.queue_free()
+  tutorial_overlay = null
  RewardedAdsManager.set_context(next)
  if is_instance_valid(outro):
   outro.queue_free()
@@ -141,12 +147,13 @@ func _map() -> void:
  map.arsenal_requested.connect(_arsenal)
  _save_error(map)
 
-func _briefing(id: int) -> void:
+func _briefing(id: int, replay: bool = false) -> void:
  _clear("briefing")
  var briefing := preload("res://scripts/ui/mission_briefing.gd").new()
  content.add_child(briefing)
- briefing.setup(id)
- briefing.deploy_requested.connect(_play)
+ briefing.setup(id,replay)
+ briefing.deploy_requested.connect(func(mission_id: int): _play(mission_id,"replay" if briefing.optional_replay else "frontline",_tutorial_due(mission_id)))
+ briefing.replay_deploy_requested.connect(func(mission_id: int): _play(mission_id,"replay"))
  briefing.back_requested.connect(_map)
 
 func _arsenal() -> void:
@@ -194,6 +201,7 @@ func _settings() -> void:
   SaveManager.save_settings())
  col.add_child(mute)
  col.add_child(UI.button("Test sound",func(): AudioManager.cue(true)))
+ col.add_child(UI.button("Replay Tutorial",_replay_tutorial))
  var reduced := UI.button("Reduced environment effects",func(): pass)
  reduced.toggle_mode = true
  reduced.button_pressed = bool(SaveManager.settings.get("reduced_environment_effects",false))
@@ -211,22 +219,69 @@ func _settings() -> void:
  outer.add_child(UI.button("Main menu",_menu))
  _save_error(col)
 
-func _play(id: int = 1) -> void:
- var token := CampaignManager.begin_mission(id)
+func _play(id: int = 1, mode: String = "frontline", guided: bool = false) -> void:
+ var token := CampaignManager.begin_mission(id,mode)
  if token.is_empty():
   return
+ _deploy_battle(id,token,guided,false)
+
+func _deploy_battle(id: int, token: String, guided: bool, practice_only: bool) -> void:
  _clear("game")
+ training_only = practice_only
  battle = BATTLE.instantiate()
  battle.mission_id = id
  battle.run_id = token
  add_child(battle)
  move_child(battle,1)
  _resize()
- battle.completed.connect(_results.bind(id,token))
+ if practice_only:
+  battle.completed.connect(func(_victory: bool, _stats: Dictionary): _training_end.call_deferred("Training ended"))
+ else:
+  battle.completed.connect(_results.bind(id,token))
  hud = BATTLE_HUD.new()
  content.add_child(hud)
  hud.setup(battle)
  hud.abort_requested.connect(_abort)
+ if guided:
+  var guide := preload("res://scenes/mission_tutorial.tscn").instantiate()
+  battle.add_child(guide)
+  battle.tutorial = guide
+  guide.configure(battle)
+  tutorial_overlay = preload("res://scenes/ui/tutorial_overlay.tscn").instantiate()
+  add_child(tutorial_overlay)
+  tutorial_overlay.setup(guide,hud)
+  battle.tutorial_overlay = tutorial_overlay
+  guide.finished.connect(_guide_finished.bind(guide))
+
+func _tutorial_due(id: int) -> bool:
+ return tutorial_allowed and id == 1 and SaveManager.settings.get("tutorial_status","unseen") == "unseen" and int(SaveManager.state.get("highest",1)) == 1 and int(SaveManager.state.get("wins",0)) == 0 and not CampaignManager.completed(1)
+
+func _replay_tutorial() -> void:
+ _deploy_battle(1,"",true,true)
+
+func _guide_finished(status: String, source: Node) -> void:
+ if not is_instance_valid(battle) or battle.tutorial != source:
+  return
+ var token: String = battle.run_id
+ if training_only:
+  _training_end.call_deferred("Tutorial "+status+". No campaign rewards or territory changes.")
+ else:
+  _resume_after_tutorial.call_deferred(token)
+
+func _resume_after_tutorial(token: String) -> void:
+ if is_instance_valid(battle) and battle.guided and battle.run_id == token and SaveManager.state.get("active_run",{}).get("id") == token:
+  _deploy_battle(1,token,false,false)
+
+func _training_end(message: String) -> void:
+ _clear("training_results")
+ training_only = false
+ var col := _column()
+ _header(col,"TRAINING COMPLETE",message)
+ var note := UI.label("Practice supply and targets were discarded. Campaign progress and War Credits are unchanged.",20,UI.CYAN)
+ note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ col.add_child(note)
+ col.add_child(UI.button("Return to Settings",_settings))
+ col.add_child(UI.button("Replay Tutorial",_replay_tutorial))
 
 func _pause() -> void:
  if is_instance_valid(battle) and not battle.finished:
@@ -237,8 +292,12 @@ func _abort() -> void:
  var dialog := ConfirmationDialog.new()
  UI.prepare_confirmation(dialog)
  dialog.title = "Abandon the outpost?"
- dialog.dialog_text = "Aborting counts as defeat and moves the frontline back to its checkpoint floor."
- dialog.confirmed.connect(func(): battle._finish(false))
+ dialog.dialog_text = "End this practice session? No rewards or territory changes." if training_only else "Aborting this optional replay grants no rewards. The frontline is protected." if SaveManager.state.active_run.get("mode") == "replay" else "Aborting counts as defeat and moves the frontline back to its checkpoint floor."
+ dialog.confirmed.connect(func():
+  if training_only:
+   _training_end("Practice ended. Campaign unchanged.")
+  else:
+   battle._finish(false))
  dialog.canceled.connect(func():
   if is_instance_valid(battle):
    battle.set_paused(false))
@@ -292,7 +351,7 @@ func _show_results(victory: bool, reward: int, stats: Dictionary) -> void:
  content.add_child(results)
  results.setup(victory,reward,stats)
  results.briefing_requested.connect(_briefing)
- results.replay_requested.connect(_play)
+ results.replay_requested.connect(func(id: int): _briefing(id,true))
  results.map_requested.connect(_map)
  results.arsenal_requested.connect(_arsenal)
  _save_error(results)

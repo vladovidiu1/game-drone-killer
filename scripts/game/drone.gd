@@ -3,6 +3,9 @@ signal breached(damage: int)
 signal destroyed(reward: int)
 signal damaged(at: Vector2)
 const ASSETS := preload("res://scripts/visual/visual_assets.gd")
+var training_drone := false
+var enemy_type := ""
+var last_damage_source: StringName = &"other"
 var component_markers: Node2D
 var components: RefCounted
 var art: Node2D
@@ -111,16 +114,20 @@ func apply_disable(duration: float) -> void:
 func automatically_targetable() -> bool:
  return (components == null or not components.falling) and (brain == null or not brain.cloaked())
 
-func hit(amount: float, manual: bool = false, armor_piercing: bool = false, point: Vector2 = Vector2.INF, traits: Dictionary = {}) -> void:
+func hit(amount: float, manual: bool = false, armor_piercing: bool = false, point: Vector2 = Vector2.INF, traits: Dictionary = {}, source: StringName = &"other") -> void:
  if ended or amount <= 0:
   return
  if brain != null:
   amount *= brain.damage_multiplier(manual,armor_piercing,point,traits)
- apply_body_damage(amount)
+ apply_body_damage(amount,source)
 
-func apply_body_damage(amount: float) -> void:
+func apply_body_damage(amount: float, source: StringName = &"other") -> void:
  if ended or amount <= 0:
   return
+ var applied := minf(health,amount)
+ last_damage_source = source
+ if brain != null and not training_drone:
+  brain.battle.performance.damage(source,applied)
  health = maxf(0.0,health-amount)
  hit_flash = 0.12
  damaged.emit(position)
@@ -128,9 +135,13 @@ func apply_body_damage(amount: float) -> void:
   die()
  queue_redraw()
 
-func die() -> void:
+func die(source: StringName = &"") -> void:
  if ended:
   return
+ if source != &"":
+  if health > 0 and brain != null and not training_drone:
+   brain.battle.performance.damage(source,health)
+  last_damage_source = source
  health = 0
  ended = true
  if components != null:

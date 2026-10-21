@@ -2,9 +2,10 @@ extends Node
 signal saved
 const PATH := "user://campaign.json"
 const SETTINGS_PATH := "user://settings.json"
+const PERFORMANCE := preload("res://scripts/core/mission_performance.gd")
 const VERSION := 3
 const FLOORS := [1,5,10,15,20]
-const DEFAULT_SETTINGS := {"volume":0.6,"muted":false,"reduced_motion":false,"reduced_environment_effects":false,"reduced_effects":false,"effects_quality":"medium","effects_smoke":true,"effects_debris":true,"effects_lighting":true,"effects_shake":true}
+const DEFAULT_SETTINGS := {"tutorial_status":"unseen","volume":0.6,"muted":false,"reduced_motion":false,"reduced_environment_effects":false,"reduced_effects":false,"effects_quality":"medium","effects_smoke":true,"effects_debris":true,"effects_lighting":true,"effects_shake":true}
 var catalog: Dictionary = preload("res://scripts/core/economy_config.gd").progression()
 var state: Dictionary = {}
 var settings: Dictionary = DEFAULT_SETTINGS.duplicate()
@@ -20,7 +21,7 @@ func integer(value: Variant, fallback: int, low: int, high: int) -> int:
  return fallback
 
 func fresh_state() -> Dictionary:
- return {"version":VERSION,"frontline":1,"highest":1,"checkpoint":1,"checkpoints":[1],"credits":0,"damage_level":0,"wins":0,"records":{},"active_run":{},"last_result":{},"research":{},"unlocks":[],"equipped_ammo":"standard","weapon_schema":1,"ammo_loadout":["standard"],"turret_specializations":{},"claimed_objectives":[],"campaign_complete":false,"ad_campaign_id":"","ad_receipts":{}}
+ return {"version":VERSION,"performance_schema":1,"frontline":1,"highest":1,"checkpoint":1,"checkpoints":[1],"credits":0,"damage_level":0,"wins":0,"records":{},"active_run":{},"last_result":{},"research":{},"unlocks":[],"equipped_ammo":"standard","weapon_schema":1,"ammo_loadout":["standard"],"turret_specializations":{},"claimed_objectives":[],"campaign_complete":false,"ad_campaign_id":"","ad_receipts":{}}
 
 func validate_campaign(value: Variant) -> Dictionary:
  if not value is Dictionary:
@@ -55,9 +56,15 @@ func validate_campaign(value: Variant) -> Dictionary:
  if records is Dictionary:
   for id in range(1,26):
    var entry: Variant = records.get(str(id))
+   var implicit_clear: bool = id < result.highest
    if not entry is Dictionary:
-    continue
+    if not implicit_clear:
+     continue
+    entry = {}
    result.records[str(id)] = {"victories":integer(entry.get("victories"),0,0,1000000),"defeats":integer(entry.get("defeats"),0,0,1000000),"best_health":integer(entry.get("best_health"),0,0,10000000),"rewards":integer(entry.get("rewards"),0,0,1000000000),"last_outcome":"victory" if entry.get("last_outcome") == "victory" else "defeat"}
+   var extra := PERFORMANCE.record(entry,id,implicit_clear or int(result.records[str(id)].victories) > 0)
+   for key in ["first_clear","best_stars","best_hp_ratio","fastest_seconds","best_score","star_claims","completed_secondary","best_performance"]:
+    result.records[str(id)][key] = extra[key]
  result.campaign_complete = value.get("campaign_complete") is bool and value.campaign_complete == true and result.frontline == 25 and int(result.records.get("25",{}).get("victories",0)) > 0
  # Additive M4 fields: old saves keep all progress and gain no ad income.
  if valid_token(value.get("ad_campaign_id")):
@@ -108,11 +115,27 @@ func validate_campaign(value: Variant) -> Dictionary:
  var active: Variant = value.get("active_run",{})
  if active is Dictionary and valid_token(active.get("id")):
   var mission_id := integer(active.get("mission_id"),0,0,25)
-  if mission_id >= 1 and mission_id <= result.frontline:
-   result.active_run = {"id":active.id,"mission_id":mission_id,"frontline":result.frontline}
+  var completed: bool = mission_id < result.highest or result.records.get(str(mission_id),{}).get("first_clear",false)
+  var mode := str(active.get("mode","frontline" if mission_id == result.frontline else "replay"))
+  if mission_id >= 1 and mission_id <= 25 and (mission_id == result.frontline or completed) and mode in ["frontline","replay"]:
+   if mission_id != result.frontline:
+    mode = "replay"
+   result.active_run = {"id":active.id,"mission_id":mission_id,"frontline":result.frontline,"mode":mode}
  var outcome: Variant = value.get("last_result",{})
  if outcome is Dictionary and valid_token(outcome.get("run_id")):
   result.last_result = {"run_id":outcome.run_id,"mission_id":integer(outcome.get("mission_id"),1,1,25),"victory":outcome.get("victory") == true,"reward":integer(outcome.get("reward"),0,0,1000000000),"mission_reward":integer(outcome.get("mission_reward",outcome.get("reward")),0,0,1000000000),"objective_reward":integer(outcome.get("objective_reward"),0,0,1000000000),"from":integer(outcome.get("from"),1,1,25),"to":integer(outcome.get("to"),1,1,25),"message":str(outcome.get("message","")).left(500)}
+  var receipt: Dictionary = result.last_result
+  receipt.mode = "replay" if outcome.get("mode") == "replay" else "frontline"
+  receipt.star_reward = integer(outcome.get("star_reward"),0,0,1000000)
+  var performance: Variant = outcome.get("performance",{})
+  receipt.performance = PERFORMANCE.evaluate(int(receipt.mission_id),bool(receipt.victory),performance.get("snapshot",{}) if performance is Dictionary else {})
+  receipt.stars = int(receipt.performance.stars)
+  receipt.new_bests = []
+  var bests: Variant = outcome.get("new_bests",[])
+  if bests is Array:
+   for key in ["STAR RATING","BASE INTEGRITY","COMPLETION TIME","SCORE","SECONDARY OBJECTIVE"]:
+    if bests.has(key):
+     receipt.new_bests.append(key)
  return result
 
 func valid_token(value: Variant) -> bool:
@@ -134,6 +157,9 @@ func validate_settings(value: Variant) -> Dictionary:
  if not recognized:
   return {}
  var result := DEFAULT_SETTINGS.duplicate()
+ var tutorial: Variant = source.get("tutorial_status")
+ if tutorial is String and tutorial in ["unseen","completed","skipped"]:
+  result.tutorial_status = tutorial
  var volume: Variant = source.get("volume")
  if (volume is int or volume is float) and is_finite(float(volume)):
   result.volume = clampf(float(volume),0.0,1.0)

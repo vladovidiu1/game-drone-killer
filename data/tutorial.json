@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "intro_seconds": 8.0,
+  "practice_speed": 22.0,
+  "group_speed": 55.0,
+  "sector_min_seconds": 3.0,
+  "aim_distance": 8.0,
+  "demo_rounds": 6,
+  "steps": [
+    {
+      "id": "intro",
+      "title": "ASTERIA DEFENSE COMMAND",
+      "text": "Enemy drones have breached our airspace.\nSentinel-7, you are our last line of defense.\nTake control of the cannon. Protect the outpost."
+    },
+    {
+      "id": "aim",
+      "title": "1 / 7  \u2022  AIM",
+      "text": "Drag to aim your cannon.\nDesktop: move the mouse over the battlefield."
+    },
+    {
+      "id": "fire",
+      "title": "2 / 7  \u2022  FIRE",
+      "text": "Hold FIRE to shoot.\nDesktop: hold the left mouse button. Hit the practice drone."
+    },
+    {
+      "id": "reload",
+      "title": "3 / 7  \u2022  RELOAD",
+      "text": "Reload when your magazine is empty.\nTry Reload / R now, or fire the six demonstration rounds."
+    },
+    {
+      "id": "build",
+      "title": "4 / 7  \u2022  AUTOMATIC DEFENSE",
+      "text": "Build automatic defenses to protect your base.\nSelect a slot, then buy a Machine Gun."
+    },
+    {
+      "id": "sectors",
+      "title": "5 / 7  \u2022  WATCH THE FLANKS",
+      "text": "Enemy attacks can come from multiple directions.\nWatch the marked approach. Help your turret with the cannon."
+    },
+    {
+      "id": "upgrade",
+      "title": "6 / 7  \u2022  UPGRADE",
+      "text": "Upgrade your defenses to survive stronger attacks.\nSelect a turret, then Upgrade. Build mode slows combat to 25%."
+    },
+    {
+      "id": "objective",
+      "title": "7 / 7  \u2022  DEFEND OUTPOST ALPHA",
+      "text": "Survive the attack. Keep your base standing.\nLive defense: five waves, fresh normal supply.\nPlace defenses, then tap Launch wave."
+    }
+  ]
+}

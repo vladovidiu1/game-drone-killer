@@ -1,0 +1,11 @@
+{
+  "cases": [
+    {
+      "fixture": "actual desktop events, three independent touches, real actors/reload/purchases, then assisted normal-budget five-wave M1; early-action/restart fixtures; no physical Android",
+      "guided_simulated_seconds": 6.43999999999998,
+      "normal_m1_reward": 125
+    }
+  ],
+  "checks": 37,
+  "failures": 0
+}
