@@ -37,7 +37,7 @@ func run() -> void:
  app._map()
  await settle()
  var strategic: Control = app.content.get_child(0).strategic
- check(strategic.nodes.size() == 25 and buttons(app).size() == 27,"Map retains 25 interactive operation nodes and existing navigation")
+ check(strategic.nodes.size() == 25 and buttons(app).filter(func(button: Button): return button.text in ["Main menu","Arsenal"]).size() == 2,"Map retains 25 interactive operation nodes and existing navigation")
  var seen: Array[int] = []
  for node in strategic.nodes:
   check(not seen.has(node.mission_id) and Rect2(Vector2.ZERO,Vector2(1600,900)).encloses(node.get_rect()),"Distinct accessible world-space operation %02d" % node.mission_id)

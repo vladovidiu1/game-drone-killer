@@ -48,6 +48,7 @@ func _resize() -> void:
   battle.position = (size-Vector2(1280,720)*battle.scale)*0.5
 
 func _clear(next: String) -> void:
+ RewardedAdsManager.set_context(next)
  if is_instance_valid(outro):
   outro.queue_free()
   outro = null

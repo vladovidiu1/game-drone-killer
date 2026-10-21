@@ -1,0 +1,11 @@
+{
+  "plugin": "Poing Studios Godot AdMob",
+  "plugin_version": "5.1.0",
+  "plugin_commit": "615974e9f66921a54e3c71c33db0856bdbf19d13",
+  "enabled": false,
+  "compliance_reviewed": false,
+  "audience": "unreviewed",
+  "privacy_policy_url": "",
+  "android_app_test_id": "ca-app-pub-3940256099942544~3347511713",
+  "android_rewarded_test_id": "ca-app-pub-3940256099942544/5224354917"
+}

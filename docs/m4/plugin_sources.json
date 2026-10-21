@@ -1,0 +1,172 @@
+{
+  "plugin": "Poing Studios Godot AdMob",
+  "version": "5.1.0",
+  "commit": "615974e9f66921a54e3c71c33db0856bdbf19d13",
+  "license": "MIT (Google SDK has separate Google terms)",
+  "godot_claimed_support": "4.5.0+",
+  "observed_android_compile_sdk": 35,
+  "observed_android_min_sdk": 24,
+  "observed_ad_dependency": "com.google.android.libraries.ads.mobile.sdk:ads-mobile-sdk:1.4.0",
+  "android_aar_for_4_6_3_verified": false,
+  "native_sdk_execution_verified": false,
+  "files": [
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/api/MobileAds.gd",
+      "symbols": [
+        "initialize",
+        "set_request_configuration"
+      ],
+      "sha256": "33a86e0bdceb2298392b7b4fd255251e438defe24ba4dbeabb80037e89c74c00",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/api/MobileAds.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/api/RewardedAd.gd",
+      "symbols": [
+        "show",
+        "destroy",
+        "set_server_side_verification_options",
+        "full_screen_content_callback"
+      ],
+      "sha256": "e4d72c4fa695cee84943c2f741a60c34ff9939d932a5449f1fafb64e90310c4b",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/api/RewardedAd.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/api/RewardedAdLoader.gd",
+      "symbols": [
+        "load"
+      ],
+      "sha256": "456fcd3cf7e71aeecd8c3f20a7c6cd824a13f28363ff766bee3f3df27ba82409",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/api/RewardedAdLoader.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/api/core/AdRequest.gd",
+      "symbols": [],
+      "sha256": "f8bbb5a0953545483a25db71cb3cf9f2a1be4f31315d7f8d96a02cc74f37e7cd",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/api/core/AdRequest.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/api/core/RequestConfiguration.gd",
+      "symbols": [
+        "tag_for_child_directed_treatment",
+        "tag_for_under_age_of_consent",
+        "max_ad_content_rating"
+      ],
+      "sha256": "b123c64cf7300b87f1eda28222046ae1737614bf5da9be5c04dc1a587e0b14c4",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/api/core/RequestConfiguration.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/api/core/ServerSideVerificationOptions.gd",
+      "symbols": [
+        "custom_data"
+      ],
+      "sha256": "8f9eba45ba0716e272ba535c7a5b79dac6dad86e1df3b82e65eb2227d924204e",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/api/core/ServerSideVerificationOptions.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/api/listeners/RewardedAdLoadCallback.gd",
+      "symbols": [
+        "on_ad_loaded",
+        "on_ad_failed_to_load"
+      ],
+      "sha256": "39c31b539fa51365e97ba11cc8540c4cebfdd375bd34bb16878f8004311bc493",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/api/listeners/RewardedAdLoadCallback.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/api/listeners/FullScreenContentCallback.gd",
+      "symbols": [
+        "on_ad_dismissed_full_screen_content",
+        "on_ad_failed_to_show_full_screen_content"
+      ],
+      "sha256": "50e7e2194b8ecceec23f005d8b8a58e12132889360a6d3941557fc65e84672e0",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/api/listeners/FullScreenContentCallback.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/api/listeners/OnUserEarnedRewardListener.gd",
+      "symbols": [
+        "on_user_earned_reward"
+      ],
+      "sha256": "09d391d1959b2d6297ffdaf188675ff3fb8ff1b2b23016e565761e81b8cd8e5d",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/api/listeners/OnUserEarnedRewardListener.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/api/listeners/OnInitializationCompleteListener.gd",
+      "symbols": [
+        "on_initialization_complete"
+      ],
+      "sha256": "8ead181780f1baecedeb0eb5ca4ad7ca7cab1ac7b920a455ba46fcc302c3bf55",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/api/listeners/OnInitializationCompleteListener.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/ump/api/UserMessagingPlatform.gd",
+      "symbols": [
+        "consent_information",
+        "load_consent_form",
+        "show_privacy_options_form"
+      ],
+      "sha256": "7f81989362c55d42d48621d1923858f4a8ba693488d586d8a632b44d3cc0b0c6",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/ump/api/UserMessagingPlatform.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/ump/api/ConsentInformation.gd",
+      "symbols": [
+        "update",
+        "get_consent_status",
+        "get_is_consent_form_available",
+        "get_privacy_options_requirement_status"
+      ],
+      "sha256": "946604c4d61bb05941a5c8bbae9728451aa4e7777e4cfc540645e39ec6f76c08",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/ump/api/ConsentInformation.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/ump/api/ConsentForm.gd",
+      "symbols": [
+        "show"
+      ],
+      "sha256": "b98035d23610b9731c6e28753afa4ae7462a7f351039c4fb04dc179c58cdb8d8",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/ump/api/ConsentForm.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/gdscript/src/ump/core/ConsentRequestParameters.gd",
+      "symbols": [
+        "tag_for_under_age_of_consent"
+      ],
+      "sha256": "9b7e5e2ab52291d139c82a7a391c820d6e896f26769a1189d1633676f0b68a9a",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/gdscript/src/ump/core/ConsentRequestParameters.gd"
+    },
+    {
+      "path": "README.md",
+      "sha256": "f0d08f5c9709ec69333ba0f9163a9e6baea9332fba9eaa94d5473dbf856e324c",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/README.md"
+    },
+    {
+      "path": "docs/ad_formats/rewarded.md",
+      "sha256": "6b36dbad157ce70ee6a592b8eb2f18f55a993cd77f516a04deb787216a3e8cf0",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/docs/ad_formats/rewarded.md"
+    },
+    {
+      "path": "docs/privacy/user_messaging_tools/get_started.md",
+      "sha256": "785abfdc1e5fbb9919fd5f2196bed4ad714bdc0354d708dca9b923aa7046c959",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/docs/privacy/user_messaging_tools/get_started.md"
+    },
+    {
+      "path": "platforms/android/README.md",
+      "sha256": "aab9d78304dadb03c51e91568c8d9ec8eeaf372cd8f167bc3781d063a0f2a544",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/android/README.md"
+    },
+    {
+      "path": "platforms/android/build.gradle",
+      "sha256": "79a77272daf79fbefaf40c7b56279d287f57c21f0ea336a1b46efe4bf23625bb",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/android/build.gradle"
+    },
+    {
+      "path": "platforms/android/src/ads/config/poing_godot_admob_ads.gd",
+      "sha256": "aaf3ba790995e030fd677791d275952ef3d92561fcba1589ed2324dfe49550f2",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/android/src/ads/config/poing_godot_admob_ads.gd"
+    },
+    {
+      "path": "platforms/godot_editor/addons/admob/internal/services/project_settings_service.gd",
+      "sha256": "9ca0be1ed0145c2f0a0d0993462d9930de8bb153d7ea566da872aa04a9508a4d",
+      "url": "https://github.com/poing-studios/godot-admob-plugin/blob/615974e9f66921a54e3c71c33db0856bdbf19d13/platforms/godot_editor/addons/admob/internal/services/project_settings_service.gd"
+    }
+  ]
+}

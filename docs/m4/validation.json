@@ -1,0 +1,176 @@
+{
+  "engine": "Godot 4.6.3 stable",
+  "baseline_commit": "510042feaacde2ece94b565bdb2ee9020a5df3c9",
+  "date": "2026-10-21",
+  "suite_invocations": 31,
+  "checks": 9609,
+  "failures": 0,
+  "rewarded_checks": 97,
+  "rewarded_fresh_process_checks": 6,
+  "admob_boundary_test_double_checks": 17,
+  "native_rewarded_frames": 11,
+  "native_existing_ui_frames": 36,
+  "native_ui_failures": 0,
+  "real_google_test_ad_verified_on_android": false,
+  "production_advertising_enabled": false,
+  "physical_android_verified": false,
+  "no_ad_campaign_matches_m3_exactly": true,
+  "suites": [
+    {
+      "name": "M1 MECHANICS",
+      "checks": 46,
+      "failures": 0
+    },
+    {
+      "name": "COMBAT",
+      "checks": 40,
+      "failures": 0
+    },
+    {
+      "name": "HYBRID",
+      "checks": 55,
+      "failures": 0
+    },
+    {
+      "name": "SMOKE",
+      "checks": 42,
+      "failures": 0
+    },
+    {
+      "name": "SMOKE",
+      "checks": 4,
+      "failures": 0
+    },
+    {
+      "name": "SAVE/RULES",
+      "checks": 38,
+      "failures": 0
+    },
+    {
+      "name": "CAMPAIGN",
+      "checks": 43,
+      "failures": 0
+    },
+    {
+      "name": "CAMPAIGN",
+      "checks": 5,
+      "failures": 0
+    },
+    {
+      "name": "RESEARCH",
+      "checks": 187,
+      "failures": 0
+    },
+    {
+      "name": "RESEARCH",
+      "checks": 4,
+      "failures": 0
+    },
+    {
+      "name": "ECONOMY",
+      "checks": 419,
+      "failures": 0
+    },
+    {
+      "name": "ECONOMY",
+      "checks": 3,
+      "failures": 0
+    },
+    {
+      "name": "REWARDED ADS",
+      "checks": 97,
+      "failures": 0
+    },
+    {
+      "name": "REWARDED ADS",
+      "checks": 6,
+      "failures": 0
+    },
+    {
+      "name": "ADMOB BOUNDARY CONTRACT",
+      "checks": 17,
+      "failures": 0
+    },
+    {
+      "name": "WEAPON RESEARCH",
+      "checks": 1424,
+      "failures": 0
+    },
+    {
+      "name": "WEAPON RESEARCH",
+      "checks": 3,
+      "failures": 0
+    },
+    {
+      "name": "GRAPHICS AUDIT",
+      "checks": 810,
+      "failures": 0
+    },
+    {
+      "name": "GRAPHICS AUDIT",
+      "checks": 2,
+      "failures": 0
+    },
+    {
+      "name": "TACTICAL UI",
+      "checks": 193,
+      "failures": 0
+    },
+    {
+      "name": "COMBAT VFX",
+      "checks": 310,
+      "failures": 0
+    },
+    {
+      "name": "COMBAT VFX",
+      "checks": 2,
+      "failures": 0
+    },
+    {
+      "name": "VISUAL FOUNDATION",
+      "checks": 476,
+      "failures": 0
+    },
+    {
+      "name": "UNIT VISUALS",
+      "checks": 195,
+      "failures": 0
+    },
+    {
+      "name": "ENVIRONMENTS",
+      "checks": 946,
+      "failures": 0
+    },
+    {
+      "name": "ENVIRONMENTS",
+      "checks": 2,
+      "failures": 0
+    },
+    {
+      "name": "CATALOG",
+      "checks": 3926,
+      "failures": 0
+    },
+    {
+      "name": "ENEMY AI",
+      "checks": 88,
+      "failures": 0
+    },
+    {
+      "name": "FULL CAMPAIGN",
+      "checks": 184,
+      "failures": 0
+    },
+    {
+      "name": "FULL CAMPAIGN",
+      "checks": 31,
+      "failures": 0
+    },
+    {
+      "name": "FULL CAMPAIGN",
+      "checks": 11,
+      "failures": 0
+    }
+  ],
+  "rewarded_manager_sha256": "06dce99040001454a25f12a8ffd6e42c0d6512e92a3faadba7074f7e25250ec5"
+}

@@ -3,7 +3,7 @@
 - Use Godot 4.6 stable, GDScript only for runtime code, and the Compatibility renderer. No proprietary plugins, hosted services, or paid assets.
 - Keep the game offline and Android-first. Preserve landscape, 1280×720 reference layout, safe-area handling, mouse testing and independent touch-pointer ownership.
 - Use the existing checkout; tasks already have isolated environments. Do not create worktrees unless explicitly requested.
-- Runtime service autoload order matters: SaveManager, CampaignManager, EconomyManager, AudioManager.
+- Runtime service autoload order matters: SaveManager, CampaignManager, EconomyManager, AudioManager, RewardedAdsManager.
 - Keep tunable mission, enemy, and turret combat definitions in `data/definitions.json`; M3 currency values and costs live in `data/economy.json`. Keep campaign credits separate from temporary battle supply.
 - Use typed GDScript where concrete types are known, reusable scenes/Controls and signals. Keep battle rendering in `battle_view.gd`; do not put campaign persistence inside enemies.
 - Treat `main.gd` as navigation/UI composition. Split screen builders into dedicated components when subsequent features make them larger.
@@ -110,3 +110,13 @@
 - First clears pay the configured reward; all later clears/reconquests pay integer-floor 15%. Existing victories and implicit cleared territory below highest-ever reached prevent repeat first-clear bonuses on old saves. Preserve saved balances, bought levels and schema-v3 transactions.
 - BC stays temporary and never converts to WC. Restart grants neither partial bounties nor victory income. Enemy payout ownership is consumed before credit/effects; tokens and objective claims remain atomic with the result save.
 - Run economy/fresh-process suites, the earned-budget connected campaign and fixed-policy comparison after tuning. Record actual budgets/purchases, distinguish accounting fixtures from combat, and do not claim human or Android balance from assisted simulations. Regenerate measured tables with `python tools/report_m3_economy.py` after reports are current.
+
+
+## M4 optional rewarded ads
+
+- Follow `docs/REWARDED_ADS.md`. Offline campaign balance remains M3; never require ads. Reward amounts/limits/cooldown stay in `data/economy.json.rewarded_ads`; native test IDs/configuration stay in `data/advertising.json`.
+- Only the current presented session's earned callback may create an ad reward. Closing, resuming, failed load/presentation, timeout and partial/restarted ads never grant credit. Retain presentation ownership until dismissal even after an earned event and with zero cooldown.
+- Preserve additive v3 `ad_campaign_id` and `ad_receipts`. Journal intent/quota in installation-wide `user://rewarded_ads.json`, credit+receipt in one campaign save, then finalize the journal. Recovery must never double-credit or fund a replacement campaign. Corrupt ad history blocks ads without resetting quota or blocking offline gameplay.
+- The editor simulator and test injection require editor + debug + non-Android and an explicit opt-in. Do not enable mock rewards in exported builds. The conditional native adapter is strict Android debug/official-test only; production advertising remains disabled pending actual SDK/consent/audience/privacy/SSV work.
+- Use pinned Poing v5.1.0 documented APIs, never another plugin's method names. Do not initialize/load before fresh required UMP handling. Unknown/underage/mixed audiences remain ineligible until implemented. Sample Google App ID cannot host publisher-configured consent messages; do not bypass missing consent forms.
+- Run full regression including rewarded/fresh-process and AdMob boundary-contract test-double suites. Use real display wrappers for native ad-offer/cancel/saved UI captures. Distinguish test doubles/editor callbacks from real SDK/test-ad/Android evidence. Local clock/file protections are best effort, not server-authoritative.

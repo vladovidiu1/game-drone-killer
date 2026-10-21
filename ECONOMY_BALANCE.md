@@ -91,7 +91,7 @@ Suggested spending priorities are coverage before maximum turret levels, a reser
 - Per-mission victory records identify prior clears. For old v1 saves without detailed records, any territory below highest-ever reached was necessarily cleared and receives replay rewards. Retreat cannot restore first-clear eligibility. Mission 25 uses its victory record.
 - A result needs the current persisted random deployment token. Replacing a deployment invalidates the abandoned token; duplicate/stale callbacks do nothing.
 - Currency credit, clear record, objective claims, token consumption and territorial changes are a single persisted transaction. A failed write restores the full prior state and allows one legitimate retry. Purchases similarly debit and grant atomically.
-- All runtime currencies, prices and payouts are integers. Insufficient funds reject the operation; invalid saved negative balances clamp to zero. There is no arbitrary currency-grant API outside the result transaction.
+- All runtime currencies, prices and payouts are integers. Insufficient funds reject the operation; invalid saved negative balances clamp to zero. There is no arbitrary currency-grant API outside validated mission/ad reward transactions.
 - Loading a valid current save cannot merge its balance with an older clear ledger. Backup recovery rolls back the **whole** snapshot together. Local files are not tamper-proof; manually restoring an older full save restores its older progress and bank together.
 
 ## Validation and remaining work
@@ -101,3 +101,10 @@ Run `./tests/run_checks.sh` with `FRONTLINE_REPORT_DIR=docs/m3` to preserve repo
 `tests/economy.gd` covers all 25 first-clear transactions, repeat callbacks before/after disk reload, repeated full replays, no-ad accounting, moderate earned purchases, nine losses/checkpoint floors, early loss/reconquest, legacy implicit and explicit clear history, insufficient funds, duplicate enemy bounties, restart resets and failed-write rollback. The separate fresh-process invocation verifies durable history and exact balances.
 
 `tests/full_campaign.gd` verifies a connected real-combat path with earned money and real purchases, plus actual defeat and reduced-reward reconquest. Synthetic accounting fixtures are not described as combat victories. Fixed-seed assisted input demonstrates reachability; it does not establish final human difficulty. Physical Android controls, human spending behavior, win rates, frame rate and thermal performance still require device playtests. Final run counts and native UI evidence are recorded in [docs/m3/VALIDATION.md](docs/m3/VALIDATION.md).
+
+
+## M4 optional source (M3 campaign balance unchanged)
+
+`data/economy.json.rewarded_ads` adds a voluntary source: **50 persistent WC**, at most **5 successful rewards per UTC day**, with **60 seconds** between successes by default. Cancellation/load/presentation failure gives zero. The installation journal survives new-campaign resets and duplicates cannot re-award through the implemented callback path. This optional maximum of 250 WC/day accelerates chosen research; it is excluded from all no-ad first-pass income tables and completion simulations above. The 8,640 WC route and actual combat outcomes remain unchanged.
+
+Ads are unavailable by default; only editor simulation is executable here. Configured official-test Android integration, release monetization, publisher consent/policy configuration and authoritative SSV/time remain separate work. See [M4 integration and limits](docs/REWARDED_ADS.md). Best-effort local daily/clock protections are not fraud-proof and are not a substitute for a production server ledger.

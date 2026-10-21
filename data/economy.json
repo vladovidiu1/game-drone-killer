@@ -314,5 +314,12 @@
   "objective_rewards": {
     "veteran": 60,
     "chapter_five": 80
+  },
+  "rewarded_ads": {
+    "reward": 50,
+    "daily_limit": 5,
+    "cooldown_seconds": 60,
+    "clock_tolerance_seconds": 300,
+    "load_timeout_seconds": 45
   }
 }

@@ -5,6 +5,10 @@ signal arsenal_requested
 const UI := preload("res://scripts/ui/ui_kit.gd")
 var strategic: Control
 var transition: Dictionary = {}
+var bank: Label
+
+func _balance_changed() -> void:
+ bank.text = "WAR CREDITS  /  %s" % int(SaveManager.state.get("credits",0))
 func _ready() -> void:
  add_theme_constant_override("separation",12)
  var header := HBoxContainer.new()
@@ -14,8 +18,9 @@ func _ready() -> void:
  header.add_child(title)
  title.add_child(UI.label("SENTINEL COMMAND / CAMPAIGN OPERATIONS",14,UI.CYAN))
  title.add_child(UI.label("ASTERIA / STRATEGIC MAP",34))
- var bank := UI.label("WAR CREDITS  /  %s" % int(SaveManager.state.get("credits",0)),22,UI.CYAN)
+ bank = UI.label("WAR CREDITS  /  %s" % int(SaveManager.state.get("credits",0)),22,UI.CYAN)
  header.add_child(bank)
+ EconomyManager.balance_changed.connect(_balance_changed)
  var middle := HBoxContainer.new()
  middle.add_theme_constant_override("separation",14)
  middle.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -51,6 +56,9 @@ func _ready() -> void:
  intel.add_child(objective)
  intel.add_child(UI.label("%d waves  /  %d emplacements" % [mission.waves.size(),mission.slots.size()],16,UI.MUTED))
  intel.add_child(UI.label("VICTORY  /  +%d WC" % int(EconomyManager.victory_quote(int(mission.id)).reward),18,UI.CYAN))
+ var ad_offer := preload("res://scripts/ui/rewarded_ad_offer.gd").new()
+ ad_offer.compact = true
+ intel.add_child(ad_offer)
  intel.add_child(UI.label("SECURED FLOOR  /  %02d" % int(SaveManager.state.get("checkpoint",1)),16,UI.MUTED))
  var hint := UI.label("Select an operation marker to inspect its briefing. Enemy territories remain locked until the frontline reaches them.",16,UI.MUTED)
  hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

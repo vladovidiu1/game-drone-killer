@@ -1,0 +1,94 @@
+{
+  "captures": [
+    {
+      "capture": "campaign_ads_unavailable",
+      "draw_calls": 301.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "arsenal_optional_offer",
+      "draw_calls": 59.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "editor_simulation_dialog",
+      "draw_calls": 71.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "arsenal_reward_saved",
+      "draw_calls": 59.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "campaign_reward_saved",
+      "draw_calls": 301.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "arsenal_ads_1280x600",
+      "draw_calls": 51.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "campaign_ads_1280x600",
+      "draw_calls": 269.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "arsenal_ads_1600x720",
+      "draw_calls": 59.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "campaign_ads_1600x720",
+      "draw_calls": 333.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "arsenal_ads_1024x768",
+      "draw_calls": 52.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "campaign_ads_1024x768",
+      "draw_calls": 269.0,
+      "size": [
+        1024,
+        768
+      ]
+    }
+  ],
+  "failures": 0,
+  "real_ads": false
+}

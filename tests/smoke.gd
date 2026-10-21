@@ -56,7 +56,7 @@ func run() -> void:
  SaveManager.state = current_campaign
  app._map()
  await get_tree().process_frame
- check(buttons(app).size() == 27, "25 interactive map nodes and navigation")
+ check(app.content.get_child(0).strategic.nodes.size() == 25 and buttons(app).filter(func(button: Button): return button.text in ["Main menu","Arsenal"]).size() == 2, "25 interactive map nodes and working navigation remain alongside optional ads")
  app._briefing(25)
  await get_tree().process_frame
  check(buttons(app).size() == 2 and buttons(app)[0].disabled, "future mission is playable content but remains frontline-locked")

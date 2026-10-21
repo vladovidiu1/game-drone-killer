@@ -38,7 +38,11 @@ func _ready() -> void:
  body.add_theme_constant_override("separation",12)
  scroll.add_child(body)
  add_child(UI.button("Back",func(): back_requested.emit()))
+ RewardedAdsManager.rewarded.connect(_ad_rewarded)
  resized.connect(_layout_cards)
+ refresh()
+
+func _ad_rewarded(_amount: int) -> void:
  refresh()
 
 func _layout_cards() -> void:
@@ -81,6 +85,7 @@ func refresh() -> void:
   for id in SaveManager.catalog.objectives:
    var objective: Dictionary = SaveManager.catalog.objectives[id]
    paragraph("%s: %s • %d War Credits • %s" % [objective.name,objective.description,int(objective.reward),"CLAIMED" if SaveManager.state.get("claimed_objectives",[]).has(id) else "awarded on eligible victory"])
+ body.add_child(preload("res://scripts/ui/rewarded_ad_offer.gd").new())
  if current_tab == "projectiles":
   var technology := preload("res://scripts/ui/projectile_research.gd").new()
   body.add_child(technology)

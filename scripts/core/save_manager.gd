@@ -20,7 +20,7 @@ func integer(value: Variant, fallback: int, low: int, high: int) -> int:
  return fallback
 
 func fresh_state() -> Dictionary:
- return {"version":VERSION,"frontline":1,"highest":1,"checkpoint":1,"checkpoints":[1],"credits":0,"damage_level":0,"wins":0,"records":{},"active_run":{},"last_result":{},"research":{},"unlocks":[],"equipped_ammo":"standard","weapon_schema":1,"ammo_loadout":["standard"],"turret_specializations":{},"claimed_objectives":[],"campaign_complete":false}
+ return {"version":VERSION,"frontline":1,"highest":1,"checkpoint":1,"checkpoints":[1],"credits":0,"damage_level":0,"wins":0,"records":{},"active_run":{},"last_result":{},"research":{},"unlocks":[],"equipped_ammo":"standard","weapon_schema":1,"ammo_loadout":["standard"],"turret_specializations":{},"claimed_objectives":[],"campaign_complete":false,"ad_campaign_id":"","ad_receipts":{}}
 
 func validate_campaign(value: Variant) -> Dictionary:
  if not value is Dictionary:
@@ -59,6 +59,16 @@ func validate_campaign(value: Variant) -> Dictionary:
     continue
    result.records[str(id)] = {"victories":integer(entry.get("victories"),0,0,1000000),"defeats":integer(entry.get("defeats"),0,0,1000000),"best_health":integer(entry.get("best_health"),0,0,10000000),"rewards":integer(entry.get("rewards"),0,0,1000000000),"last_outcome":"victory" if entry.get("last_outcome") == "victory" else "defeat"}
  result.campaign_complete = value.get("campaign_complete") is bool and value.campaign_complete == true and result.frontline == 25 and int(result.records.get("25",{}).get("victories",0)) > 0
+ # Additive M4 fields: old saves keep all progress and gain no ad income.
+ if valid_token(value.get("ad_campaign_id")):
+  result.ad_campaign_id = value.ad_campaign_id
+ var receipts: Variant = value.get("ad_receipts",{})
+ if receipts is Dictionary and not result.ad_campaign_id.is_empty():
+  for id in receipts:
+   if result.ad_receipts.size() < 4096 and valid_token(id) and (receipts[id] is int or receipts[id] is float) and not receipts[id] is bool:
+    var amount := integer(receipts[id],0,0,1000000)
+    if amount > 0:
+     result.ad_receipts[id] = amount
  var research: Variant = value.get("research",{})
  for key in catalog.upgrades:
   result.research[key] = integer(research.get(key),0,0,catalog.upgrades[key].costs.size()) if research is Dictionary else 0

@@ -32,6 +32,9 @@ run_check --fixed-fps 120 --disable-render-loop res://tests/research.tscn
 run_check res://tests/research.tscn -- --verify-research
 run_check res://tests/economy.tscn
 run_check res://tests/economy.tscn -- --verify-economy
+run_check res://tests/rewarded_ads.tscn
+run_check res://tests/rewarded_ads.tscn -- --verify-ads
+run_check res://tests/admob_contract.tscn
 run_check res://tests/weapon_research.tscn
 run_check res://tests/weapon_research.tscn -- --verify-weapons
 
@@ -51,6 +54,7 @@ run_check res://tests/full_campaign.tscn -- --verify-full
 FRONTLINE_CHECK_TIMEOUT=90 run_check --fixed-fps 120 --disable-render-loop res://tests/full_campaign.tscn -- --compare
 if [ -n "${FRONTLINE_REPORT_DIR:-}" ]; then
  mkdir -p "$FRONTLINE_REPORT_DIR"
+ cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/rewarded_ad_scenarios.json" "$FRONTLINE_REPORT_DIR/"
  cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/economy_scenarios.json" "$FRONTLINE_REPORT_DIR/"
  cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/campaign_balance.json" "$FRONTLINE_REPORT_DIR/"
  cp "$XDG_DATA_HOME/godot/app_userdata/DRONE KILLER- FRONTLINE/campaign_comparison.json" "$FRONTLINE_REPORT_DIR/"

@@ -61,6 +61,14 @@ The [visual validation gallery](docs/VISUAL_VALIDATION.md) also includes a live 
 - A dedicated manually controlled primary cannon, loaded at the start without using a placement slot. Its projectiles fly straight, with range-limited swept collision, recoil, muzzle flashes, trails, hit markers and reload feedback.
 - Generated rendered artwork, authored vector UI/effects, licensed bundled fonts and synthesized shot/hit/reload/result sounds; no paid assets or external runtime services.
 
+## Optional rewarded ads (M4)
+
+Arsenal and campaign map offer an optional **Watch Ad / +50 WC**, with five successful rewards per UTC day and a 60-second cooldown. Ads are **unavailable by default** in this checkout: there is no Android SDK/plugin configuration or verified real advertising. Offline combat/campaign completion remains unchanged. Saved balances/upgrades survive the additive schema-v3 migration.
+
+To test callbacks in the debug desktop editor, run `godot --path . -- --rewarded-ads-simulate` using isolated test data. Its dialog explicitly says **EDITOR SIMULATION — NOT A REAL AD**; only Complete simulates an earned reward, while Close gives nothing. Exported builds cannot use this simulator. The conditional Poing v5.1.0 adapter is restricted to configured Android debug/test use and official Google test IDs, after required privacy handling; production ads remain disabled.
+
+See [integration, privacy obligations, local-limit caveats and remaining Android work](docs/REWARDED_ADS.md), [publisher policy draft](docs/PRIVACY_POLICY_DRAFT.md) and [M4 validation](docs/m4/VALIDATION.md). Rewards and receipts use crash-recoverable transactions; local files are not server-authoritative or tamper-proof.
+
 ## Arsenal, research and two currencies
 
 **Battle Credits** are the temporary `battle.credits` balance: mission starting budget plus drone bounties. Construction, temporary turret levels and tactical abilities spend only this balance; a new mission resets it. **War Credits** are the persistent `SaveManager.state.credits` balance, spent only on research/unlocks. Mission victories and once-only objectives award War Credits. Defeat does not remove them or research.

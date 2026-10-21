@@ -1,0 +1,16 @@
+{
+  "engine": "4.6.3.stable.official.7d41c59c4",
+  "renderer": "gl_compatibility",
+  "android_export_preset_present": false,
+  "android_build_template_present": false,
+  "admob_plugin_installed": false,
+  "tools": {
+    "godot": "/usr/local/bin/godot",
+    "adb": null,
+    "sdkmanager": null,
+    "gradle": null,
+    "java": "/usr/bin/java"
+  },
+  "android_sdk_environment_configured": false,
+  "real_android_test_ad_verified": false
+}

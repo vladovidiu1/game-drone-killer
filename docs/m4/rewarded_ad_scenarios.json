@@ -1,0 +1,26 @@
+{
+  "checks": 97,
+  "failures": 0,
+  "real_ads_tested": false,
+  "scenarios": [
+    {
+      "credits": 50,
+      "daily_used": 1,
+      "scenario": "success + duplicate + save/reload"
+    },
+    {
+      "credits": 250,
+      "daily_used": 5,
+      "scenario": "daily limit"
+    },
+    {
+      "campaign_compatible_versions": [
+        1,
+        2,
+        3
+      ],
+      "duplicate_credits": 0,
+      "scenario": "storage failures, retry and recovery"
+    }
+  ]
+}
