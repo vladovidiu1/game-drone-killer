@@ -1,6 +1,7 @@
 extends Control
 var hero: TextureRect
 var shade: TextureRect
+var atmosphere: Control
 
 func _ready() -> void:
  mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -24,10 +25,14 @@ func _ready() -> void:
  shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
  shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
  add_child(shade)
+ atmosphere = preload("res://scripts/ui/menu_atmosphere.gd").new()
+ atmosphere.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+ add_child(atmosphere)
  resized.connect(queue_redraw)
 
 func set_screen(screen: String) -> void:
  visible = screen != "game"
+ atmosphere.visible = screen == "menu"
  hero.modulate = Color.WHITE if screen == "menu" else Color(0.24,0.3,0.37,1)
  queue_redraw()
 

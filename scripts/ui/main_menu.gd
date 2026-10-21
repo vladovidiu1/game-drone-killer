@@ -5,6 +5,10 @@ signal arsenal_requested
 signal settings_requested
 signal exit_requested
 const UI := preload("res://scripts/ui/ui_kit.gd")
+var title_label: Label
+var subtitle_label: Label
+var description_label: Label
+var left_column: VBoxContainer
 
 func setup(has_save: bool) -> void:
  add_theme_constant_override("separation",16)
@@ -27,24 +31,30 @@ func setup(has_save: bool) -> void:
  layout.add_theme_constant_override("separation",24)
  add_child(layout)
  var left := VBoxContainer.new()
- left.custom_minimum_size.x = 440
+ left_column = left
+ left.custom_minimum_size.x = 400
+ left.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  left.add_theme_constant_override("separation",10)
  layout.add_child(left)
- left.add_child(UI.label("DRONE KILLER",82,UI.WHITE))
- left.add_child(UI.label("F R O N T L I N E",32,UI.ORANGE))
+ title_label = UI.label("DRONE KILLER",74,UI.WHITE)
+ subtitle_label = UI.label("F R O N T L I N E",32,UI.ORANGE)
+ left.add_child(title_label)
+ left.add_child(subtitle_label)
  var line := HSeparator.new()
  left.add_child(line)
  var description := UI.label("Command the defense.\nTake back Asteria.",23,UI.WHITE)
+ description_label = description
  left.add_child(description)
  var gap := Control.new()
  gap.size_flags_vertical = Control.SIZE_EXPAND_FILL
  left.add_child(gap)
- left.add_child(UI.label("01 / THE INVASION",15,UI.MUTED))
- var begin := UI.button("New Campaign",func(): new_requested.emit(),Vector2(440,58))
+ var front := int(SaveManager.state.get("frontline",1))
+ left.add_child(UI.label("%02d / %s" % [front,CampaignManager.CHAPTERS[(front-1)/5].to_upper()],15,UI.MUTED))
+ var begin := UI.button("New Campaign",func(): new_requested.emit(),Vector2(400,58))
  begin.theme_type_variation = &"TacticalPrimary"
  begin.icon = preload("res://assets/ui/icon_play.svg")
  left.add_child(begin)
- var resume := UI.button("Continue Campaign",func(): continue_requested.emit(),Vector2(440,58))
+ var resume := UI.button("Continue Campaign",func(): continue_requested.emit(),Vector2(400,58))
  resume.disabled = not has_save
  resume.icon = preload("res://assets/ui/icon_shield.svg")
  left.add_child(resume)
@@ -55,7 +65,7 @@ func setup(has_save: bool) -> void:
   var action: Callable = func(): arsenal_requested.emit()
   if item[1] == "settings":
    action = func(): settings_requested.emit()
-  var button := UI.button(str(item[0]),action,Vector2(215,54))
+  var button := UI.button(str(item[0]),action,Vector2(190,54))
   button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
   button.icon = load("res://assets/ui/icon_%s.svg" % item[1])
   tools.add_child(button)
@@ -97,3 +107,16 @@ func setup(has_save: bool) -> void:
  footer.add_child(status)
  if not OS.has_feature("mobile"):
   footer.add_child(UI.button("Exit",func(): exit_requested.emit(),Vector2(110,44)))
+
+ resized.connect(_layout_menu)
+ _layout_menu.call_deferred()
+
+func _layout_menu() -> void:
+ if not is_inside_tree():
+  return
+ var compact := get_viewport_rect().size.y < 650
+ title_label.add_theme_font_size_override("font_size",62 if compact else 74)
+ subtitle_label.add_theme_font_size_override("font_size",26 if compact else 32)
+ description_label.add_theme_font_size_override("font_size",19 if compact else 23)
+ add_theme_constant_override("separation",12 if compact else 16)
+ left_column.add_theme_constant_override("separation",7 if compact else 10)

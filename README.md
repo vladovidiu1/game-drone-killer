@@ -2,7 +2,7 @@
 
 A native Godot 4 game foundation for an offline Android-first defense campaign. Command Sentinel-7 against the Varkon Empire in Asteria. All 25 campaign territories are playable. Five chapter bosses, shield/EMP/sniper/carrier/stealth behaviors, environmental pressure and a persistent finale extend the existing manual cannon, six automatic defenses, ammunition, research and tactical abilities. See [campaign design and validation](docs/CAMPAIGN.md). Graphics G1 adds original generated key art, rendered drone/weapon sprites, Outpost Alpha terrain, animated explosions, a reusable military UI theme and locally bundled fonts. See [VISUAL_STYLE.md](VISUAL_STYLE.md), the [asset manifest](assets/manifest.json) and [native visual validation](docs/VISUAL_VALIDATION.md).
 
-Latest graphics increment: **G4 combat VFX** adds distinct weapon impacts/trails, layered destruction and persistent quality/accessibility controls. See the [current native gallery](docs/effects/README.md) and [validation](docs/effects/VALIDATION.md).
+Latest graphics increment: **G5 tactical UI** adds a pannable strategic map, illustrated research cards, cinematic menu atmosphere and compact battle telemetry. See the [current native gallery](docs/ui/README.md) and [validation](docs/ui/VALIDATION.md). G4 combat effects and their quality/accessibility controls remain integrated.
 
 ## Download
 
@@ -247,3 +247,11 @@ See [art/animation architecture and budgets](docs/UNIT_VISUALS.md), [native gall
 Combat now has weapon-specific metal sparks, cannon smoke, missile exhaust/trails, laser impact glows, EMP arcs/status cues, distinct primary ammunition trails, critical-hit confirmation and real reload feedback. Layered destruction scales up for Heavy drones and bosses. Optional field-edge damage feedback, gentle artwork-only shake, boss arrival and a saved-result victory presentation preserve normal combat and reward ownership.
 
 Settings includes Low/Medium/High particle budgets, Reduced combat effects, Reduced motion and independent smoke/debris/impact-lighting/shake switches. Options persist locally and apply next mission. Effects are pooled, clipped away from HUD, limited in density and automatically cleaned up. See [architecture, exact limits and art status](docs/COMBAT_VFX.md), [native G4 gallery](docs/effects/README.md) and [validation](docs/effects/VALIDATION.md). Run `./tests/run_effect_capture.sh /tmp/frontline-g4-captures` with a real display; the normal test runner includes VFX lifecycle/stress/accessibility and fresh-process settings checks. Physical Android frame-time/thermal testing and final asset approval remain outstanding. Include `assets/effects/*.json` when filtering Android export resources.
+
+## G5 mobile interface and strategic map
+
+Drag the strategic map to explore all 25 operations, then select a marker for its real briefing. Blue territories are controlled, orange is the contested frontline, red is enemy territory; secured floors carry checkpoint icons. Saved victories and retreats animate the same actual campaign state, with no reward or rule changes. Keyboard focus reveals offscreen nodes.
+
+The four Arsenal tabs now use weapon illustrations, real stat summaries, upgrade indicators and purchase feedback. Battle HP/wave/threat/credits use dedicated readouts; ammo/reload/FIRE/ammunition/abilities/build/pause/speed retain their existing functionality. Short-height layouts keep combat controls accessible. Menu atmosphere, short screen transitions and resource feedback respect Reduced motion/effects.
+
+See [design/architecture and performance limits](docs/UI_DESIGN.md), [native gallery](docs/ui/README.md), and [validation](docs/ui/VALIDATION.md). Run `./tests/run_ui_capture.sh /tmp/frontline-g5-captures` with a real display. Android exports must also include `assets/ui/*.json`.

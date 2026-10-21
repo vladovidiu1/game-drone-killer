@@ -10,12 +10,12 @@ var ammo_buttons: Dictionary = {}
 
 func setup(simulation: Node2D) -> void:
  battle = simulation
- add_theme_constant_override("separation",6)
+ add_theme_constant_override("separation",4)
  ammo_label = UI.label("",17,UI.CYAN)
  ammo_label.add_theme_font_override("font",UI.MONO)
  add_child(ammo_label)
  progress = ProgressBar.new()
- progress.custom_minimum_size = Vector2(0,8)
+ progress.custom_minimum_size = Vector2(0,6)
  progress.show_percentage = false
  progress.mouse_filter = Control.MOUSE_FILTER_IGNORE
  add_child(progress)
@@ -23,11 +23,16 @@ func setup(simulation: Node2D) -> void:
  row.add_theme_constant_override("separation",8)
  add_child(row)
  fire_button = UI.button("FIRE / HOLD",func(): pass,Vector2(168,58))
+ fire_button.icon = UI.icon("target")
+ fire_button.add_theme_font_size_override("font_size",18)
  fire_button.theme_type_variation = &"TacticalFire"
  fire_button.focus_mode = Control.FOCUS_NONE
  fire_button.button_down.connect(func(): battle.player_controls.set_fire(&"fire_button",true))
  fire_button.button_up.connect(func(): battle.player_controls.set_fire(&"fire_button",false))
  reload_button = UI.button("Reload",func(): battle.player_controls.reload(),Vector2(92,58))
+ reload_button.icon = UI.icon("reload")
+ reload_button.expand_icon = true
+ reload_button.add_theme_constant_override("icon_max_width",17)
  reload_button.add_theme_font_size_override("font_size",16)
  row.add_child(fire_button)
  row.add_child(reload_button)
@@ -35,7 +40,7 @@ func setup(simulation: Node2D) -> void:
  types.add_theme_constant_override("separation",4)
  add_child(types)
  for pair in [["standard","STD"],["armor_piercing","AP"],["explosive","EXP"]]:
-  var button := UI.button(str(pair[1]),_select.bind(str(pair[0])),Vector2(85,38))
+  var button := UI.button(str(pair[1]),_select.bind(str(pair[0])),Vector2(85,44))
   button.add_theme_font_size_override("font_size",14)
   types.add_child(button)
   ammo_buttons[pair[0]] = button

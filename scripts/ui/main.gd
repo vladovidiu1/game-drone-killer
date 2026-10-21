@@ -9,6 +9,8 @@ var screen := ""
 var hud: Control
 var result_data: Dictionary = {}
 var outro: Control
+var seen_map_result := ""
+var screen_tween: Tween
 
 func _ready() -> void:
  theme = UI.theme()
@@ -50,6 +52,13 @@ func _clear(next: String) -> void:
   outro.queue_free()
   outro = null
  screen = next
+ if is_instance_valid(screen_tween):
+  screen_tween.kill()
+ content.modulate = Color.WHITE
+ if next != "game" and not bool(SaveManager.settings.get("reduced_motion",false)):
+  content.modulate.a = .65
+  screen_tween = create_tween()
+  screen_tween.tween_property(content,"modulate:a",1.0,.18)
  background.set_screen(next)
  for child in content.get_children():
   content.remove_child(child)
@@ -119,47 +128,17 @@ func _confirm_new() -> void:
 
 func _map() -> void:
  _clear("map")
- var col := _column()
- _header(col,"ASTERIA / CAMPAIGN","Blue: controlled  •  Orange: frontline  •  Red: enemy  •  ◆: secured checkpoint")
- var scroll := ScrollContainer.new()
- scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
- col.add_child(scroll)
- var chapters := VBoxContainer.new()
- chapters.size_flags_horizontal = Control.SIZE_EXPAND_FILL
- chapters.add_theme_constant_override("separation",12)
- scroll.add_child(chapters)
- var frontline := int(SaveManager.state.get("frontline",1))
- var checkpoint := int(SaveManager.state.get("checkpoint",1))
- for chapter in 5:
-  chapters.add_child(UI.label("0%d  /  %s" % [chapter+1,CampaignManager.CHAPTERS[chapter].to_upper()],18,UI.MUTED))
-  var row := HBoxContainer.new()
-  row.add_theme_constant_override("separation",10)
-  chapters.add_child(row)
-  for offset in 5:
-   var id := chapter*5+offset+1
-   var mission := CampaignManager.mission(id)
-   var status := CampaignManager.territory_state(id)
-   if mission.has("boss"):
-    status += " • BOSS"
-   if not bool(mission.playable):
-    status += " • DEV"
-   if SaveManager.state.get("checkpoints",[1]).has(id):
-    status += " ◆"
-   var btn := UI.button("%02d  %s\n%s" % [id,mission.name,status],_briefing.bind(id),Vector2(0,60))
-   btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-   btn.add_theme_font_size_override("font_size",14)
-   var tint := Color("37B7E5") if status.begins_with("CONTROLLED") else (Color("FF9C42") if id == frontline else Color("F04B45"))
-   btn.add_theme_color_override("font_color",tint)
-   row.add_child(btn)
- var nav := HBoxContainer.new()
- col.add_child(nav)
- nav.add_child(UI.button("Main menu",_menu))
- nav.add_child(UI.button("Arsenal",_arsenal))
- col.add_child(UI.label("Frontline: %02d   /   Highest: %02d   /   Checkpoint: %02d   /   War Credits: %d" % [frontline,int(SaveManager.state.get("highest",1)),checkpoint,int(SaveManager.state.get("credits",0))],18,UI.CYAN))
- var feedback := UI.label(str(SaveManager.state.get("last_result",{}).get("message","Secure Asteria, one territory at a time.")),18,UI.CYAN)
- feedback.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
- col.add_child(feedback)
- _save_error(col)
+ var map := preload("res://scenes/ui/campaign_map.tscn").instantiate()
+ var result: Dictionary = SaveManager.state.get("last_result",{})
+ var result_id := str(result.get("run_id",""))
+ if result_id != seen_map_result:
+  map.transition = result.duplicate(true)
+  seen_map_result = result_id
+ content.add_child(map)
+ map.mission_requested.connect(_briefing)
+ map.menu_requested.connect(_menu)
+ map.arsenal_requested.connect(_arsenal)
+ _save_error(map)
 
 func _briefing(id: int) -> void:
  _clear("briefing")
@@ -309,35 +288,14 @@ func _show_results(victory: bool, reward: int, stats: Dictionary) -> void:
   celebration.set_script(preload("res://scripts/visual/victory_effect.gd"))
   celebration.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
   content.add_child(celebration)
- var col := _column()
- var outcome: Dictionary = stats.campaign
- var id := int(outcome.mission_id)
- _header(col,("ASTERIA LIBERATED" if id == 25 else "TERRITORY SECURED") if victory else "DEFENSE LOST",str(CampaignManager.mission(id).name))
- var feedback := UI.label(str(outcome.message),23,UI.CYAN)
- feedback.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
- col.add_child(feedback)
- _spacer(col)
- col.add_child(UI.label("%d DRONES DESTROYED   /   %d BASE HP REMAINING" % [int(stats.kills),int(stats.health)],24))
- col.add_child(UI.label("+%d War Credits • Frontline: %02d • Highest: %02d" % [reward,int(SaveManager.state.frontline),int(SaveManager.state.highest)],22))
- col.add_child(UI.label("Battle bounties: %d credits (temporary). Permanent research retained." % int(stats.get("earned",0)),18,UI.MUTED))
- if int(outcome.get("objective_reward",0)) > 0:
-  col.add_child(UI.label("Includes +%d War Credits for a completed campaign objective." % int(outcome.objective_reward),18,UI.CYAN))
- _spacer(col)
- var next := int(SaveManager.state.frontline)
- if victory and id == 25:
-  col.add_child(UI.label("CAMPAIGN COMPLETE • All five chapters cleared. Replay from the map.",20,UI.CYAN))
- elif CampaignManager.can_play(next):
-  col.add_child(UI.button(("Next: " if victory else "Retry ")+str(CampaignManager.mission(next).name),_briefing.bind(next)))
- else:
-  col.add_child(UI.label("Mission %02d is locked. Reconquer the current frontline to advance." % next,18,UI.MUTED))
- var nav := HBoxContainer.new()
- nav.add_theme_constant_override("separation",10)
- col.add_child(nav)
- nav.add_child(UI.button("Campaign map",_map))
- nav.add_child(UI.button("Arsenal",_arsenal))
- if victory and CampaignManager.can_play(id):
-  nav.add_child(UI.button("Replay "+str(CampaignManager.mission(id).name),_play.bind(id)))
- _save_error(col)
+ var results := preload("res://scenes/ui/mission_results.tscn").instantiate()
+ content.add_child(results)
+ results.setup(victory,reward,stats)
+ results.briefing_requested.connect(_briefing)
+ results.replay_requested.connect(_play)
+ results.map_requested.connect(_map)
+ results.arsenal_requested.connect(_arsenal)
+ _save_error(results)
 
 func _unhandled_key_input(event: InputEvent) -> void:
  if event.is_action_pressed("ui_cancel"):

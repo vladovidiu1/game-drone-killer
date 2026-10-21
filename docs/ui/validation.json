@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-21",
+  "date_timezone": "Europe/Bucharest",
+  "godot": "4.6.3 stable",
+  "headless": {
+    "exit_code": 0,
+    "assertions": 6550,
+    "failures": 0,
+    "suites": [
+      {
+        "suite": "COMBAT",
+        "assertions": 40,
+        "failures": 0
+      },
+      {
+        "suite": "HYBRID",
+        "assertions": 55,
+        "failures": 0
+      },
+      {
+        "suite": "SMOKE",
+        "assertions": 42,
+        "failures": 0
+      },
+      {
+        "suite": "SMOKE",
+        "assertions": 4,
+        "failures": 0
+      },
+      {
+        "suite": "SAVE/RULES",
+        "assertions": 38,
+        "failures": 0
+      },
+      {
+        "suite": "CAMPAIGN",
+        "assertions": 43,
+        "failures": 0
+      },
+      {
+        "suite": "CAMPAIGN",
+        "assertions": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESEARCH",
+        "assertions": 186,
+        "failures": 0
+      },
+      {
+        "suite": "RESEARCH",
+        "assertions": 4,
+        "failures": 0
+      },
+      {
+        "suite": "TACTICAL UI",
+        "assertions": 193,
+        "failures": 0
+      },
+      {
+        "suite": "COMBAT VFX",
+        "assertions": 310,
+        "failures": 0
+      },
+      {
+        "suite": "COMBAT VFX",
+        "assertions": 2,
+        "failures": 0
+      },
+      {
+        "suite": "VISUAL FOUNDATION",
+        "assertions": 452,
+        "failures": 0
+      },
+      {
+        "suite": "UNIT VISUALS",
+        "assertions": 195,
+        "failures": 0
+      },
+      {
+        "suite": "ENVIRONMENTS",
+        "assertions": 976,
+        "failures": 0
+      },
+      {
+        "suite": "ENVIRONMENTS",
+        "assertions": 2,
+        "failures": 0
+      },
+      {
+        "suite": "CATALOG",
+        "assertions": 3689,
+        "failures": 0
+      },
+      {
+        "suite": "ENEMY AI",
+        "assertions": 88,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "assertions": 184,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "assertions": 31,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "assertions": 11,
+        "failures": 0
+      }
+    ],
+    "combat_records_unchanged": 30
+  },
+  "native": {
+    "exit_code": 0,
+    "renderer": "X11, OpenGL 4.5 Compatibility, Mesa 25.0.7 llvmpipe",
+    "captures": 36,
+    "failures": 0,
+    "logical_viewports": [
+      [
+        1280,
+        720
+      ],
+      [
+        1600,
+        720
+      ],
+      [
+        1280,
+        600
+      ],
+      [
+        1024,
+        768
+      ]
+    ],
+    "draw_call_samples": [
+      26.0,
+      302.0
+    ]
+  },
+  "scope": {
+    "gameplay_core_and_data_unchanged": true,
+    "visual_sources": 71,
+    "new_ui_behavioral_assertions": 193
+  },
+  "limitations": [
+    "No physical Android FPS/frame-time/thermal/VRAM benchmark",
+    "No physical multitouch or cutout-device validation",
+    "Audio driver Dummy; no audible playback validation",
+    "No Android APK/export/signing validation",
+    "Existing generated artwork retains its art-direction review status"
+  ]
+}

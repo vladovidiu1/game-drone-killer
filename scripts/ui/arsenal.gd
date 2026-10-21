@@ -6,28 +6,43 @@ var body: VBoxContainer
 var balance: Label
 var feedback: Label
 var pending := false
+var tab_buttons: Dictionary = {}
+var grid: GridContainer
+var previous_balance := -1
 
 func _ready() -> void:
  add_theme_constant_override("separation",12)
- add_child(UI.label("SENTINEL RESEARCH COMMAND / ARSENAL",28,UI.CYAN))
+ add_child(UI.label("SENTINEL ENGINEERING / PERMANENT DEVELOPMENT",14,UI.CYAN))
+ add_child(UI.label("ARSENAL & RESEARCH",34))
  balance = UI.label("",21)
  add_child(balance)
  var tabs := HBoxContainer.new()
  tabs.add_theme_constant_override("separation",8)
  add_child(tabs)
  for item in [["primary","PRIMARY CANNON"],["automatic","AUTOMATIC TURRETS"],["research","RESEARCH"],["abilities","SPECIAL ABILITIES"]]:
-  tabs.add_child(UI.button(str(item[1]),select_tab.bind(str(item[0])),Vector2(260,52)))
+  var button := UI.button(str(item[1]),select_tab.bind(str(item[0])),Vector2(0,54))
+  button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+  button.add_theme_font_size_override("font_size",14)
+  button.icon = UI.icon({"primary":"target","automatic":"arsenal","research":"research","abilities":"ability"}[str(item[0])])
+  tabs.add_child(button)
+  tab_buttons[item[0]] = button
  feedback = UI.label("Choose a research card to review and confirm its purchase.",17,UI.MUTED)
  add_child(feedback)
  var scroll := ScrollContainer.new()
  scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+ scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
  add_child(scroll)
  body = VBoxContainer.new()
  body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  body.add_theme_constant_override("separation",12)
  scroll.add_child(body)
  add_child(UI.button("Back",func(): back_requested.emit()))
+ resized.connect(_layout_cards)
  refresh()
+
+func _layout_cards() -> void:
+ if is_instance_valid(grid):
+  grid.columns = 2 if size.x >= 980 else 1
 
 func select_tab(tab: String) -> void:
  current_tab = tab
@@ -42,13 +57,17 @@ func refresh() -> void:
  for child in body.get_children():
   body.remove_child(child)
   child.queue_free()
+ for tab in tab_buttons:
+  tab_buttons[tab].theme_type_variation = &"TacticalPrimary" if tab == current_tab else &"Button"
+ var current_balance := int(SaveManager.state.get("credits",0))
+ if previous_balance >= 0 and current_balance != previous_balance:
+  UI.flash(balance)
+ previous_balance = current_balance
  balance.text = "WAR CREDITS: %d   •   Permanent research survives defeat and retreat" % int(SaveManager.state.get("credits",0))
  if current_tab == "primary":
   var stats := EconomyManager.primary_stats()
-  paragraph("CURRENT CANNON  /  %.1f damage • %.2f shots/s • %d rounds • %.2fs reload • %.0f velocity • %.0f%% crit • %.2fx critical damage" % [stats.damage,stats.fire_rate,int(stats.magazine_size),stats.reload_time,stats.projectile_speed,float(stats.critical_chance)*100,stats.critical_multiplier],19,UI.CYAN)
   var profile: Dictionary = SaveManager.catalog.ammunition[str(SaveManager.state.get("equipped_ammo","standard"))]
-  paragraph("EQUIPPED %s / %.1f damage • %.2f shots/s • %.2fx versus armor • %d rounds per shot" % [profile.name,float(stats.damage)*float(profile.damage_multiplier),float(stats.fire_rate)*float(profile.fire_rate_multiplier),float(profile.armor_multiplier),int(profile.round_cost)])
-  paragraph("Legacy amplifier retained: +%d%% damage. Ammunition modifiers and temporary Overclock apply in battle." % (int(SaveManager.state.get("damage_level",0))*15))
+  showcase("gun_primary","SENTINEL-7 / PRIMARY CANNON","%.1f damage  •  %.2f shots/s  •  %d rounds  •  %.2fs reload\n%.0f velocity  •  %.0f%% crit  •  %.2fx critical damage\n%s ammunition / legacy amplifier +%d%% retained" % [stats.damage,stats.fire_rate,int(stats.magazine_size),stats.reload_time,stats.projectile_speed,float(stats.critical_chance)*100,stats.critical_multiplier,profile.name,int(SaveManager.state.get("damage_level",0))*15])
  elif current_tab == "automatic":
   paragraph("Automatic turrets retain autonomous targeting. Battle Credits pay construction and temporary levels; War Credits unlock new designs.",19,UI.CYAN)
  elif current_tab == "abilities":
@@ -61,8 +80,9 @@ func refresh() -> void:
   for id in SaveManager.catalog.objectives:
    var objective: Dictionary = SaveManager.catalog.objectives[id]
    paragraph("%s: %s • %d War Credits • %s" % [objective.name,objective.description,int(objective.reward),"CLAIMED" if SaveManager.state.get("claimed_objectives",[]).has(id) else "awarded on eligible victory"])
- var grid := GridContainer.new()
- grid.columns = 2
+ grid = GridContainer.new()
+ grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ grid.columns = 2 if size.x >= 980 else 1
  grid.add_theme_constant_override("h_separation",12)
  grid.add_theme_constant_override("v_separation",12)
  body.add_child(grid)
@@ -80,15 +100,27 @@ func refresh() -> void:
    if SaveManager.catalog.unlocks.has(id):
     add_card(grid,str(id),SaveManager.catalog.unlocks[id],description)
    else:
-    paragraph(description+" • AVAILABLE")
+    var panel := UI.panel()
+    grid.add_child(panel)
+    var stack := VBoxContainer.new()
+    panel.add_child(stack)
+    var image := TextureRect.new()
+    image.texture = preload("res://scripts/visual/visual_assets.gd").sprite(str(preload("res://scripts/visual/visual_assets.gd").catalog.turret_aliases[id]))
+    image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+    image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+    image.custom_minimum_size.y = 90
+    stack.add_child(image)
+    var text := UI.label(description+" • AVAILABLE",18)
+    text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    stack.add_child(text)
 
 func add_card(grid: GridContainer, id: String, item: Dictionary, extra: String = "") -> void:
  var panel := PanelContainer.new()
- panel.custom_minimum_size.x = 520
+ panel.custom_minimum_size.x = 0
  panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  var style := StyleBoxFlat.new()
- style.bg_color = Color("172e3d")
- style.border_color = Color("345869")
+ style.bg_color = Color(.055,.08,.11,.94)
+ style.border_color = Color("44657F")
  style.set_border_width_all(1)
  style.set_corner_radius_all(8)
  style.set_content_margin_all(14)
@@ -98,12 +130,33 @@ func add_card(grid: GridContainer, id: String, item: Dictionary, extra: String =
  stack.add_theme_constant_override("separation",8)
  panel.add_child(stack)
  var offer := EconomyManager.purchase_state(id)
- stack.add_child(UI.label(str(item.name),23,UI.CYAN))
+ var identity := HBoxContainer.new()
+ identity.add_theme_constant_override("separation",12)
+ stack.add_child(identity)
+ var image := preload("res://scripts/ui/weapon_portrait.gd").new()
+ var assets := preload("res://scripts/visual/visual_assets.gd")
+ var sprite: String = str(assets.catalog.turret_aliases[id]) if assets.catalog.turret_aliases.has(id) else "gun_primary" if current_tab == "primary" else "gun_emp" if current_tab == "abilities" else "gun_heavy_aa"
+ image.setup(sprite,Vector2(64,64))
+ identity.add_child(image)
+ var name_label := UI.label(str(item.name),23,UI.CYAN)
+ name_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ identity.add_child(name_label)
  var text := UI.label(str(item.benefit)+( "\n"+extra if not extra.is_empty() else ""),17)
  text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  stack.add_child(text)
  var upgrade: bool = SaveManager.catalog.upgrades.has(id)
  stack.add_child(UI.label("Level %d / %d • Next: %s" % [int(offer.level),item.costs.size(),item.benefit] if upgrade else "Requirement: highest mission %d" % int(item.highest),16,UI.MUTED))
+ var levels := HBoxContainer.new()
+ levels.add_theme_constant_override("separation",5)
+ stack.add_child(levels)
+ for index in (item.costs.size() if upgrade else 1):
+  var pip := ColorRect.new()
+  pip.custom_minimum_size = Vector2(0,5)
+  pip.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+  pip.color = UI.CYAN if index < int(offer.level) else Color("303D4C")
+  pip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+  levels.add_child(pip)
  var purchase_text := str(offer.reason) if str(offer.reason) in ["MAXIMUM","UNLOCKED"] else "%d War Credits • %s" % [int(offer.cost),str(offer.reason)]
  var buy := UI.button(purchase_text,confirm.bind(id,int(offer.level)))
  buy.disabled = not bool(offer.allowed) or pending
@@ -126,9 +179,28 @@ func confirm(id: String, expected_level: int) -> void:
   var success := EconomyManager.purchase(id,expected_level)
   pending = false
   feedback.text = "Research saved." if success else (SaveManager.last_error if not SaveManager.last_error.is_empty() else "Purchase changed or insufficient funds.")
-  refresh())
+  refresh()
+  if success:
+   UI.flash(feedback))
  dialog.canceled.connect(func(): pending = false)
  dialog.confirmed.connect(dialog.queue_free)
  dialog.canceled.connect(dialog.queue_free)
  add_child(dialog)
  dialog.popup_centered()
+
+func showcase(sprite: String, title: String, description: String) -> void:
+ var panel := UI.panel()
+ body.add_child(panel)
+ var row := HBoxContainer.new()
+ row.add_theme_constant_override("separation",20)
+ panel.add_child(row)
+ var image := preload("res://scripts/ui/weapon_portrait.gd").new()
+ image.setup(sprite,Vector2(120,94))
+ row.add_child(image)
+ var stack := VBoxContainer.new()
+ stack.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ row.add_child(stack)
+ stack.add_child(UI.label(title,27,UI.CYAN))
+ var detail := UI.label(description,17,UI.MUTED)
+ detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ stack.add_child(detail)

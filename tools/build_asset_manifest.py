@@ -23,7 +23,7 @@ for path in sorted(assets.rglob('*')):
  relative=path.relative_to(assets).as_posix()
  dimensions=None
  frames=1
- source='Authored locally for G1/G2/G3/G4; editable source in repository'
+ source='Authored locally for G1/G2/G3/G4/G5; editable source in repository'
  license='MIT; assets/ASSET_LICENSE.md'
  status='Integrated'
  purpose=relative.rsplit('/',1)[-1].split('.')[0].replace('_',' ')
@@ -33,7 +33,8 @@ for path in sorted(assets.rglob('*')):
   license='Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md'
  elif path.suffix=='.svg':
   text=path.read_text();dimensions=[int(re.search('width="([0-9]+)"',text)[1]),int(re.search('height="([0-9]+)"',text)[1])]
-  if '/button_' in relative:source='tools/build_visual_theme.py'
+  if relative in ["ui/asteria_strategy.svg"] or relative.startswith("ui/icon_") and relative.split("icon_")[1].split(".")[0] in ["wave","drone","ammo","reload","speed","research","ability","checkpoint","map","lock","back","target","repair"]:source="tools/build_strategic_map.py"
+  elif '/button_' in relative:source='tools/build_visual_theme.py'
   elif relative.startswith('environment/') and relative!='environment/command_bunker.svg':source='tools/build_emplacement_deck.py' if 'emplacement_deck' in relative else 'tools/build_environment_library.py'
   else:source='tools/generate_visual_vectors.py'
   if relative in ['turrets/missile_head.svg','turrets/laser_head.svg','turrets/emp_head.svg']:status='Integrated interim authored vector; dedicated rendered weapon art required'
@@ -48,6 +49,7 @@ for path in sorted(assets.rglob('*')):
    license='Bitstream Vera / DejaVu licenses; ui/fonts/DejaVu-LICENSE.txt'
    source='Unmodified Debian DejaVu font distribution'
  elif relative=='ui/frontline_theme.tres':source='tools/build_visual_theme.py'
+ elif relative=='ui/campaign_layout.json':source='tools/build_strategic_map.py'
  items.append(dict(filename=relative,purpose=purpose,required_dimensions=dimensions,animation_frames=frames,frame_semantics='Six independent objects, not animation frames' if relative=='drones/combat_atlas.png' else 'Sequential 3 by 2 frames' if relative=='effects/explosion_atlas.png' else 'Independent environment/prop atlas cells, not animation' if relative.startswith('environment/') and '_atlas' in relative else 'Static or parameter-driven',art_direction='Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable',source_or_generation_method=source,license=license,integration_status=status,sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
 # Keep source dimensions separate from Godot's intentional mobile import size.
 for item in items:

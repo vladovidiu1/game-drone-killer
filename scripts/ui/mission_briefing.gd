@@ -9,6 +9,18 @@ func setup(id: int) -> void:
  add_child(UI.label("SENTINEL COMMAND / MISSION BRIEFING",16,UI.CYAN))
  add_child(UI.label("%02d / %s" % [id,str(definition.name).to_upper()],32))
  add_child(UI.label(str(definition.location),20,UI.CYAN))
+ var overview := UI.panel()
+ add_child(overview)
+ var overview_row := HBoxContainer.new()
+ overview_row.add_theme_constant_override("separation",16)
+ overview.add_child(overview_row)
+ var preview := UI.mission_image(id)
+ preview.custom_minimum_size = Vector2(200,90)
+ overview_row.add_child(preview)
+ var overview_text := UI.label("OPERATION %02d  /  %s\n%d WAVES   •   %d SLOTS   •   VICTORY +%d WC" % [id,CampaignManager.CHAPTERS[(id-1)/5].to_upper(),definition.waves.size(),definition.slots.size(),int(definition.reward)],21,UI.CYAN)
+ overview_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ overview_text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ overview_row.add_child(overview_text)
  var scroll := ScrollContainer.new()
  scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
  add_child(scroll)
@@ -29,6 +41,8 @@ func setup(id: int) -> void:
   body.add_child(UI.label("Record: %d victories / %d defeats • Best base HP: %d" % [int(record.victories),int(record.defeats),int(record.best_health)],18,UI.MUTED))
  if bool(definition.playable):
   var start := UI.button("Start Mission",func(): deploy_requested.emit(id))
+  start.icon = UI.icon("play")
+  start.theme_type_variation = &"TacticalPrimary"
   start.disabled = not CampaignManager.can_play(id)
   add_child(start)
   if start.disabled:

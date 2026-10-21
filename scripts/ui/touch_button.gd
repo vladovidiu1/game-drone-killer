@@ -20,6 +20,9 @@ func _ready() -> void:
 func _animate_accent(value: float) -> void:
  if is_instance_valid(accent_tween):
   accent_tween.kill()
+ if bool(SaveManager.settings.get("reduced_motion",false)):
+  _set_accent(value)
+  return
  accent_tween = create_tween()
  accent_tween.tween_method(_set_accent,accent_alpha,value,0.12)
 

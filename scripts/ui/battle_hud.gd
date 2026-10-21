@@ -19,6 +19,9 @@ var bottom_panel: Control
 var shop_scroll: ScrollContainer
 var close_button: Button
 var ability_buttons: Dictionary = {}
+var stat_cards: Dictionary = {}
+var stack: VBoxContainer
+var wave_row: HBoxContainer
 
 func setup(simulation: Node2D) -> void:
  battle = simulation
@@ -29,20 +32,26 @@ func setup(simulation: Node2D) -> void:
  top.mouse_filter = Control.MOUSE_FILTER_IGNORE
  top.add_theme_constant_override("separation",8)
  add_child(top)
- var telemetry := VBoxContainer.new()
+ var telemetry := HBoxContainer.new()
  telemetry.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  telemetry.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ telemetry.add_theme_constant_override("separation",8)
  top.add_child(telemetry)
+ for item in [["base","BASE INTEGRITY","shield"],["wave","WAVE","wave"],["enemies","AIR THREATS","drone"],["credits","BATTLE CREDITS","credits"]]:
+  var card := preload("res://scripts/ui/telemetry_card.gd").new()
+  telemetry.add_child(card)
+  card.setup(str(item[1]),str(item[2]),UI.ORANGE if item[0] == "enemies" else UI.CYAN)
+  stat_cards[item[0]] = card
  readout = UI.label("",16,UI.WHITE)
- readout.add_theme_font_override("font",UI.MONO)
+ readout.visible = false
  telemetry.add_child(readout)
- base_bar = ProgressBar.new()
- base_bar.show_percentage = false
- base_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
- base_bar.custom_minimum_size.y = 5
- telemetry.add_child(base_bar)
+ base_bar = stat_cards.base.meter
  pause_button = UI.button("Pause",func(): battle.set_paused(not battle.paused),Vector2(110,50))
  speed_button = UI.button("1x speed",func(): battle.toggle_speed(),Vector2(130,50))
+ pause_button.icon = UI.icon("pause")
+ speed_button.icon = UI.icon("speed")
+ pause_button.add_theme_font_size_override("font_size",16)
+ speed_button.add_theme_font_size_override("font_size",15)
  top.add_child(pause_button)
  top.add_child(speed_button)
  var middle := HBoxContainer.new()
@@ -53,13 +62,13 @@ func setup(simulation: Node2D) -> void:
  field.mouse_filter = Control.MOUSE_FILTER_IGNORE
  field.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  middle.add_child(field)
- side_panel = PanelContainer.new()
+ side_panel = UI.panel(UI.CYAN,6)
  side_panel.custom_minimum_size.x = 300
  middle.add_child(side_panel)
- var stack := VBoxContainer.new()
- stack.add_theme_constant_override("separation",6)
+ stack = VBoxContainer.new()
+ stack.add_theme_constant_override("separation",4)
  side_panel.add_child(stack)
- var wave_row := HBoxContainer.new()
+ wave_row = HBoxContainer.new()
  stack.add_child(wave_row)
  wave_label = UI.label("",14,UI.CYAN)
  wave_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -80,7 +89,7 @@ func setup(simulation: Node2D) -> void:
  details.custom_minimum_size = Vector2(270,32)
  stack.add_child(details)
  shop_scroll = ScrollContainer.new()
- shop_scroll.custom_minimum_size.y = 75
+ shop_scroll.custom_minimum_size.y = 64
  shop_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
  stack.add_child(shop_scroll)
  var shop := VBoxContainer.new()
@@ -95,6 +104,9 @@ func setup(simulation: Node2D) -> void:
   elif kind == "emp_tower":
    button.text = "%s • %d BC\n%.0f%% slow / %.1fs / %.0f range" % [definition.name,int(definition.cost),(1.0-float(definition.slow_factor))*100,float(definition.status_duration),float(definition.range)]
   button.add_theme_font_size_override("font_size",14)
+  button.icon = preload("res://scripts/visual/visual_assets.gd").sprite(str(preload("res://scripts/visual/visual_assets.gd").catalog.turret_aliases[kind]))
+  button.expand_icon = true
+  button.add_theme_constant_override("icon_max_width",34)
   shop.add_child(button)
   build_buttons[kind] = button
  upgrade_button = UI.button("Upgrade",func(): battle.upgrade_selected(),Vector2(270,48))
@@ -110,8 +122,12 @@ func setup(simulation: Node2D) -> void:
  abilities.add_theme_constant_override("separation",4)
  stack.add_child(abilities)
  for pair in [["repair","REPAIR"],["emp_blast","EMP"],["overclock","BOOST"]]:
-  var button := UI.button(str(pair[1]),_ability.bind(str(pair[0])),Vector2(88,52))
+  var button := UI.button(str(pair[1]),_ability.bind(str(pair[0])),Vector2(88,48))
   button.add_theme_font_size_override("font_size",13)
+  button.icon = UI.icon({"repair":"repair","emp_blast":"ability","overclock":"speed"}[str(pair[0])])
+  button.expand_icon = true
+  button.add_theme_constant_override("icon_max_width",14)
+  button.add_theme_constant_override("h_separation",4)
   abilities.add_child(button)
   ability_buttons[pair[0]] = button
  var bottom := HBoxContainer.new()
@@ -121,9 +137,22 @@ func setup(simulation: Node2D) -> void:
  bottom.add_child(UI.button("Abort mission",func(): abort_requested.emit(),Vector2(170,46)))
  bottom.add_child(UI.label("   LEFT DRAG: AIM • HOLD FIRE • BUILD: 0.25x" if OS.has_feature("mobile") else "   AIM + HOLD LMB • R: RELOAD • BUILD: 0.25x",16,UI.MUTED))
  battle.player_controls.ui_hit_test = blocks_pointer
+ resized.connect(_layout)
  battle.status_changed.connect(refresh)
  battle.selection_changed.connect(refresh)
  refresh()
+
+func _layout() -> void:
+ if not is_instance_valid(battle) or not is_instance_valid(player_panel):
+  return
+ var compact := size.y < 620
+ wave_row.visible = not (compact and battle.build_mode)
+ details.visible = not compact
+ shop_scroll.custom_minimum_size.y = 52 if compact else 64
+ player_panel.fire_button.custom_minimum_size.y = 56 if compact else 58
+ player_panel.reload_button.custom_minimum_size.y = 56 if compact else 58
+ for id in ability_buttons:
+  ability_buttons[id].custom_minimum_size.y = 44 if compact else 48
 
 func _build(kind: String) -> void:
  battle.build_turret(kind)
@@ -134,6 +163,7 @@ func _ability(id: String) -> void:
 func refresh() -> void:
  if not is_instance_valid(battle):
   return
+ _layout()
  base_bar.value = 100.0*battle.health/battle.max_health
  var spawner: Node = battle.spawner
  var wave_number: int = mini(spawner.wave+2 if spawner.intermission else spawner.wave+1,spawner.waves.size())
@@ -143,6 +173,10 @@ func refresh() -> void:
  speed_button.disabled = battle.build_mode
  wave_label.text = "BUILD %ds" % maxi(0,int(ceil(spawner.timer))) if spawner.intermission else "WAVE %d" % wave_number
  wave_button.disabled = battle.paused or not spawner.intermission or battle.finished
+ stat_cards.base.update_value("%d / %d" % [battle.health,battle.max_health],-1,float(battle.health)/battle.max_health)
+ stat_cards.wave.update_value("%02d / %02d" % [wave_number,spawner.waves.size()])
+ stat_cards.enemies.update_value("%02d" % (spawner.remaining_to_spawn()+battle.living_count()))
+ stat_cards.credits.update_value("%04d" % battle.credits,battle.credits)
  var selected: int = battle.selected_slot
  var turret: Node2D = battle.placed[selected] if selected >= 0 else null
  selection_label.text = "SLOT %d / L%d" % [selected+1,turret.level if turret != null else 0] if selected >= 0 else "SELECT A SLOT"
@@ -171,7 +205,7 @@ func refresh() -> void:
   var button: Button = ability_buttons[id]
   button.text = ("REPAIR" if id == "repair" else ("EMP" if id == "emp_blast" else "BOOST"))+"\n"+("%.0fs" % ceil(cooldown) if cooldown > 0 else "%d BC" % int(data.cost))
   if id == "overclock" and battle.abilities.overclock_remaining > 0:
-   button.text = "BOOST ACTIVE\n%.1fs" % battle.abilities.overclock_remaining
+   button.text = "BOOST\nON %.1fs" % battle.abilities.overclock_remaining
   button.disabled = not battle.abilities.can_activate(id)
 
 func blocks_pointer(point: Vector2) -> bool:
