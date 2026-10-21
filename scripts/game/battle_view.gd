@@ -8,6 +8,7 @@ var base_flash := 0.0
 var destruction := preload("res://scripts/visual/destruction_batch.gd").new()
 
 var environment: Control
+var placement: Node2D
 var radar: Node2D
 var telemetry: Node2D
 var combat_fx: Node2D
@@ -26,6 +27,17 @@ func _ready() -> void:
  radar.battle = battle
  radar.z_index = 1
  add_child(radar)
+ var clip := Control.new()
+ var bounds: Array = preload("res://scripts/game/placement_rules.gd").CONFIG.field_bounds
+ clip.position = Vector2(bounds[0],bounds[1])
+ clip.size = Vector2(bounds[2],bounds[3])
+ clip.clip_contents = true
+ clip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ add_child(clip)
+ placement = preload("res://scripts/visual/placement_overlay.gd").new()
+ placement.battle = battle
+ placement.position = -clip.position
+ clip.add_child(placement)
  # Stable integration anchor retained for G1 tooling, now backed by the library.
  if battle.mission_id == 1:
   environment.name = "OutpostTerrain"
@@ -59,6 +71,7 @@ func tick(delta: float) -> void:
  combat_fx.observe(battle,delta)
  preload("res://scripts/visual/combat_visuals.gd").advance(battle,delta)
  environment.tick(delta)
+ placement.tick(delta)
  radar.tick(delta)
  telemetry.queue_redraw()
  destruction.tick(delta)
@@ -141,8 +154,8 @@ func _draw() -> void:
   var point: Vector2 = battle.slots[index]
   var chosen: bool = index == battle.selected_slot
   var color := Color("37B7E5") if chosen else Color("9ca59e")
-  if environment.assignment.type in ["bridge","harbor"]:
-   # Raised steel emplacement decks keep unchanged river/quay slots legible.
+  if environment.assignment.type in ["bridge","harbor"] or str(battle.mission_data.emplacements[index].role) == "elevated":
+   # Raised steel decks mark specialized emplacements and existing river/quay slots.
    draw_texture_rect(preload("res://assets/environment/emplacement_deck.svg"),Rect2(point-Vector2(48,45),Vector2(96,90)),false)
   draw_texture_rect(ASSETS.texture("turrets/placement_pad.svg"),Rect2(point-Vector2(40,40),Vector2(80,80)),false)
   if chosen:
@@ -154,8 +167,6 @@ func _draw() -> void:
   text(point+Vector2(-30,-16),str(index+1),Color("E9F0F6"),13)
   if chosen and battle.placed[index] != null:
    var turret: Node2D = battle.placed[index]
-   draw_circle(point,turret.range_value(),Color(0.216,0.718,0.898,0.05))
-   draw_arc(point,turret.range_value(),0,TAU,80,Color(0.216,0.718,0.898,0.3),1.5)
    if is_instance_valid(turret.target) and not turret.target.ended:
     var target: Vector2 = turret.target.position
     draw_arc(target,25,0,TAU,24,Color("f5cf83"),1.5)

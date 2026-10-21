@@ -128,3 +128,11 @@
 - Coverage is approximate placement/range/DPS only, sampled once per plan. Keep adaptation/history bonuses capped and probabilistic; never inspect live player intentions or force survivors.
 - Preserve real enemy abilities and projectile/target/damage lifecycle. Directed supports inherit wave ownership and share its finite reserve, including nested carriers. Keep economy and campaign result transactions authoritative.
 - Run full regression, `tests/run_m1_balance.sh`, and native `tests/run_tactical_capture.sh` for tactical changes. Record losses and bounded real retreat/reconquest in the earned-budget campaign; do not erase defeats, inject funds, or describe an assisted policy as human/device balance. Keep native capture runners sequential.
+
+## M6 strategic placement
+
+- Follow `docs/STRATEGIC_PLACEMENT.md`. Keep per-slot metadata in mission `emplacements`, weapon total `traverse_degrees` separate from existing alignment tolerance, non-monetary tuning in `data/placement.json`, and movement price percentage in `data/economy.json`.
+- Reuse `covers_point` geometry for acquisition/continued locks, overlays and reconnaissance. Range must include research, temporary level, visibility and emplacement bonus. Presentation never changes targeting or damage.
+- Redeploy the same actor: retain occupied source and reserve destination until one atomic transfer. Debit/refund escrow once; block in-flight upgrades/concurrent moves/reserved construction. Cancel safely on outcome, scene exit and invalid actor. Never convert temporary refunds into bounty/WC.
+- Keep live first-wave PREPARE waiting for explicit launch; later waves remain timed and radar minimum still applies. Standalone scheduler fixtures retain their legacy default. Native confirmations must preserve independent aim/FIRE touch ownership.
+- Run placement mechanics, full regression, fixed-policy balance and native placement/UI captures. Record fixture credits/research separately from earned-budget connected campaigns. Keep capture runners sequential and document physical Android limitations.

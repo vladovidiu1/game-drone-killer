@@ -101,6 +101,8 @@ func fight(id: int, defend: bool, manual: bool = true, expected_win: int = -1, b
     battle.abilities.activate("overclock")
   if defend and manual:
    aim()
+  if battle.spawner.wave < 0 and battle.spawner.timer <= 0 and battle.spawner.warning_remaining <= 0:
+   battle.start_wave()
   battle.simulate(1.0/60.0)
   if frame%8 == 0:
    await get_tree().process_frame

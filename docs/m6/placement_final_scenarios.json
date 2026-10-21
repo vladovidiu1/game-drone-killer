@@ -1,0 +1,49 @@
+{
+  "checks": 1337,
+  "failures": 0,
+  "fixture": "mechanics/all-layout suites use explicit credits + unlock/research fixtures; first movement lifecycle uses ordinary M1 funds; no campaign victory or War Credits injected",
+  "weapons": [
+    {
+      "arc": 300.0,
+      "kind": "machine_gun",
+      "move_cost": 35,
+      "purchase_value": 100,
+      "range": 230.0
+    },
+    {
+      "arc": 240.0,
+      "kind": "cannon",
+      "move_cost": 70,
+      "purchase_value": 200,
+      "range": 250.0
+    },
+    {
+      "arc": 320.0,
+      "kind": "missile",
+      "move_cost": 123,
+      "purchase_value": 350,
+      "range": 290.0
+    },
+    {
+      "arc": 240.0,
+      "kind": "laser",
+      "move_cost": 88,
+      "purchase_value": 250,
+      "range": 255.0
+    },
+    {
+      "arc": 360.0,
+      "kind": "emp_tower",
+      "move_cost": 81,
+      "purchase_value": 230,
+      "range": 215.0
+    },
+    {
+      "arc": 180.0,
+      "kind": "heavy_aa",
+      "move_cost": 158,
+      "purchase_value": 450,
+      "range": 320.0
+    }
+  ]
+}

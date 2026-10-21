@@ -1,0 +1,290 @@
+[
+  {
+    "capture": "main_menu_no_save",
+    "draw_calls": 38.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "main_menu_campaign",
+    "draw_calls": 38.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "campaign_outpost",
+    "draw_calls": 301.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "mission_briefing",
+    "draw_calls": 64.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "campaign_conquest",
+    "draw_calls": 305.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "campaign_counterattack",
+    "draw_calls": 303.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "campaign_final_offensive",
+    "draw_calls": 274.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "arsenal_primary",
+    "draw_calls": 59.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "arsenal_automatic",
+    "draw_calls": 44.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "arsenal_research",
+    "draw_calls": 60.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "arsenal_abilities",
+    "draw_calls": 51.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "research_confirmation",
+    "draw_calls": 71.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "research_purchased",
+    "draw_calls": 59.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "settings",
+    "draw_calls": 31.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "battle_hud_live",
+    "draw_calls": 175.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "battle_hud_build",
+    "draw_calls": 198.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "battle_hud_upgrade",
+    "draw_calls": 199.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "battle_hud_reload",
+    "draw_calls": 167.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "battle_hud_overclock",
+    "draw_calls": 167.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "battle_hud_pause",
+    "draw_calls": 169.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "battle_build_1600x720",
+    "draw_calls": 194.0,
+    "size": [
+      1600,
+      720
+    ]
+  },
+  {
+    "capture": "battle_build_1280x600",
+    "draw_calls": 191.0,
+    "size": [
+      1280,
+      600
+    ]
+  },
+  {
+    "capture": "battle_build_1024x768",
+    "draw_calls": 194.0,
+    "size": [
+      1024,
+      768
+    ]
+  },
+  {
+    "capture": "defeat_results",
+    "draw_calls": 35.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "campaign_after_defeat",
+    "draw_calls": 296.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "victory_results",
+    "draw_calls": 39.0,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  {
+    "capture": "campaign_1600x720",
+    "draw_calls": 304.0,
+    "size": [
+      1600,
+      720
+    ]
+  },
+  {
+    "capture": "arsenal_1600x720",
+    "draw_calls": 59.0,
+    "size": [
+      1600,
+      720
+    ]
+  },
+  {
+    "capture": "menu_1600x720",
+    "draw_calls": 37.0,
+    "size": [
+      1600,
+      720
+    ]
+  },
+  {
+    "capture": "campaign_1280x600",
+    "draw_calls": 245.0,
+    "size": [
+      1280,
+      600
+    ]
+  },
+  {
+    "capture": "arsenal_1280x600",
+    "draw_calls": 53.0,
+    "size": [
+      1280,
+      600
+    ]
+  },
+  {
+    "capture": "menu_1280x600",
+    "draw_calls": 38.0,
+    "size": [
+      1280,
+      600
+    ]
+  },
+  {
+    "capture": "campaign_1024x768",
+    "draw_calls": 259.0,
+    "size": [
+      1024,
+      768
+    ]
+  },
+  {
+    "capture": "arsenal_1024x768",
+    "draw_calls": 52.0,
+    "size": [
+      1024,
+      768
+    ]
+  },
+  {
+    "capture": "menu_1024x768",
+    "draw_calls": 39.0,
+    "size": [
+      1024,
+      768
+    ]
+  },
+  {
+    "capture": "campaign_reduced_motion",
+    "draw_calls": 258.0,
+    "size": [
+      1024,
+      768
+    ]
+  }
+]

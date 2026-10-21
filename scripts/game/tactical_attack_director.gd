@@ -34,7 +34,7 @@ func coverage() -> Dictionary:
     var point := point_at_y(routes[index],float(height))
     samples += 1
     for turret in battle.turrets.get_children():
-     if turret.position.distance_to(point) <= turret.range_value():
+     if turret.covers_point(point) and turret.disabled_remaining <= 0:
       # Approximate placement exposure only; no live aim, HP, ammo or money reads.
       result[sector] += turret.damage_value()*turret.fire_rate_value()
   if samples > 0:

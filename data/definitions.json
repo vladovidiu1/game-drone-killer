@@ -257,7 +257,39 @@
           32,
           43
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 2,
@@ -553,7 +585,45 @@
           43,
           57
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 3,
@@ -880,7 +950,51 @@
           74,
           76
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        }
+      ]
     },
     {
       "id": 4,
@@ -1249,7 +1363,45 @@
           49,
           57
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 5,
@@ -1605,7 +1757,45 @@
           52,
           75
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 6,
@@ -2041,7 +2231,51 @@
           68,
           72
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 7,
@@ -2471,7 +2705,51 @@
           71,
           89
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 8,
@@ -2895,7 +3173,51 @@
           70,
           93
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        }
+      ]
     },
     {
       "id": 9,
@@ -3350,7 +3672,51 @@
           68,
           84
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 10,
@@ -3792,7 +4158,51 @@
           71,
           89
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        }
+      ]
     },
     {
       "id": 11,
@@ -4362,7 +4772,57 @@
           112,
           138
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 12,
@@ -4938,7 +5398,57 @@
           112,
           124
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 13,
@@ -5514,7 +6024,57 @@
           111,
           131
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 14,
@@ -6090,7 +6650,57 @@
           116,
           136
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        },
+        {
+          "sector": "EAST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        }
+      ]
     },
     {
       "id": 15,
@@ -6641,7 +7251,57 @@
           108,
           97
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 16,
@@ -7217,7 +7877,57 @@
           141,
           160
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 17,
@@ -7793,7 +8503,57 @@
           137,
           174
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        },
+        {
+          "sector": "EAST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        }
+      ]
     },
     {
       "id": 18,
@@ -8365,7 +9125,57 @@
           148,
           159
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 19,
@@ -8937,7 +9747,57 @@
           136,
           164
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        },
+        {
+          "sector": "EAST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        }
+      ]
     },
     {
       "id": 20,
@@ -9484,7 +10344,57 @@
           135,
           114
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 21,
@@ -10056,7 +10966,57 @@
           165,
           182
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 22,
@@ -10628,7 +11588,57 @@
           158,
           193
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        },
+        {
+          "sector": "EAST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        }
+      ]
     },
     {
       "id": 23,
@@ -11229,7 +12239,57 @@
           181,
           190
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     },
     {
       "id": 24,
@@ -11801,7 +12861,57 @@
           160,
           186
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        },
+        {
+          "sector": "EAST",
+          "role": "elevated",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.08
+        }
+      ]
     },
     {
       "id": 25,
@@ -12348,7 +13458,57 @@
           156,
           122
         ]
-      }
+      },
+      "emplacements": [
+        {
+          "sector": "WEST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "forward",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "CENTER",
+          "role": "support",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "WEST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        },
+        {
+          "sector": "EAST",
+          "role": "fallback",
+          "bearing_degrees": -90,
+          "range_multiplier": 1.0
+        }
+      ]
     }
   ],
   "enemies": {
@@ -12999,7 +14159,8 @@
       "color": "65e0c0",
       "turn_degrees": 300,
       "acquisition_delay": 0.1,
-      "firing_arc_degrees": 12
+      "firing_arc_degrees": 12,
+      "traverse_degrees": 300
     },
     "cannon": {
       "name": "Cannon",
@@ -13011,7 +14172,8 @@
       "color": "f6c777",
       "turn_degrees": 180,
       "acquisition_delay": 0.18,
-      "firing_arc_degrees": 8
+      "firing_arc_degrees": 8,
+      "traverse_degrees": 240
     },
     "missile": {
       "name": "Missile Launcher",
@@ -13023,7 +14185,8 @@
       "color": "b7a0f4",
       "turn_degrees": 120,
       "acquisition_delay": 0.25,
-      "firing_arc_degrees": 18
+      "firing_arc_degrees": 18,
+      "traverse_degrees": 320
     },
     "laser": {
       "name": "Laser Turret",
@@ -13036,7 +14199,8 @@
       "mode": "laser",
       "turn_degrees": 200,
       "acquisition_delay": 0.16,
-      "firing_arc_degrees": 6
+      "firing_arc_degrees": 6,
+      "traverse_degrees": 240
     },
     "emp_tower": {
       "name": "EMP Tower",
@@ -13051,7 +14215,8 @@
       "status_duration": 2.0,
       "turn_degrees": 120,
       "acquisition_delay": 0.3,
-      "firing_arc_degrees": 180
+      "firing_arc_degrees": 180,
+      "traverse_degrees": 360
     },
     "heavy_aa": {
       "name": "Heavy AA Cannon",
@@ -13064,7 +14229,8 @@
       "mode": "projectile",
       "turn_degrees": 120,
       "acquisition_delay": 0.28,
-      "firing_arc_degrees": 7
+      "firing_arc_degrees": 7,
+      "traverse_degrees": 180
     }
   },
   "combat": {

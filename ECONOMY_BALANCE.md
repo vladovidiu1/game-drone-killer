@@ -110,3 +110,9 @@ Run `./tests/run_checks.sh` with `FRONTLINE_REPORT_DIR=docs/m3` to preserve repo
 `data/economy.json.rewarded_ads` adds a voluntary source: **50 persistent WC**, at most **5 successful rewards per UTC day**, with **60 seconds** between successes by default. Cancellation/load/presentation failure gives zero. The installation journal survives new-campaign resets and duplicates cannot re-award through the implemented callback path. This optional maximum of 250 WC/day accelerates chosen research; it is excluded from all no-ad first-pass income tables and completion simulations above. The 8,640 WC route and actual combat outcomes remain unchanged.
 
 Ads are unavailable by default; only editor simulation is executable here. Configured official-test Android integration, release monetization, publisher consent/policy configuration and authoritative SSV/time remain separate work. See [M4 integration and limits](docs/REWARDED_ADS.md). Best-effort local daily/clock protections are not fraud-proof and are not a substitute for a production server ledger.
+
+## M6 redeployment sink
+
+Automatic turret relocation costs integer-ceiling **35% of current construction plus temporary upgrade investment** (`battle.redeployment.value_percent`). A Machine Gun costs 35 / 58 / 104 BC to move at L1 / L2 / L3; Cannon costs 70 / 116 / 207. Research bonuses do not add to this value. At L3, moving an MG costs more than a fresh L1 MG and takes four simulated seconds offline, so it does not universally dominate construction/positioning.
+
+One confirmed move debits escrow; cancellation, mission end or scene exit refunds that escrow once. Unconfirmed selections spend nothing. Refunds do not increase `battle.earned`, create War Credits or alter save balances. Prices, wave bounties, permanent upgrade costs, replay rules and ad settings remain otherwise unchanged. Current real combat/accounting evidence is in [M6 validation](docs/m6/VALIDATION.md).

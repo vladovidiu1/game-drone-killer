@@ -63,6 +63,7 @@ func run() -> void:
   battle.select_slot(0)
   check(battle.build_turret("machine_gun"),"Native mission buys actual automatic defense")
   battle.close_build_mode()
+  battle.spawner.tick(battle.spawner.warning_remaining,0)
   battle.start_wave()
   # Live wave simulation, actual damage/tracers, no composited sprites.
   for frame in range(230):

@@ -74,7 +74,7 @@ func refresh() -> void:
   var profile: Dictionary = SaveManager.catalog.ammunition[str(SaveManager.state.get("equipped_ammo","standard"))]
   showcase("gun_primary","SENTINEL-7 / PRIMARY CANNON","%.1f damage  •  %.2f shots/s  •  %d rounds  •  %.2fs reload\n%.0f velocity  •  %.0f%% crit  •  %.2fx critical damage\n%s ammunition / legacy amplifier +%d%% retained" % [stats.damage,stats.fire_rate,int(stats.magazine_size),stats.reload_time,stats.projectile_speed,float(stats.critical_chance)*100,stats.critical_multiplier,profile.name,int(SaveManager.state.get("damage_level",0))*15])
  elif current_tab == "automatic":
-  paragraph("Automatic turrets retain autonomous targeting. Battle Credits pay construction and temporary levels; War Credits unlock new designs.",19,UI.CYAN)
+  paragraph("Automatic turrets target only within their mounted firing arc and range. Adjust facing, compare coverage or pay to redeploy in battle. Rotation and lock delays still apply. Battle Credits pay construction, levels and moves; War Credits unlock designs.",19,UI.CYAN)
  elif current_tab == "abilities":
   for id in SaveManager.catalog.abilities:
    var ability: Dictionary = SaveManager.catalog.abilities[id]
@@ -105,7 +105,7 @@ func refresh() -> void:
  if current_tab == "automatic":
   for id in CampaignManager.turrets:
    var turret: Dictionary = EconomyManager.automatic_stats(str(id))
-   var description := "%s / %d Battle Credits • %.1f damage • %.1f rate • %.1f range\nTRACK %.0f°/s • LOCK %.2fs" % [turret.name,int(turret.cost),float(turret.damage),float(turret.fire_rate),float(turret.range),float(turret.turn_degrees),float(turret.acquisition_delay)]
+   var description := "%s / %d Battle Credits • %.1f damage • %.1f rate • %.1f range\nTRACK %.0f°/s • LOCK %.2fs" % [turret.name,int(turret.cost),float(turret.damage),float(turret.fire_rate),float(turret.range),float(turret.turn_degrees),float(turret.acquisition_delay)]+"\nARC %.0f° • %s" % [float(turret.traverse_degrees),"Radial support" if id == "emp_tower" else "Mounted forward sector"]
    if SaveManager.catalog.unlocks.has(id):
     add_card(grid,str(id),SaveManager.catalog.unlocks[id],description)
    else:

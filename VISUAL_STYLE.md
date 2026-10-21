@@ -139,3 +139,7 @@ For an Android export, include all resources and include `data/*.json`, `assets/
 ## Tactical radar (M5)
 
 Use the shared charcoal/metal theme and Barlow font for a pointer-ignoring preparation strip. Orange indicates incoming plans, cyan the compact active-contacts strip, and restrained red/orange chevrons indicate actual entry directions. Show scheduled W/C/E counts and the defended objective in text as well as color. Collapse the strip when combat begins; do not cover build, FIRE, reload or ammo controls. Entry animation consumes simulated delta, redraws at 10 Hz and honors Reduced motion. See `docs/TACTICAL_DIRECTOR.md` and the native captures in `docs/m5/`.
+
+## Strategic placement (M6)
+
+Selected real firing arcs use faint cyan sectors and a bearing line; orange previews identify the destination mount. Empty legal destinations highlight green while source remains online. In-transit arcs are muted and a restrained orange route/progress ring indicates transport. Reuse raised steel decks for elevated positions and label their data-driven range advantage. Clip reach artwork to the battlefield; keep native FIRE/reload and management controls unobstructed. The optional reach legend must state that it does not guarantee kills. The briefing's numbered terrain/corridor preview shows known geometry, never hidden wave plans. See `docs/STRATEGIC_PLACEMENT.md`.

@@ -1,0 +1,22 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+PLACEMENT CAPTURE: briefing_1280x720
+PLACEMENT CAPTURE: destination_1280x720
+PLACEMENT CAPTURE: transport_1280x720
+PLACEMENT CAPTURE: elevated_1280x720
+PLACEMENT CAPTURE: briefing_1600x720
+PLACEMENT CAPTURE: destination_1600x720
+PLACEMENT CAPTURE: transport_1600x720
+PLACEMENT CAPTURE: elevated_1600x720
+PLACEMENT CAPTURE: briefing_1280x600
+PLACEMENT CAPTURE: destination_1280x600
+PLACEMENT CAPTURE: transport_1280x600
+PLACEMENT CAPTURE: elevated_1280x600
+PLACEMENT CAPTURE: briefing_1024x768
+PLACEMENT CAPTURE: destination_1024x768
+PLACEMENT CAPTURE: transport_1024x768
+PLACEMENT CAPTURE: elevated_1024x768
+NATIVE PLACEMENT: 100 checks, 0 failures

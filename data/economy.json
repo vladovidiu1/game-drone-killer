@@ -95,6 +95,9 @@
       "repair": 90,
       "emp_blast": 120,
       "overclock": 100
+    },
+    "redeployment": {
+      "value_percent": 35
     }
   },
   "research_costs": {

@@ -17,6 +17,8 @@ var health := 1000
 var max_health := 1000
 var research_levels: Dictionary = {}
 var specializations: Dictionary = {}
+var movement: RefCounted
+var coverage_visible := false
 var abilities: Node
 var build_mode := false
 var credits := 0
@@ -74,6 +76,8 @@ func _ready() -> void:
  for point in mission_data.slots:
   slots.append(Vector2(float(point[0]),float(point[1])))
  placed.resize(slots.size())
+ movement = preload("res://scripts/game/turret_redeployment.gd").new()
+ movement.configure(self)
  view = Node2D.new()
  view.set_script(preload("res://scripts/game/battle_view.gd"))
  add_child(view)
@@ -87,6 +91,7 @@ func _ready() -> void:
  projectiles.name = "Projectiles"
  add_child(projectiles)
  spawner = WAVES.new()
+ spawner.hold_initial = true
  add_child(spawner)
  director = preload("res://scripts/game/tactical_attack_director.gd").new()
  if attack_seed < 0:
@@ -119,6 +124,7 @@ func _physics_process(delta: float) -> void:
 func simulate(delta: float) -> void:
  if paused or finished:
   return
+ movement.tick(delta)
  tick_environment(delta)
  abilities.tick(delta)
  spawner.tick(delta,living_count())
@@ -219,6 +225,10 @@ func _destroyed(reward: int, enemy: Node2D) -> void:
 func select_slot(index: int) -> void:
  if paused or finished or index < -1 or index >= slots.size():
   return
+ if movement.source >= 0 and not movement.active and index >= 0:
+  movement.choose(index)
+  view.queue_redraw()
+  return
  selected_slot = index
  build_mode = index >= 0
  selection_changed.emit()
@@ -235,7 +245,7 @@ func select_at(point: Vector2) -> bool:
  return false
 
 func build_turret(kind: String) -> bool:
- if paused or finished or selected_slot < 0 or placed[selected_slot] != null or not CampaignManager.turrets.has(kind) or not EconomyManager.unlocked(kind):
+ if paused or finished or selected_slot < 0 or placed[selected_slot] != null or movement.reserved(selected_slot) or not CampaignManager.turrets.has(kind) or not EconomyManager.unlocked(kind):
   return false
  var definition: Dictionary = CampaignManager.turrets[kind]
  if credits < int(definition.cost):
@@ -243,6 +253,7 @@ func build_turret(kind: String) -> bool:
  var turret = TURRET.instantiate()
  turret.configure(self,kind)
  turret.position = slots[selected_slot]
+ turret.set_emplacement(selected_slot)
  credits -= int(definition.cost)
  placed[selected_slot] = turret
  turrets.add_child(turret)
@@ -255,7 +266,7 @@ func upgrade_selected() -> bool:
  if paused or finished or selected_slot < 0:
   return false
  var turret := placed[selected_slot]
- if turret == null or turret.level >= int(CampaignManager.combat.max_turret_level):
+ if turret == null or turret.redeploying or turret.level >= int(CampaignManager.combat.max_turret_level):
   return false
  var cost: int = turret.upgrade_cost()
  if credits < cost:
@@ -305,6 +316,8 @@ func effective_speed() -> float:
  return 0.25 if build_mode else 1.0
 
 func close_build_mode() -> void:
+ if is_instance_valid(movement) and not movement.active and movement.source >= 0:
+  movement.cancel(false)
  build_mode = false
  selected_slot = -1
  selection_changed.emit()
@@ -336,7 +349,12 @@ func _notification(what: int) -> void:
 func _finish(victory: bool) -> void:
  if finished:
   return
+ movement.cancel(false)
  director.finish(victory)
  finished = true
  set_paused(true)
- completed.emit(victory,{"mission_id":mission_id,"run_id":run_id,"victory":victory,"kills":kills,"health":health,"waves":spawner.wave+1,"earned":earned,"shots":shots_fired,"manual_shots":player_turret.shots_fired,"manual_hits":player_turret.hits,"seconds":elapsed,"enemy_actions":enemy_actions,"weakpoint_hits":weakpoint_hits,"attack_seed":attack_seed,"tactical_plans":director.plans.duplicate(true)})
+ completed.emit(victory,{"mission_id":mission_id,"run_id":run_id,"victory":victory,"kills":kills,"health":health,"waves":spawner.wave+1,"earned":earned,"shots":shots_fired,"manual_shots":player_turret.shots_fired,"manual_hits":player_turret.hits,"seconds":elapsed,"enemy_actions":enemy_actions,"weakpoint_hits":weakpoint_hits,"attack_seed":attack_seed,"tactical_plans":director.plans.duplicate(true),"redeployments":movement.moves,"redeploy_spent":movement.spent,"redeploy_refunded":movement.refunded})
+
+func _exit_tree() -> void:
+ if is_instance_valid(movement):
+  movement.cancel(false)

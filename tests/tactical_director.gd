@@ -180,6 +180,8 @@ func scenario(label: String, pattern: String, indices: Array, upgraded: bool, se
    break
   if manual:
    PILOT.aim(battle)
+  if battle.spawner.wave < 0 and battle.spawner.timer <= 0 and battle.spawner.warning_remaining <= 0:
+   battle.start_wave()
   battle.simulate(1.0/60.0)
   if frame%120 == 0:
    await get_tree().process_frame

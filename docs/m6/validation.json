@@ -1,0 +1,260 @@
+{
+  "baseline": "5f7976527df035d2a42bf179144371e0126c3b37",
+  "date": "2026-10-21",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "full_runner": {
+    "exit_code": 0,
+    "suite_invocations": 33,
+    "assertions": 69629,
+    "failures": 0,
+    "engine_errors": false,
+    "suites": [
+      {
+        "suite": "M1 MECHANICS",
+        "checks": 46,
+        "failures": 0
+      },
+      {
+        "suite": "PLACEMENT",
+        "checks": 1335,
+        "failures": 0
+      },
+      {
+        "suite": "TACTICAL DIRECTOR",
+        "checks": 58559,
+        "failures": 0
+      },
+      {
+        "suite": "COMBAT",
+        "checks": 41,
+        "failures": 0
+      },
+      {
+        "suite": "HYBRID",
+        "checks": 55,
+        "failures": 0
+      },
+      {
+        "suite": "SMOKE",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "SMOKE",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "SAVE/RULES",
+        "checks": 38,
+        "failures": 0
+      },
+      {
+        "suite": "CAMPAIGN",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "CAMPAIGN",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESEARCH",
+        "checks": 187,
+        "failures": 0
+      },
+      {
+        "suite": "RESEARCH",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "ECONOMY",
+        "checks": 419,
+        "failures": 0
+      },
+      {
+        "suite": "ECONOMY",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "REWARDED ADS",
+        "checks": 97,
+        "failures": 0
+      },
+      {
+        "suite": "REWARDED ADS",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "ADMOB BOUNDARY CONTRACT",
+        "checks": 17,
+        "failures": 0
+      },
+      {
+        "suite": "WEAPON RESEARCH",
+        "checks": 1424,
+        "failures": 0
+      },
+      {
+        "suite": "WEAPON RESEARCH",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "GRAPHICS AUDIT",
+        "checks": 810,
+        "failures": 0
+      },
+      {
+        "suite": "GRAPHICS AUDIT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "TACTICAL UI",
+        "checks": 193,
+        "failures": 0
+      },
+      {
+        "suite": "COMBAT VFX",
+        "checks": 310,
+        "failures": 0
+      },
+      {
+        "suite": "COMBAT VFX",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "VISUAL FOUNDATION",
+        "checks": 476,
+        "failures": 0
+      },
+      {
+        "suite": "UNIT VISUALS",
+        "checks": 195,
+        "failures": 0
+      },
+      {
+        "suite": "ENVIRONMENTS",
+        "checks": 953,
+        "failures": 0
+      },
+      {
+        "suite": "ENVIRONMENTS",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "CATALOG",
+        "checks": 4006,
+        "failures": 0
+      },
+      {
+        "suite": "ENEMY AI",
+        "checks": 88,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "checks": 221,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "checks": 31,
+        "failures": 0
+      },
+      {
+        "suite": "FULL CAMPAIGN",
+        "checks": 11,
+        "failures": 0
+      }
+    ]
+  },
+  "latest_focused_placement": {
+    "exit_code": 0,
+    "checks": 1337,
+    "failures": 0,
+    "note": "Two final material-state assertions added after the 1335-check full-run invocation; final focused mechanics run passed."
+  },
+  "fixed_policy": {
+    "simulations": 55,
+    "unfinished": 0,
+    "peak_live": 23,
+    "strategies": {
+      "automatic": {
+        "samples": 6,
+        "wins": [
+          1
+        ]
+      },
+      "hybrid": {
+        "samples": 6,
+        "wins": [
+          1,
+          5,
+          10,
+          15,
+          20,
+          25
+        ]
+      },
+      "manual_only": {
+        "samples": 6,
+        "wins": [
+          1,
+          5
+        ]
+      },
+      "two_cannon": {
+        "samples": 6,
+        "wins": [
+          1
+        ]
+      },
+      "two_mg": {
+        "samples": 6,
+        "wins": [
+          1
+        ]
+      },
+      "two_mixed": {
+        "samples": 25,
+        "wins": [
+          1
+        ]
+      }
+    }
+  },
+  "native_placement": {
+    "exit_code": 0,
+    "checks": 100,
+    "failures": 0,
+    "frames": 16,
+    "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "physical_android": false
+  },
+  "native_ui": {
+    "exit_code": 0,
+    "frames": 36,
+    "failures": 0
+  },
+  "sha256": {
+    "data/placement.json": "8a2979a76d8b997e74ba57437b1ab076d4a8cf5b5e3bbdd939fc9f46b3cf9e27",
+    "data/definitions.json": "741b463c6cefb3ad2291a7f896070caed5a53207f85fbb67f0da75a55d0ed17a",
+    "data/economy.json": "67484d258fc80930df8bac60bfc62ff5c0cf0a8cf83e6f1b8e43987817a016cf",
+    "scripts/game/turret.gd": "e83f2b54124b1cf1a973278520ebbc5f1dece7cc7bfb6f0c30822850f84172c4",
+    "scripts/game/turret_redeployment.gd": "1cf5fbde777a11dc07863a9c0d6b977bc1a8b0a9cf19d5028eb71d7d87b3e0fb",
+    "scripts/visual/combat_visuals.gd": "dfac6c29e5f63d96c68593f9cdd692d11a87df1b05d2ad86f94aa9efc719de8e"
+  },
+  "limitations": [
+    "No physical Android touch/audio/APK/FPS/thermal measurements",
+    "Mechanics all-layout and archetype tests explicitly inject fixture funds/research; connected campaign uses earned funds only",
+    "Assisted deterministic campaign is not human difficulty or win-rate validation"
+  ]
+}

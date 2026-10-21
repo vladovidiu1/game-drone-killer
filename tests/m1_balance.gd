@@ -45,6 +45,8 @@ func run() -> void:
       battle.abilities.activate("repair")
     if strategy in ["hybrid","manual_only"]:
      PILOT.aim(battle)
+    if battle.spawner.wave < 0 and battle.spawner.timer <= 0 and battle.spawner.warning_remaining <= 0:
+     battle.start_wave()
     battle.simulate(1.0/60.0)
     peak = maxi(peak,battle.living_count())
     if frame%32 == 0:

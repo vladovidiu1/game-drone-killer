@@ -13,7 +13,7 @@ static func advance(battle: Node2D, delta: float) -> void:
   enemy.art.sync(0.0,enemy.hit_flash,enemy.brain != null and enemy.brain.cloaked(),enemy.disable_remaining > 0)
  for turret in battle.turrets.get_children():
   turret.art.advance(delta,1.0,turret.shots_fired,turret.level)
-  turret.art.sync(turret.barrel_angle+PI/2,0,false,turret.disabled_remaining > 0)
+  turret.art.sync(turret.barrel_angle+PI/2,0,false,turret.disabled_remaining > 0 or turret.redeploying)
  var cannon: Node2D = battle.player_turret
  var art: Node2D = cannon.get_node("Artwork").art
  var score := 0

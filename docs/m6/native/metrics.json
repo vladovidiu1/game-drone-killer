@@ -1,0 +1,136 @@
+{
+  "checks": 100,
+  "failures": 0,
+  "fixture": "M3 access + one stationary Heavy staged for manual-hit coverage; real first wave running; no research or BC injection; paid MG L2 move 58 BC; three independent injected touches; no Android hardware",
+  "frames": [
+    {
+      "capture": "briefing_1280x720",
+      "draw_calls": 72.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "destination_1280x720",
+      "draw_calls": 210.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "transport_1280x720",
+      "draw_calls": 214.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "elevated_1280x720",
+      "draw_calls": 233.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "briefing_1600x720",
+      "draw_calls": 72.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "destination_1600x720",
+      "draw_calls": 210.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "transport_1600x720",
+      "draw_calls": 214.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "elevated_1600x720",
+      "draw_calls": 233.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "briefing_1280x600",
+      "draw_calls": 69.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "destination_1280x600",
+      "draw_calls": 207.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "transport_1280x600",
+      "draw_calls": 213.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "elevated_1280x600",
+      "draw_calls": 230.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "briefing_1024x768",
+      "draw_calls": 73.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "destination_1024x768",
+      "draw_calls": 210.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "transport_1024x768",
+      "draw_calls": 212.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "elevated_1024x768",
+      "draw_calls": 233.0,
+      "size": [
+        1024,
+        768
+      ]
+    }
+  ],
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)"
+}

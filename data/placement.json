@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "redeploy_seconds": 4.0,
+  "bearing_step_degrees": 45.0,
+  "coverage_samples_y": [
+    270,
+    340,
+    410
+  ],
+  "field_bounds": [
+    0,
+    88,
+    955,
+    560
+  ]
+}

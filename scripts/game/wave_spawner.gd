@@ -14,6 +14,7 @@ var pending: Array[Dictionary] = []
 var cursor := 0
 var total_spawned := 0
 var path_count := 1
+var hold_initial := false
 var director: RefCounted
 var plan: Dictionary = {}
 var warning_remaining := 0.0
@@ -82,8 +83,10 @@ func tick(delta: float, living_enemies: int) -> void:
  timer -= delta
  if intermission:
   warning_remaining = maxf(0.0,warning_remaining-delta)
-  if timer <= 0:
+  if timer <= 0 and not (hold_initial and wave < 0):
    start_early()
+  if hold_initial and wave < 0:
+   timer = maxf(0,timer)
   return
  var spawned_this_tick := false
  while cursor < pending.size() and timer <= 0:

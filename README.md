@@ -10,6 +10,8 @@ M2 adds **six projectile technologies**, three research tiers each, a three-slot
 
 M5 adds **eight seeded tactical patterns**, WEST/CENTER/EAST routes on all 25 maps, a six-second radar preparation window and capped late-campaign reconnaissance. [Rules and tuning](docs/TACTICAL_DIRECTOR.md) · [Measured results and native captures](docs/m5/VALIDATION.md).
 
+M6 adds **real mounted firing arcs, optional coverage analysis and paid redeployment**, plus explicit first-wave preparation. [Strategic placement](docs/STRATEGIC_PLACEMENT.md) · [Validation](docs/m6/VALIDATION.md).
+
 ## Download
 
 Repository: https://github.com/vladovidiu1/game-drone-killer
@@ -272,3 +274,7 @@ See [design/architecture and performance limits](docs/UI_DESIGN.md), [native gal
 ### M5 tactical attacks
 
 All 25 missions now support western, central and eastern approaches, seeded attack patterns, truthful six-second radar preparation and limited late-campaign reconnaissance. Existing saves, research, manual fire and campaign transactions remain compatible. See [Tactical Director](docs/TACTICAL_DIRECTOR.md) for tuning, debug flags, replayable tests and [validation](docs/m5/VALIDATION.md) for measured outcomes and Android limitations.
+
+### M6 strategic placement and redeployment
+
+All 25 maps now label western/central/eastern roles and selected elevated positions. Automatic weapons enforce configurable mounted firing arcs; select a turret to see its true range/arc and adjust facing. Toggle **Coverage** for approximate secondary reach/gaps. **Move → destination → Confirm** redeploys the same leveled turret for 35% of its current investment, with four simulated seconds offline. Cancellation/mission end safely refund pending transport. Initial PREPARE waits for **Launch wave**, giving time to spend ordinary starting Battle Credits. [Rules, costs and controls](docs/STRATEGIC_PLACEMENT.md) · [Validation and native captures](docs/m6/VALIDATION.md).

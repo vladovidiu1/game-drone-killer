@@ -1,0 +1,566 @@
+{
+  "checks": 58559,
+  "failures": 0,
+  "fixture": "single existing wave 4; ordinary starting funds; M12 / M20; paid construction; explicit research tier; no abilities or ad rewards; fixed 1/60 delta; assisted aim only E/F",
+  "rows": [
+    {
+      "battle_earned": 20,
+      "bounty_cap": 482,
+      "breaches": 23,
+      "budget": 101,
+      "case": "A",
+      "coverage": {
+        "CENTER": 39.0,
+        "EAST": 90.0,
+        "WEST": 0.0
+      },
+      "health": 0,
+      "kills": 2,
+      "manual_hits": 0,
+      "manual_shots": 0,
+      "mission": 12,
+      "paid_turret_upgrades": false,
+      "pattern": "west_flank",
+      "placement": [
+        1,
+        3,
+        7
+      ],
+      "research_tier": 0,
+      "seconds": 18.4,
+      "sector_outcomes": {
+        "CENTER": {
+          "breaches": 3,
+          "kills": 1,
+          "supports": 0
+        },
+        "EAST": {
+          "breaches": 3,
+          "kills": 1,
+          "supports": 0
+        },
+        "WEST": {
+          "breaches": 17,
+          "kills": 0,
+          "supports": 0
+        }
+      },
+      "sectors": {
+        "CENTER": 6,
+        "EAST": 4,
+        "WEST": 20
+      },
+      "seed": 601,
+      "spent": 101,
+      "victory": false
+    },
+    {
+      "battle_earned": 54,
+      "bounty_cap": 482,
+      "breaches": 21,
+      "budget": 101,
+      "case": "A-control",
+      "coverage": {
+        "CENTER": 78.0,
+        "EAST": 0.0,
+        "WEST": 96.5
+      },
+      "health": 0,
+      "kills": 5,
+      "manual_hits": 0,
+      "manual_shots": 0,
+      "mission": 12,
+      "paid_turret_upgrades": false,
+      "pattern": "west_flank",
+      "placement": [
+        0,
+        2,
+        6
+      ],
+      "research_tier": 0,
+      "seconds": 18.62,
+      "sector_outcomes": {
+        "CENTER": {
+          "breaches": 4,
+          "kills": 1,
+          "supports": 0
+        },
+        "EAST": {
+          "breaches": 4,
+          "kills": 0,
+          "supports": 0
+        },
+        "WEST": {
+          "breaches": 13,
+          "kills": 4,
+          "supports": 0
+        }
+      },
+      "sectors": {
+        "CENTER": 6,
+        "EAST": 4,
+        "WEST": 20
+      },
+      "seed": 601,
+      "spent": 101,
+      "victory": false
+    },
+    {
+      "battle_earned": 27,
+      "bounty_cap": 482,
+      "breaches": 22,
+      "budget": 101,
+      "case": "B",
+      "coverage": {
+        "CENTER": 64.33,
+        "EAST": 13.0,
+        "WEST": 44.83
+      },
+      "health": 0,
+      "kills": 3,
+      "manual_hits": 0,
+      "manual_shots": 0,
+      "mission": 12,
+      "paid_turret_upgrades": false,
+      "pattern": "split",
+      "placement": [
+        0,
+        1,
+        4
+      ],
+      "research_tier": 0,
+      "seconds": 18.1,
+      "sector_outcomes": {
+        "CENTER": {
+          "breaches": 0,
+          "kills": 0,
+          "supports": 0
+        },
+        "EAST": {
+          "breaches": 12,
+          "kills": 0,
+          "supports": 0
+        },
+        "WEST": {
+          "breaches": 10,
+          "kills": 3,
+          "supports": 0
+        }
+      },
+      "sectors": {
+        "CENTER": 1,
+        "EAST": 14,
+        "WEST": 15
+      },
+      "seed": 602,
+      "spent": 101,
+      "victory": false
+    },
+    {
+      "battle_earned": 20,
+      "bounty_cap": 482,
+      "breaches": 23,
+      "budget": 101,
+      "case": "C",
+      "coverage": {
+        "CENTER": 65.0,
+        "EAST": 26.0,
+        "WEST": 26.0
+      },
+      "health": 0,
+      "kills": 2,
+      "manual_hits": 0,
+      "manual_shots": 0,
+      "mission": 12,
+      "paid_turret_upgrades": false,
+      "pattern": "split",
+      "placement": [
+        4,
+        5
+      ],
+      "research_tier": 0,
+      "seconds": 18.1,
+      "sector_outcomes": {
+        "CENTER": {
+          "breaches": 0,
+          "kills": 0,
+          "supports": 0
+        },
+        "EAST": {
+          "breaches": 12,
+          "kills": 0,
+          "supports": 0
+        },
+        "WEST": {
+          "breaches": 11,
+          "kills": 2,
+          "supports": 0
+        }
+      },
+      "sectors": {
+        "CENTER": 1,
+        "EAST": 14,
+        "WEST": 15
+      },
+      "seed": 603,
+      "spent": 101,
+      "victory": false
+    },
+    {
+      "battle_earned": 20,
+      "bounty_cap": 482,
+      "breaches": 22,
+      "budget": 101,
+      "case": "D",
+      "coverage": {
+        "CENTER": 50.67,
+        "EAST": 25.33,
+        "WEST": 25.33
+      },
+      "health": 0,
+      "kills": 2,
+      "manual_hits": 0,
+      "manual_shots": 0,
+      "mission": 12,
+      "paid_turret_upgrades": false,
+      "pattern": "center_breakthrough",
+      "placement": [
+        4,
+        5
+      ],
+      "research_tier": 0,
+      "seconds": 17.15,
+      "sector_outcomes": {
+        "CENTER": {
+          "breaches": 12,
+          "kills": 2,
+          "supports": 0
+        },
+        "EAST": {
+          "breaches": 4,
+          "kills": 0,
+          "supports": 0
+        },
+        "WEST": {
+          "breaches": 6,
+          "kills": 0,
+          "supports": 0
+        }
+      },
+      "sectors": {
+        "CENTER": 19,
+        "EAST": 5,
+        "WEST": 6
+      },
+      "seed": 604,
+      "spent": 101,
+      "victory": false
+    },
+    {
+      "battle_earned": 218,
+      "bounty_cap": 482,
+      "breaches": 16,
+      "budget": 101,
+      "case": "E",
+      "coverage": {
+        "CENTER": 144.34,
+        "EAST": 20.85,
+        "WEST": 71.9
+      },
+      "health": 425,
+      "kills": 14,
+      "manual_hits": 74,
+      "manual_shots": 80,
+      "mission": 12,
+      "paid_turret_upgrades": true,
+      "pattern": "west_flank",
+      "placement": [
+        0,
+        1,
+        4
+      ],
+      "research_tier": 2,
+      "seconds": 21.78,
+      "sector_outcomes": {
+        "CENTER": {
+          "breaches": 4,
+          "kills": 2,
+          "supports": 0
+        },
+        "EAST": {
+          "breaches": 3,
+          "kills": 1,
+          "supports": 0
+        },
+        "WEST": {
+          "breaches": 9,
+          "kills": 11,
+          "supports": 0
+        }
+      },
+      "sectors": {
+        "CENTER": 6,
+        "EAST": 4,
+        "WEST": 20
+      },
+      "seed": 605,
+      "spent": 101,
+      "victory": true
+    },
+    {
+      "battle_earned": 288,
+      "bounty_cap": 605,
+      "breaches": 17,
+      "budget": 116,
+      "case": "F",
+      "coverage": {
+        "CENTER": 123.49,
+        "EAST": 62.01,
+        "WEST": 92.75
+      },
+      "health": 385,
+      "kills": 17,
+      "manual_hits": 67,
+      "manual_shots": 73,
+      "mission": 20,
+      "paid_turret_upgrades": true,
+      "pattern": "split",
+      "placement": [
+        0,
+        1,
+        4
+      ],
+      "research_tier": 2,
+      "seconds": 19.62,
+      "sector_outcomes": {
+        "CENTER": {
+          "breaches": 2,
+          "kills": 0,
+          "supports": 0
+        },
+        "EAST": {
+          "breaches": 9,
+          "kills": 7,
+          "supports": 0
+        },
+        "WEST": {
+          "breaches": 6,
+          "kills": 10,
+          "supports": 0
+        }
+      },
+      "sectors": {
+        "CENTER": 2,
+        "EAST": 16,
+        "WEST": 16
+      },
+      "seed": 701,
+      "spent": 112,
+      "victory": true
+    },
+    {
+      "battle_earned": 251,
+      "bounty_cap": 605,
+      "breaches": 13,
+      "budget": 116,
+      "case": "F",
+      "coverage": {
+        "CENTER": 123.49,
+        "EAST": 62.01,
+        "WEST": 92.75
+      },
+      "health": 410,
+      "kills": 17,
+      "manual_hits": 68,
+      "manual_shots": 69,
+      "mission": 20,
+      "paid_turret_upgrades": true,
+      "pattern": "elite",
+      "placement": [
+        0,
+        1,
+        4
+      ],
+      "research_tier": 2,
+      "seconds": 18.58,
+      "sector_outcomes": {
+        "CENTER": {
+          "breaches": 8,
+          "kills": 10,
+          "supports": 0
+        },
+        "EAST": {
+          "breaches": 2,
+          "kills": 4,
+          "supports": 0
+        },
+        "WEST": {
+          "breaches": 3,
+          "kills": 3,
+          "supports": 0
+        }
+      },
+      "sectors": {
+        "CENTER": 18,
+        "EAST": 6,
+        "WEST": 6
+      },
+      "seed": 702,
+      "spent": 112,
+      "victory": true
+    },
+    {
+      "battle_earned": 312,
+      "bounty_cap": 605,
+      "breaches": 17,
+      "budget": 116,
+      "case": "F",
+      "coverage": {
+        "CENTER": 123.49,
+        "EAST": 62.01,
+        "WEST": 92.75
+      },
+      "health": 585,
+      "kills": 21,
+      "manual_hits": 67,
+      "manual_shots": 77,
+      "mission": 20,
+      "paid_turret_upgrades": true,
+      "pattern": "swarm",
+      "placement": [
+        0,
+        1,
+        4
+      ],
+      "research_tier": 2,
+      "seconds": 19.55,
+      "sector_outcomes": {
+        "CENTER": {
+          "breaches": 5,
+          "kills": 8,
+          "supports": 0
+        },
+        "EAST": {
+          "breaches": 6,
+          "kills": 6,
+          "supports": 0
+        },
+        "WEST": {
+          "breaches": 6,
+          "kills": 7,
+          "supports": 0
+        }
+      },
+      "sectors": {
+        "CENTER": 13,
+        "EAST": 12,
+        "WEST": 13
+      },
+      "seed": 703,
+      "spent": 107,
+      "victory": true
+    },
+    {
+      "battle_earned": 198,
+      "bounty_cap": 605,
+      "breaches": 15,
+      "budget": 116,
+      "case": "F",
+      "coverage": {
+        "CENTER": 123.49,
+        "EAST": 62.01,
+        "WEST": 92.75
+      },
+      "health": 260,
+      "kills": 15,
+      "manual_hits": 65,
+      "manual_shots": 67,
+      "mission": 20,
+      "paid_turret_upgrades": true,
+      "pattern": "elite",
+      "placement": [
+        0,
+        1,
+        4
+      ],
+      "research_tier": 2,
+      "seconds": 18.23,
+      "sector_outcomes": {
+        "CENTER": {
+          "breaches": 9,
+          "kills": 9,
+          "supports": 0
+        },
+        "EAST": {
+          "breaches": 2,
+          "kills": 4,
+          "supports": 0
+        },
+        "WEST": {
+          "breaches": 4,
+          "kills": 2,
+          "supports": 0
+        }
+      },
+      "sectors": {
+        "CENTER": 18,
+        "EAST": 6,
+        "WEST": 6
+      },
+      "seed": 704,
+      "spent": 112,
+      "victory": true
+    },
+    {
+      "battle_earned": 288,
+      "bounty_cap": 605,
+      "breaches": 17,
+      "budget": 116,
+      "case": "F-repeat",
+      "coverage": {
+        "CENTER": 123.49,
+        "EAST": 62.01,
+        "WEST": 92.75
+      },
+      "health": 385,
+      "kills": 17,
+      "manual_hits": 67,
+      "manual_shots": 73,
+      "mission": 20,
+      "paid_turret_upgrades": true,
+      "pattern": "split",
+      "placement": [
+        0,
+        1,
+        4
+      ],
+      "research_tier": 2,
+      "seconds": 19.62,
+      "sector_outcomes": {
+        "CENTER": {
+          "breaches": 2,
+          "kills": 0,
+          "supports": 0
+        },
+        "EAST": {
+          "breaches": 9,
+          "kills": 7,
+          "supports": 0
+        },
+        "WEST": {
+          "breaches": 6,
+          "kills": 10,
+          "supports": 0
+        }
+      },
+      "sectors": {
+        "CENTER": 2,
+        "EAST": 16,
+        "WEST": 16
+      },
+      "seed": 701,
+      "spent": 112,
+      "victory": true
+    }
+  ]
+}
