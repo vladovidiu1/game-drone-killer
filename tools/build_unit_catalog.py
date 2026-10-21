@@ -61,3 +61,7 @@ outputs={
 record={name:dict(output=identifier,purpose=purpose,panels=panels,import_dimensions=[768,512],status='Integrated original G3 generated candidate; native animation review; final art approval pending') for name,(identifier,purpose,panels) in outputs.items()}
 (root/'assets/source/unit_sources.json').write_text(json.dumps(record,indent=2)+'\n')
 print('Bound 14 unique enemy silhouettes, 7 weapon heads and modular mechanics')
+
+# Preserve M7 imported-pixel component mounts after regenerating base art metadata.
+import runpy
+runpy.run_path(str(root/'tools/build_component_bindings.py'))

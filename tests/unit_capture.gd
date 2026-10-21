@@ -101,7 +101,10 @@ func run() -> void:
   await capture("boss_"+kind)
   # Force phase thresholds through the real damage API; this is a visual fixture,
   # not an assisted-play victory. Full campaign tests cover earned outcomes.
-  enemy.hit(enemy.maximum_health*.30,true,true,enemy.brain.weakpoint())
+  if enemy.components != null:
+   enemy.components.find("core").receive(enemy.maximum_health*.30,true,true,{})
+  else:
+   enemy.hit(enemy.maximum_health*.30,true,true,enemy.brain.weakpoint())
   if not enemy.ended:
    await step(battle,.45)
    check(enemy.brain.phase_index == 2,"Boss enters actual third-phase presentation")

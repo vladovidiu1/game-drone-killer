@@ -73,7 +73,35 @@
           97.0,
           32.5
         ]
-      ]
+      ],
+      "component_mounts": {
+        "weapon": {
+          "point": [
+            90,
+            139
+          ],
+          "radius": 22,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            45.5,
+            97.0
+          ],
+          "radius": 29.25,
+          "rotor": 0,
+          "parent": "body"
+        },
+        "engine_right": {
+          "point": [
+            210.0,
+            97.0
+          ],
+          "radius": 29.25,
+          "rotor": 1,
+          "parent": "body"
+        }
+      }
     },
     "drone_heavy": {
       "file": "drones/line_atlas.png",
@@ -125,7 +153,43 @@
           187.0,
           23.0
         ]
-      ]
+      ],
+      "component_mounts": {
+        "weapon": {
+          "point": [
+            135,
+            124
+          ],
+          "radius": 22,
+          "parent": "body"
+        },
+        "core": {
+          "point": [
+            135,
+            101
+          ],
+          "radius": 20,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            50.0,
+            109.0
+          ],
+          "radius": 20.25,
+          "rotor": 2,
+          "parent": "body"
+        },
+        "engine_right": {
+          "point": [
+            224.0,
+            110.0
+          ],
+          "radius": 20.25,
+          "rotor": 3,
+          "parent": "body"
+        }
+      }
     },
     "gun_machine": {
       "file": "turrets/weapons_atlas.png",
@@ -510,7 +574,35 @@
           169.5,
           35.5
         ]
-      ]
+      ],
+      "component_mounts": {
+        "generator": {
+          "point": [
+            126,
+            124
+          ],
+          "radius": 24,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            55.0,
+            169.5
+          ],
+          "radius": 31.95,
+          "rotor": 1,
+          "parent": "body"
+        },
+        "engine_right": {
+          "point": [
+            198.0,
+            169.5
+          ],
+          "radius": 31.95,
+          "rotor": 2,
+          "parent": "body"
+        }
+      }
     },
     "drone_emp": {
       "file": "drones/line_atlas.png",
@@ -542,7 +634,43 @@
           136.0,
           28.5
         ]
-      ]
+      ],
+      "component_mounts": {
+        "weapon": {
+          "point": [
+            126,
+            110
+          ],
+          "radius": 23,
+          "parent": "body"
+        },
+        "sensor": {
+          "point": [
+            129,
+            205
+          ],
+          "radius": 15,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            48.0,
+            135.5
+          ],
+          "radius": 25.650000000000002,
+          "rotor": 0,
+          "parent": "body"
+        },
+        "engine_right": {
+          "point": [
+            208.5,
+            136.0
+          ],
+          "radius": 25.650000000000002,
+          "rotor": 1,
+          "parent": "body"
+        }
+      }
     },
     "drone_bomber": {
       "file": "drones/line_atlas.png",
@@ -584,7 +712,35 @@
           179.5,
           28.5
         ]
-      ]
+      ],
+      "component_mounts": {
+        "weapon": {
+          "point": [
+            130,
+            130
+          ],
+          "radius": 30,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            45.5,
+            178.5
+          ],
+          "radius": 25.650000000000002,
+          "rotor": 2,
+          "parent": "body"
+        },
+        "engine_right": {
+          "point": [
+            213.0,
+            179.5
+          ],
+          "radius": 25.650000000000002,
+          "rotor": 3,
+          "parent": "body"
+        }
+      }
     },
     "drone_sniper": {
       "file": "drones/specialists_atlas.png",
@@ -627,7 +783,43 @@
           203.0,
           13.0
         ]
-      ]
+      ],
+      "component_mounts": {
+        "weapon": {
+          "point": [
+            128,
+            90
+          ],
+          "radius": 20,
+          "parent": "body"
+        },
+        "sensor": {
+          "point": [
+            128,
+            160
+          ],
+          "radius": 14,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            89.0,
+            126.0
+          ],
+          "radius": 11.700000000000001,
+          "rotor": 0,
+          "parent": "body"
+        },
+        "engine_right": {
+          "point": [
+            168.5,
+            126.0
+          ],
+          "radius": 11.700000000000001,
+          "rotor": 1,
+          "parent": "body"
+        }
+      }
     },
     "drone_carrier": {
       "file": "drones/specialists_atlas.png",
@@ -679,7 +871,43 @@
           217.0,
           20.5
         ]
-      ]
+      ],
+      "component_mounts": {
+        "weapon": {
+          "point": [
+            130,
+            140
+          ],
+          "radius": 28,
+          "parent": "body"
+        },
+        "core": {
+          "point": [
+            128,
+            178
+          ],
+          "radius": 20,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            28.0,
+            75.0
+          ],
+          "radius": 18.45,
+          "rotor": 0,
+          "parent": "body"
+        },
+        "engine_right": {
+          "point": [
+            228.0,
+            75.0
+          ],
+          "radius": 18.45,
+          "rotor": 3,
+          "parent": "body"
+        }
+      }
     },
     "drone_stealth": {
       "file": "drones/specialists_atlas.png",
@@ -712,7 +940,35 @@
           222.0,
           17.5
         ]
-      ]
+      ],
+      "component_mounts": {
+        "sensor": {
+          "point": [
+            128,
+            140
+          ],
+          "radius": 18,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            106.0,
+            222.0
+          ],
+          "radius": 15.75,
+          "rotor": 0,
+          "parent": "body"
+        },
+        "engine_right": {
+          "point": [
+            151.0,
+            222.0
+          ],
+          "radius": 15.75,
+          "rotor": 1,
+          "parent": "body"
+        }
+      }
     },
     "rotor_blade": {
       "file": "drones/specialists_atlas.png",
@@ -827,7 +1083,44 @@
           19.0
         ]
       ],
-      "boss": true
+      "boss": true,
+      "component_mounts": {
+        "core": {
+          "point": [
+            137,
+            169.5
+          ],
+          "radius": 18,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            71.5,
+            58.0
+          ],
+          "radius": 14.4,
+          "rotor": 0,
+          "parent": "body"
+        },
+        "engine_right": {
+          "point": [
+            201.0,
+            58.0
+          ],
+          "radius": 14.4,
+          "rotor": 1,
+          "parent": "body"
+        },
+        "weapon": {
+          "point": [
+            35.0,
+            134.5
+          ],
+          "radius": 19.0,
+          "weapon": 0,
+          "parent": "armor_left"
+        }
+      }
     },
     "boss_emp_warship": {
       "file": "drones/bosses_atlas.png",
@@ -872,7 +1165,52 @@
           14.5
         ]
       ],
-      "boss": true
+      "boss": true,
+      "component_mounts": {
+        "core": {
+          "point": [
+            99,
+            162.5
+          ],
+          "radius": 18,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            50.0,
+            209.5
+          ],
+          "radius": 19.35,
+          "rotor": 0,
+          "parent": "armor_left"
+        },
+        "engine_right": {
+          "point": [
+            126.5,
+            209.5
+          ],
+          "radius": 19.35,
+          "rotor": 1,
+          "parent": "body"
+        },
+        "weapon": {
+          "point": [
+            41.0,
+            127.5
+          ],
+          "radius": 14.5,
+          "weapon": 0,
+          "parent": "armor_left"
+        },
+        "generator": {
+          "point": [
+            99,
+            100
+          ],
+          "radius": 18,
+          "parent": "body"
+        }
+      }
     },
     "boss_border_guardian": {
       "file": "drones/bosses_atlas.png",
@@ -937,7 +1275,44 @@
           22.5
         ]
       ],
-      "boss": true
+      "boss": true,
+      "component_mounts": {
+        "core": {
+          "point": [
+            125,
+            182
+          ],
+          "radius": 18,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            58.0,
+            168.0
+          ],
+          "radius": 13.950000000000001,
+          "rotor": 2,
+          "parent": "armor_left"
+        },
+        "engine_right": {
+          "point": [
+            188.0,
+            168.0
+          ],
+          "radius": 13.950000000000001,
+          "rotor": 3,
+          "parent": "body"
+        },
+        "weapon": {
+          "point": [
+            32.5,
+            123.5
+          ],
+          "radius": 22.5,
+          "weapon": 0,
+          "parent": "armor_left"
+        }
+      }
     },
     "boss_factory_ship": {
       "file": "drones/bosses_atlas.png",
@@ -992,7 +1367,52 @@
           12.5
         ]
       ],
-      "boss": true
+      "boss": true,
+      "component_mounts": {
+        "core": {
+          "point": [
+            128,
+            183
+          ],
+          "radius": 18,
+          "parent": "body"
+        },
+        "generator": {
+          "point": [
+            128,
+            98
+          ],
+          "radius": 21,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            30.0,
+            201.0
+          ],
+          "radius": 15.75,
+          "rotor": 2,
+          "parent": "armor_left"
+        },
+        "engine_right": {
+          "point": [
+            235.0,
+            201.0
+          ],
+          "radius": 15.75,
+          "rotor": 3,
+          "parent": "armor_right"
+        },
+        "weapon": {
+          "point": [
+            60.0,
+            119.5
+          ],
+          "radius": 12.5,
+          "weapon": 0,
+          "parent": "armor_left"
+        }
+      }
     },
     "boss_hive_core": {
       "file": "drones/bosses_atlas.png",
@@ -1057,7 +1477,52 @@
           17.5
         ]
       ],
-      "boss": true
+      "boss": true,
+      "component_mounts": {
+        "core": {
+          "point": [
+            133,
+            119.5
+          ],
+          "radius": 19,
+          "parent": "body"
+        },
+        "generator": {
+          "point": [
+            133,
+            71
+          ],
+          "radius": 18,
+          "parent": "body"
+        },
+        "engine_left": {
+          "point": [
+            20.0,
+            115.0
+          ],
+          "radius": 15.3,
+          "rotor": 2,
+          "parent": "armor_left"
+        },
+        "engine_right": {
+          "point": [
+            238.0,
+            115.0
+          ],
+          "radius": 15.3,
+          "rotor": 3,
+          "parent": "armor_right"
+        },
+        "weapon": {
+          "point": [
+            59.0,
+            109.0
+          ],
+          "radius": 17.5,
+          "weapon": 0,
+          "parent": "armor_left"
+        }
+      }
     },
     "boss_gun": {
       "file": "drones/bosses_atlas.png",

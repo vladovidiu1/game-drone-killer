@@ -1,0 +1,111 @@
+{
+  "cases": [
+    {
+      "archetypes": 14,
+      "mission": 1
+    },
+    {
+      "archetypes": 14,
+      "mission": 2
+    },
+    {
+      "archetypes": 14,
+      "mission": 3
+    },
+    {
+      "archetypes": 14,
+      "mission": 4
+    },
+    {
+      "archetypes": 14,
+      "mission": 5
+    },
+    {
+      "archetypes": 14,
+      "mission": 6
+    },
+    {
+      "archetypes": 14,
+      "mission": 7
+    },
+    {
+      "archetypes": 14,
+      "mission": 8
+    },
+    {
+      "archetypes": 14,
+      "mission": 9
+    },
+    {
+      "archetypes": 14,
+      "mission": 10
+    },
+    {
+      "archetypes": 14,
+      "mission": 11
+    },
+    {
+      "archetypes": 14,
+      "mission": 12
+    },
+    {
+      "archetypes": 14,
+      "mission": 13
+    },
+    {
+      "archetypes": 14,
+      "mission": 14
+    },
+    {
+      "archetypes": 14,
+      "mission": 15
+    },
+    {
+      "archetypes": 14,
+      "mission": 16
+    },
+    {
+      "archetypes": 14,
+      "mission": 17
+    },
+    {
+      "archetypes": 14,
+      "mission": 18
+    },
+    {
+      "archetypes": 14,
+      "mission": 19
+    },
+    {
+      "archetypes": 14,
+      "mission": 20
+    },
+    {
+      "archetypes": 14,
+      "mission": 21
+    },
+    {
+      "archetypes": 14,
+      "mission": 22
+    },
+    {
+      "archetypes": 14,
+      "mission": 23
+    },
+    {
+      "archetypes": 14,
+      "mission": 24
+    },
+    {
+      "archetypes": 14,
+      "mission": 25
+    },
+    {
+      "ammunition_archetype_pairs": 84
+    }
+  ],
+  "checks": 5406,
+  "failures": 0,
+  "fixture": "isolated mission access; controlled damage/rays; ammo tiers snapshotted from existing profiles; no Android hardware",
+  "seed": 707
+}

@@ -37,7 +37,7 @@ func tick(delta: float) -> bool:
    cooldown = minf(cooldown,2.0)
   if enemy.position.distance_to(anchor()) > 4:
    var active_delta := maxf(0.0,delta-enemy.disable_remaining)
-   enemy.position = enemy.position.move_toward(anchor(),enemy.speed*active_delta)
+   enemy.position = enemy.position.move_toward(anchor(),enemy.effective_speed()*active_delta)
    enemy.distance_remaining = enemy.position.distance_to(Vector2(560,600))
    enemy.queue_redraw()
  if enemy.disable_remaining > 0:
@@ -50,7 +50,8 @@ func tick(delta: float) -> bool:
    battle.enemy_actions += 1
    battle.view.effect(enemy.position,"blast",110,Color("ff6868"))
  var config := settings()
- if not config.has("attack"):
+ if not config.has("attack") or (enemy.components != null and not enemy.components.attack_allowed(str(config.get("attack","")))):
+  charging = false
   return boss
  cooldown -= delta
  if charging:
@@ -71,6 +72,8 @@ func anchor() -> Vector2:
  return Vector2(float(data.anchor[0]),float(data.anchor[1]))
 
 func closest_turret(radius: float) -> Node2D:
+ if enemy.components != null and enemy.components.disabled("sensor"):
+  radius *= float(enemy.components.CONFIG.sensor_range_multiplier)
  var chosen: Node2D = null
  for turret in battle.turrets.get_children():
   if turret.position.distance_to(enemy.position) <= radius and (chosen == null or turret.position.distance_squared_to(enemy.position) < chosen.position.distance_squared_to(enemy.position)):
@@ -78,6 +81,8 @@ func closest_turret(radius: float) -> Node2D:
  return chosen
 
 func execute(config: Dictionary) -> void:
+ if enemy.components != null and not enemy.components.attack_allowed(str(config.attack)):
+  return
  actions += 1
  battle.enemy_actions += 1
  var attack := str(config.attack)
@@ -108,34 +113,45 @@ func boss_range() -> float:
  return 340.0 if boss else 110.0
 
 func cloaked() -> bool:
- return data.has("cloak_period") and enemy.disable_remaining <= 0 and fmod(elapsed,float(data.cloak_period)) < float(data.cloak_duration)
+ return (enemy.components == null or not enemy.components.disabled("sensor")) and data.has("cloak_period") and enemy.disable_remaining <= 0 and fmod(elapsed,float(data.cloak_period)) < float(data.cloak_duration)
 
 func weakpoint() -> Vector2:
  if not boss:
   return enemy.position
- return enemy.position+Vector2(float(data.weakpoint[0]),float(data.weakpoint[1]))
+ if enemy.components != null:
+  var core: Node2D = enemy.components.find("core")
+  if core != null:
+   return core.point()
+ return enemy.position+Vector2(float(data.weakpoint[0]),float(data.weakpoint[1])).rotated(enemy.rotation)
 
 func damage_multiplier(manual: bool, armor_piercing: bool, point: Vector2, traits: Dictionary = {}) -> float:
  var armor_bypass := 1.0 if armor_piercing else clampf(float(traits.get("armor_bypass",0)),0,1)
- var shield_bypass := 1.0 if armor_piercing else clampf(float(traits.get("shield_bypass",0)),0,1)
  var armor: float = enemy.resistance_value("armor")
  var multiplier := 1.0-armor*(1.0-armor_bypass)
  if boss:
   multiplier = float(settings().manual_hull_multiplier if manual else settings().automatic_hull_multiplier)
   multiplier *= 1.0-float(settings().armor_reduction)
   # A straight manual trajectory must actually intersect the lit core.
-  if manual and point.distance_to(weakpoint()) <= float(data.weakpoint_radius):
+  if enemy.components == null and manual and point.distance_to(weakpoint()) <= float(data.weakpoint_radius):
    multiplier = float(settings().weakpoint_multiplier)
    battle.weakpoint_hits += 1
    battle.view.effect(weakpoint(),"hit",24,Color("69ffff"))
- multiplier *= 1.0-enemy.resistance_value("shield")*(1.0-shield_bypass)
- if shield_bypass < 1.0:
+ return multiplier*shield_multiplier(armor_piercing,traits)
+
+func shield_active() -> bool:
+ return enemy.disable_remaining <= 0 and (enemy.components == null or (not enemy.components.falling and not enemy.components.disabled("shield")))
+
+func shield_multiplier(armor_piercing: bool, traits: Dictionary = {}) -> float:
+ var bypass := 1.0 if armor_piercing else clampf(float(traits.get("shield_bypass",0)),0,1)
+ var own_shield: float = enemy.resistance_value("shield") if shield_active() else 0.0
+ var multiplier := 1.0-own_shield*(1.0-bypass)
+ if bypass < 1.0:
   for unit in battle.drones.get_children():
-   if unit == enemy or unit.ended or unit.brain == null:
+   if unit == enemy or unit.ended or unit.brain == null or not unit.brain.shield_active():
     continue
    var aura: Dictionary = unit.brain.data
-   if aura.has("aura_radius") and unit.disable_remaining <= 0 and unit.position.distance_to(enemy.position) <= float(aura.aura_radius):
-    multiplier *= 1.0-float(aura.shield_reduction)*(1.0-shield_bypass)
+   if aura.has("aura_radius") and unit.position.distance_to(enemy.position) <= float(aura.aura_radius):
+    multiplier *= 1.0-float(aura.shield_reduction)*(1.0-bypass)
     break
  return multiplier
 

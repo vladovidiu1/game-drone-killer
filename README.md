@@ -12,6 +12,8 @@ M5 adds **eight seeded tactical patterns**, WEST/CENTER/EAST routes on all 25 ma
 
 M6 adds **real mounted firing arcs, optional coverage analysis and paid redeployment**, plus explicit first-wave preparation. [Strategic placement](docs/STRATEGIC_PLACEMENT.md) · [Validation](docs/m6/VALIDATION.md).
 
+M7 adds **local destructible engines, weapons, shields, sensors and cores**, precision manual hits, bounded crash sequences and component-aware ammunition. [Damage rules and tuning](docs/DRONE_COMPONENTS.md) · [Validation and native evidence](docs/m7/VALIDATION.md).
+
 ## Download
 
 Repository: https://github.com/vladovidiu1/game-drone-killer
@@ -243,7 +245,7 @@ The project is configured for landscape Android and Compatibility rendering, but
 
 ## Intentionally unfinished
 
-All 25 missions and the campaign finale are implemented. Final human difficulty tuning, authored production art/music, selling/relocating defenses, full accessibility/localization, signed Android exports, device profiling and release packaging remain future work. G1/G2/G3 artwork is integrated candidate art. All 25 missions now use the illustrated environment library; further artist refinements and final art approval remain outstanding. G3 now supplies distinct support/boss/weapon bodies for all archetypes. Generated audio remains a development asset. No APK is included; this source project opens directly in Godot.
+All 25 missions and the campaign finale are implemented. Final human difficulty tuning, authored production art/music, selling defenses, full accessibility/localization, signed Android exports, device profiling and release packaging remain future work. G1/G2/G3 artwork is integrated candidate art. All 25 missions now use the illustrated environment library; further artist refinements and final art approval remain outstanding. G3 now supplies distinct support/boss/weapon bodies for all archetypes. Generated audio remains a development asset. No APK is included; this source project opens directly in Godot.
 
 ## G2 battlefield environments
 
@@ -253,7 +255,7 @@ See [environment architecture, performance budgets and asset replacement specifi
 
 ## G3 drone and weapon visuals
 
-All nine drones, five bosses, six automatic weapons and the primary cannon now have distinct detailed raster artwork. Shared presentation components animate propulsion, hovering, damage, boss armor, recoil, reload/autoloader and cosmetic heat; real upgrade/research snapshots add armor. Enemy removal/rewards stay immediate. A skippable terminal boss destruction sequence appears after the campaign result has been saved.
+All nine drones, five bosses, six automatic weapons and the primary cannon now have distinct detailed raster artwork. Shared presentation components animate propulsion, hovering, damage, boss armor, recoil, reload/autoloader and cosmetic heat; real upgrade/research snapshots add armor. Normal hull destruction remains immediate; M7 propulsion loss uses its documented brief crash before the normal bounty. A skippable terminal boss destruction sequence appears after the campaign result has been saved.
 
 See [art/animation architecture and budgets](docs/UNIT_VISUALS.md), [native gallery and validation](docs/units/README.md), and source bindings in `assets/visual_catalog.json`. `./tests/run_native_capture.sh /tmp/frontline-g3-captures` exercises every archetype using labeled native gameplay fixtures and rejects engine errors. Godot imports the five full-resolution G3 atlases at half size for mobile; keep their tracked import settings. Physical Android profiling and final art approval remain separate work.
 

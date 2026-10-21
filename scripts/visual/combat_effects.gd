@@ -187,7 +187,7 @@ func observe(battle: Node2D, delta: float) -> void:
  # Shake only artwork. Physics, input transforms, projectiles, HUD and reticle
  # stay fixed. Never move Battle, Camera2D or a gameplay controller.
  for enemy in battle.drones.get_children():
-  enemy.art.position = shake_offset
+  enemy.art.position = Vector2.ZERO if enemy.components != null else shake_offset
  for turret in battle.turrets.get_children():
   turret.art.position = shake_offset
  cannon.get_node("Artwork").art.position = shake_offset

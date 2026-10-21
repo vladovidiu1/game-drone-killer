@@ -10,7 +10,16 @@ static func advance(battle: Node2D, delta: float) -> void:
    phase = enemy.brain.phase_index
    actions = enemy.brain.actions
   enemy.art.advance(delta,enemy.health/enemy.maximum_health,actions,1,false,1.0,phase)
-  enemy.art.sync(0.0,enemy.hit_flash,enemy.brain != null and enemy.brain.cloaked(),enemy.disable_remaining > 0)
+  var visual_angle: float = enemy.components.pose_angle if enemy.components != null else 0.0
+  if enemy.components != null:
+   enemy.component_markers.tick(delta)
+   if enemy.components.falling:
+    var fraction: float = clampf(enemy.components.fall_time/float(enemy.components.CONFIG.crash_seconds),0,1)
+    var motion: bool = not SaveManager.settings.get("reduced_motion",false)
+    enemy.art.body.modulate.a = 1.0-fraction*.65
+    if motion:
+     enemy.art.body.scale = Vector2(float(enemy.art.entry.get("scale_x",enemy.art.entry.scale)),float(enemy.art.entry.scale))*(1.0-fraction*.25)
+  enemy.art.sync(visual_angle,enemy.hit_flash,enemy.brain != null and enemy.brain.cloaked(),enemy.disable_remaining > 0)
  for turret in battle.turrets.get_children():
   turret.art.advance(delta,1.0,turret.shots_fired,turret.level)
   turret.art.sync(turret.barrel_angle+PI/2,0,false,turret.disabled_remaining > 0 or turret.redeploying)

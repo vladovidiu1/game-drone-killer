@@ -1,0 +1,92 @@
+{
+  "baseline": "4171232e3597985940f19a0e520fa677a655349f",
+  "engine": "Godot 4.6.3 stable / Compatibility",
+  "full_runner": {
+    "command": "FRONTLINE_REPORT_DIR=/tmp/m7-final ./tests/run_checks.sh",
+    "exit_code": 0,
+    "suite_invocations": 34,
+    "assertions": 75115,
+    "failures": 0,
+    "engine_errors": false
+  },
+  "connected_campaign": {
+    "first_completion_deployments": 39,
+    "all_deployments": 42,
+    "defeats_before_completion": [
+      {
+        "mission": 12,
+        "seed": 1012
+      },
+      {
+        "mission": 16,
+        "seed": 1016
+      },
+      {
+        "mission": 16,
+        "seed": 1116
+      },
+      {
+        "mission": 16,
+        "seed": 1216
+      },
+      {
+        "mission": 16,
+        "seed": 1316
+      },
+      {
+        "mission": 16,
+        "seed": 1416
+      },
+      {
+        "mission": 16,
+        "seed": 1516
+      }
+    ],
+    "income_before_completion": 9027,
+    "bank_before_completion": 642,
+    "total_income": 9198,
+    "ending_bank": 163,
+    "manual_component_hits_before_completion": 5194,
+    "component_destructions_before_completion": 1055,
+    "fixture": "existing assisted center/core pilot, real earned-budget purchases, no injected credits/ads/preliminary farming; defeats retained"
+  },
+  "fixed_policy": {
+    "automatic": {
+      "wins": 1,
+      "count": 6
+    },
+    "hybrid": {
+      "wins": 6,
+      "count": 6
+    },
+    "manual_only": {
+      "wins": 2,
+      "count": 6
+    },
+    "two_cannon": {
+      "wins": 1,
+      "count": 6
+    },
+    "two_mg": {
+      "wins": 1,
+      "count": 6
+    },
+    "two_mixed": {
+      "wins": 1,
+      "count": 25
+    },
+    "unfinished": 0,
+    "peak_enemies": 23
+  },
+  "native": {
+    "component_checks": 80,
+    "component_frames": 19,
+    "unit_frames": 27,
+    "effect_frames": 36,
+    "ui_frames": 36,
+    "profile_presets": 3,
+    "failures": 0,
+    "renderer": "llvmpipe X11 Compatibility",
+    "android_device": false
+  }
+}

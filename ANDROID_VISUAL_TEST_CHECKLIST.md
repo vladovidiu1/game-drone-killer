@@ -100,3 +100,14 @@ Release review must retain device evidence, close blocking readability/input/ren
 - [ ] Verify shared units (1/1/3/2/2/6), partial-magazine reload, empty-magazine reload and long Rail cooldown. Switching must not refill units, erase heat/recoil or skip cooldown/reload.
 - [ ] Check electric/frost/rail cues, large direct EMP hits, per-target rail penetration/falloff and boss resistance. Review all 12 specializations with real waves and primary support.
 - [ ] Profile worst-case splash/penetration/control combinations and long-session memory/thermals. Current Linux captures are functional evidence only, not an Android FPS or human-balance result.
+
+
+## M7 local precision and crashes — physical device pending
+
+- [ ] Aim at actual moving/rotating engine/core silhouettes with the left finger while holding FIRE with the right; compare Low/Medium/High and Reduced motion.
+- [ ] Read one aim-nearest component HP label without covering incoming threats; distinguish sealed/open cores on a small screen.
+- [ ] Destroy one engine, then all critical engines; verify smoke, crash completion, one bounty and the next wave.
+- [ ] Destroy a Shield generator and a charging EMP/sniper weapon; confirm real support/attack loss.
+- [ ] Compare AP, HE, EMP, Cryo and Rail against armored parts, shielded cores and moving formations; verify reload/ammo selection/build remain responsive.
+- [ ] Pause or background during a crash/window; resume and restart without rewards or stale component state.
+- [ ] Profile sustained component-heavy late waves for CPU/GPU frame time, memory, heat and touch latency. Desktop llvmpipe measurements in `docs/m7/VALIDATION.md` are not Android evidence.

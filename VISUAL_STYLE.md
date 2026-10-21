@@ -143,3 +143,10 @@ Use the shared charcoal/metal theme and Barlow font for a pointer-ignoring prepa
 ## Strategic placement (M6)
 
 Selected real firing arcs use faint cyan sectors and a bearing line; orange previews identify the destination mount. Empty legal destinations highlight green while source remains online. In-transit arcs are muted and a restrained orange route/progress ring indicates transport. Reuse raised steel decks for elevated positions and label their data-driven range advantage. Clip reach artwork to the battlefield; keep native FIRE/reload and management controls unobstructed. The optional reach legend must state that it does not guarantee kills. The briefing's numbered terrain/corridor preview shows known geometry, never hidden wave plans. See `docs/STRATEGIC_PLACEMENT.md`.
+
+
+## M7 component readability
+
+Local engines, devices and cores bind to imported sprite pixels and actual articulated parents; see `docs/DRONE_COMPONENTS.md`. Core cyan means the precision window is open, gray means sealed. Orange marks damage/disabled modules. Show a single compact aim-nearest component label, brief destruction confirmation and the existing boss telemetry, rather than stacking component health bars.
+
+The simulation rig owns essential mount articulation/instability. Component-bearing bodies do not independently hover or receive cosmetic artwork shake; visual presets cannot change their hit geometry. Falling units are already untargetable, so presentation can fade/shrink them with Reduced motion respected. Reuse the capped G4 smoke/electric/debris pool and atlas-UV char masks. Current stopped/charred modules reuse G3 candidate art; detached broken-module sheets still require approved art production.

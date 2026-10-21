@@ -1,0 +1,160 @@
+{
+  "checks": 80,
+  "failures": 0,
+  "fixture": "M20 access and stationary units staged; no BC or research injection; real mouse intentions, manual magazine/projectiles, paid MG, real crash/reward; final boss HP set to60% for phase presentation; M12 Heavy follows actual final path segment at normal speed with staged0.24rad pose and assisted mouse lead; no Android hardware",
+  "frames": [
+    {
+      "capture": "target_1280x720",
+      "draw_calls": 171.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "engine_disabled_1280x720",
+      "draw_calls": 188.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "crashing_1280x720",
+      "draw_calls": 186.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "shield_destroyed_1280x720",
+      "draw_calls": 208.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "target_1600x720",
+      "draw_calls": 176.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "engine_disabled_1600x720",
+      "draw_calls": 193.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "crashing_1600x720",
+      "draw_calls": 191.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "shield_destroyed_1600x720",
+      "draw_calls": 213.0,
+      "size": [
+        1600,
+        720
+      ]
+    },
+    {
+      "capture": "target_1280x600",
+      "draw_calls": 175.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "engine_disabled_1280x600",
+      "draw_calls": 192.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "crashing_1280x600",
+      "draw_calls": 190.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "shield_destroyed_1280x600",
+      "draw_calls": 212.0,
+      "size": [
+        1280,
+        600
+      ]
+    },
+    {
+      "capture": "target_1024x768",
+      "draw_calls": 176.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "engine_disabled_1024x768",
+      "draw_calls": 193.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "crashing_1024x768",
+      "draw_calls": 191.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "shield_destroyed_1024x768",
+      "draw_calls": 213.0,
+      "size": [
+        1024,
+        768
+      ]
+    },
+    {
+      "capture": "boss_core_open",
+      "draw_calls": 206.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "boss_core_closed",
+      "draw_calls": 206.0,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "capture": "moving_rotated_engine",
+      "draw_calls": 191.0,
+      "size": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)"
+}

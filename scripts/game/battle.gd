@@ -43,6 +43,8 @@ var impacts := 0
 var elapsed := 0.0
 var enemy_actions := 0
 var weakpoint_hits := 0
+var component_hits := 0
+var component_destructions := 0
 var support_spawned := 0
 var environmental_pulses := 0
 
@@ -170,6 +172,13 @@ func spawn_enemy(kind: String, path_index: int = 0) -> Node2D:
  enemy.speed = minf(float(CampaignManager.balance.maximum_drone_speed),enemy.speed*float(mission_data.get("speed_multiplier",1.0))*float(CampaignManager.balance.movement_multiplier))
  enemy.brain = preload("res://scripts/game/enemy_brain.gd").new()
  enemy.brain.configure(enemy,self,CampaignManager.enemies[kind])
+ var rig := preload("res://scripts/game/drone_components.gd").new()
+ if rig.configure(enemy,kind,mission_id):
+  enemy.components = rig
+  var markers := preload("res://scripts/visual/component_markers.gd").new()
+  markers.rig = rig
+  enemy.component_markers = markers
+  enemy.add_child(markers)
  enemy.breached.connect(_drone_breached.bind(enemy))
  enemy.destroyed.connect(_destroyed.bind(enemy))
  enemy.damaged.connect(func(at: Vector2): view.effect(at,"hit",12,Color("fff3be")))
@@ -301,13 +310,13 @@ func resolve_impact(projectile: Node2D) -> void:
    view.effect(projectile.destination,"blast",projectile.splash_radius,projectile.tint)
   for enemy in drones.get_children():
    if not enemy.ended and (enemy == projectile.target or enemy.position.distance_squared_to(projectile.destination) <= projectile.splash_radius*projectile.splash_radius):
-    projectile.apply_payload(enemy,projectile.manual and enemy == projectile.target)
+    projectile.apply_payload(enemy,projectile.manual and enemy == projectile.target,true)
     if projectile.manual:
-     player_turret.notify_hit(projectile.critical)
+     player_turret.notify_hit(projectile.critical or projectile.precision_critical)
  elif is_instance_valid(projectile.target) and not projectile.target.ended:
   projectile.apply_payload(projectile.target,projectile.manual)
   if projectile.manual:
-   player_turret.notify_hit(projectile.critical)
+   player_turret.notify_hit(projectile.critical or projectile.precision_critical)
 
 func start_wave() -> bool:
  return not paused and not finished and spawner.start_early()
@@ -353,7 +362,7 @@ func _finish(victory: bool) -> void:
  director.finish(victory)
  finished = true
  set_paused(true)
- completed.emit(victory,{"mission_id":mission_id,"run_id":run_id,"victory":victory,"kills":kills,"health":health,"waves":spawner.wave+1,"earned":earned,"shots":shots_fired,"manual_shots":player_turret.shots_fired,"manual_hits":player_turret.hits,"seconds":elapsed,"enemy_actions":enemy_actions,"weakpoint_hits":weakpoint_hits,"attack_seed":attack_seed,"tactical_plans":director.plans.duplicate(true),"redeployments":movement.moves,"redeploy_spent":movement.spent,"redeploy_refunded":movement.refunded})
+ completed.emit(victory,{"mission_id":mission_id,"run_id":run_id,"victory":victory,"kills":kills,"health":health,"waves":spawner.wave+1,"earned":earned,"shots":shots_fired,"manual_shots":player_turret.shots_fired,"manual_hits":player_turret.hits,"seconds":elapsed,"enemy_actions":enemy_actions,"weakpoint_hits":weakpoint_hits,"attack_seed":attack_seed,"tactical_plans":director.plans.duplicate(true),"component_hits":component_hits,"component_destructions":component_destructions,"redeployments":movement.moves,"redeploy_spent":movement.spent,"redeploy_refunded":movement.refunded})
 
 func _exit_tree() -> void:
  if is_instance_valid(movement):

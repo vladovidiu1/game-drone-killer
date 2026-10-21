@@ -143,3 +143,7 @@ FRONTLINE_CAPTURE_SCENE=res://tests/environment_capture.tscn ./tests/run_graphic
 ```
 
 Run native windows sequentially; focus-loss pause can invalidate concurrent window captures. Wrappers isolate local saves/config/cache and reject engine errors. Keep galleries under `.gdignore`, outside runtime import. To play, import `project.godot` in Godot 4.6.3 and press F5; no test fixtures are used by the normal game.
+
+## M7 component integration follow-up
+
+Local destructible mounts now share the actual body/articulated armor transform. Essential pose is simulation-owned; component-bearing units skip independent hover/cosmetic shake to keep precision collision identical across presets. Capped local VFX, stopped propulsion, char masks, core windows and aim-nearest labels reuse the existing assets. See [M7 validation](docs/m7/VALIDATION.md) for native moving-target captures, all-unit/VFX/UI regressions and the 80-drone Low/Medium/High software-renderer profile. No Android performance claim follows from those measurements. Approved broken-module/crash artwork, small-screen precision readability and late-campaign human balance remain outstanding.

@@ -136,3 +136,12 @@
 - Redeploy the same actor: retain occupied source and reserve destination until one atomic transfer. Debit/refund escrow once; block in-flight upgrades/concurrent moves/reserved construction. Cancel safely on outcome, scene exit and invalid actor. Never convert temporary refunds into bounty/WC.
 - Keep live first-wave PREPARE waiting for explicit launch; later waves remain timed and radar minimum still applies. Standalone scheduler fixtures retain their legacy default. Native confirmations must preserve independent aim/FIRE touch ownership.
 - Run placement mechanics, full regression, fixed-policy balance and native placement/UI captures. Record fixture credits/research separately from earned-budget connected campaigns. Keep capture runners sequential and document physical Android limitations.
+
+
+## M7 drone components
+
+- Follow `docs/DRONE_COMPONENTS.md`. Keep staged loadouts/HP/armor/effects in `data/drone_components.json` and imported-pixel mounts in the visual catalog. `tools/build_unit_catalog.py` reapplies the M7 mount generator. Never use global weakpoint coordinates.
+- Attach local component nodes to the real body/articulated armor. The simulation rig owns essential pose/exposure/crash clocks; independent hover/shake/preset redraw must not alter collision. Presentation may fade/shrink untargetable falling artwork only.
+- Direct manual rays select one surface component or hull. Preserve explicit configured hull spill, center-based quarter-strength blast packets and one distinct-actor rail ledger. AP/critical/status routing must not be applied twice. Automatic direct attacks retain body targeting.
+- Component destruction pays no bounty. Consume part ownership before effects. Critical-engine loss delays the ordinary `Drone.die()` by the configured crash duration; keep it live for wave completion, stop attacks/shields/navigation and pay the existing reward once. Temporary components never write campaign saves.
+- Run component/full regression, fixed-policy combat comparisons, the native component scene through the isolated graphics wrapper, all-archetype/VFX captures and relevant UI regression. Record actual failures/losses, staged fixture state and Android hardware limits; do not weaken earned-campaign assertions to hide balance regressions.

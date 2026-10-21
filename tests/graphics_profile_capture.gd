@@ -4,6 +4,7 @@ extends Node
 var directory := "/tmp/frontline-profile"
 var failures := 0
 var samples: Array[Dictionary] = []
+var component_stress := false
 func check(condition: bool, message: String) -> void:
  if not condition:
   failures += 1
@@ -15,6 +16,8 @@ func distribution(values: Array[float]) -> Dictionary:
  return {"median":values[values.size()/2],"p95":values[mini(values.size()-1,int(values.size()*.95))],"maximum":values.back()}
 func run() -> void:
  for argument in OS.get_cmdline_user_args():
+  if argument == "--component-stress":
+   component_stress = true
   if argument.begins_with("--output="):
    directory = argument.trim_prefix("--output=")
  if DisplayServer.get_name() == "headless":
@@ -35,7 +38,7 @@ func run() -> void:
  for quality in ["low","medium","high"]:
   SaveManager.settings = SaveManager.DEFAULT_SETTINGS.duplicate()
   SaveManager.settings.effects_quality = quality
-  app._play(4)
+  app._play(20 if component_stress else 4)
   await get_tree().process_frame
   var battle: Node2D = app.battle
   battle.set_physics_process(false)
@@ -55,6 +58,10 @@ func run() -> void:
    var enemy: Node2D = battle.spawn_enemy(types[index%types.size()])
    enemy.position = Vector2(100+(index%10)*78,185+(index/10)*41)
    enemy.speed = 0
+   if component_stress and enemy.components != null and index%3 == 0:
+    var engine: Node2D = enemy.components.find("engine_left")
+    if engine != null:
+     engine.receive(engine.health+.001,true,true,{})
   var cpu: Array[float] = []
   var wall: Array[float] = []
   var calls: Array[float] = []
@@ -88,6 +95,6 @@ func run() -> void:
  app.queue_free()
  await get_tree().process_frame
  var report := FileAccess.open(directory.path_join("profile.json"),FileAccess.WRITE)
- report.store_string(JSON.stringify({"renderer":RenderingServer.get_video_adapter_name(),"godot":Engine.get_version_info().string,"fixture":"80 stationary drones, actual weapons/AI, fixed seed 6006, mission 4 storm, 60 warmup + 180 measured frames at dt 1/60","samples":samples,"failures":failures},"  "))
+ report.store_string(JSON.stringify({"renderer":RenderingServer.get_video_adapter_name(),"godot":Engine.get_version_info().string,"fixture":"80 stationary drones; actual weapons/AI; seed6006; 60 warmup +180 measured frames at dt1/60; "+("M20 component stress with staged broken left engines" if component_stress else "M4 storm"),"samples":samples,"failures":failures},"  "))
  print("NATIVE PROFILE: %d presets, %d failures" % [samples.size(),failures])
  get_tree().quit(1 if failures else 0)

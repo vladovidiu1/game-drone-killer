@@ -2,6 +2,9 @@ extends Node2D
 # Presentation-only component. Simulation supplies elapsed delta and snapshots;
 # visual transforms never touch a controller, target, collision shape or input.
 const ASSETS := preload("res://scripts/visual/visual_assets.gd")
+var anchored_components := false
+var component_rotors: Array[int] = []
+var component_weapons: Array[int] = []
 var body: Sprite2D
 var shadow: Sprite2D
 var base: Sprite2D
@@ -111,10 +114,11 @@ func advance(delta: float, health_fraction: float = 1.0, shots: int = 0, upgrade
  damage_state = clampf(1.0-health_fraction,0,1)
  tier = clampi(upgrade_tier,1,3)
  phase_state = phase
- armor_open = move_toward(armor_open,float(phase),delta*2.4)
- for index in armor_panels.size():
-  var panel: Sprite2D = armor_panels[index]
-  panel.position.x = armor_open*9*(-1 if index == 0 else 1)
+ if not anchored_components:
+  armor_open = move_toward(armor_open,float(phase),delta*2.4)
+  for index in armor_panels.size():
+   var panel: Sprite2D = armor_panels[index]
+   panel.position.x = armor_open*9*(-1 if index == 0 else 1)
  reloading = reload_active
  reload_fraction = progress
  heat = maxf(0.0,heat-delta*.16)
@@ -147,7 +151,7 @@ func sync(angle: float, flash: float = 0.0, cloaked: bool = false, suppressed: b
   if barrels != null:
    barrels.position = Vector2(0,maxf(recoil,kick)/float(entry.scale))
  else:
-  body.position = Vector2(0,sin(clock*2.7+float(entry.get("hover_phase",0)))*1.5)
+  body.position = Vector2.ZERO if anchored_components else Vector2(0,sin(clock*2.7+float(entry.get("hover_phase",0)))*1.5)
  var flash_value := clampf(flash/0.12,0,1)
  var visibility_value := .38 if cloaked else 1.0
  var suppression_value := 1.0 if suppressed else 0.0
@@ -165,8 +169,8 @@ func sync(angle: float, flash: float = 0.0, cloaked: bool = false, suppressed: b
  if base != null:
   base.modulate = Color(.58,.65,.75) if suppressed else Color.WHITE
 
-func apply_surface_value(key: String, value: float) -> void:
- # Typed cached values avoid redundant server writes without a per-call lookup.
+func apply_surface_value(key: String, value: Variant) -> void:
+ # Cached scalars and bounded component-mask arrays update the shared materials.
  # Damage, hits, cloak/suppression recovery and boss armor still update instantly.
  surface.set_shader_parameter(key,value)
  for panel in armor_panels:

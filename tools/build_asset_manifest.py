@@ -23,7 +23,7 @@ for path in sorted(assets.rglob('*')):
  relative=path.relative_to(assets).as_posix()
  dimensions=None
  frames=1
- source='Authored locally for G1/G2/G3/G4/G5/G6/M2; editable source in repository'
+ source='Authored locally for G1/G2/G3/G4/G5/G6/M2/M7; editable source in repository'
  license='MIT; assets/ASSET_LICENSE.md'
  status='Integrated'
  purpose=relative.rsplit('/',1)[-1].split('.')[0].replace('_',' ')

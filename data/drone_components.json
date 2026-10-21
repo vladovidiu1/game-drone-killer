@@ -1,0 +1,415 @@
+{
+  "version": 1,
+  "maximum_parts": 7,
+  "crash_seconds": 0.8,
+  "engine_speed_loss": 0.3,
+  "instability_radians": 0.035,
+  "smoke_interval": 0.35,
+  "area_component_fraction": 0.25,
+  "types": {
+    "body": {
+      "name": "Main body",
+      "health": 0,
+      "armor": 0,
+      "damage_multiplier": 1,
+      "hull_transfer": 1,
+      "effect": "body"
+    },
+    "engine": {
+      "name": "Engine",
+      "health": 65,
+      "armor": 0,
+      "damage_multiplier": 1,
+      "hull_transfer": 0.2,
+      "effect": "engine"
+    },
+    "weapon": {
+      "name": "Weapon module",
+      "health": 55,
+      "armor": 0,
+      "damage_multiplier": 1,
+      "hull_transfer": 0.25,
+      "effect": "weapon"
+    },
+    "shield": {
+      "name": "Shield generator",
+      "health": 60,
+      "armor": 0.05,
+      "damage_multiplier": 1.2,
+      "hull_transfer": 0.2,
+      "effect": "shield"
+    },
+    "sensor": {
+      "name": "Sensor module",
+      "health": 35,
+      "armor": 0,
+      "damage_multiplier": 1.1,
+      "hull_transfer": 0.2,
+      "effect": "sensor"
+    },
+    "core": {
+      "name": "Energy core",
+      "health": 120,
+      "armor": 0,
+      "damage_multiplier": 2.5,
+      "hull_transfer": 1,
+      "effect": "core",
+      "burst_fraction": 0.1,
+      "wreck_vulnerable": true
+    }
+  },
+  "loadouts": {
+    "heavy": [
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 4,
+        "critical_from": 11
+      },
+      {
+        "id": "weapon",
+        "type": "weapon",
+        "from_mission": 6
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11
+      },
+      {
+        "id": "core",
+        "type": "core",
+        "from_mission": 16
+      }
+    ],
+    "assault": [
+      {
+        "id": "weapon",
+        "type": "weapon",
+        "from_mission": 6,
+        "health": 40
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11,
+        "health": 40
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11,
+        "health": 40
+      }
+    ],
+    "shield": [
+      {
+        "id": "generator",
+        "type": "shield",
+        "from_mission": 6
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11
+      }
+    ],
+    "emp": [
+      {
+        "id": "weapon",
+        "type": "weapon",
+        "from_mission": 6
+      },
+      {
+        "id": "sensor",
+        "type": "sensor",
+        "from_mission": 11
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11
+      }
+    ],
+    "sniper": [
+      {
+        "id": "weapon",
+        "type": "weapon",
+        "from_mission": 6
+      },
+      {
+        "id": "sensor",
+        "type": "sensor",
+        "from_mission": 11
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11
+      }
+    ],
+    "carrier": [
+      {
+        "id": "weapon",
+        "type": "weapon",
+        "from_mission": 11,
+        "attacks": [
+          "spawn"
+        ],
+        "name": "Launch bay",
+        "health": 90
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11,
+        "health": 85
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11,
+        "health": 85
+      },
+      {
+        "id": "core",
+        "type": "core",
+        "from_mission": 16
+      }
+    ],
+    "bomber": [
+      {
+        "id": "weapon",
+        "type": "weapon",
+        "from_mission": 11,
+        "name": "Bomb rack"
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11
+      }
+    ],
+    "stealth": [
+      {
+        "id": "sensor",
+        "type": "sensor",
+        "from_mission": 11,
+        "name": "Cloaking sensor"
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11,
+        "health": 40
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "critical_from": 11,
+        "health": 40
+      }
+    ],
+    "assault_carrier": [
+      {
+        "id": "core",
+        "type": "core",
+        "from_mission": 5,
+        "health_fraction": 0.3
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 5,
+        "health_fraction": 0.23,
+        "critical_from": 11
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "health_fraction": 0.23,
+        "critical_from": 11
+      },
+      {
+        "id": "weapon",
+        "type": "weapon",
+        "from_mission": 6,
+        "health_fraction": 0.15
+      }
+    ],
+    "emp_warship": [
+      {
+        "id": "core",
+        "type": "core",
+        "from_mission": 5,
+        "health_fraction": 0.3
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 5,
+        "health_fraction": 0.23,
+        "critical_from": 11
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "health_fraction": 0.23,
+        "critical_from": 11
+      },
+      {
+        "id": "weapon",
+        "type": "weapon",
+        "from_mission": 6,
+        "health_fraction": 0.15
+      },
+      {
+        "id": "generator",
+        "type": "shield",
+        "from_mission": 10,
+        "health_fraction": 0.12
+      }
+    ],
+    "border_guardian": [
+      {
+        "id": "core",
+        "type": "core",
+        "from_mission": 5,
+        "health_fraction": 0.3
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 5,
+        "health_fraction": 0.23,
+        "critical_from": 11
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "health_fraction": 0.23,
+        "critical_from": 11
+      },
+      {
+        "id": "weapon",
+        "type": "weapon",
+        "from_mission": 6,
+        "health_fraction": 0.15
+      }
+    ],
+    "factory_ship": [
+      {
+        "id": "core",
+        "type": "core",
+        "from_mission": 5,
+        "health_fraction": 0.3
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 5,
+        "health_fraction": 0.23,
+        "critical_from": 11
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "health_fraction": 0.23,
+        "critical_from": 11
+      },
+      {
+        "id": "weapon",
+        "type": "weapon",
+        "from_mission": 6,
+        "health_fraction": 0.15
+      },
+      {
+        "id": "generator",
+        "type": "shield",
+        "from_mission": 10,
+        "health_fraction": 0.12
+      }
+    ],
+    "hive_core": [
+      {
+        "id": "core",
+        "type": "core",
+        "from_mission": 5,
+        "health_fraction": 0.3
+      },
+      {
+        "id": "engine_left",
+        "type": "engine",
+        "from_mission": 5,
+        "health_fraction": 0.23,
+        "critical_from": 11
+      },
+      {
+        "id": "engine_right",
+        "type": "engine",
+        "from_mission": 11,
+        "health_fraction": 0.23,
+        "critical_from": 11
+      },
+      {
+        "id": "weapon",
+        "type": "weapon",
+        "from_mission": 6,
+        "health_fraction": 0.15
+      },
+      {
+        "id": "generator",
+        "type": "shield",
+        "from_mission": 10,
+        "health_fraction": 0.12
+      }
+    ]
+  },
+  "late_armor_from": 16,
+  "late_armor": 0.25,
+  "core_windows": {
+    "from_mission": 16,
+    "period": 8.0,
+    "open_seconds": 6.0
+  },
+  "sensor_range_multiplier": 0.55
+}

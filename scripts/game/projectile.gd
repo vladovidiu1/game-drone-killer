@@ -1,5 +1,7 @@
 extends Node2D
 var battle: Node2D
+var precision_critical := false
+var hit_component: Node2D
 var target: Node2D
 var destination := Vector2.ZERO
 var damage := 0.0
@@ -68,13 +70,25 @@ func precision_point(enemy: Node2D) -> Vector2:
   return Geometry2D.get_closest_point_to_segment(enemy.brain.weakpoint(),position-direction*100,position+direction*100)
  return destination
 
-func damage_for(enemy: Node2D) -> float:
- return damage*damage_scale*(armor_multiplier if enemy.armored else 1.0)
+func damage_for(enemy: Node2D, component: Node2D = null) -> float:
+ var armored: bool = enemy.armored or (component != null and float(component.definition.get("armor",0)) > 0)
+ return damage*damage_scale*(armor_multiplier if armored else 1.0)
 
-func apply_payload(enemy: Node2D, direct_manual: bool) -> void:
- if enemy.ended:
+func apply_payload(enemy: Node2D, direct_manual: bool, area: bool = false) -> void:
+ precision_critical = false # per impact, not inherited by the next penetrated actor
+ if enemy.ended or (enemy.components != null and enemy.components.falling):
   return
- enemy.hit(damage_for(enemy),direct_manual,manual and armor_multiplier > 1.0,precision_point(enemy),payload)
+ var piercing: bool = manual and armor_multiplier > 1.0
+ if direct_manual and not area and is_instance_valid(hit_component) and hit_component.kind != "body":
+  precision_critical = hit_component.kind == "core" and hit_component.open()
+  hit_component.receive(damage_for(enemy,hit_component),true,piercing,payload)
+  if precision_critical:
+   battle.view.combat_fx.particle("critical",destination,Vector2.ZERO,.28,26,Color("ffcf83"))
+ else:
+  var point := Vector2.INF if area and enemy.components != null else precision_point(enemy)
+  enemy.hit(damage_for(enemy),direct_manual,piercing,point,payload)
+ if area and enemy.components != null and not enemy.ended:
+  enemy.components.area(damage*damage_scale,destination,splash_radius,piercing,payload)
  if not enemy.ended:
   if float(payload.get("disable_duration",0)) > 0:
    enemy.apply_disable(float(payload.disable_duration))
@@ -87,23 +101,32 @@ func _tick_manual(delta: float) -> void:
  while travel > .00001 and not consumed:
   var first_distance := travel+1.0
   var victim: Node2D = null
+  var component: Node2D = null
   for enemy in battle.drones.get_children():
-   if enemy.ended or hit_ids.has(enemy.get_instance_id()):
+   if enemy.ended or hit_ids.has(enemy.get_instance_id()) or (enemy.components != null and enemy.components.falling):
     continue
-   var relative: Vector2 = position-enemy.position
-   var b := relative.dot(direction)
-   var c: float = relative.length_squared()-pow(radius*enemy.body_scale,2)
-   var discriminant := b*b-c
-   if discriminant < 0:
-    continue
-   var entry := -b-sqrt(discriminant)
-   var exit_distance := -b+sqrt(discriminant)
-   if exit_distance < 0 or entry > travel:
-    continue
-   var distance := maxf(0.0,entry)
-   if distance < first_distance:
+   var distance := INF
+   var selected_component: Node2D = null
+   if enemy.components != null:
+    var contact: Dictionary = enemy.components.contact(position,direction,range_remaining)
+    distance = float(contact.distance)
+    selected_component = contact.component
+   else:
+    var relative: Vector2 = position-enemy.position
+    var b := relative.dot(direction)
+    var c: float = relative.length_squared()-pow(radius*enemy.body_scale,2)
+    var discriminant := b*b-c
+    if discriminant < 0:
+     continue
+    var entry := -b-sqrt(discriminant)
+    var exit_distance := -b+sqrt(discriminant)
+    if exit_distance < 0:
+     continue
+    distance = maxf(0.0,entry)
+   if distance <= travel and distance < first_distance:
     first_distance = distance
     victim = enemy
+    component = selected_component
   var step := first_distance if victim != null else travel
   position += direction*step
   range_remaining -= step
@@ -111,6 +134,7 @@ func _tick_manual(delta: float) -> void:
   if victim != null:
    destination = position
    target = victim
+   hit_component = component
    impact()
   else:
    break

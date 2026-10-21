@@ -98,7 +98,11 @@ func run() -> void:
   var enemy: Node2D = battle.spawn_enemy("heavy")
   enemy.position = turret.position+Vector2(0,-140)
   enemy.speed = 0
-  await step(battle,.05)
+  # M1 introduced real acquisition/turn delay; wait for the first real shot.
+  for frame in 120:
+   if turret.shots_fired > 0:
+    break
+   await step(battle,1.0/60)
   check(turret.shots_fired > 0,"Actual automatic firing event")
   await capture("weapon_"+str(kind)+"_fire")
   if kind not in ["laser","emp_tower"]:

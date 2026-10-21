@@ -1,0 +1,16 @@
+{
+  "method": "unaltered native Godot viewport PNGs, no raster editing or compositing",
+  "source_scene": "res://tests/component_capture.tscn",
+  "command": "DISPLAY=:91 LIBGL_ALWAYS_SOFTWARE=1 FRONTLINE_CAPTURE_SCENE=res://tests/component_capture.tscn ./tests/run_graphics_profile.sh /tmp/m7-native-final",
+  "source_commit_before_changes": "4171232e3597985940f19a0e520fa677a655349f",
+  "fixture": "M20 access and stationary units staged; no BC or research injection; real mouse intentions, manual magazine/projectiles, paid MG, real crash/reward; final boss HP set to60% for phase presentation; M12 Heavy follows actual final path segment at normal speed with staged0.24rad pose and assisted mouse lead; no Android hardware",
+  "retained_frames": {
+    "target_1600x720.png": "c75de8dccefa7afa441f350968f742796023dec0bcf8402c268e6ae494d69a8b",
+    "moving_rotated_engine.png": "36f14291dc0a9f072fa3afaf09ac431c97dbbd555fb4bfd28fb653c86a8475fb",
+    "boss_core_closed.png": "6d4a19f14542c06f2be59f1f1ea1995d04de99d8ae1d74a594c1e32ed1ce8109",
+    "boss_core_open.png": "eacf361010e51a74b16fbaeef519ae6d12f1e6dc067aa1340c4e316738f24cae",
+    "crashing_1024x768.png": "b388bc33169d10aa9512359ac6824da3c352e67553072cf2a4acdfff93500901",
+    "engine_disabled_1280x720.png": "963f3bcd187b51cc14678dd0fb55c3c3677285418b9bf977863175b8fa523924",
+    "shield_destroyed_1280x600.png": "3d2773313ececc4f07c95ab2027af1b7692b3b018774fab21d076729b273ef66"
+  }
+}

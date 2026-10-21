@@ -3,6 +3,8 @@ signal breached(damage: int)
 signal destroyed(reward: int)
 signal damaged(at: Vector2)
 const ASSETS := preload("res://scripts/visual/visual_assets.gd")
+var component_markers: Node2D
+var components: RefCounted
 var art: Node2D
 var health := 40.0
 var maximum_health := 40.0
@@ -60,6 +62,11 @@ func configure(data: Dictionary, path: Array, identity: int) -> void:
 func tick(delta: float) -> void:
  if ended:
   return
+ if components != null:
+  components.tick(delta)
+  if ended or components.falling:
+   queue_redraw()
+   return
  phase += delta * 15
  hit_flash = maxf(0.0,hit_flash-delta)
  if brain != null and brain.tick(delta):
@@ -74,6 +81,7 @@ func tick(delta: float) -> void:
  if brain != null:
   var start: float = brain.elapsed-delta+disabled_time
   travel = speed*(brain.movement_time(start,start+slowed_time)*slow_factor+brain.movement_time(start+slowed_time,brain.elapsed))
+ travel *= components.speed_multiplier() if components != null else 1.0
  disable_remaining = maxf(0.0,disable_remaining-delta)
  slow_remaining = maxf(0.0,slow_remaining-delta)
  if slow_remaining <= 0:
@@ -101,26 +109,45 @@ func apply_disable(duration: float) -> void:
  disable_remaining = maxf(disable_remaining,duration*(1.0-resistance_value("emp")))
 
 func automatically_targetable() -> bool:
- return brain == null or not brain.cloaked()
+ return (components == null or not components.falling) and (brain == null or not brain.cloaked())
 
 func hit(amount: float, manual: bool = false, armor_piercing: bool = false, point: Vector2 = Vector2.INF, traits: Dictionary = {}) -> void:
  if ended or amount <= 0:
   return
  if brain != null:
   amount *= brain.damage_multiplier(manual,armor_piercing,point,traits)
+ apply_body_damage(amount)
+
+func apply_body_damage(amount: float) -> void:
+ if ended or amount <= 0:
+  return
  health = maxf(0.0,health-amount)
  hit_flash = 0.12
  damaged.emit(position)
- if health <= 0:
-  ended = true
-  destroyed.emit(reward)
-  queue_free()
+ if health <= 0 and (components == null or not components.falling):
+  die()
  queue_redraw()
+
+func die() -> void:
+ if ended:
+  return
+ health = 0
+ ended = true
+ if components != null:
+  var body: Node2D = components.find("body")
+  if body != null and not body.broken:
+   body.broken = true
+   body.destroyed.emit(body)
+ destroyed.emit(reward)
+ queue_free()
+
+func effective_speed() -> float:
+ return speed*(components.speed_multiplier() if components != null else 1.0)
 
 func _draw() -> void:
  if is_instance_valid(art):
-  art.sync(0.0,hit_flash,brain != null and brain.cloaked(),disable_remaining > 0)
- if brain != null:
+  art.sync(components.pose_angle if components != null else 0.0,hit_flash,brain != null and brain.cloaked(),disable_remaining > 0)
+ if brain != null and (components == null or not components.falling):
   _draw_ability()
  if disable_remaining > 0 or slow_remaining > 0:
   draw_arc(Vector2.ZERO,34*body_scale,0,TAU,24,Color("acbbff"),2)
@@ -131,10 +158,10 @@ func _draw() -> void:
 func _draw_ability() -> void:
  if brain.burst_warning():
   draw_arc(Vector2.ZERO,27*body_scale,PI,TAU,16,Color("FF9C42"),2)
- if brain.data.has("aura_radius") and disable_remaining <= 0:
+ if brain.data.has("aura_radius") and brain.shield_active():
   draw_circle(Vector2.ZERO,float(brain.data.aura_radius),Color(0.3,0.9,1,0.06))
   draw_arc(Vector2.ZERO,float(brain.data.aura_radius),0,TAU,40,Color(0.3,0.9,1,0.35),2)
- if brain.boss:
+ if brain.boss and components == null:
   var core: Vector2 = brain.weakpoint()-position
   draw_circle(core,14,Color("102535"))
   draw_arc(core,14,0,TAU,24,Color("66ffff"),3)

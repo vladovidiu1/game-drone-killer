@@ -1,0 +1,42 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+CAPTURE: main_menu_no_save
+CAPTURE: main_menu_campaign
+CAPTURE: campaign_outpost
+CAPTURE: mission_briefing
+CAPTURE: campaign_conquest
+CAPTURE: campaign_counterattack
+CAPTURE: campaign_final_offensive
+CAPTURE: arsenal_primary
+CAPTURE: arsenal_automatic
+CAPTURE: arsenal_research
+CAPTURE: arsenal_abilities
+CAPTURE: research_confirmation
+CAPTURE: research_purchased
+CAPTURE: settings
+CAPTURE: battle_hud_live
+CAPTURE: battle_hud_build
+CAPTURE: battle_hud_upgrade
+CAPTURE: battle_hud_reload
+CAPTURE: battle_hud_overclock
+CAPTURE: battle_hud_pause
+CAPTURE: battle_build_1600x720
+CAPTURE: battle_build_1280x600
+CAPTURE: battle_build_1024x768
+CAPTURE: defeat_results
+CAPTURE: campaign_after_defeat
+CAPTURE: victory_results
+CAPTURE: campaign_1600x720
+CAPTURE: arsenal_1600x720
+CAPTURE: menu_1600x720
+CAPTURE: campaign_1280x600
+CAPTURE: arsenal_1280x600
+CAPTURE: menu_1280x600
+CAPTURE: campaign_1024x768
+CAPTURE: arsenal_1024x768
+CAPTURE: menu_1024x768
+CAPTURE: campaign_reduced_motion
+NATIVE G5 UI: 36 captures, 0 failures

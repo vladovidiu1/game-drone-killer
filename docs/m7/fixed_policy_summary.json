@@ -1,0 +1,28 @@
+{
+  "automatic": {
+    "wins": 1,
+    "count": 6
+  },
+  "hybrid": {
+    "wins": 6,
+    "count": 6
+  },
+  "manual_only": {
+    "wins": 2,
+    "count": 6
+  },
+  "two_cannon": {
+    "wins": 1,
+    "count": 6
+  },
+  "two_mg": {
+    "wins": 1,
+    "count": 6
+  },
+  "two_mixed": {
+    "wins": 1,
+    "count": 25
+  },
+  "unfinished": 0,
+  "peak_enemies": 23
+}
