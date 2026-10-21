@@ -131,10 +131,10 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5/G6; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
-      "sha256": "07e04b7a9fc3e187299f944ace9d8e1eefd45eb0fde637831cd4c6fb84947779"
+      "sha256": "01fd0bac0bdf0adc98b304916e3410e939509701a68b1ce251fbf2a0a3902b78"
     },
     {
       "filename": "effects/soft_shadow.svg",
@@ -219,7 +219,7 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5/G6; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
       "sha256": "633d14eebc38aff9744072a96969349eec481e71045fd5448c49505f91457e36"
@@ -369,7 +369,7 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5/G6; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
       "sha256": "bd7453bb66170631bac8b5c530352fca6f56fd0bce4c24385dbcef759c42b655"
@@ -381,7 +381,7 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5/G6; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
       "sha256": "c5cb7e28b4a72d280f3874e4d6a31b4aec2ae949740d0bbf359431d3c4e63495"
@@ -393,7 +393,7 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5/G6; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
       "sha256": "de0721a3dc8031b98e2cef2d0839fb7d151d5f00d0045785f1b55886eccb00c0"
@@ -405,7 +405,7 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5/G6; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
       "sha256": "b87d304b06fc2bfcf67d3449267c72633921766b932db0c5ddf0bb862fc52136"
@@ -732,7 +732,7 @@
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
       "source_or_generation_method": "tools/build_strategic_map.py",
       "license": "MIT; assets/ASSET_LICENSE.md",
-      "integration_status": "Integrated",
+      "integration_status": "Available UI kit resource; not currently placed",
       "sha256": "0017c6ed2949c443cbbebd7b5a820847e6082a025e7075b6a72fac5e47bc2c6f"
     },
     {
@@ -807,7 +807,7 @@
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
       "source_or_generation_method": "tools/generate_visual_vectors.py",
       "license": "MIT; assets/ASSET_LICENSE.md",
-      "integration_status": "Available UI kit resource; not currently placed",
+      "integration_status": "Integrated",
       "sha256": "efae1b31184648fe4e9f0f3fc610f910876c8e41a5bbfbb3c209377816b68fad"
     },
     {
@@ -882,7 +882,7 @@
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
       "source_or_generation_method": "tools/build_strategic_map.py",
       "license": "MIT; assets/ASSET_LICENSE.md",
-      "integration_status": "Integrated",
+      "integration_status": "Available UI kit resource; not currently placed",
       "sha256": "10e3d14765db2d6b86b809ba0e79100ee72b85e2074e713185fdda22a3e8dd58"
     },
     {
@@ -897,7 +897,7 @@
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
       "source_or_generation_method": "tools/generate_visual_vectors.py",
       "license": "MIT; assets/ASSET_LICENSE.md",
-      "integration_status": "Available UI kit resource; not currently placed",
+      "integration_status": "Integrated",
       "sha256": "27afcc8898143a328a0369fcf31e71d77447d8fe3d04630dc9151091b8bd8a3e"
     },
     {
@@ -1057,7 +1057,7 @@
       "animation_frames": 1,
       "frame_semantics": "Static or parameter-driven",
       "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
-      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5; editable source in repository",
+      "source_or_generation_method": "Authored locally for G1/G2/G3/G4/G5/G6; editable source in repository",
       "license": "MIT; assets/ASSET_LICENSE.md",
       "integration_status": "Integrated",
       "sha256": "48245bb648e372f85660833af35285cacb592ab86f409aa0063c25af93fe3622"

@@ -2,7 +2,7 @@
 
 A native Godot 4 game foundation for an offline Android-first defense campaign. Command Sentinel-7 against the Varkon Empire in Asteria. All 25 campaign territories are playable. Five chapter bosses, shield/EMP/sniper/carrier/stealth behaviors, environmental pressure and a persistent finale extend the existing manual cannon, six automatic defenses, ammunition, research and tactical abilities. See [campaign design and validation](docs/CAMPAIGN.md). Graphics G1 adds original generated key art, rendered drone/weapon sprites, Outpost Alpha terrain, animated explosions, a reusable military UI theme and locally bundled fonts. See [VISUAL_STYLE.md](VISUAL_STYLE.md), the [asset manifest](assets/manifest.json) and [native visual validation](docs/VISUAL_VALIDATION.md).
 
-Latest graphics increment: **G5 tactical UI** adds a pannable strategic map, illustrated research cards, cinematic menu atmosphere and compact battle telemetry. See the [current native gallery](docs/ui/README.md) and [validation](docs/ui/VALIDATION.md). G4 combat effects and their quality/accessibility controls remain integrated.
+Latest graphics increment: **G6 visual audit and optimization** unifies Low / Medium / High across weather, additional shadows, decor, menu atmosphere and combat VFX. It fixes HUD draw order and removes the mission-title plate from drone entry lanes. See the [audit and measured limits](GRAPHICS_AUDIT.md), [current native gallery](docs/audit/README.md), [asset inventory](ASSET_MANIFEST.md) and [physical Android checklist](ANDROID_VISUAL_TEST_CHECKLIST.md). Generated artwork still awaits final art approval; Android frame rate has not been measured.
 
 ## Download
 

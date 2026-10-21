@@ -1,5 +1,7 @@
 # Combat effects G4
 
+G6 update: [the unified graphics policy and audit](../GRAPHICS_AUDIT.md) supersedes earlier independent preset/environment budgets. Existing captures below document their original increment.
+
 G4 extends the existing top-down game. Real shot, impact, death, status and reload events feed presentation snapshots. Weapon statistics, hit geometry, damage/reward ownership, targeting, enemy AI, wave data and campaign transactions remain in their existing systems. See the [native gallery and validation](effects/README.md).
 
 ## Scene and ownership

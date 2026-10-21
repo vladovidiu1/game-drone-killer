@@ -91,7 +91,8 @@ func paint_effects(canvas: CanvasItem) -> void:
     continue
    var frame := ASSETS.explosion_frame(mini(5,int(fraction*6)))
    var diameter := maxf(28.0,float(item.radius)*2.5)
-   canvas.draw_texture_rect(ASSETS.texture("effects/soft_shadow.svg"),Rect2(item.point-Vector2(diameter*.5,diameter*.15),Vector2(diameter,diameter*.4)),false,Color(1,1,1,1-fraction))
+   if float(combat_fx.profile.shadow_strength) > 0:
+    canvas.draw_texture_rect(ASSETS.texture("effects/soft_shadow.svg"),Rect2(item.point-Vector2(diameter*.5,diameter*.15),Vector2(diameter,diameter*.4)),false,Color(1,1,1,(1-fraction)*float(combat_fx.profile.shadow_strength)))
    canvas.draw_texture_rect(frame,Rect2(item.point-Vector2.ONE*diameter*.5,Vector2.ONE*diameter),false,Color(1,1,1,1.0-smoothstep(0.6,1.0,fraction)))
   elif item.kind == "pulse":
    var radius: float = float(item.radius)*(1.0 if combat_fx.motion else fraction)
@@ -128,9 +129,8 @@ func _draw() -> void:
   draw_line(Vector2(-28,0),Vector2(28,0),Color("ee8f71"),3)
   draw_colored_polygon(PackedVector2Array([Vector2(-8,9),Vector2(8,9),Vector2(0,19)]),Color("ee8f71"))
   draw_set_transform(Vector2.ZERO)
- draw_rect(Rect2(26,98,320,54),Color(0.05,0.075,0.1,0.85))
- text(Vector2(38,118),str(terrain.get("label","VARKON AIR CORRIDORS")),Color("98acbb"),14)
- text(Vector2(38,142),"%s / %02d" % [str(battle.mission_data.name).to_upper(),int(battle.mission_id)],Color("E9F0F6"),18)
+ # Mission identity lives in native HUD; incoming drones never share an
+ # opaque title plate or compete with its text inside the flight corridor.
  for index in battle.slots.size():
   var point: Vector2 = battle.slots[index]
   var chosen: bool = index == battle.selected_slot

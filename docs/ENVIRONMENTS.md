@@ -1,5 +1,7 @@
 # G2 battlefield environment library
 
+G6 update: [the unified graphics policy and audit](../GRAPHICS_AUDIT.md) supersedes earlier independent preset/environment budgets. Existing captures below document their original increment.
+
 G2 replaces the old flat-color/procedural arenas in the existing game with 13 reusable illustrated terrain kits, six layered prop types and five atmosphere profiles. All 25 territories use this library. The first five are an outpost, a rural village at sunset, a supply yard, a damaged river bridge in rain and a smoke-filled town. These are integrated original generated art candidates; final commercial art approval remains outstanding.
 
 ## Runtime composition

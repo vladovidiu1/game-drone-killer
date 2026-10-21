@@ -21,6 +21,7 @@ func annotate(text: String) -> void:
  label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  label.position = Vector2(954,260)
  label.size = Vector2(275,150)
+ label.z_index = 11 # Keep fixture disclosure above the production HUD.
  label.mouse_filter = Control.MOUSE_FILTER_IGNORE
  app.add_child(label)
  label.name = "CaptureLabel"

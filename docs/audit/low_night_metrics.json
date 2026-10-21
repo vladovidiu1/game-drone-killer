@@ -1,0 +1,17 @@
+[
+  {
+    "capture": "mission_06",
+    "draw_calls": 129.0,
+    "quality": "low"
+  },
+  {
+    "capture": "mission_18",
+    "draw_calls": 146.0,
+    "quality": "low"
+  },
+  {
+    "capture": "settings",
+    "draw_calls": 31.0,
+    "quality": "low"
+  }
+]

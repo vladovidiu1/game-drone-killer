@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-21",
+  "godot": "4.6.3 stable",
+  "assertions": 7332,
+  "suite_invocations": 23,
+  "failures": 0,
+  "results": [
+    {
+      "suite": "COMBAT",
+      "checks": 40,
+      "failures": 0
+    },
+    {
+      "suite": "HYBRID",
+      "checks": 55,
+      "failures": 0
+    },
+    {
+      "suite": "SMOKE",
+      "checks": 42,
+      "failures": 0
+    },
+    {
+      "suite": "SMOKE",
+      "checks": 4,
+      "failures": 0
+    },
+    {
+      "suite": "SAVE/RULES",
+      "checks": 38,
+      "failures": 0
+    },
+    {
+      "suite": "CAMPAIGN",
+      "checks": 43,
+      "failures": 0
+    },
+    {
+      "suite": "CAMPAIGN",
+      "checks": 5,
+      "failures": 0
+    },
+    {
+      "suite": "RESEARCH",
+      "checks": 186,
+      "failures": 0
+    },
+    {
+      "suite": "RESEARCH",
+      "checks": 4,
+      "failures": 0
+    },
+    {
+      "suite": "GRAPHICS AUDIT",
+      "checks": 810,
+      "failures": 0
+    },
+    {
+      "suite": "GRAPHICS AUDIT",
+      "checks": 2,
+      "failures": 0
+    },
+    {
+      "suite": "TACTICAL UI",
+      "checks": 193,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT VFX",
+      "checks": 310,
+      "failures": 0
+    },
+    {
+      "suite": "COMBAT VFX",
+      "checks": 2,
+      "failures": 0
+    },
+    {
+      "suite": "VISUAL FOUNDATION",
+      "checks": 452,
+      "failures": 0
+    },
+    {
+      "suite": "UNIT VISUALS",
+      "checks": 195,
+      "failures": 0
+    },
+    {
+      "suite": "ENVIRONMENTS",
+      "checks": 946,
+      "failures": 0
+    },
+    {
+      "suite": "ENVIRONMENTS",
+      "checks": 2,
+      "failures": 0
+    },
+    {
+      "suite": "CATALOG",
+      "checks": 3689,
+      "failures": 0
+    },
+    {
+      "suite": "ENEMY AI",
+      "checks": 88,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "checks": 184,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "checks": 31,
+      "failures": 0
+    },
+    {
+      "suite": "FULL CAMPAIGN",
+      "checks": 11,
+      "failures": 0
+    }
+  ],
+  "balance_records_unchanged": 28,
+  "comparison_records_unchanged": 2
+}

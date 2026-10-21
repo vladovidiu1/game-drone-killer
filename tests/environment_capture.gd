@@ -5,6 +5,9 @@ var app: Control
 var directory := "user://g2-captures"
 var failures := 0
 var shots := 0
+var quality := "high"
+var mission_ids: Array[int] = []
+var metrics: Array[Dictionary] = []
 
 func check(value: bool, message: String) -> void:
  if not value:
@@ -22,11 +25,17 @@ func capture(filename: String) -> void:
  if picture != null and not picture.is_empty():
   check(picture.save_png(directory.path_join(filename+".png")) == OK,"Capture writes successfully")
   print("CAPTURE: "+filename)
+  metrics.append({"capture":filename,"draw_calls":Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),"quality":quality})
 
 func run() -> void:
  for argument in OS.get_cmdline_user_args():
   if argument.begins_with("--output="):
    directory = argument.trim_prefix("--output=")
+  elif argument.begins_with("--quality="):
+   quality = argument.trim_prefix("--quality=")
+  elif argument.begins_with("--missions="):
+   for id in argument.trim_prefix("--missions=").split(","):
+    mission_ids.append(int(id))
  check(DisplayServer.get_name() != "headless","Native environment capture requires a display, not dummy headless")
  if failures:
   get_tree().quit(1)
@@ -38,10 +47,14 @@ func run() -> void:
  SaveManager.state.frontline = 25
  SaveManager.state.highest = 25
  SaveManager.settings.reduced_environment_effects = false
+ SaveManager.settings.effects_quality = quality
  app = preload("res://scenes/main.tscn").instantiate()
  add_child(app)
  await get_tree().process_frame
- for mission_id in range(1,26):
+ if mission_ids.is_empty():
+  for id in range(1,26):
+   mission_ids.append(id)
+ for mission_id in mission_ids:
   app._play(mission_id)
   await get_tree().process_frame
   var battle: Node2D = app.battle
@@ -86,5 +99,7 @@ func run() -> void:
  await capture("settings")
  app.queue_free()
  await get_tree().process_frame
- print("NATIVE ENVIRONMENTS: 25 missions, %d real manual shots, %d failures" % [shots,failures])
+ var report := FileAccess.open(directory.path_join("render_metrics.json"),FileAccess.WRITE)
+ report.store_string(JSON.stringify(metrics,"  "))
+ print("NATIVE ENVIRONMENTS: %d missions, %d real manual shots, %d failures" % [mission_ids.size(),shots,failures])
  get_tree().quit(1 if failures else 0)

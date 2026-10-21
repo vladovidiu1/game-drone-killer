@@ -6,7 +6,15 @@
     "debris": 6,
     "lights": 3,
     "emissions_per_tick": 12,
-    "explosions": 4
+    "explosions": 4,
+    "environment_particles": 0,
+    "haze_layers": 0,
+    "props": 8,
+    "shadow_strength": 0.0,
+    "environment_lights": false,
+    "environment_hz": 15,
+    "unit_overlay_hz": 20,
+    "menu_particles": 0
   },
   "medium": {
     "particles": 112,
@@ -15,7 +23,15 @@
     "debris": 16,
     "lights": 6,
     "emissions_per_tick": 28,
-    "explosions": 8
+    "explosions": 8,
+    "environment_particles": 16,
+    "haze_layers": 2,
+    "props": 10,
+    "shadow_strength": 0.65,
+    "environment_lights": true,
+    "environment_hz": 30,
+    "unit_overlay_hz": 30,
+    "menu_particles": 8
   },
   "high": {
     "particles": 192,
@@ -24,6 +40,14 @@
     "debris": 24,
     "lights": 8,
     "emissions_per_tick": 48,
-    "explosions": 12
+    "explosions": 12,
+    "environment_particles": 32,
+    "haze_layers": 4,
+    "props": 14,
+    "shadow_strength": 1.0,
+    "environment_lights": true,
+    "environment_hz": 60,
+    "unit_overlay_hz": 60,
+    "menu_particles": 18
   }
 }

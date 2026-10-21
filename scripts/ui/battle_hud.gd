@@ -25,6 +25,7 @@ var wave_row: HBoxContainer
 
 func setup(simulation: Node2D) -> void:
  battle = simulation
+ z_index = 10
  mouse_filter = Control.MOUSE_FILTER_IGNORE
  add_theme_constant_override("separation",10)
  var top := HBoxContainer.new()
@@ -135,7 +136,13 @@ func setup(simulation: Node2D) -> void:
  bottom.mouse_filter = Control.MOUSE_FILTER_IGNORE
  add_child(bottom)
  bottom.add_child(UI.button("Abort mission",func(): abort_requested.emit(),Vector2(170,46)))
- bottom.add_child(UI.label("   LEFT DRAG: AIM • HOLD FIRE • BUILD: 0.25x" if OS.has_feature("mobile") else "   AIM + HOLD LMB • R: RELOAD • BUILD: 0.25x",16,UI.MUTED))
+ var input_hint := UI.label("LEFT DRAG: AIM • HOLD FIRE • BUILD: 0.25x" if OS.has_feature("mobile") else "AIM + HOLD LMB • R: RELOAD • BUILD: 0.25x",14,UI.MUTED)
+ input_hint.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+ input_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ bottom.add_child(input_hint)
+ var operation := UI.label("%02d / %s" % [battle.mission_id,str(battle.mission_data.name).to_upper()],16,UI.CYAN)
+ operation.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+ bottom.add_child(operation)
  battle.player_controls.ui_hit_test = blocks_pointer
  resized.connect(_layout)
  battle.status_changed.connect(refresh)

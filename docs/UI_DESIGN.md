@@ -1,5 +1,7 @@
 # G5 tactical interface and campaign map
 
+G6 update: [the unified graphics policy and audit](../GRAPHICS_AUDIT.md) supersedes earlier independent preset/environment budgets. Existing captures below document their original increment.
+
 G5 extends the existing Godot game with native interactive Controls. Campaign state, combat controllers, economy, save schema and all gameplay data retain their existing ownership. The [native gallery](ui/README.md) and [validation](ui/VALIDATION.md) show real rendered screens and describe staged fixtures.
 
 ## Shared visual language

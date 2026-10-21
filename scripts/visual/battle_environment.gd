@@ -15,6 +15,8 @@ var particles: Array[Vector3] = []
 var prop_frames: Dictionary = {}
 var elapsed := 0.0
 var reduced := false
+var graphics: Dictionary
+var redraw_remaining := 0.0
 var pool: Texture2D = preload("res://assets/environment/light_pool.svg")
 var cone: Texture2D = preload("res://assets/environment/searchlight_cone.svg")
 var wisp: Texture2D = preload("res://assets/environment/smoke_wisp.svg")
@@ -30,7 +32,8 @@ func setup(mission: Dictionary) -> void:
  assignment = LIBRARY.missions[str(int(mission.id))]
  profile = LIBRARY.profiles[assignment.profile]
  kit = LIBRARY.types[assignment.type]
- reduced = bool(SaveManager.settings.get("reduced_environment_effects",false)) or bool(SaveManager.settings.get("reduced_motion",false)) or bool(SaveManager.settings.get("reduced_effects",false))
+ graphics = preload("res://scripts/visual/graphics_profile.gd").resolve(SaveManager.settings)
+ reduced = not bool(graphics.environment_animated)
  terrain = Sprite2D.new()
  terrain.name = "TerrainPlate"
  terrain.centered = false
@@ -68,9 +71,9 @@ func setup(mission: Dictionary) -> void:
   if crowded:
    continue
   decorations.append({"point":point,"radius":radius,"kind":kit.props[decorations.size()%kit.props.size()]})
-  if decorations.size() == MAX_PROPS:
+  if decorations.size() == mini(MAX_PROPS,int(graphics.props)):
    break
- for index in mini(MAX_PARTICLES,int(profile.particles)):
+ for index in mini(int(graphics.environment_particles),mini(MAX_PARTICLES,int(profile.particles))):
   particles.append(Vector3(rng.randf_range(0,955),rng.randf_range(0,560),rng.randf_range(0.4,1.0)))
  queue_redraw()
 
@@ -111,7 +114,10 @@ static func decoration_is_safe(point: Vector2, radius: float, mission: Dictionar
 func tick(delta: float) -> void:
  elapsed += delta
  if not reduced:
-  queue_redraw()
+  redraw_remaining -= delta
+  if redraw_remaining <= 0:
+   redraw_remaining = 1.0/float(graphics.environment_hz)
+   queue_redraw()
 
 func _draw() -> void:
  if profile.is_empty():
@@ -123,10 +129,11 @@ func _draw() -> void:
   var point: Vector2 = item.point-FIELD.position
   var radius: float = item.radius
   # Extra contact shadow length follows the selected sunlight profile.
-  draw_texture_rect(pool,Rect2(point+shadow-Vector2(radius,radius*.4),Vector2(radius*2.5,radius*1.3)),false,Color(0,0,0,.65))
+  if float(graphics.shadow_strength) > 0:
+   draw_texture_rect(pool,Rect2(point+shadow-Vector2(radius,radius*.4),Vector2(radius*2.5,radius*1.3)),false,Color(0,0,0,.65*float(graphics.shadow_strength)))
   draw_texture_rect(prop_frames[item.kind],Rect2(point-Vector2.ONE*radius,Vector2.ONE*radius*2),false,ambient)
  var kind := str(assignment.profile)
- if kind == "night":
+ if kind == "night" and bool(graphics.environment_lights):
   # Baked soft light pools on terrain only: prelit actors remain readable.
   for point in [Vector2(170,240),Vector2(830,370),Vector2(560,510)]:
    var sweep := Vector2.ZERO if reduced else Vector2(sin(elapsed*.18+point.x)*36,cos(elapsed*.12)*18)
@@ -144,7 +151,7 @@ func _draw() -> void:
  if kind in ["storm","smoke"]:
   # Haze and all particles render below units and are clipped to the world field.
   draw_rect(Rect2(Vector2.ZERO,FIELD.size),Color(.48,.55,.62,float(profile.haze)))
-  for index in 4:
+  for index in int(graphics.haze_layers):
    var x := fposmod(index*270.0+elapsed*(22 if kind == "storm" else 13),1255)-250
    var y := 80+index*117+sin(elapsed*.2+index)*18
    draw_texture_rect(wisp,Rect2(x,y,420,140),false,Color(1,1,1,.42 if kind == "smoke" else .22))

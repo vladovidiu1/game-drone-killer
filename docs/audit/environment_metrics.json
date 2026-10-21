@@ -1,0 +1,147 @@
+[
+  {
+    "capture": "mission_01",
+    "draw_calls": 149.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_02",
+    "draw_calls": 156.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_03",
+    "draw_calls": 155.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_04",
+    "draw_calls": 140.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_04_low_effects",
+    "draw_calls": 137.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_05",
+    "draw_calls": 166.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_05_build",
+    "draw_calls": 176.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_06",
+    "draw_calls": 176.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_07",
+    "draw_calls": 158.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_08",
+    "draw_calls": 169.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_09",
+    "draw_calls": 168.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_09_wide",
+    "draw_calls": 168.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_10",
+    "draw_calls": 171.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_11",
+    "draw_calls": 169.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_12",
+    "draw_calls": 172.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_13",
+    "draw_calls": 161.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_14",
+    "draw_calls": 164.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_15",
+    "draw_calls": 174.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_16",
+    "draw_calls": 189.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_17",
+    "draw_calls": 172.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_18",
+    "draw_calls": 188.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_19",
+    "draw_calls": 177.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_20",
+    "draw_calls": 181.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_21",
+    "draw_calls": 181.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_22",
+    "draw_calls": 192.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_23",
+    "draw_calls": 197.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_24",
+    "draw_calls": 192.0,
+    "quality": "high"
+  },
+  {
+    "capture": "mission_25",
+    "draw_calls": 181.0,
+    "quality": "high"
+  },
+  {
+    "capture": "settings",
+    "draw_calls": 31.0,
+    "quality": "high"
+  }
+]

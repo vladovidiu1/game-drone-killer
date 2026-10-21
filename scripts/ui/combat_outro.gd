@@ -9,6 +9,7 @@ var done := false
 
 func setup(source: Node2D) -> void:
  view = source
+ z_index = 20
  set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
  mouse_filter = Control.MOUSE_FILTER_STOP
  var panel := MarginContainer.new()

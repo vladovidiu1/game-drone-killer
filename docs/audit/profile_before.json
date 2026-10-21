@@ -1,0 +1,119 @@
+{
+  "failures": 0,
+  "fixture": "80 stationary drones, actual weapons/AI, fixed seed 6006, mission 4 storm, 60 warmup + 180 measured frames at dt 1/60",
+  "godot": "4.6.3-stable (official)",
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "samples": [
+    {
+      "combat_signature": [
+        1000,
+        3,
+        110,
+        18530,
+        39,
+        22,
+        17,
+        0
+      ],
+      "draw_calls": {
+        "maximum": 744.0,
+        "median": 565.0,
+        "p95": 729.0
+      },
+      "environment_particles": 32,
+      "frame_wall_ms": {
+        "maximum": 374.047,
+        "median": 44.375,
+        "p95": 125.771
+      },
+      "measured_frames": 180,
+      "particle_peak": 34,
+      "preset": "low",
+      "props": 3,
+      "renderer_texture_bytes": {
+        "maximum": 69049775.0,
+        "median": 69049775.0,
+        "p95": 69049775.0
+      },
+      "simulation_cpu_ms": {
+        "maximum": 14.729,
+        "median": 2.609,
+        "p95": 3.739
+      }
+    },
+    {
+      "combat_signature": [
+        1000,
+        3,
+        110,
+        18530,
+        39,
+        22,
+        17,
+        0
+      ],
+      "draw_calls": {
+        "maximum": 749.0,
+        "median": 571.0,
+        "p95": 734.0
+      },
+      "environment_particles": 32,
+      "frame_wall_ms": {
+        "maximum": 237.372,
+        "median": 43.279,
+        "p95": 128.144
+      },
+      "measured_frames": 180,
+      "particle_peak": 57,
+      "preset": "medium",
+      "props": 3,
+      "renderer_texture_bytes": {
+        "maximum": 69049775.0,
+        "median": 69049775.0,
+        "p95": 69049775.0
+      },
+      "simulation_cpu_ms": {
+        "maximum": 17.88,
+        "median": 2.817,
+        "p95": 7.758
+      }
+    },
+    {
+      "combat_signature": [
+        1000,
+        3,
+        110,
+        18530,
+        39,
+        22,
+        17,
+        0
+      ],
+      "draw_calls": {
+        "maximum": 750.0,
+        "median": 573.0,
+        "p95": 735.0
+      },
+      "environment_particles": 32,
+      "frame_wall_ms": {
+        "maximum": 316.307,
+        "median": 39.581,
+        "p95": 95.722
+      },
+      "measured_frames": 180,
+      "particle_peak": 71,
+      "preset": "high",
+      "props": 3,
+      "renderer_texture_bytes": {
+        "maximum": 69049775.0,
+        "median": 69049775.0,
+        "p95": 69049775.0
+      },
+      "simulation_cpu_ms": {
+        "maximum": 11.301,
+        "median": 2.526,
+        "p95": 4.16
+      }
+    }
+  ]
+}

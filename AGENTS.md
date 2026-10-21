@@ -74,3 +74,11 @@
 - Keep FIRE/reload/ammo/abilities reachable at short heights and preserve independent touch ownership. UI feedback must not move hitboxes or stack unbounded tweens. Honor Reduced motion/effects.
 - Mission UI previews own terrain frames locally; never fill the permanent texture cache by browsing operations. Static weapon portraits have no simulation controllers.
 - Run the full suite plus `tests/run_ui_capture.sh` with a real display. Check all four documented logical layouts, real purchases, active ability labels, map gating, results and native touch/mouse input. Physical Android validation is separate.
+
+## G6 quality policy and audit
+
+- Follow `GRAPHICS_AUDIT.md` and `ANDROID_VISUAL_TEST_CHECKLIST.md`. All presentation quality uses `scripts/visual/graphics_profile.gd` and `assets/effects/quality.json`, reusing validated schema-v3 `effects_quality`; do not add a competing graphics setting or couple quality to combat/input/RNG.
+- Keep native HUD z=10 and saved terminal outro z=20; world decoration must not cover interactive controls. Mission identity belongs in the native footer, away from enemy entry lanes.
+- Low removes extra runtime fake shadows/animated weather, not baked asset shading or texture resolution. Uniform caching must update body and articulated armor together on damage/cloak/suppression recovery. Never throttle manual aiming or simulation to the overlay redraw rate.
+- `python tools/build_asset_manifest.py` regenerates both `assets/manifest.json` and root `ASSET_MANIFEST.md`. Preserve generated-candidate/reference-only status and font licenses.
+- Run full checks including 75 mission/preset combinations, fresh-process graphics persistence and existing balance reports. `tests/run_graphics_profile.sh` requires a native display, records reproducible stress metrics, and must never be described as an Android FPS benchmark. Keep native capture runners sequential to avoid focus-loss pause interference.

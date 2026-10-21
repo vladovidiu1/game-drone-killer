@@ -43,17 +43,13 @@ func _ready() -> void:
   free_slots.append(index)
 
 func configure(settings: Dictionary) -> void:
- var quality: String = str(settings.get("effects_quality","medium"))
- profile = PROFILES.get(quality,PROFILES.medium).duplicate()
- reduced = bool(settings.get("reduced_effects",false))
- motion = bool(settings.get("reduced_motion",false))
- smoke = bool(settings.get("effects_smoke",true)) and not reduced
- debris = bool(settings.get("effects_debris",true)) and not reduced and not motion
- lighting = bool(settings.get("effects_lighting",true)) and not reduced
- shake_enabled = bool(settings.get("effects_shake",true)) and not reduced and not motion
- if reduced:
-  profile = PROFILES.low.duplicate()
-  profile.burst = 2
+ profile = preload("res://scripts/visual/graphics_profile.gd").resolve(settings)
+ reduced = bool(profile.reduced)
+ motion = bool(profile.motion)
+ smoke = bool(profile.smoke_enabled)
+ debris = bool(profile.debris_enabled)
+ lighting = bool(profile.lighting_enabled)
+ shake_enabled = bool(profile.shake_enabled)
  # Live reconfiguration is also safe, although normal UI applies next mission.
  for index in range(active.size()-1,-1,-1):
   var slot: Dictionary = slots[active[index]]

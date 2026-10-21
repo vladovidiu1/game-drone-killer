@@ -1,4 +1,6 @@
-# DRONE KILLER: FRONTLINE — G1 / environments G2 / units G3 / effects G4 / interface G5
+# DRONE KILLER: FRONTLINE — visual system G1–G6
+
+G6 audits the existing artwork and UI and unifies environment, unit-shadow, menu and VFX budgets under Low / Medium / High. The [graphics audit](GRAPHICS_AUDIT.md), [human-readable inventory](ASSET_MANIFEST.md) and [Android checklist](ANDROID_VISUAL_TEST_CHECKLIST.md) record current evidence and remaining production work. G6 supersedes earlier independent quality budgets; it does not change combat tuning or the save schema.
 
 G5 adds [native tactical menus, illustrated research, a pannable strategic map and compact battle telemetry](docs/UI_DESIGN.md). See [current UI captures and validation](docs/ui/README.md). Shared theme, safe-area and gameplay-ownership rules continue to apply.
 
@@ -72,6 +74,29 @@ Compatibility/GLES3 remains the configured desktop/mobile renderer. The unshaded
 Use baked soft shadows instead of runtime Light2D/shadow passes for this prelit asset set. Explosion frames advance from the existing simulation-driven effect age over 0.65s; impact sparks use 0.15s, construction rings 0.45s. EMP and phase changes use a separate tinted 0.65s tactical pulse, preserving their meaning without a full-field fireball. Muzzle flash/recoil, rotor overlays, projectiles and effects freeze with combat pause. Effects retain the 96-entry cap; textures and frame regions are shared. UI tweens are independent of battle time. G3 adds a 12-wreck detached destruction batch and a skippable terminal boss outro after the result transaction succeeds; combat stays finished and rewards cannot repeat. Ordinary EMP/Overclock effects retain their established gameplay cues; dedicated finished art remains a future replacement.
 
 The original G1 set of five 1536×1024 RGBA PNGs costs approximately 40 MiB of GPU texture storage with complete mip chains before fonts, vectors, framebuffer and driver overhead. This is a budget estimate, not a device measurement. No dynamic light or screen-copy pass is introduced. G2 loads terrain sheets by scene lifetime rather than accumulating the complete library; its typical large-texture estimate is 48 MiB. G3 replaces the old 8 MiB active combat sheet with about 10 MiB of imported unit sheets, bringing the typical large-texture estimate to roughly 50 MiB. Target under 64 MiB for the visual texture set and profile actual frame time, overdraw, thermal behavior and memory on Android before claiming 60 FPS. Consider atlas packing/downsize or device compression only after visual/device review; do not enable unsupported compression blindly.
+
+## Graphics presets and draw order (G6)
+
+The canonical policy is `scripts/visual/graphics_profile.gd`, using `assets/effects/quality.json` and the existing validated schema-v3 `effects_quality` setting. Medium remains the default. Settings provides three 54px native touch buttons, with explicit save-error rollback. Presets apply to the next deployed mission; menu atmosphere reads the selected preset when composed.
+
+| Budget | Low | Medium | High |
+| --- | --- | --- | --- |
+| Combat particle slots active / fixed allocated pool | 48 / 192 | 112 / 192 | 192 / 192 |
+| Burst / smoke / debris / soft impact light limits | 4 / 3 / 6 / 3 | 8 / 8 / 16 / 6 | 12 / 12 / 24 / 8 |
+| Emissions per simulation tick / concurrent ground explosions | 12 / 4 | 28 / 8 | 48 / 12 |
+| Environmental particles / moving haze layers | 0 / 0 | ≤16 / 2 | ≤32 / 4 |
+| Extra props (also constrained by path/slot exclusions) | ≤8 | ≤10 | ≤14 |
+| Additional fake shadow strength | 0 | 0.65 | 1 |
+| Night light pools/searchlights | Off | On | On |
+| Environment redraw ceiling in simulated seconds | Static | 30 Hz | 60 Hz |
+| Unit mechanical-overlay redraw ceiling | 20 Hz | 30 Hz | 60 Hz |
+| Menu dust particles | 0 | ≤8 | ≤18 |
+
+Low retains painted terrain, unit detail, readable identification, health bars, aiming, telegraphs and reload feedback. Baked image shading is not removed. This reduces rendering work, not atlas resolution or texture residency. Shots, tier changes and reload feedback force immediate overlay redraw; body aiming, simulation/collision, actual firing and input remain at their original cadence. Shader uniform writes are cached until the value changes, including instant cloak/suppression recovery and boss armor updates.
+
+Reduced effects overrides High with Low budgets and burst 2, disables smoke/debris/impact lighting/shake and animated weather. Reduced motion freezes rotor/hover movement, disables flying debris/shake and moving weather while keeping essential hit/area/status/reload cues. The separate reduced-environment switch stops weather but leaves selected combat budgets. See the audit for exact limits and measurements.
+
+Native battle HUD is z=10 above world artwork/screen feedback; the saved, skippable boss outro is z=20. Mission identity is in the bottom native HUD rather than an opaque plate in enemy entry lanes. Keep future decorative overlays below the HUD and pointer-ignoring. Do not raise world actors or change input transforms to repair artwork overlap.
 
 ## Exact replacement specifications
 
