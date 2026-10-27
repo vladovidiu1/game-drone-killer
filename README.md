@@ -243,9 +243,9 @@ Results and interpretation are in [docs/CAMPAIGN.md](docs/CAMPAIGN.md); committe
 
 Manual device checks: test 16:9 and tall landscape displays, cutout margins, left-thumb aim plus right-thumb FIRE, aiming while using build/upgrade controls, firing across reloads, release outside the FIRE button, app background/resume, muted result cues, replacing a campaign, and a full win/loss loop. Measure frame time on a mid-range Android device before claiming stable 60 FPS.
 
-## Android export (next build step)
+## Android builds and Google Play
 
-The project is configured for landscape Android and Compatibility rendering, but this task does not include a generated APK or signing credentials. Install the matching Godot Android export templates, a supported JDK and Android SDK using Godot's stable Android export instructions. Configure their paths under Editor Settings, then create an Android preset under Project → Export. Use ARM64 for a representative device build; set the package identifier to a unique identifier you control before distribution. Keep signing files outside source control. Offline gameplay needs no API keys or network service.
+Android export presets and reproducible build helpers are available. See [Android build and Play Console instructions](docs/ANDROID_RELEASE.md) for the test APK, signed upload AAB, private upload key creation, and release checklist. The package is `com.vladovidiu.dronekiller`, version `0.1.0` (code 1), minimum API 24 and target API 36. Real Android device validation and Play Console setup remain required before publication.
 
 ## Intentionally unfinished
 

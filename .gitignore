@@ -1,3 +1,8 @@
 /.godot/
 /export/
 *.tmp
+
+/android/build/
+/android/.build_version
+*.keystore
+*.jks

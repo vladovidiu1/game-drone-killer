@@ -4,7 +4,7 @@
 
 The existing offline game now has optional **Watch Ad / +50 WC** offers in Arsenal and campaign map, a provider abstraction, an editor-only callback simulator, a conditional Android test adapter, persistent installation-wide limits, and crash-recoverable reward accounting. Combat, campaign rewards, research prices and the existing M3 no-ad progression path are unchanged.
 
-**No real advertisement has been verified on Android.** This checkout has Godot **4.6.3 stable (`7d41c59c4`)**, Compatibility rendering, landscape 1280×720, no installed ad plugin, no Android export preset/build template, no `adb`/`sdkmanager`/Gradle executable, no verified matching native AAR/export templates, no device or AdMob consent-message configuration. Java alone is present. Normal editor/desktop runs and release exports cannot show real ads. The default offer is disabled and explains that offline play remains available.
+**No real advertisement has been verified on Android.** Godot 4.6.3 Android build presets and offline APK/AAB export tools are now available; see [Android build preparation](ANDROID_RELEASE.md). There is still no installed ad plugin, matching native ads AAR, Android device validation or AdMob consent-message configuration. Normal editor/desktop runs and release exports cannot show real ads. The default offer is disabled and explains that offline play remains available.
 
 The optional native adapter currently permits **Android debug builds with official Google test IDs only**, after its explicit configuration/compliance gates. Release monetization requires separate publisher/backend/privacy work and an intentional release-provider implementation. Do not remove debug/test gates merely to publish a store build.
 
