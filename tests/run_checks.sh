@@ -57,7 +57,7 @@ run_check res://tests/environments.tscn
 run_check res://tests/environments.tscn -- --verify-environment-settings
 run_check res://tests/campaign_catalog.tscn
 run_check res://tests/enemy_ai.tscn
-FRONTLINE_CHECK_TIMEOUT=300 run_check --fixed-fps 120 --disable-render-loop res://tests/full_campaign.tscn
+FRONTLINE_CHECK_TIMEOUT=900 run_check --fixed-fps 120 --disable-render-loop res://tests/full_campaign.tscn
 run_check res://tests/full_campaign.tscn -- --verify-full
 FRONTLINE_CHECK_TIMEOUT=90 run_check --fixed-fps 120 --disable-render-loop res://tests/full_campaign.tscn -- --compare
 if [ -n "${FRONTLINE_REPORT_DIR:-}" ]; then

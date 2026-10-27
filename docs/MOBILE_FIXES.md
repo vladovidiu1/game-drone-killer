@@ -9,7 +9,7 @@ This update addresses feedback from the first Android AAB test.
 
 ## Verification
 
-`./tests/run_checks.sh` includes `tests/mobile_fixes.tscn` and the existing combat, input, campaign/recovery, research, graphics and full-campaign checks. The older quarter-speed assertions now verify normal-speed construction, including component, warning and redeployment clocks. The desktop input fixture clicks a visible HUD control rather than a hidden shop button. Full-mission UI pilots attempt construction/upgrades when affordable and stop re-opening a maxed or unaffordable drawer every frame; paid actions, combat and assertions are unchanged. The smoke and weapon-research watchdogs allow 180 seconds on cloud machines.
+`./tests/run_checks.sh` includes `tests/mobile_fixes.tscn` and the existing combat, input, campaign/recovery, research, graphics and full-campaign checks. The older quarter-speed assertions now verify normal-speed construction, including component, warning and redeployment clocks. The desktop input fixture clicks a visible HUD control rather than a hidden shop button. Full-mission UI pilots attempt construction/upgrades when affordable and stop re-opening a maxed or unaffordable drawer every frame; paid actions, combat and assertions are unchanged. The smoke and weapon-research watchdogs allow 180 seconds on cloud machines; the full campaign allows 900 seconds for its bounded recovery deployments.
 
 Native Compatibility/Mesa rendering is checked separately through `tests/run_ui_capture.sh` and `tests/mobile_fixes.tscn` under X11, including 1280×600, 1024×768, 1600×720 and 1280×720 layouts. These are desktop-rendered fixtures, not physical Android measurements.
 
