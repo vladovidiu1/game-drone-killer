@@ -14,15 +14,14 @@ jobs:
   export:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
-    env:
-      FRONTLINE_TOOLS: ${{ runner.temp }}/frontline-tools
-      XDG_CACHE_HOME: ${{ runner.temp }}/frontline-cache
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: Install verified Godot 4.6.3
         shell: bash
         run: |
           set -euo pipefail
+          echo "FRONTLINE_TOOLS=$RUNNER_TEMP/frontline-tools" >> "$GITHUB_ENV"
+          echo "XDG_CACHE_HOME=$RUNNER_TEMP/frontline-cache" >> "$GITHUB_ENV"
           mkdir -p "$RUNNER_TEMP/godot"
           cd "$RUNNER_TEMP/godot"
           base=https://github.com/godotengine/godot-builds/releases/download/4.6.3-stable
