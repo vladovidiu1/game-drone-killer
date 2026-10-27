@@ -1,6 +1,6 @@
 # Android test build and Google Play preparation
 
-Package: `com.vladovidiu.dronekiller` (confirmed by the publisher). Version: `0.1.0`, Android version code `1`. Godot: standard 4.6.3 stable, Compatibility renderer. Minimum Android API 24 (Android 7), target/compile API 36. Offline gameplay has no account, backend, advertising SDK, or purchase requirement. The optional advertising provider remains disabled; this build must not be described as monetized with real ads.
+Package: `com.vladovidiu.dronekiller` (confirmed by the publisher). Version: `0.1.1`, Android version code `2`. Godot: standard 4.6.3 stable, Compatibility renderer. Minimum Android API 24 (Android 7), target/compile API 36. Offline gameplay has no account, backend, advertising SDK, or purchase requirement. The optional advertising provider remains disabled; this build must not be described as monetized with real ads.
 
 ## Build in the cloud environment
 

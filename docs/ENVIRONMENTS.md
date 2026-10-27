@@ -26,7 +26,7 @@ Tall props reject the original air-route segments with clearance, all 44px place
 
 The shader grades terrain only. The art already contains lighting: this is a baked-material system, not PBR or dynamic day/night relighting. Sunset extends supplemental shadows; baked building shadows remain part of the illustration. Searchlights are inexpensive blended textures on the ground, not live Light2D/shadow passes. Nothing samples the screen or uses glow, compute or Forward+-only features. Haze is capped at 0.07 opacity and stays below actors. All environmental drawing is clipped away from the top/bottom HUD and right sidebar.
 
-Settings → **Reduced environment effects** persists independently of campaign data, defaults off for existing saves and applies on the next deployment. It retains terrain, static props and stationary night lighting while skipping rain, motes, moving haze, embers, fires and light sweeps. Environment time advances only through the existing battle simulation delta: pause freezes it; 2× speed and 0.25× tactical build mode scale it consistently. Combat stats do not change with the quality setting.
+Settings → **Reduced environment effects** persists independently of campaign data, defaults off for existing saves and applies on the next deployment. It retains terrain, static props and stationary night lighting while skipping rain, motes, moving haze, embers, fires and light sweeps. Environment time advances only through the existing battle simulation delta: pause freezes it; construction and upgrades retain normal simulation speed. Combat stats do not change with the quality setting.
 
 ## Android budgets
 

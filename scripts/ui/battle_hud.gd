@@ -29,6 +29,8 @@ var stack: VBoxContainer
 var secondary_status: Label
 var radar: Control
 var wave_row: HBoxContainer
+var build_panel: PanelContainer
+var field: Control
 
 func setup(simulation: Node2D) -> void:
  battle = simulation
@@ -62,7 +64,7 @@ func setup(simulation: Node2D) -> void:
  middle.mouse_filter = Control.MOUSE_FILTER_IGNORE
  middle.size_flags_vertical = Control.SIZE_EXPAND_FILL
  add_child(middle)
- var field := Control.new()
+ field = Control.new()
  field.mouse_filter = Control.MOUSE_FILTER_IGNORE
  field.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  middle.add_child(field)
@@ -84,22 +86,34 @@ func setup(simulation: Node2D) -> void:
  wave_button = UI.button("Start early",func(): battle.start_wave(),Vector2(130,44))
  wave_button.add_theme_font_size_override("font_size",16)
  wave_row.add_child(wave_button)
+ build_panel = UI.panel(UI.ORANGE,14)
+ field.add_child(build_panel)
+ build_panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+ var build_stack := VBoxContainer.new()
+ build_stack.add_theme_constant_override("separation",10)
+ build_panel.add_child(build_stack)
+ var title := UI.label("BUILD / TURRET UPGRADES",28,UI.ORANGE)
+ build_stack.add_child(title)
  var selection := HBoxContainer.new()
- stack.add_child(selection)
- selection_label = UI.label("",16)
+ build_stack.add_child(selection)
+ selection_label = UI.label("",20)
  selection_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  selection.add_child(selection_label)
  close_button = UI.button("Close",func(): battle.close_build_mode(),Vector2(85,44))
  close_button.add_theme_font_size_override("font_size",15)
  selection.add_child(close_button)
- details = UI.label("",14,UI.MUTED)
+ details = UI.label("",18,UI.WHITE)
  details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  details.custom_minimum_size = Vector2(270,32)
- stack.add_child(details)
- shop_scroll = ScrollContainer.new()
+ build_stack.add_child(details)
+ upgrade_button = UI.button("Upgrade",func(): battle.upgrade_selected(),Vector2(0,64))
+ upgrade_button.add_theme_font_size_override("font_size",22)
+ upgrade_button.theme_type_variation = &"TacticalPrimary"
+ build_stack.add_child(upgrade_button)
+ shop_scroll = preload("res://scripts/ui/touch_scroll.gd").new()
  shop_scroll.custom_minimum_size.y = 64
  shop_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
- stack.add_child(shop_scroll)
+ build_stack.add_child(shop_scroll)
  var actions := VBoxContainer.new()
  actions.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  shop_scroll.add_child(actions)
@@ -109,20 +123,18 @@ func setup(simulation: Node2D) -> void:
  actions.add_child(shop)
  for kind in CampaignManager.turrets:
   var definition: Dictionary = CampaignManager.turrets[kind]
-  var button := UI.button("%s • %d BC\n%.0f damage / %.1f rate / %.0f range" % [definition.name,int(definition.cost),float(definition.damage),float(definition.fire_rate),float(definition.range)],_build.bind(str(kind)),Vector2(265,52))
+  var button := UI.button("%s • %d BC\n%.0f damage / %.1f rate / %.0f range" % [definition.name,int(definition.cost),float(definition.damage),float(definition.fire_rate),float(definition.range)],_build.bind(str(kind)),Vector2(0,80))
   if kind == "laser":
    button.text = "%s • %d BC\n%.0f DPS / %.0f range" % [definition.name,int(definition.cost),float(definition.damage),float(definition.range)]
   elif kind == "emp_tower":
    button.text = "%s • %d BC\n%.0f%% slow / %.1fs / %.0f range" % [definition.name,int(definition.cost),(1.0-float(definition.slow_factor))*100,float(definition.status_duration),float(definition.range)]
   button.text += "\nARC %.0f°" % float(definition.traverse_degrees)
-  button.add_theme_font_size_override("font_size",14)
+  button.add_theme_font_size_override("font_size",18)
   button.icon = preload("res://scripts/visual/visual_assets.gd").sprite(str(preload("res://scripts/visual/visual_assets.gd").catalog.turret_aliases[kind]))
   button.expand_icon = true
   button.add_theme_constant_override("icon_max_width",34)
   shop.add_child(button)
   build_buttons[kind] = button
- upgrade_button = UI.button("Upgrade",func(): battle.upgrade_selected(),Vector2(270,48))
- actions.add_child(upgrade_button)
  placement_controls = preload("res://scripts/ui/placement_controls.gd").new()
  actions.add_child(placement_controls)
  placement_controls.setup(battle)
@@ -169,7 +181,7 @@ func setup(simulation: Node2D) -> void:
   battle.status_changed.emit(),Vector2(140,46))
  coverage_button.add_theme_font_size_override("font_size",14)
  bottom.add_child(coverage_button)
- var input_hint := UI.label("LEFT DRAG: AIM • HOLD FIRE • BUILD: 0.25x" if OS.has_feature("mobile") else "AIM + HOLD LMB • R: RELOAD • BUILD: 0.25x",14,UI.MUTED)
+ var input_hint := UI.label("LEFT DRAG: AIM • HOLD FIRE • BUILD: NORMAL SPEED" if OS.has_feature("mobile") else "AIM + HOLD LMB • R: RELOAD • BUILD: NORMAL SPEED",14,UI.MUTED)
  input_hint.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  input_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  input_hint.visible = false
@@ -186,6 +198,7 @@ func setup(simulation: Node2D) -> void:
  bottom.add_child(operation)
  battle.player_controls.ui_hit_test = blocks_pointer
  resized.connect(_layout)
+ field.resized.connect(_layout)
  battle.status_changed.connect(refresh)
  battle.selection_changed.connect(refresh)
  refresh()
@@ -195,15 +208,18 @@ func _layout() -> void:
   return
  var compact := size.y < 620
  wave_row.visible = not (compact and battle.build_mode)
- details.visible = not compact
- shop_scroll.custom_minimum_size.y = 52 if compact else 64
+ build_panel.visible = battle.build_mode
+ build_panel.offset_left = maxf(0,field.size.x-clampf(field.size.x*0.62,400,560))
+ details.visible = battle.build_mode
+ shop_scroll.custom_minimum_size.y = 80
  player_panel.fire_button.custom_minimum_size.y = 56 if compact else 58
  player_panel.reload_button.custom_minimum_size.y = 56 if compact else 58
  for id in ability_buttons:
   ability_buttons[id].custom_minimum_size.y = 44 if compact else 48
 
 func _build(kind: String) -> void:
- battle.build_turret(kind)
+ if battle.build_turret(kind):
+  battle.close_build_mode()
 
 func _ability(id: String) -> void:
  battle.abilities.activate(id)
@@ -273,7 +289,7 @@ func refresh() -> void:
   upgrade_button.text = "Maximum level" if maximum else "Upgrade → L%d • %d BC" % [turret.level+1,turret.upgrade_cost()]
   upgrade_button.disabled = maximum or turret.redeploying or battle.paused or battle.finished or battle.credits < turret.upgrade_cost()
  else:
-  details.text = "Tap a slot to build. Scroll to see all six designs. Close restores normal combat speed."
+  details.text = "Tap a slot to build. Scroll to see all six designs. Combat stays at normal speed. Use Pause to stop the battle."
  for id in ability_buttons:
   var data: Dictionary = SaveManager.catalog.abilities[id]
   var cooldown: float = battle.abilities.cooldowns[id]
@@ -284,4 +300,4 @@ func refresh() -> void:
   button.disabled = not battle.abilities.can_activate(id)
 
 func blocks_pointer(point: Vector2) -> bool:
- return (is_instance_valid(battle.tutorial_overlay) and battle.tutorial_overlay.blocks_pointer(point)) or side_panel.get_global_rect().has_point(point) or top_panel.get_global_rect().has_point(point) or bottom_panel.get_global_rect().has_point(point)
+ return (is_instance_valid(battle.tutorial_overlay) and battle.tutorial_overlay.blocks_pointer(point)) or (build_panel.visible and build_panel.get_global_rect().has_point(point)) or side_panel.get_global_rect().has_point(point) or top_panel.get_global_rect().has_point(point) or bottom_panel.get_global_rect().has_point(point)

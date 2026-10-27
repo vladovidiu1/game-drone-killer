@@ -40,7 +40,7 @@ In missions 16–20 a 35% selection opportunity may increase the matching weakes
 
 ## Radar and timing
 
-The next plan is visible from intermission start. A six-second simulated warning cannot be skipped. After it elapses, Start early can skip the remaining original build countdown. Pause freezes both; tactical build mode advances both at 0.25x. Every active combat timer still uses standardized normal simulation delta.
+The next plan is visible from intermission start. A six-second simulated warning cannot be skipped. After it elapses, Start early can skip the remaining original build countdown. Pause freezes both; build/upgrade mode advances both at normal speed. Every active combat timer still uses standardized normal simulation delta.
 
 The native overlay shows the named pattern, exact initial W/C/E counts and defended Sentinel base. Support-capable plans disclose `+ SUPPORT`; reserve-generated reinforcements are not claimed as initial radar contacts. The active strip becomes shorter to preserve battlefield visibility. Entry chevrons follow actual route starts/directions. The base receives a subtle objective arc. All overlays ignore pointers; the radar cue uses the existing audio settings/cache. Reduced motion removes the marker pulse; there is no fullscreen flash.
 

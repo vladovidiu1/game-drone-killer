@@ -37,7 +37,7 @@ After Start Mission, the live battlefield enters **PREPARE**. Buy and orient def
 
 Initially only one transport may be active. Other defenses and manual cannon continue to work; other unreserved empty slots can still be built. In-transit upgrades/rotation are rejected. Destination changes, occupied slots, repeated confirms, concurrent starts, insufficient funds and building over reservations cannot create a turret or debit twice.
 
-Pause freezes progress. Confirm closes tactical UI to restore normal speed. Opening another build panel during transport uses the same existing 0.25x simulation clock, so four simulated seconds take sixteen real seconds while that panel stays open. The primary gun's input/aim/reload logic is untouched.
+Pause freezes progress. Confirm closes the build UI. Opening another build panel during transport preserves normal simulation speed: four simulated seconds take four unpaused real seconds. The primary gun's input/aim/reload logic is untouched.
 
 `turret_redeployment.gd` owns the mission-only transaction. It clears escrow ownership before refund/notifications and commits slot ownership before completion notifications. Cancellation, lost actors, mission victory/defeat and scene removal release reservations and refund **once**. No War Credit transaction, saved balance or persistent battle resume schema is added. Mission rewards remain guarded by the existing deployment token. Temporary BC refunds never become earned bounty or persistent credits.
 

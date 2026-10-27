@@ -114,6 +114,8 @@ func run() -> void:
  check(app.battle.placed[1] != null and app.battle.credits == 200, "independent second finger builds Cannon through native touch button")
  app.battle.select_slot(2)
  app.hud.build_buttons.machine_gun.pressed.emit()
+ check(not app.battle.build_mode and app.battle.effective_speed() == 1.0,"successful placement returns to normal combat")
+ app.battle.select_slot(2)
  app.hud.upgrade_button.pressed.emit()
  check(app.battle.placed[2].level == 2, "HUD upgrades selected turret")
  app.hud.pause_button.pressed.emit()
@@ -135,16 +137,17 @@ func run() -> void:
   var battle: Node2D = app.battle
   # Legitimate build/upgrade strategy using only earned battle credits.
   for slot in [3,4]:
-   if battle.placed[slot] == null:
+   if battle.placed[slot] == null and battle.credits >= int(CampaignManager.turrets["cannon" if slot == 3 else "machine_gun"].cost):
     battle.select_slot(slot)
     battle.build_turret("cannon" if slot == 3 else "machine_gun")
   for slot in [0,1,2,3,4]:
-   if battle.placed[slot] != null:
+   if battle.placed[slot] != null and battle.placed[slot].level < int(CampaignManager.combat.max_turret_level) and battle.credits >= battle.placed[slot].upgrade_cost():
     battle.select_slot(slot)
     battle.upgrade_selected()
   if battle.spawner.intermission:
    battle.start_wave()
-  battle.close_build_mode()
+  if battle.build_mode:
+   battle.close_build_mode()
   preload("res://tests/m1_pilot.gd").aim(battle)
   battle._physics_process(1.0/60.0)
   await get_tree().process_frame

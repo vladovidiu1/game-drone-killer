@@ -35,7 +35,7 @@ func _ready() -> void:
  var panel := PanelContainer.new()
  panel.custom_minimum_size.x = 280
  middle.add_child(panel)
- var scroll := ScrollContainer.new()
+ var scroll := preload("res://scripts/ui/touch_scroll.gd").new()
  scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
  panel.add_child(scroll)
  var intel := VBoxContainer.new()

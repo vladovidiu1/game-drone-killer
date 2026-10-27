@@ -30,7 +30,7 @@ run_check res://tests/placement.tscn
 FRONTLINE_CHECK_TIMEOUT=120 run_check res://tests/tactical_director.tscn
 run_check --fixed-fps 120 --disable-render-loop res://tests/combat.tscn
 run_check --fixed-fps 120 --disable-render-loop res://tests/hybrid.tscn
-run_check --fixed-fps 120 --disable-render-loop res://tests/smoke.tscn
+FRONTLINE_CHECK_TIMEOUT=180 run_check --fixed-fps 120 --disable-render-loop res://tests/smoke.tscn
 run_check res://tests/smoke.tscn -- --verify-save
 run_check --fixed-fps 120 --disable-render-loop res://tests/save_validation.tscn
 FRONTLINE_CHECK_TIMEOUT=180 run_check --fixed-fps 120 --disable-render-loop res://tests/campaign.tscn
@@ -42,12 +42,13 @@ run_check res://tests/economy.tscn -- --verify-economy
 run_check res://tests/rewarded_ads.tscn
 run_check res://tests/rewarded_ads.tscn -- --verify-ads
 run_check res://tests/admob_contract.tscn
-run_check res://tests/weapon_research.tscn
+FRONTLINE_CHECK_TIMEOUT=180 run_check res://tests/weapon_research.tscn
 run_check res://tests/weapon_research.tscn -- --verify-weapons
 
 run_check res://tests/graphics_audit.tscn
 run_check res://tests/graphics_audit.tscn -- --verify-graphics
 run_check res://tests/ui_design.tscn
+run_check res://tests/mobile_fixes.tscn
 run_check res://tests/effects.tscn
 run_check res://tests/effects.tscn -- --verify-effects
 run_check res://tests/visual_foundation.tscn

@@ -20,6 +20,7 @@ static func button(text: String, action: Callable, minimum: Vector2 = Vector2(21
  node.text = text
  node.custom_minimum_size = minimum
  node.add_theme_font_size_override("font_size", 19)
+ node.pressed.connect(func(): AudioManager.combat_cue("click"))
  node.pressed.connect(action)
  return node
 

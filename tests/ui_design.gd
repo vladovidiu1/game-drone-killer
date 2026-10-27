@@ -149,8 +149,10 @@ func run() -> void:
    check(viewport.encloses(control.get_global_rect()) and control.size.y >= 44,"HUD action fits viewport with touch target ≥44: "+str(dimensions))
   check(not app.hud.player_panel.fire_button.get_global_rect().intersects(app.hud.ability_buttons.repair.get_global_rect()),"FIRE does not overlap ability controls")
   var field_center: Vector2 = app.battle.get_global_transform_with_canvas()*Vector2(480,330)
-  check(not app.hud.blocks_pointer(field_center),"Battlefield center stays clear of GUI input blockers")
+  check(app.hud.build_panel.size.x >= 400 and viewport.encloses(app.hud.build_panel.get_global_rect()),"Expanded build drawer fits viewport")
+  check(app.hud.blocks_pointer(app.hud.build_panel.get_global_rect().get_center()),"Expanded drawer owns its input")
   app.battle.close_build_mode()
+  check(not app.hud.blocks_pointer(field_center),"Closing drawer restores battlefield input")
   app._menu()
   await settle()
  SaveManager.settings.reduced_motion = true

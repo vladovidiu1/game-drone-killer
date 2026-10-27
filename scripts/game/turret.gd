@@ -106,6 +106,8 @@ func tick(delta: float) -> void:
     target.hit(damage_value()*delta*fire_rate_value()/float(definition.fire_rate),false,false,Vector2.INF,definition,&"automatic")
     muzzle = 0.06
    if cooldown <= 0:
+    if mode in ["emp","laser"]:
+     AudioManager.combat_cue("impact")
     if mode == "emp":
      for enemy in battle.drones.get_children():
       if not enemy.ended and covers_point(enemy.position):

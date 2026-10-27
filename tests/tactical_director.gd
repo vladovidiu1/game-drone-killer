@@ -101,7 +101,7 @@ func warning_contract() -> void:
  battle.build_turret("cannon")
  var timer: float = battle.spawner.warning_remaining
  battle._physics_process(1)
- check(is_equal_approx(timer-battle.spawner.warning_remaining,.25),"radar uses same tactical simulation delta")
+ check(is_equal_approx(timer-battle.spawner.warning_remaining,1.0),"radar keeps normal speed after construction")
  battle.set_paused(true)
  timer = battle.spawner.warning_remaining
  battle.simulate(3)

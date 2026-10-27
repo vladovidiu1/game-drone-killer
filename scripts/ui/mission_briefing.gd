@@ -25,7 +25,7 @@ func setup(id: int, replay: bool = false) -> void:
  overview_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
  overview_text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
  overview_row.add_child(overview_text)
- var scroll := ScrollContainer.new()
+ var scroll := preload("res://scripts/ui/touch_scroll.gd").new()
  scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
  add_child(scroll)
  var body := VBoxContainer.new()

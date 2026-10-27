@@ -29,7 +29,7 @@ func _ready() -> void:
   tab_buttons[item[0]] = button
  feedback = UI.label("Choose a research card to review and confirm its purchase.",17,UI.MUTED)
  add_child(feedback)
- var scroll := ScrollContainer.new()
+ var scroll := preload("res://scripts/ui/touch_scroll.gd").new()
  scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
  scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
  add_child(scroll)

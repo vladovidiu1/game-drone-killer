@@ -33,7 +33,7 @@ Use **Godot 4.6.3 stable**, standard GDScript edition. No plugins, external asse
 3. Choose **New Campaign → 01 Outpost Alpha → Start Mission**. On first play, follow the short interactive drill or use **Skip tutorial**. After it, place ordinary defenses and press **Launch wave**.
 4. Click or touch a glowing build slot, then choose Machine Gun, Cannon, or Missile Launcher in the sidebar. Turrets fire automatically. Select an existing turret to upgrade it.
 5. Aim the primary cannon with the mouse and hold left click over the battlefield to fire; press **R** to reload. On Android, drag a finger in the left aiming area and hold the large **FIRE** button on the right with another finger.
-6. Survive all mission waves while keeping the base above 0 HP. Outpost Alpha starts with 500 battle credits and 1000 base HP. Drone bounties fund more defenses. Use **Launch wave** for initial preparation, then **Start wave early** to skip later preparation countdowns; combat always runs at normal speed. Selecting a slot temporarily slows simulation to 25%; closing it restores normal speed.
+6. Survive all mission waves while keeping the base above 0 HP. Outpost Alpha starts with 500 battle credits and 1000 base HP. Drone bounties fund more defenses. Use **Launch wave** for initial preparation, then **Start wave early** to skip later preparation countdowns; combat always runs at normal speed. Selecting a slot opens the expanded build/upgrade drawer without changing combat speed.
 
 Command-line desktop startup from the repository root:
 
@@ -124,7 +124,7 @@ Machine Gun, Cannon and Missile Launcher stay available from the start. All six 
 
 Abilities start available; mastery research improves their cooldowns. **REPAIR / EMP / BOOST** buttons display costs, remaining cooldown and active Overclock duration. Charges/cooldowns are consumed before applying an effect, so simultaneous/duplicate touch callbacks cannot activate twice. A full-health repair costs nothing and is unavailable. All durations, status recovery and effects use simulation time, freeze on pause, and reset with the mission.
 
-Selecting a placement slot opens the single **tactical build/upgrade panel** and sets the effective simulation speed to **0.25× normal**. **Close** always restores normal speed. Selecting another slot reuses this panel; pausing/focus loss closes it and clears held input. There is no combat speed selector. Manual aim and FIRE remain available at the same slowed rate; another finger may build, upgrade or scroll. Touch swipes on build buttons scroll the list and cancel the purchase gesture. World input never starts from HUD touches.
+Selecting a placement slot opens a larger **build/upgrade drawer** at **normal speed**. The upgrade action stays above its scrollable content. Successful placement closes the drawer automatically. **Close** dismisses it at any time; use **Pause** when you need to stop combat. Selecting another slot reuses this panel; pausing/focus loss closes it and clears held input. There is no combat speed selector. Manual aim and FIRE remain available at normal speed; another finger may build, upgrade or scroll. Native touch swipes starting on text, artwork or buttons scroll menus and cancel the purchase gesture; the volume slider retains its own horizontal gesture. World input never starts from HUD touches.
 
 The Veteran Commander objective grants 150 War Credits once at five victories; securing checkpoint 5 grants 250 once. Objectives are applied inside the existing mission result transaction, persist across defeat, and cannot be claimed again by duplicate results or loading the save. They appear in the RESEARCH tab.
 
@@ -219,7 +219,7 @@ Bounties are **temporary battle credits**, as are turret purchases and upgrades.
 
 For an opening strategy, place Machine Guns on slots 1 and 3 and a Cannon on slot 2. Use bounties for more turrets or upgrades. Leaving the primary idle and every slot empty will lose the base. Manual fire can cover gaps in automatic defenses, but only covers one direction at a time.
 
-All simulation components consume the same fixed-physics delta, locally slowed only during tactical build mode; global engine time stays unchanged. Pausing stops movement, firing, projectiles, effects and wave timers; the UI remains interactive. No object pool has been introduced for the current five-to-eight turrets and bounded wave sizes. Effects are capped at 96 and expire after 0.45 simulation seconds; expired/consumed projectiles and ended drones are removed. Profile before introducing a pool.
+All simulation components consume the same normal-speed fixed-physics delta, including during construction and upgrades; global engine time stays unchanged. Pausing stops movement, firing, projectiles, effects and wave timers; the UI remains interactive. No object pool has been introduced for the current five-to-eight turrets and bounded wave sizes. Effects are capped at 96 and expire after 0.45 simulation seconds; expired/consumed projectiles and ended drones are removed. Profile before introducing a pool.
 
 ## Validation
 
@@ -229,9 +229,9 @@ Run from the repository root on Linux with Godot, Bash, GNU timeout, and ripgrep
 ./tests/run_checks.sh
 ```
 
-The runner uses isolated temporary XDG saves, checks exit status and rejects script/engine errors even after a zero exit. The default watchdog is 60 seconds per engine process, extended to 180 for the campaign UI fixture, 300 for the connected tactical campaign and 90 for comparative simulations. It imports the native project and runs startup, combat, hybrid input, UI, corrupt-save/migration, research and campaign checks.
+The runner uses isolated temporary XDG saves, checks exit status and rejects script/engine errors even after a zero exit. The default watchdog is 60 seconds per engine process, extended to 180 for the full-mission smoke, weapon research and campaign UI fixtures, 300 for the connected tactical campaign and 90 for comparative simulations. It imports the native project and runs startup, combat, hybrid input, UI, corrupt-save/migration, research and campaign checks.
 
-The original suites retain mouse/two-finger input propagation, ammunition, single-use hits, splash, autonomous targeting, purchases, tactical slow time, pause, standardized normal timing, reload, research transactions, checkpoint retreat and fresh-process persistence. Added suites validate every territory/reference/phase, exercise enemy abilities and all five bosses, and play missions 1–25 through ordinary combat with earned research/battle funds. They then lose/reconquer the final frontier and verify the completed save in a fresh process. Separate endgame simulations compare automatic-only and manual-only defenses with the hybrid result. Synthetic phase and transaction fixtures are distinguished from these full battles.
+The original suites retain mouse/two-finger input propagation, ammunition, single-use hits, splash, autonomous targeting, purchases, normal-speed construction, pause, standardized normal timing, reload, research transactions, checkpoint retreat and fresh-process persistence. Added suites validate every territory/reference/phase, exercise enemy abilities and all five bosses, and play missions 1–25 through ordinary combat with earned research/battle funds. They then lose/reconquer the final frontier and verify the completed save in a fresh process. Separate endgame simulations compare automatic-only and manual-only defenses with the hybrid result. Synthetic phase and transaction fixtures are distinguished from these full battles.
 
 To retain machine-readable balance output after the runner removes its temporary saves:
 
@@ -245,7 +245,7 @@ Manual device checks: test 16:9 and tall landscape displays, cutout margins, lef
 
 ## Android builds and Google Play
 
-Android export presets and reproducible build helpers are available. See [Android build and Play Console instructions](docs/ANDROID_RELEASE.md) for the test APK, signed upload AAB, private upload key creation, and release checklist. The package is `com.vladovidiu.dronekiller`, version `0.1.0` (code 1), minimum API 24 and target API 36. Real Android device validation and Play Console setup remain required before publication.
+Android export presets and reproducible build helpers are available. See [Android build and Play Console instructions](docs/ANDROID_RELEASE.md) for the test APK, signed upload AAB, private upload key creation, and release checklist. The package is `com.vladovidiu.dronekiller`, version `0.1.1` (code 2), minimum API 24 and target API 36. Real Android device validation and Play Console setup remain required before publication.
 
 ## Intentionally unfinished
 

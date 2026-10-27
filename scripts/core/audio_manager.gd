@@ -1,59 +1,67 @@
 extends Node
+# Keep distinct voices: replacing one player's stream on every hit used to cut
+# off shots/reloads. Explicit stream playback also supports runtime PCM on Android.
 var player: AudioStreamPlayer
-var combat_player: AudioStreamPlayer
+var combat_players: Dictionary = {}
 var combat_streams: Dictionary = {}
+var last_cue: Dictionary = {}
 
 func _ready() -> void:
- player = AudioStreamPlayer.new()
- add_child(player)
- combat_player = AudioStreamPlayer.new()
- combat_player.max_polyphony = 4
- combat_player.volume_db = -12
- add_child(combat_player)
+ player = _voice(-2.0)
  apply_settings()
+
+func _voice(level: float) -> AudioStreamPlayer:
+ var voice := AudioStreamPlayer.new()
+ voice.playback_type = AudioServer.PLAYBACK_TYPE_STREAM
+ voice.max_polyphony = 4
+ voice.volume_db = level
+ add_child(voice)
+ return voice
 
 func apply_settings() -> void:
  AudioServer.set_bus_mute(0, bool(SaveManager.settings.muted))
  AudioServer.set_bus_volume_db(0, linear_to_db(maxf(0.001, float(SaveManager.settings.volume))))
 
 func cue(victory: bool) -> void:
- # Headless/Dummy output has no audio consumer; avoid retaining queued playback.
  if AudioServer.get_driver_name() == "Dummy":
   return
- var wav := AudioStreamWAV.new()
- wav.format = AudioStreamWAV.FORMAT_16_BITS
- wav.mix_rate = 22050
- var samples := PackedByteArray()
- samples.resize(6615 * 2)
- for i in 6615:
-  var t := float(i) / 22050.0
-  var frequency := (660.0 if victory else 180.0)
-  var sample := int(sin(t * TAU * frequency) * 9000.0 * (1.0 - float(i) / 6615.0))
-  samples.encode_s16(i * 2, sample)
- wav.data = samples
- player.stream = wav
+ player.stream = sound("victory" if victory else "defeat")
  player.play()
+
+func sound(kind: String) -> AudioStreamWAV:
+ if combat_streams.has(kind):
+  return combat_streams[kind]
+ var duration := 0.30 if kind in ["victory","defeat","explosion"] else 0.20 if kind in ["radar","build"] else 0.075
+ var frequency := float({"victory":660,"defeat":180,"radar":640,"build":520,"shot":160,"impact":280,"explosion":70,"reload":360,"ready":880,"hit":900,"click":720}.get(kind,440))
+ var stream := AudioStreamWAV.new()
+ stream.format = AudioStreamWAV.FORMAT_16_BITS
+ stream.mix_rate = 44100
+ var count := int(duration*stream.mix_rate)
+ var samples := PackedByteArray()
+ samples.resize(count*2)
+ for i in count:
+  var time := float(i)/stream.mix_rate
+  var progress := float(i)/count
+  var envelope := minf(1.0,time/0.003)*pow(1.0-progress,1.5)
+  var value := sin(time*TAU*frequency*(1.0+0.4*(1.0-progress)))
+  if kind in ["shot","impact","explosion"]:
+   value = value*0.65+sin(time*TAU*3109.0)*sin(time*TAU*1783.0)*0.35
+  samples.encode_s16(i*2,int(value*envelope*24000))
+ stream.data = samples
+ combat_streams[kind] = stream
+ return stream
 
 func combat_cue(kind: String) -> void:
  if AudioServer.get_driver_name() == "Dummy":
   return
- if not combat_streams.has(kind):
-  var duration := 0.24 if kind == "radar" else 0.045 if kind == "shot" else 0.09
-  var frequency := 640.0 if kind == "radar" else 200.0 if kind == "shot" else (900.0 if kind == "hit" else 440.0)
-  var stream := AudioStreamWAV.new()
-  stream.format = AudioStreamWAV.FORMAT_16_BITS
-  stream.mix_rate = 22050
-  var count := int(duration*stream.mix_rate)
-  var samples := PackedByteArray()
-  samples.resize(count*2)
-  for i in count:
-   var time := float(i)/stream.mix_rate
-   var envelope := 1.0-float(i)/count
-   var value := sin(time*TAU*frequency*(1.0+envelope))
-   if kind == "shot":
-    value = value*0.5+sin(time*TAU*3109.0)*0.3
-   samples.encode_s16(i*2,int(value*envelope*12000))
-  stream.data = samples
-  combat_streams[kind] = stream
- combat_player.stream = combat_streams[kind]
- combat_player.play()
+ # Bound aggregate combat volume without cutting off another cue's voice.
+ var now := Time.get_ticks_msec()
+ if now-int(last_cue.get(kind,-1000)) < (75 if kind != "click" else 30):
+  return
+ last_cue[kind] = now
+ if not combat_players.has(kind):
+  var new_voice := _voice(-5.0 if kind in ["shot","impact","explosion"] else -2.0)
+  new_voice.stream = sound(kind)
+  combat_players[kind] = new_voice
+ var voice: AudioStreamPlayer = combat_players[kind]
+ voice.play()

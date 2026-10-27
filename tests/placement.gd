@@ -69,7 +69,7 @@ func movement_contract() -> void:
  battle.set_paused(false)
  battle.select_slot(2)
  battle._physics_process(1)
- check(is_equal_approx(battle.movement.elapsed-progress,.25),"tactical build uses shared quarter-speed movement clock")
+ check(is_equal_approx(battle.movement.elapsed-progress,1.0),"build panel keeps transportation at normal speed")
  battle.close_build_mode()
  progress = battle.movement.elapsed
  battle._physics_process(.5)

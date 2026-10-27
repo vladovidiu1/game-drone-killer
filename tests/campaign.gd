@@ -50,11 +50,11 @@ func fight(id: int, defend: bool) -> void:
    break
   if defend:
    for slot in range(3,battle.slots.size()):
-    if battle.placed[slot] == null:
+    if battle.placed[slot] == null and battle.credits >= int(CampaignManager.turrets["missile" if slot == 3 else "cannon"].cost):
      battle.select_slot(slot)
      battle.build_turret("missile" if slot == 3 else "cannon")
    for slot in battle.slots.size():
-    if battle.placed[slot] != null:
+    if battle.placed[slot] != null and battle.placed[slot].level < int(CampaignManager.combat.max_turret_level) and battle.credits >= battle.placed[slot].upgrade_cost():
      battle.select_slot(slot)
      battle.upgrade_selected()
    var target: Node2D = null
@@ -67,7 +67,8 @@ func fight(id: int, defend: bool) -> void:
    battle.player_controls.set_fire(&"test",target != null)
   if battle.spawner.intermission:
    battle.start_wave()
-  battle.close_build_mode()
+  if battle.build_mode:
+   battle.close_build_mode()
   battle.simulate(1.0/60.0)
   await get_tree().process_frame
  if app.screen == "results":

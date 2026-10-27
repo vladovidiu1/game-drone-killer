@@ -247,6 +247,7 @@ func _destroyed(reward: int, enemy: Node2D) -> void:
  director.record(enemy,"kills")
  reward = maxi(0,reward)
  kills += 1
+ AudioManager.combat_cue("explosion")
  performance.counters.kills += 1
  if enemy.last_damage_source == &"manual":
   performance.counters.manual_kills += 1
@@ -293,6 +294,7 @@ func build_turret(kind: String) -> bool:
  placed[selected_slot] = turret
  turrets.add_child(turret)
  view.effect(turret.position,"build",40,Color(str(definition.color)))
+ AudioManager.combat_cue("build")
  status_changed.emit()
  selection_changed.emit()
  return true
@@ -309,6 +311,7 @@ func upgrade_selected() -> bool:
  credits -= cost
  turret.level += 1
  view.effect(turret.position,"build",48,Color("65e0c0"))
+ AudioManager.combat_cue("build")
  status_changed.emit()
  selection_changed.emit()
  return true
@@ -316,6 +319,7 @@ func upgrade_selected() -> bool:
 func launch_projectile(turret: Node2D, target: Node2D) -> void:
  var projectile = PROJECTILE.instantiate()
  projectile.configure(self,turret,target)
+ AudioManager.combat_cue("shot")
  projectiles.add_child(projectile)
  view.combat_fx.shot(turret.position+Vector2.from_angle(turret.barrel_angle)*32,Vector2.from_angle(turret.barrel_angle),turret.kind,projectile.tint)
  shots_fired += 1
@@ -331,6 +335,7 @@ func launch_player_projectile(direction: Vector2) -> void:
 func resolve_impact(projectile: Node2D) -> void:
  # A projectile consumes itself before calling here. Splash replaces direct damage.
  impacts += 1
+ AudioManager.combat_cue("impact")
  view.combat_fx.impact(projectile.destination,projectile.visual_kind,projectile.tint,projectile.splash_radius,projectile.critical)
  if projectile.splash_radius > 0:
   if projectile.visual_kind != "emp":
@@ -349,7 +354,7 @@ func start_wave() -> bool:
  return not guided and not paused and not finished and spawner.start_early()
 
 func effective_speed() -> float:
- return 0.25 if build_mode else 1.0
+ return 1.0
 
 func close_build_mode() -> void:
  if is_instance_valid(movement) and not movement.active and movement.source >= 0:

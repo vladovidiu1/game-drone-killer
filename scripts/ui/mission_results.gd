@@ -14,7 +14,7 @@ func setup(victory: bool, reward: int, stats: Dictionary) -> void:
  var accent := UI.CYAN if victory else Color("F04B45")
  add_child(UI.label("SENTINEL COMMAND / AFTER ACTION REPORT",14,accent))
  add_child(UI.label(("ASTERIA LIBERATED" if id == 25 and not replay else "REPLAY COMPLETE" if replay else "TERRITORY SECURED") if victory else "REPLAY ENDED" if replay else "DEFENSE LOST",42,accent))
- var body_scroll := ScrollContainer.new()
+ var body_scroll := preload("res://scripts/ui/touch_scroll.gd").new()
  body_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
  body_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
  add_child(body_scroll)

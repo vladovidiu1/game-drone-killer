@@ -31,7 +31,7 @@ Score is informational: rounded HP ratio × 10,000 + kills × 10 + manual kills 
 | Critical rounds | Successful manual shells with rolled critical damage or exposed-core precision; at most one critical-round credit per projectile, even rail/splash. |
 | Sector coverage | Peak simultaneous non-disabled, non-redeploying defenses mounted in distinct W/C/E sectors. It does not assert guaranteed damage. |
 | Base / final-wave damage | Actual clamped HP lost, independent of later repair. Final-wave damage includes all real damage sources while that wave is active. |
-| Time | Active battle simulation seconds, including ordinary preparation, excluding pause and P1 guided rehearsal. Tactical build time advances at its existing quarter speed. It is not wall-clock speedrun timing. |
+| Time | Active battle simulation seconds, including ordinary preparation, excluding pause and P1 guided rehearsal. Build and upgrade time advances at normal simulation speed. It is not wall-clock speedrun timing. |
 | War Credits | Actual saved result payout, including mission, existing objectives and newly earned star milestones. |
 
 Counters belong to one Battle instance, reset on deployment, and never change damage rules. Practice P1 targets cannot contribute. Presentation and star animation never mutate counters or grant rewards.

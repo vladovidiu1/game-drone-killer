@@ -167,7 +167,7 @@ func _settings() -> void:
  var col := _column()
  _header(col,"SETTINGS","Saved locally on this device • visual changes apply next mission")
  var outer := col
- var scroll := ScrollContainer.new()
+ var scroll := preload("res://scripts/ui/touch_scroll.gd").new()
  scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
  scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
  outer.add_child(scroll)

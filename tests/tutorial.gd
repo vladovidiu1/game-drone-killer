@@ -189,11 +189,11 @@ func run() -> void:
  check(guide.phase == 6,"real group combat advances the flank lesson")
  await touch(9,slot,true)
  await touch(9,slot,false)
- check(battle.build_mode and battle.effective_speed() == .25,"selecting the real turret demonstrates tactical quarter speed")
+ check(battle.build_mode and battle.effective_speed() == 1.0,"selecting the real turret keeps normal speed")
  await native_capture("upgrade")
  await tap(app.hud.upgrade_button)
  battle.simulate(.01)
- check(battle.placed[0].level == 2 and guide.phase == 7 and not battle.build_mode,"actual paid upgrade advances objective lesson and closes slow motion")
+ check(battle.placed[0].level == 2 and guide.phase == 7 and not battle.build_mode,"actual paid upgrade advances objective lesson and closes the upgrade panel")
  check(battle.spawner.wave == -1 and battle.elapsed == 0 and battle.health == battle.max_health,"guide does not consume normal waves/time or damage the live base")
  await native_capture("objective")
  var guided_time: float = guide.clock

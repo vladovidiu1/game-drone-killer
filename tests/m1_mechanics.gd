@@ -19,7 +19,7 @@ func run() -> void:
  battle.select_slot(0)
  battle.build_turret("machine_gun")
  var gun: Node2D = battle.placed[0]
- check(battle.effective_speed() == .25,"Build UI alone enters tactical 25 percent")
+ check(battle.effective_speed() == 1.0,"Building a turret keeps normal speed")
  battle.close_build_mode()
  check(battle.effective_speed() == 1,"Closing build UI restores normal")
  var scout: Node2D = battle.spawn_enemy("scout")

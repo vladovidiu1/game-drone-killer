@@ -73,7 +73,7 @@ func run() -> void:
  age = fx.clock
  battle.select_slot(0)
  battle._physics_process(.04)
- check(is_equal_approx(fx.clock-age,.01),"Build mode effects use the same 0.25x delta as projectiles")
+ check(is_equal_approx(fx.clock-age,.04),"Build mode effects keep the same normal delta as projectiles")
  battle.close_build_mode()
  fx.tick(3)
  var switches: Dictionary = SaveManager.DEFAULT_SETTINGS.duplicate()

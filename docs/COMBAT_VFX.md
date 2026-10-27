@@ -12,7 +12,7 @@ G4 extends the existing top-down game. Real shot, impact, death, status and relo
 
 `battle_view.gd` retains its public `effect()` API and bounded legacy cue list. Its atlas explosions, EMP/build rings and hit sparks are painted in the foreground batch. Oversized environmental/grid cues render as restrained energy rings instead of foreground fireballs, so they cannot cover the enemy formation. Repeated laser damage at the same location refreshes a single hit cue instead of stacking flashes. Explosion density has its own smaller cap. `destruction_batch.gd` retains up to 12 detached fading wrecks and staggered boss explosions; flying fragments now belong exclusively to the central particle pool.
 
-All world presentation advances through the shared `BattleView.tick(delta)`: pause freezes it, 2× doubles it, tactical building uses 0.25×. Reload feedback reads the real cannon's magazine state. The existing saved boss outro advances only detached presentation after combat has finished, retains Continue/Esc/Android Back skip and never pays rewards. A short results-only victory sweep cleans itself up after 1.4 seconds; UI time is independent of combat time.
+All world presentation advances through the shared `BattleView.tick(delta)`: pause freezes it; construction and upgrades retain normal speed. Reload feedback reads the real cannon's magazine state. The existing saved boss outro advances only detached presentation after combat has finished, retains Continue/Esc/Android Back skip and never pays rewards. A short results-only victory sweep cleans itself up after 1.4 seconds; UI time is independent of combat time.
 
 ## Weapons and destruction
 

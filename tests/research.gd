@@ -104,22 +104,22 @@ func run() -> void:
  battle.set_paused(false)
  battle.abilities.tick(6)
  check(battle.abilities.overclock_remaining == 0 and is_equal_approx(gun.fire_rate_value(),old_rate),"Overclock expires and restores normal firing rates")
- # Tactical mode is temporary and always restores standardized normal speed.
+ # The build drawer never changes the shared simulation delta.
  battle.select_slot(0)
- check(battle.build_mode and battle.effective_speed() == 0.25,"opening a build/upgrade panel enters 0.25x")
+ check(battle.build_mode and battle.effective_speed() == 1.0,"opening a build/upgrade panel keeps normal speed")
  var timer: float = battle.spawner.timer
  var moving: Node2D = battle.spawn_enemy("scout")
  var remaining_distance: float = moving.distance_remaining
  battle.launch_player_projectile(Vector2.RIGHT)
- var slow_bullet: Node2D = battle.projectiles.get_child(battle.projectiles.get_child_count()-1)
- var bullet_origin: Vector2 = slow_bullet.position
+ var normal_bullet: Node2D = battle.projectiles.get_child(battle.projectiles.get_child_count()-1)
+ var bullet_origin: Vector2 = normal_bullet.position
  var ability_clock: float = battle.abilities.cooldowns.repair
- battle._physics_process(1)
- check(is_equal_approx(remaining_distance-moving.distance_remaining,45) and is_equal_approx(slow_bullet.position.distance_to(bullet_origin),float(gun.definition.projectile_speed)*0.25),"enemies and projectiles share tactical 0.25x time")
- check(is_equal_approx(ability_clock-battle.abilities.cooldowns.repair,0.25),"ability cooldowns share tactical 0.25x time")
- check(is_equal_approx(timer-battle.spawner.timer,0.25),"wave scheduler consumes tactical slow-motion time")
+ battle._physics_process(0.1)
+ check(is_equal_approx(remaining_distance-moving.distance_remaining,18) and is_equal_approx(normal_bullet.position.distance_to(bullet_origin),float(gun.definition.projectile_speed)*0.1),"enemies and projectiles keep normal time while building")
+ check(is_equal_approx(ability_clock-battle.abilities.cooldowns.repair,0.1),"ability cooldowns keep normal time while building")
+ check(is_equal_approx(timer-battle.spawner.timer,0.1),"wave scheduler keeps normal time while building")
  battle.select_slot(1)
- check(battle.build_mode and battle.effective_speed() == 0.25,"selecting another slot reuses the same tactical mode")
+ check(battle.build_mode and battle.effective_speed() == 1.0,"selecting another slot keeps normal speed")
  battle.close_build_mode()
  check(not battle.build_mode and battle.effective_speed() == 1,"closing tactical mode restores normal speed")
  battle.select_slot(0)

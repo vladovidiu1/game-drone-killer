@@ -183,7 +183,7 @@ func _draw() -> void:
  if warning > 0:
   text(Vector2(280,190),"GRID SURGE IN %.1fs / MANUAL CANNON REMAINS ONLINE" % warning,Color("f7ad7a"),16)
  if battle.build_mode:
-  text(Vector2(42,550),"TACTICAL BUILD • 0.25x",Color("f6c777"),18)
+  text(Vector2(42,550),"BUILD / UPGRADES • NORMAL SPEED",Color("f6c777"),18)
  if battle.paused and not battle.finished:
   draw_rect(Rect2(0,88,950,560),Color(0.02,0.07,0.1,0.4))
   text(Vector2(440,350),"PAUSED",Color("e1eeee"),32)

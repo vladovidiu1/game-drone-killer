@@ -324,7 +324,7 @@ func consequences() -> void:
  battle.set_paused(false)
  battle.select_slot(0)
  battle._physics_process(1)
- check(is_equal_approx(enemy.components.clock-clock,.25),"tactical slow motion advances component windows at shared quarter speed")
+ check(is_equal_approx(enemy.components.clock-clock,1.0),"build panel keeps component windows at normal speed")
  battle.close_build_mode()
  clock = enemy.components.clock
  battle._physics_process(.1)

@@ -193,8 +193,8 @@ func run() -> void:
  check(not cannon.trigger_held,"moving a held mouse over UI cancels world firing")
  mouse_button(app.hud.stat_cards.wave.get_global_rect().get_center(),false)
  var prior_aim: Vector2 = cannon.aim_point
- mouse_button(app.hud.build_buttons.cannon.get_global_rect().get_center(),true)
- mouse_button(app.hud.build_buttons.cannon.get_global_rect().get_center(),false)
+ mouse_button(app.hud.coverage_button.get_global_rect().get_center(),true)
+ mouse_button(app.hud.coverage_button.get_global_rect().get_center(),false)
  check(not cannon.trigger_held and cannon.aim_point == prior_aim,"UI interaction never starts desktop aiming or firing")
  mouse_button(battle.slots[0],true)
  mouse_button(battle.slots[0],false)
@@ -259,11 +259,11 @@ func run() -> void:
   if battle.spawner.intermission:
    battle.start_wave()
   for slot in [3,4]:
-   if battle.placed[slot] == null:
+   if battle.placed[slot] == null and battle.credits >= int(CampaignManager.turrets["cannon" if slot == 3 else "machine_gun"].cost):
     battle.select_slot(slot)
     battle.build_turret("cannon" if slot == 3 else "machine_gun")
   for slot in battle.placed.size():
-   if battle.placed[slot] != null:
+   if battle.placed[slot] != null and battle.placed[slot].level < int(CampaignManager.combat.max_turret_level) and battle.credits >= battle.placed[slot].upgrade_cost():
     battle.select_slot(slot)
     battle.upgrade_selected()
   var target: Node2D = null
@@ -277,7 +277,8 @@ func run() -> void:
   auto_shots = 0
   for automatic in battle.turrets.get_children():
    auto_shots += automatic.shots_fired
-  battle.close_build_mode()
+  if battle.build_mode:
+   battle.close_build_mode()
   battle.simulate(1.0/60.0)
   await get_tree().process_frame
  check(app.screen == "results" and bool(app.result_data.get("victory",false)),"full hybrid mission reaches victory using ordinary attacks and earned credits")
