@@ -1,0 +1,66 @@
+name: Android test downloads
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-test-downloads
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      FRONTLINE_TOOLS: ${{ runner.temp }}/frontline-tools
+      XDG_CACHE_HOME: ${{ runner.temp }}/frontline-cache
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: Install verified Godot 4.6.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/godot"
+          cd "$RUNNER_TEMP/godot"
+          base=https://github.com/godotengine/godot-builds/releases/download/4.6.3-stable
+          curl -fsSL "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          curl -fsSL "$base/Godot_v4.6.3-stable_linux.x86_64.zip" -o Godot_v4.6.3-stable_linux.x86_64.zip
+          awk '$2 == "Godot_v4.6.3-stable_linux.x86_64.zip" { print }' SHA512-SUMS.txt > selected.sha512
+          test -s selected.sha512
+          sha512sum -c selected.sha512
+          unzip -q Godot_v4.6.3-stable_linux.x86_64.zip
+          chmod +x Godot_v4.6.3-stable_linux.x86_64
+          ln -s "$RUNNER_TEMP/godot/Godot_v4.6.3-stable_linux.x86_64" "$RUNNER_TEMP/godot/godot"
+          echo "$RUNNER_TEMP/godot" >> "$GITHUB_PATH"
+      - name: Prepare Android tools
+        run: python3 tools/setup_android.py
+      - name: Build and verify debug APK
+        run: bash tools/export_android.sh debug
+      - name: Build and validate unsigned AAB
+        run: bash tools/export_android.sh unsigned
+      - name: Publish test downloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd export
+          sha256sum drone-killer-test.apk drone-killer-unsigned.aab > SHA256SUMS
+          tag="android-test-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          cat > "$RUNNER_TEMP/android-release-notes.md" <<'NOTES'
+          Android test downloads for DRONE KILLER: FRONTLINE, package com.vladovidiu.dronekiller.
+
+          drone-killer-test.apk is debug-signed for direct installation (ARM64 and x86_64).
+          drone-killer-unsigned.aab is ARM64 and UNSIGNED. It requires the publisher's upload signature before Google Play accepts it.
+          SHA256SUMS contains the artifact checksums. No production signing keys or passwords are included.
+
+          APK signature/alignment and AAB structure were checked. Physical Android device validation remains required.
+          NOTES
+          gh release create "$tag" drone-killer-test.apk drone-killer-unsigned.aab SHA256SUMS \
+            --target "$GITHUB_SHA" --prerelease \
+            --title "Android test downloads ($GITHUB_RUN_NUMBER) — unsigned AAB" \
+            --notes-file "$RUNNER_TEMP/android-release-notes.md"
