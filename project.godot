@@ -33,5 +33,5 @@ enabled=PackedStringArray("res://addons/admob/plugin.cfg")
 
 [admob]
 general/android/enabled=true
-general/android/app_id="ca-app-pub-3940256099942544~3347511713"
+general/android/app_id="ca-app-pub-3787873725289108~4168159841"
 general/ios/enabled=false

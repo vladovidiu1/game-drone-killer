@@ -2,7 +2,7 @@ extends Node
 const SDK := preload("res://tests/fixtures/admob_contract_sdk.gd")
 class Bridge extends "res://scripts/ads/poing_admob_adapter.gd":
  func available() -> bool:
-  return true # Only this isolated test double overrides native/platform/release gating.
+  return true # Only this isolated test double overrides native/platform/configuration gating.
  func api(_path: String) -> GDScript:
   return preload("res://tests/fixtures/admob_contract_sdk.gd")
 var checks := 0
@@ -34,6 +34,7 @@ func reset(status: int) -> void:
  SDK.show_fails = false
  SDK.give_reward = true
  SDK.custom_token = ""
+ SDK.loaded_unit = ""
  errors = 0
  loaded = 0
  earned = 0
@@ -49,6 +50,21 @@ func reset(status: int) -> void:
 func _ready() -> void:
  run.call_deferred()
 func run() -> void:
+ var actual := preload("res://scripts/ads/poing_admob_adapter.gd").new()
+ add_child(actual)
+ # Exercise the privacy gate even if activation is toggled in memory; no file is changed.
+ actual.config.enabled = true
+ actual.config.compliance_reviewed = false
+ actual.config.audience = "unreviewed"
+ check(not actual.available(),"Unreviewed publisher configuration cannot enable native ads")
+ var credit_before := int(SaveManager.state.get("credits",0))
+ var actual_failures := [0]
+ actual.failed.connect(func(_token: String, _reason: String): actual_failures[0] += 1)
+ actual.prepare(TOKEN)
+ check(actual_failures[0] == 1 and actual.current.is_empty() and actual.mobile == null and actual.ump == null,"Blocked configuration cannot initialize UMP/SDK or load an ad")
+ check(int(SaveManager.state.get("credits",0)) == credit_before,"Blocked configuration leaves War Credits unchanged")
+ actual.queue_free()
+ await get_tree().process_frame
  for status in [0,2]:
   reset(status)
   SDK.form_available = false
@@ -69,6 +85,7 @@ func run() -> void:
  SDK.form_obtains = true
  bridge.prepare(TOKEN)
  check(loaded == 1 and errors == 0 and SDK.calls == ["consent_update","consent_form_load","consent_form_show","request_configuration","initialize","ad_load"],"consent → request config → initialization → load order")
+ check(SDK.loaded_unit == bridge.TEST_UNIT and SDK.loaded_unit != str(bridge.config.android_rewarded_id),"TEST mode sends only the official Google unit to the loader, never the stored production unit")
  bridge.present(TOKEN)
  check(earned == 1 and closed == 1 and SDK.custom_token == TOKEN,"documented earned listener alone emits reward; SSV custom_data carries session token")
  await get_tree().process_frame

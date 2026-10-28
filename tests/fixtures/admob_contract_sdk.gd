@@ -11,6 +11,7 @@ static var show_fails := false
 static var give_reward := true
 static var calls: Array = []
 static var custom_token := ""
+static var loaded_unit := ""
 var is_form := false
 var tag_for_under_age_of_consent := false
 var tag_for_child_directed_treatment := 0
@@ -47,6 +48,7 @@ static func initialize(listener: RefCounted) -> void:
  calls.append("initialize")
  listener.on_initialization_complete.call({})
 func load(_unit: String, _request: RefCounted, callback: RefCounted) -> void:
+ loaded_unit = _unit
  calls.append("ad_load")
  if load_fails:
   callback.on_ad_failed_to_load.call({})

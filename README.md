@@ -73,7 +73,7 @@ The [visual validation gallery](docs/VISUAL_VALIDATION.md) also includes a live 
 
 ## Optional rewarded ads (M4)
 
-Arsenal and campaign map offer an optional **Watch Ad / +50 WC**, with five successful rewards per UTC day and a 60-second cooldown. Ads are **unavailable by default** in this checkout: the native SDK bridge is packaged, but the owner has not configured an AdMob account, publisher IDs or consent/privacy settings. No real advertising has been verified. Offline combat/campaign completion remains unchanged. Saved balances/upgrades survive the additive schema-v3 migration.
+Arsenal and campaign map offer an optional **Watch Ad / +50 WC**, with five successful rewards per UTC day and a 60-second cooldown. Ads are **unavailable by default** in this checkout: the native SDK bridge and publisher IDs are configured in TEST mode, but activation remains blocked pending a real privacy-policy URL, audience confirmation and compliance review. No real advertising has been verified. Offline combat/campaign completion remains unchanged. Saved balances/upgrades survive the additive schema-v3 migration.
 
 To test callbacks in the debug desktop editor, run `godot --path . -- --rewarded-ads-simulate` using isolated test data. Its dialog explicitly says **EDITOR SIMULATION — NOT A REAL AD**; only Complete simulates an earned reward, while Close gives nothing. Exported builds cannot use this simulator. The conditional Poing v5.1.0 adapter is restricted to configured Android debug/test use and official Google test IDs, after required privacy handling; production ads remain disabled.
 
@@ -289,4 +289,4 @@ All 25 maps now label western/central/eastern roles and selected elevated positi
 
 Night Watch is an original, royalty-free ambient synthesizer loop distributed with the project under the asset MIT notice. It plays quietly in menus and while paused, stops during active combat/backgrounding/full-screen ads, and has an independent Settings → Menu music switch. Master volume/mute remain authoritative.
 
-The exact Godot 4.6.3 Poing AdMob native bridge is now packaged. No AdMob account or publisher IDs are configured, so ads remain inactive; the offer opens an information dialog rather than an unexplained disabled button. See [the account/setup steps](docs/ADS_SETUP.md). No mock ad rewards are enabled in Android exports. Signing the AAB does not activate advertising.
+The exact Godot 4.6.3 Poing AdMob native bridge is now packaged. Publisher IDs are configured in TEST mode; privacy/audience review is incomplete, so ads remain inactive; the offer opens an information dialog rather than an unexplained disabled button. See [the account/setup steps](docs/ADS_SETUP.md). No mock ad rewards are enabled in Android exports. Signing the AAB does not activate advertising.
