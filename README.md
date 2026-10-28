@@ -245,7 +245,7 @@ Manual device checks: test 16:9 and tall landscape displays, cutout margins, lef
 
 ## Android builds and Google Play
 
-Android export presets and reproducible build helpers are available. See [Android build and Play Console instructions](docs/ANDROID_RELEASE.md) for the test APK, signed upload AAB, private upload key creation, and release checklist. The package is `com.vladovidiu.dronekiller`, version `0.1.2` (code 3), minimum API 24 and target API 36. Real Android device validation and Play Console setup remain required before publication.
+Android export presets and reproducible build helpers are available. See [Android build and Play Console instructions](docs/ANDROID_RELEASE.md) for the test APK, signed upload AAB, private upload key creation, and release checklist. The package is `com.vladovidiu.dronekiller`, version `0.1.3` (code 4), minimum API 24 and target API 36. Real Android device validation and Play Console setup remain required before publication.
 
 ## Intentionally unfinished
 
