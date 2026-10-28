@@ -11,7 +11,10 @@
   "local_changes": [
     "MobileSingletonPlugin: disable implicit editor mocks; simulator remains opt-in through the existing manager",
     "Project-owned offline-only Android exporter; no upstream editor installer or iOS/mediation download",
-    "Only GDScript runtime, version helper and core ads bridge are packaged"
+    "Only GDScript runtime, version helper and core ads bridge are packaged",
+    "ConsentInformation.can_request_ads: project extension queries actual UMP canRequestAds using Godot 4.6.3 JavaClassWrapper and AndroidRuntime, fail closed on JNI errors",
+    "Register UMP/form/MobileAds/rewarded-earned callbacks before native dispatch to handle immediately cached results",
+    "AdapterStatus initialization enum matches measured Next-Gen 1.4.0 native ordinals: NOT_STARTED=0, INITIALIZING=1, COMPLETE=2, TIMED_OUT=3, FAILED=4"
   ],
   "sources": {
     "LICENSE": "9154d410d6795817a45e1a5f2caa9236111e313152c0b51ea39f48aaf7034834",

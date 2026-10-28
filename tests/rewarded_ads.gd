@@ -2,6 +2,10 @@ extends Node
 const MOCK := preload("res://scripts/ads/mock_ad_adapter.gd")
 const STORE := preload("res://scripts/ads/rewarded_store.gd")
 const CONFIG := preload("res://scripts/core/economy_config.gd")
+class ConsentMock extends "res://scripts/ads/mock_ad_adapter.gd":
+ var consent_open := false
+ func consent_ui_active() -> bool:
+  return consent_open
 class TestClock extends RefCounted:
  var wall := int(Time.get_unix_time_from_system())
  var ticks := 100000
@@ -33,7 +37,7 @@ func frames() -> void:
  await get_tree().process_frame
  await get_tree().process_frame
 
-func fresh() -> void:
+func fresh(replacement: Node = null) -> void:
  ads.adapter.discard()
  ads.phase = "idle"
  ads.active_token = ""
@@ -49,7 +53,7 @@ func fresh() -> void:
    DirAccess.remove_absolute(path)
  SaveManager.new_campaign()
  clock = TestClock.new()
- provider = MOCK.new()
+ provider = MOCK.new() if replacement == null else replacement
  provider.scenario = "hold"
  check(ads.configure_development(provider,clock),"editor-only adapter injection allowed in editor test binary")
  ads.set_context("arsenal")
@@ -149,6 +153,22 @@ func run() -> void:
  provider.complete(true)
  ads.set_foreground(true)
  check(SaveManager.state.credits == 50,"legitimate earned callback remains valid while native ad backgrounds app")
+ fresh(ConsentMock.new())
+ provider.scenario = "delayed"
+ check(ads.request(),"Explicit ad request can own official consent UI")
+ provider.consent_open = true
+ id = ads.active_token
+ ads.set_foreground(false)
+ clock.advance(46)
+ ads._process(0)
+ check(ads.phase == "loading" and ads.active_token == id,"Official consent UI pausing Godot does not cancel or hit the short ad-load timeout")
+ provider.ad_loaded.emit(id)
+ check(ads.phase == "ready" and provider.show_count == 0,"Ad finishing after consent waits for Activity resume")
+ provider.consent_open = false
+ ads.set_foreground(true)
+ check(ads.phase == "showing" and provider.show_count == 1,"Consent return presents exactly once while foregrounded")
+ provider.complete(true)
+ check(SaveManager.state.credits == 50 and ads.remaining() == 4,"Consent lifecycle retains earned-only reward and daily quota")
  fresh()
  provider.scenario = "delayed"
  ads.request()

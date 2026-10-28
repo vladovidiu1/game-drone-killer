@@ -74,7 +74,7 @@ func run() -> void:
  var provider := preload("res://scripts/ads/poing_admob_adapter.gd").new()
  add_child(provider)
  check(not provider.configuration_issue().is_empty(),"Default ad configuration fails closed")
- provider.config = {"enabled":true,"mode":"test","audience":"reviewed_adult_only","compliance_reviewed":true,"privacy_policy_url":"https://example.com/privacy","android_app_id":"ca-app-pub-3940256099942544~3347511713"}
+ provider.config = {"enabled":true,"mode":"test","audience":"reviewed_adult_only","compliance_reviewed":true,"privacy_messaging_configured":true,"privacy_policy_url":"https://example.com/privacy","android_app_id":"ca-app-pub-3940256099942544~3347511713"}
  check(not provider.configuration_issue().is_empty(),"Google sample app cannot pretend to own a publisher consent message")
  check(provider.rewarded_unit() == provider.TEST_UNIT,"Test mode uses official Google rewarded test unit")
  provider.queue_free()

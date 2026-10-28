@@ -1,6 +1,6 @@
 # M4 — optional rewarded advertising
 
-> **0.1.2 update:** the exact Godot 4.6.3 Poing native bridge is now packaged and an offline export shim replaces the upstream editor installer. No AdMob account or publisher IDs exist yet, so live requests remain disabled. Test/production configuration and account prerequisites are documented in [ADS_SETUP.md](ADS_SETUP.md). The menu's information action grants no credits. Older M4 installation/debug-only notes below are historical; the earned-only accounting/consent contracts remain applicable.
+> **0.1.4 update:** actual Poing 5.1.0 / Godot 4.6.3 native libraries, Next-Gen 1.4.0 and UMP 4.0.0 are packaged. Publisher IDs and the supplied privacy-policy URL are configured in TEST mode. Audience/messaging review still gates activation. See [current configuration, native verification and device checklist](ADS_SETUP.md). The real UMP `canRequestAds()` bridge and Next-Gen initialization enum correction are now implemented. No device ad display has been claimed. Older M4 installation notes below are historical; earned-only accounting remains applicable.
 
 ## Implemented and deliberately not claimed
 
@@ -32,7 +32,7 @@ The pinned Android dependency is **`com.google.android.libraries.ads.mobile.sdk:
 | Close / fail | `FullScreenContentCallback.on_ad_dismissed_full_screen_content` / `on_ad_failed_to_show_full_screen_content` — no credit |
 | Disposal / verification context | `RewardedAd.destroy()`, `set_server_side_verification_options(ServerSideVerificationOptions)` |
 
-This release **does not expose `ConsentInformation.can_request_ads()`**; no such method was invented. The adapter checks the pinned documented statuses after a fresh update/form flow. OBTAINED means a completed consent flow, not blanket permission for personalized advertising: the SDK must respect UMP signals. No custom forced-personalization flag is set. Ad loading/initialization is blocked on UNKNOWN, unresolved REQUIRED, update/form errors or an unreviewed audience.
+Upstream 5.1.0 omits `ConsentInformation.can_request_ads()`. The project now adds that wrapper through Godot JNI to query the actual UMP SDK (see ADS_SETUP.md); both resolved status and real permission are required after a fresh update/form flow. OBTAINED means a completed consent flow, not blanket permission for personalized advertising: the SDK must respect UMP signals. No custom forced-personalization flag is set. Ad loading/initialization is blocked on UNKNOWN, unresolved REQUIRED, update/form errors or an unreviewed audience.
 
 The SDK `RewardedItem` exposes amount/type, **not an SSV transaction ID**. The sample item's amount does not override the game's 50 WC reward. Local random session identifiers are not described as Google-signed transaction identifiers. Where a provider supplies a transaction ID, the generic manager persists/deduplicates it. This native adapter supplies no fabricated network ID; it passes the local session token in SSV `custom_data` for later server correlation.
 

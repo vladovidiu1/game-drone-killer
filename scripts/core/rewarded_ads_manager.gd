@@ -16,6 +16,7 @@ var presentation_token := ""
 var anchor_wall := 0
 var anchor_ticks := 0
 var request_ticks := 0
+var load_stage := ""
 var last_reward_ticks := -1
 var earned_not_journaled: Dictionary = {}
 
@@ -82,7 +83,9 @@ func offer() -> Dictionary:
  elif store.blocked:
   reason = store.error
  elif phase != "idle":
-  reason = "Saving earned reward…" if phase == "pending" else "Loading ad…" if phase == "loading" else "Ad in progress…"
+  reason = "Saving earned reward…" if phase == "pending" else "Loading ad…" if phase in ["loading","ready"] else "Ad in progress…"
+ elif adapter.consent_ui_active():
+  reason = "Complete the advertising privacy form first."
  elif not foreground or context not in ["map","arsenal"]:
   reason = "Optional ads are available only in campaign menus."
  elif not adapter.available():
@@ -100,7 +103,7 @@ func offer() -> Dictionary:
 
 func set_context(value: String) -> void:
  context = value
- if context not in ["map","arsenal"] and phase == "loading":
+ if context not in ["map","arsenal"] and phase in ["loading","ready"]:
   _failed(active_token,"Ad request canceled after leaving the campaign menu.")
  changed.emit()
 
@@ -129,17 +132,33 @@ func request() -> bool:
   return false
  phase = "loading"
  request_ticks = clock.monotonic_msec()
+ load_stage = ""
  message = "Loading optional ad…"
  changed.emit()
  adapter.prepare(active_token)
+ load_stage = adapter.request_stage()
  return true
 
 func _loaded(id: String) -> void:
  if id != active_token or phase != "loading":
   return
- if not foreground or context not in ["map","arsenal"]:
+ if context not in ["map","arsenal"]:
   _failed(id,"Ad canceled; return to a campaign menu and request it again.")
   return
+ # Official UMP UI can pause the Godot Activity. Wait for its resume before
+ # presenting; backgrounded ordinary loads have already been canceled below.
+ phase = "ready"
+ request_ticks = clock.monotonic_msec()
+ if not foreground:
+  message = "Ad ready. Return to the campaign menu to continue."
+  changed.emit()
+  return
+ _present_ready()
+
+func _present_ready() -> void:
+ if phase != "ready" or not foreground or context not in ["map","arsenal"]:
+  return
+ var id := active_token
  store.data.active.phase = "showing"
  if not store.persist():
   _failed(id,store.error)
@@ -268,8 +287,10 @@ func _failed(id: String, reason: String) -> void:
 
 func set_foreground(value: bool) -> void:
  foreground = value
- if not value and phase == "loading":
+ if not value and phase in ["loading","ready"] and not adapter.consent_ui_active():
   _failed(active_token,"Ad loading canceled while app is backgrounded.")
+ elif value and phase == "ready":
+  _present_ready()
  # An ad Activity itself can background Godot. Keep an already-presented session
  # locked and accept its legitimate earned callback, never award on resume alone.
  changed.emit()
@@ -281,8 +302,15 @@ func _notification(what: int) -> void:
   set_foreground(true)
 
 func _process(_delta: float) -> void:
- if phase == "loading" and clock.monotonic_msec()-request_ticks > int(CONFIG.values.rewarded_ads.load_timeout_seconds)*1000:
-  _failed(active_token,"Ad request timed out. Offline gameplay remains available.")
+ if phase not in ["loading","ready"]:
+  return
+ var stage: String = adapter.request_stage()
+ if stage != load_stage:
+  load_stage = stage
+  request_ticks = clock.monotonic_msec()
+ var timeout_seconds := 300 if adapter.consent_ui_active() else int(CONFIG.values.rewarded_ads.load_timeout_seconds)
+ if clock.monotonic_msec()-request_ticks > timeout_seconds*1000:
+  _failed(active_token,adapter.timeout_reason())
 
 func _sync_music() -> void:
- AudioManager.set_ad_playing(not presentation_token.is_empty())
+ AudioManager.set_ad_playing(not presentation_token.is_empty() or adapter.consent_ui_active())

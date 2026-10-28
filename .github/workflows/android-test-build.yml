@@ -40,7 +40,9 @@ jobs:
       - name: Prepare Android tools
         run: python3 tools/setup_android.py
       - name: Build and validate unsigned AAB
-        run: bash tools/export_android.sh unsigned
+        run: |
+          bash tools/export_android.sh unsigned
+          python3 tools/validate_admob_aab.py export/drone-killer-unsigned.aab > export/advertising-validation.json
       - name: Publish test downloads
         env:
           GH_TOKEN: ${{ github.token }}
@@ -49,7 +51,7 @@ jobs:
         run: |
           set -euo pipefail
           cd export
-          sha256sum drone-killer-unsigned.aab > SHA256SUMS
+          sha256sum drone-killer-unsigned.aab advertising-validation.json > SHA256SUMS
           tag="android-aab-${GITHUB_SHA::7}"
           cat > "$RUNNER_TEMP/android-release-notes.md" <<'NOTES'
           Android test downloads for DRONE KILLER: FRONTLINE, package com.vladovidiu.dronekiller.
@@ -57,9 +59,9 @@ jobs:
           drone-killer-unsigned.aab is ARM64 and UNSIGNED. It requires the publisher's upload signature before Google Play accepts it.
           SHA256SUMS contains the artifact checksums. No production signing keys or passwords are included.
 
-          AAB structure was checked. Version 0.1.3 (versionCode 4) includes the official drone/red-reticle launcher icons, adaptive and monochrome layers, existing menu/pause music and the native AdMob bridge. Publisher AdMob IDs are configured in TEST mode. Ads remain inactive until privacy/audience requirements are completed; no production ads are requested. Gameplay, package identifier and signing credentials are preserved. Physical Android device validation remains required.
+          AAB structure was checked. Version 0.1.4 (versionCode 5) includes the official drone/red-reticle launcher icons, menu/pause music and final Android UMP/rewarded flow with actual SDK canRequestAds checks and diagnostics. Publisher AdMob IDs are configured in TEST mode. Ads remain inactive until privacy/audience requirements are completed; no production ads are requested. Gameplay, package identifier and signing credentials are preserved. Physical Android device validation remains required.
           NOTES
-          gh release create "$tag" drone-killer-unsigned.aab SHA256SUMS \
+          gh release create "$tag" drone-killer-unsigned.aab SHA256SUMS advertising-validation.json \
             --target "$GITHUB_SHA" --prerelease \
-            --title "Android 0.1.3 — official app icons and current updates (unsigned AAB)" \
+            --title "Android 0.1.4 — UMP and rewarded ad integration (unsigned AAB)" \
             --notes-file "$RUNNER_TEMP/android-release-notes.md"

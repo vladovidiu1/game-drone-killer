@@ -33,6 +33,10 @@ func reset(status: int) -> void:
  SDK.load_fails = false
  SDK.show_fails = false
  SDK.give_reward = true
+ SDK.permission = true
+ SDK.initialization_ready = true
+ SDK.privacy_fails = false
+ SDK.duplicate_reward = false
  SDK.custom_token = ""
  SDK.loaded_unit = ""
  errors = 0
@@ -63,6 +67,21 @@ func run() -> void:
  actual.prepare(TOKEN)
  check(actual_failures[0] == 1 and actual.current.is_empty() and actual.mobile == null and actual.ump == null,"Blocked configuration cannot initialize UMP/SDK or load an ad")
  check(int(SaveManager.state.get("credits",0)) == credit_before,"Blocked configuration leaves War Credits unchanged")
+ actual.config.compliance_reviewed = true
+ actual.config.audience = "reviewed_adult_only"
+ actual.config.privacy_policy_url = "https://example.com/test-fixture-only"
+ actual.config.privacy_messaging_configured = false
+ check(not actual.configuration_issue().is_empty(),"Unconfigured AdMob messaging remains gated even with other test-fixture fields")
+ var status_type := load("res://addons/admob/gdscript/src/api/InitializationStatus.gd")
+ var complete_status: RefCounted = status_type.create({"google":{"latency":0,"initializationState":2,"description":"Complete"}})
+ var pending_status: RefCounted = status_type.create({"google":{"latency":0,"initializationState":1,"description":"Initializing"}})
+ check(actual.sdk_ready(complete_status) and not actual.sdk_ready(pending_status),"Real wrapper honors native Next-Gen COMPLETE=2 instead of classic READY=1")
+ var form_error_type := load("res://addons/admob/gdscript/src/ump/core/FormError.gd")
+ var sdk_error_type := load("res://addons/admob/gdscript/src/api/core/AdError.gd")
+ check("SDK error 7" in actual.error_summary(form_error_type.new(7,"Consent service unavailable")),"Real UMP FormError exposes error_code in diagnostics")
+ check("SDK error 3" in actual.error_summary(sdk_error_type.new(3,"google.test","No fill",null)),"Real AdError exposes code in diagnostics")
+ var consent_type := load("res://addons/admob/gdscript/src/ump/api/ConsentInformation.gd")
+ check(not consent_type.new().can_request_ads(),"Real JNI permission wrapper fails closed without AndroidRuntime")
  actual.queue_free()
  await get_tree().process_frame
  for status in [0,2]:
@@ -70,6 +89,18 @@ func run() -> void:
   SDK.form_available = false
   bridge.prepare(TOKEN)
   check(errors == 1 and not SDK.calls.has("initialize") and not SDK.calls.has("ad_load"),"unknown/unresolved consent cannot initialize or load")
+ reset(3)
+ SDK.permission = false
+ bridge.prepare(TOKEN)
+ check(errors == 1 and not SDK.calls.has("initialize") and not SDK.calls.has("ad_load"),"OBTAINED cannot override Google's false canRequestAds result")
+ reset(1)
+ SDK.permission = false
+ bridge.prepare(TOKEN)
+ check(errors == 1 and not SDK.calls.has("initialize"),"NOT_REQUIRED still requires Google's true canRequestAds result")
+ reset(3)
+ SDK.initialization_ready = false
+ bridge.prepare(TOKEN)
+ check(errors == 1 and not SDK.calls.has("ad_load"),"SDK callback without ready adapter is initialization failure, not load success")
  reset(3)
  SDK.update_fails = true
  bridge.prepare(TOKEN)
@@ -98,7 +129,25 @@ func run() -> void:
  bridge.show_privacy_options()
  check(SDK.calls.has("privacy_options") and not bridge.consent_checked,"privacy choices invalidate session consent readiness")
  bridge.prepare(TOKEN)
- check(SDK.calls.count("consent_update") == 2 and SDK.calls.count("initialize") == 1,"privacy return refreshes consent without duplicate SDK initialization")
+ check(SDK.calls.count("consent_update") == 3 and SDK.calls.count("initialize") == 1,"privacy return refreshes consent without duplicate SDK initialization")
+ bridge.discard()
+ SDK.privacy_fails = true
+ var messages: Array = []
+ bridge.status.connect(func(text: String): messages.append(text))
+ bridge.show_privacy_options()
+ check(not bridge.privacy_form_open and "could not open" in str(messages.back()),"Privacy form errors stay visible and release the UI lock")
+ check("3" in bridge.error_summary({"code":3,"message":"No fill"}) and "No fill" in bridge.error_summary({"code":3,"message":"No fill"}),"SDK error code and message preserved in diagnostics")
+ check("private@example.org" not in bridge.safe_text("private@example.org https://example.org/private 192.168.1.1"),"Diagnostic sanitizer redacts emails and network identifiers")
+ reset(3)
+ SDK.duplicate_reward = true
+ bridge.prepare(TOKEN)
+ bridge.present(TOKEN)
+ check(earned == 1 and closed == 1,"Repeated native earned callbacks emit one earned event per presentation")
+ reset(3)
+ bridge.prepare(TOKEN)
+ SDK.permission = false
+ bridge.present(TOKEN)
+ check(errors == 1 and not SDK.calls.has("ad_show") and earned == 0,"Withdrawn UMP permission prevents presenting an already-loaded ad")
  reset(3)
  SDK.load_fails = true
  bridge.prepare(TOKEN)

@@ -9,6 +9,10 @@ static var form_obtains := false
 static var load_fails := false
 static var show_fails := false
 static var give_reward := true
+static var permission := true
+static var initialization_ready := true
+static var privacy_fails := false
+static var duplicate_reward := false
 static var calls: Array = []
 static var custom_token := ""
 static var loaded_unit := ""
@@ -24,12 +28,17 @@ var on_ad_dismissed_full_screen_content: Callable
 var on_ad_failed_to_show_full_screen_content: Callable
 var on_user_earned_reward: Callable
 var full_screen_content_callback: RefCounted
+var on_ad_showed_full_screen_content: Callable
+var adapter_status_map: Dictionary = {}
+var initialization_state := 2
 
 func update(_parameters: RefCounted, success: Callable, failure: Callable) -> void:
  calls.append("consent_update")
  failure.call({}) if update_fails else success.call()
 func get_consent_status() -> int:
  return consent_status
+func can_request_ads() -> bool:
+ return permission
 func get_is_consent_form_available() -> bool:
  return form_available
 func get_privacy_options_requirement_status() -> int:
@@ -46,7 +55,11 @@ static func set_request_configuration(_config: RefCounted) -> void:
  calls.append("request_configuration")
 static func initialize(listener: RefCounted) -> void:
  calls.append("initialize")
- listener.on_initialization_complete.call({})
+ var status: RefCounted = load("res://tests/fixtures/admob_contract_sdk.gd").new()
+ var entry: RefCounted = load("res://tests/fixtures/admob_contract_sdk.gd").new()
+ entry.initialization_state = 2 if initialization_ready else 4
+ status.adapter_status_map = {"google":entry}
+ listener.on_initialization_complete.call(status)
 func load(_unit: String, _request: RefCounted, callback: RefCounted) -> void:
  loaded_unit = _unit
  calls.append("ad_load")
@@ -65,9 +78,12 @@ func show(listener: Variant) -> void:
   if show_fails:
    full_screen_content_callback.on_ad_failed_to_show_full_screen_content.call({})
   else:
+   full_screen_content_callback.on_ad_showed_full_screen_content.call()
    if give_reward:
     on_user_earned_reward = listener.on_user_earned_reward
     on_user_earned_reward.call({"amount":99999,"type":"sample"})
+    if duplicate_reward:
+     on_user_earned_reward.call({"amount":99999,"type":"sample"})
    full_screen_content_callback.on_ad_dismissed_full_screen_content.call()
 func set_server_side_verification_options(options: RefCounted) -> void:
  custom_token = options.custom_data
@@ -75,4 +91,4 @@ func destroy() -> void:
  calls.append("destroy")
 static func show_privacy_options_form(callback: Callable) -> void:
  calls.append("privacy_options")
- callback.call(null)
+ callback.call({"error_code":3,"message":"Privacy form failed"} if privacy_fails else null)

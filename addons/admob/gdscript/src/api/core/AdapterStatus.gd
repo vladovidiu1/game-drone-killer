@@ -26,7 +26,9 @@ var latency: int
 var initialization_state: InitializationState
 var description: String
 
-enum InitializationState { NOT_READY, READY }
+# Project correction: the pinned Next-Gen 1.4.0 native converter emits these
+# ordinals (COMPLETE=2), not classic Mobile Ads NOT_READY/READY.
+enum InitializationState { NOT_STARTED, INITIALIZING, COMPLETE, TIMED_OUT, FAILED }
 
 
 func _init(latency: int, initialization_state: InitializationState, description: String) -> void:

@@ -41,7 +41,6 @@ static func load_consent_form(
 	if _plugin:
 		_on_consent_form_load_success_listener_callback = on_consent_form_load_success_listener
 		_on_consent_form_load_failure_listener_callback = on_consent_form_load_failure_listener
-		_plugin.load_consent_form()
 		safe_connect(
 			_plugin,
 			"on_consent_form_load_success_listener",
@@ -55,13 +54,13 @@ static func load_consent_form(
 			CONNECT_ONE_SHOT
 		)
 
+		_plugin.load_consent_form()
 
 static func show_privacy_options_form(
 	on_privacy_options_form_dismissed := func(form_error: FormError): pass
 ) -> void:
 	if _plugin:
 		_on_privacy_options_form_dismissed_callback = on_privacy_options_form_dismissed
-		_plugin.show_privacy_options_form()
 		safe_connect(
 			_plugin,
 			"on_privacy_options_form_dismissed_listener",
@@ -69,6 +68,7 @@ static func show_privacy_options_form(
 			CONNECT_ONE_SHOT
 		)
 
+		_plugin.show_privacy_options_form()
 
 static func _on_consent_form_load_success_listener(UID: int) -> void:
 	_on_consent_form_load_success_listener_callback.call_deferred(ConsentForm.new(UID))

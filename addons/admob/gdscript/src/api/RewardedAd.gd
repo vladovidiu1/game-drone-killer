@@ -41,11 +41,11 @@ var _on_user_earned_reward_listener: OnUserEarnedRewardListener
 func show(on_user_earned_reward_listener := OnUserEarnedRewardListener.new()) -> void:
 	if _plugin:
 		self._on_user_earned_reward_listener = on_user_earned_reward_listener
-		_plugin.show(_uid)
 		safe_connect(
 			_plugin, "on_rewarded_ad_user_earned_reward", _on_rewarded_ad_user_earned_reward
 		)
 
+		_plugin.show(_uid)
 
 func destroy() -> void:
 	if _plugin:

@@ -5,6 +5,7 @@ var watch: Button
 var details: Label
 var retry: Button
 var privacy: Button
+var policy: Button
 var elapsed := 0.0
 
 func _ready() -> void:
@@ -26,6 +27,9 @@ func _ready() -> void:
  privacy = UI.button("Ad privacy choices",_privacy,Vector2(0,54))
  privacy.add_theme_font_size_override("font_size",16)
  add_child(privacy)
+ policy = UI.button("Privacy policy",func(): OS.shell_open(RewardedAdsManager.adapter.privacy_policy_url()),Vector2(0,54))
+ policy.add_theme_font_size_override("font_size",16)
+ add_child(policy)
  RewardedAdsManager.changed.connect(refresh)
  refresh()
 
@@ -42,6 +46,8 @@ func refresh() -> void:
  details.text = "Optional ads are not active in this version. Tap Ad information. Offline progress is unchanged." if offer.setup_required else "%d / %d rewards remaining today (UTC)\n%s" % [int(offer.remaining),int(offer.limit),status]
  retry.visible = str(offer.phase) == "pending"
  privacy.visible = RewardedAdsManager.adapter.privacy_available()
+ privacy.disabled = str(offer.phase) != "idle" or RewardedAdsManager.adapter.consent_ui_active()
+ policy.visible = not RewardedAdsManager.adapter.privacy_policy_url().is_empty()
 
 func phase_needs_reason(offer: Dictionary) -> bool:
  return not str(offer.reason).is_empty() and str(offer.reason) != str(offer.message) and str(offer.phase) == "idle"
@@ -60,7 +66,7 @@ func _watch() -> void:
   var dialog := AcceptDialog.new()
   dialog.name = "AdsInformation"
   dialog.title = "Optional ads"
-  dialog.dialog_text = "Optional rewarded ads are not active in this version.\nYou can continue the whole campaign offline.\nOpening this information screen does not grant War Credits."
+  dialog.dialog_text = str(offer.reason)+"\n\nYou can continue the whole campaign offline.\nOpening this information screen does not grant War Credits."
   add_child(dialog)
   var close := dialog.get_ok_button()
   close.set_script(preload("res://scripts/ui/touch_button.gd"))

@@ -24,5 +24,17 @@ func discard() -> void:
 func privacy_available() -> bool:
  return false
 
+func privacy_policy_url() -> String:
+ return ""
+
 func show_privacy_options() -> void:
  pass
+
+func consent_ui_active() -> bool:
+ return false
+
+func request_stage() -> String:
+ return "ad_load"
+
+func timeout_reason() -> String:
+ return "Ad request timed out. Offline gameplay remains available."

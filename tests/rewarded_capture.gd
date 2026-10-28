@@ -11,7 +11,7 @@ func has_text(node: Node, value: String) -> bool:
 
 func find_watch(node: Node) -> Button:
  for child in node.get_children():
-  if child is Button and child.text.begins_with("Watch Ad"):
+  if child is Button and (child.text.begins_with("Watch Ad") or child.text == "Ad information"):
    return child
   var result := find_watch(child)
   if result != null:
@@ -45,7 +45,7 @@ func run() -> void:
  await get_tree().process_frame
  app._map()
  await capture("campaign_ads_unavailable")
- check(find_watch(app).disabled,"Missing native SDK disables optional ad button")
+ check(not find_watch(app).disabled and find_watch(app).text == "Ad information","Missing native SDK exposes useful ad information without starting a request")
  var mock := MOCK.new()
  mock.scenario = "manual"
  check(RewardedAdsManager.configure_development(mock),"native editor simulation is explicit")

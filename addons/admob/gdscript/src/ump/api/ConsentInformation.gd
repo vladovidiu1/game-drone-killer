@@ -40,6 +40,26 @@ func get_consent_status() -> ConsentStatus:
 	return ConsentStatus.UNKNOWN
 
 
+# Project extension: v5.1.0's native Poing bridge omits this UMP API.
+# Query Google's actual singleton through Godot 4.6.3's documented JNI bridge;
+# never infer permission from consent status, a local preference or a test ID.
+func can_request_ads() -> bool:
+	if not OS.has_feature("android") or not Engine.has_singleton("AndroidRuntime"):
+		return false
+	var runtime := Engine.get_singleton("AndroidRuntime")
+	var platform := JavaClassWrapper.wrap("com.google.android.ump.UserMessagingPlatform")
+	if JavaClassWrapper.get_exception() != null or platform == null:
+		return false
+	var context = runtime.getApplicationContext()
+	if JavaClassWrapper.get_exception() != null or context == null:
+		return false
+	var information = platform.getConsentInformation(context)
+	if JavaClassWrapper.get_exception() != null or information == null:
+		return false
+	var permitted = information.canRequestAds()
+	return JavaClassWrapper.get_exception() == null and permitted is bool and permitted
+
+
 func get_is_consent_form_available() -> bool:
 	if _plugin:
 		return _plugin.get_is_consent_form_available()
@@ -64,10 +84,9 @@ func update(
 	if _plugin:
 		self._on_consent_info_updated_success_callback = on_consent_info_updated_success
 		self._on_consent_info_updated_failure_callback = on_consent_info_updated_failure
-		_plugin.update(consent_request.convert_to_dictionary())
-
 		safe_connect(_plugin, "on_consent_info_updated_success", _on_consent_info_updated_success)
 		safe_connect(_plugin, "on_consent_info_updated_failure", _on_consent_info_updated_failure)
+		_plugin.update(consent_request.convert_to_dictionary())
 
 
 func reset():
