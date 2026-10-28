@@ -27,3 +27,11 @@ textures/default_filters/use_nearest_mipmap_filter=false
 
 [input_devices]
 pointing/emulate_mouse_from_touch=false
+
+[editor_plugins]
+enabled=PackedStringArray("res://addons/admob/plugin.cfg")
+
+[admob]
+general/android/enabled=true
+general/android/app_id="ca-app-pub-3940256099942544~3347511713"
+general/ios/enabled=false

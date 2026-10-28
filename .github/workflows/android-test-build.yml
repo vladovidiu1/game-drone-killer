@@ -57,9 +57,9 @@ jobs:
           drone-killer-unsigned.aab is ARM64 and UNSIGNED. It requires the publisher's upload signature before Google Play accepts it.
           SHA256SUMS contains the artifact checksums. No production signing keys or passwords are included.
 
-          AAB structure was checked. This update fixes native menu swipes, expands the build/upgrade drawer, keeps construction at normal speed and adds audible combat/UI feedback. Physical Android device validation remains required.
+          AAB structure was checked. This update adds quiet original menu/pause music and the pinned native AdMob bridge. Ads remain disabled until the publisher configures an AdMob account, owned IDs and privacy/audience settings; the menu offers accessible ad information without mock rewards. Physical Android device validation remains required.
           NOTES
           gh release create "$tag" drone-killer-unsigned.aab SHA256SUMS \
             --target "$GITHUB_SHA" --prerelease \
-            --title "Android 0.1.1 — audio and mobile controls (unsigned AAB)" \
+            --title "Android 0.1.2 — menu music and AdMob integration (unsigned AAB)" \
             --notes-file "$RUNNER_TEMP/android-release-notes.md"

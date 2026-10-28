@@ -4,6 +4,18 @@
   "license_notice": "assets/ASSET_LICENSE.md",
   "assets": [
     {
+      "filename": "audio/night_watch.ogg",
+      "purpose": "Night Watch: quiet 48-second menu/pause ambient loop, 80 BPM",
+      "required_dimensions": null,
+      "animation_frames": 1,
+      "frame_semantics": "Static or parameter-driven",
+      "art_direction": "Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable",
+      "source_or_generation_method": "Original composition and synthesis; tools/build_menu_music.py",
+      "license": "MIT; assets/ASSET_LICENSE.md",
+      "integration_status": "Integrated",
+      "sha256": "224249690746a245a360d4300bdc638205b813baa4ee9e808eb5f8152ead83e6"
+    },
+    {
       "filename": "backgrounds/sentinel_keyart.png",
       "purpose": "Main-menu key art",
       "required_dimensions": [

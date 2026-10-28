@@ -73,7 +73,7 @@ The [visual validation gallery](docs/VISUAL_VALIDATION.md) also includes a live 
 
 ## Optional rewarded ads (M4)
 
-Arsenal and campaign map offer an optional **Watch Ad / +50 WC**, with five successful rewards per UTC day and a 60-second cooldown. Ads are **unavailable by default** in this checkout: there is no Android SDK/plugin configuration or verified real advertising. Offline combat/campaign completion remains unchanged. Saved balances/upgrades survive the additive schema-v3 migration.
+Arsenal and campaign map offer an optional **Watch Ad / +50 WC**, with five successful rewards per UTC day and a 60-second cooldown. Ads are **unavailable by default** in this checkout: the native SDK bridge is packaged, but the owner has not configured an AdMob account, publisher IDs or consent/privacy settings. No real advertising has been verified. Offline combat/campaign completion remains unchanged. Saved balances/upgrades survive the additive schema-v3 migration.
 
 To test callbacks in the debug desktop editor, run `godot --path . -- --rewarded-ads-simulate` using isolated test data. Its dialog explicitly says **EDITOR SIMULATION — NOT A REAL AD**; only Complete simulates an earned reward, while Close gives nothing. Exported builds cannot use this simulator. The conditional Poing v5.1.0 adapter is restricted to configured Android debug/test use and official Google test IDs, after required privacy handling; production ads remain disabled.
 
@@ -245,11 +245,11 @@ Manual device checks: test 16:9 and tall landscape displays, cutout margins, lef
 
 ## Android builds and Google Play
 
-Android export presets and reproducible build helpers are available. See [Android build and Play Console instructions](docs/ANDROID_RELEASE.md) for the test APK, signed upload AAB, private upload key creation, and release checklist. The package is `com.vladovidiu.dronekiller`, version `0.1.1` (code 2), minimum API 24 and target API 36. Real Android device validation and Play Console setup remain required before publication.
+Android export presets and reproducible build helpers are available. See [Android build and Play Console instructions](docs/ANDROID_RELEASE.md) for the test APK, signed upload AAB, private upload key creation, and release checklist. The package is `com.vladovidiu.dronekiller`, version `0.1.2` (code 3), minimum API 24 and target API 36. Real Android device validation and Play Console setup remain required before publication.
 
 ## Intentionally unfinished
 
-All 25 missions and the campaign finale are implemented. Final human difficulty tuning, authored production art/music, selling defenses, full accessibility/localization, signed Android exports, device profiling and release packaging remain future work. G1/G2/G3 artwork is integrated candidate art. All 25 missions now use the illustrated environment library; further artist refinements and final art approval remain outstanding. G3 now supplies distinct support/boss/weapon bodies for all archetypes. Generated audio remains a development asset. No APK is included; this source project opens directly in Godot.
+All 25 missions and the campaign finale are implemented. Final human difficulty tuning, final artwork review and additional soundtrack, selling defenses, full accessibility/localization, signed Android exports, device profiling and release packaging remain future work. G1/G2/G3 artwork is integrated candidate art. All 25 missions now use the illustrated environment library; further artist refinements and final art approval remain outstanding. G3 now supplies distinct support/boss/weapon bodies for all archetypes. Generated audio remains a development asset. No APK is included; this source project opens directly in Godot.
 
 ## G2 battlefield environments
 
@@ -284,3 +284,9 @@ All 25 missions now support western, central and eastern approaches, seeded atta
 ### M6 strategic placement and redeployment
 
 All 25 maps now label western/central/eastern roles and selected elevated positions. Automatic weapons enforce configurable mounted firing arcs; select a turret to see its true range/arc and adjust facing. Toggle **Coverage** for approximate secondary reach/gaps. **Move → destination → Confirm** redeploys the same leveled turret for 35% of its current investment, with four simulated seconds offline. Cancellation/mission end safely refund pending transport. Initial PREPARE waits for **Launch wave**, giving time to spend ordinary starting Battle Credits. [Rules, costs and controls](docs/STRATEGIC_PLACEMENT.md) · [Validation and native captures](docs/m6/VALIDATION.md).
+
+### Menu music and optional advertising (0.1.2)
+
+Night Watch is an original, royalty-free ambient synthesizer loop distributed with the project under the asset MIT notice. It plays quietly in menus and while paused, stops during active combat/backgrounding/full-screen ads, and has an independent Settings → Menu music switch. Master volume/mute remain authoritative.
+
+The exact Godot 4.6.3 Poing AdMob native bridge is now packaged. No AdMob account or publisher IDs are configured, so ads remain inactive; the offer opens an information dialog rather than an unexplained disabled button. See [the account/setup steps](docs/ADS_SETUP.md). No mock ad rewards are enabled in Android exports. Signing the AAB does not activate advertising.

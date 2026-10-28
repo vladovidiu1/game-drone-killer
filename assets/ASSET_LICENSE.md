@@ -19,7 +19,7 @@ Fonts are distributed unmodified with their original notices:
 - Barlow Regular and Barlow Condensed Bold: SIL Open Font License 1.1. See `ui/fonts/Barlow-OFL.txt` and `ui/fonts/BarlowCondensed-OFL.txt`. Retrieved from the Google Fonts `ofl/barlow` and `ofl/barlowcondensed` directories; hashes in the manifest pin the actual bundled files.
 - DejaVu Sans Mono: Bitstream Vera / DejaVu font licenses and notices, preserved in `ui/fonts/DejaVu-LICENSE.txt`.
 
-The game loads local files only. No generation service, font CDN, account or API key is used at runtime.
+Artwork, fonts and music load from local files. No generation service, font CDN, account or API key is required for offline gameplay. Optional advertising uses separately configured Google SDKs and their own terms.
 
 G2 adds three original terrain atlases and one original transparent prop atlas under the same generated-project-output terms described above. IDs and integration status are recorded in `source/environment_sources.json`, `source/GENERATION.md` and `manifest.json`. New environment JSON, shaders, SVG utility layers and generators are project-authored sources under the project's MIT license. No licensed third-party game environments were used.
 
@@ -30,3 +30,7 @@ G4 reuses the existing licensed original explosion, G3 fragment and authored vec
 G5's fictional Asteria strategic cartography, 25-node visual layout and 13 matching UI symbols are original authored vector/data work under the repository MIT license. `tools/build_strategic_map.py` is the reproducible source; no geographic dataset, map API or third-party illustration is used. UI portraits/previews reuse existing licensed G1–G3 game artwork.
 
 M2 adds six original authored SVG projectile technical illustrations under the project MIT license. Their reproducible source is `tools/build_projectile_vectors.py`. No new generated raster output or third-party weapon artwork is introduced. Electric/frost/rail effects extend the existing bounded authored VFX code.
+
+## Original menu music
+
+`audio/night_watch.ogg` (Night Watch, 48 seconds, 80 BPM) is an original project-authored ambient synthesizer composition, not a recording sampled from a third-party song. Composition, synthesis source and recording are supplied under the MIT license above, with no royalties or external attribution requirement beyond retaining that notice. Its reproducible source is `tools/build_menu_music.py`; it uses only mathematical oscillators, with no downloaded samples or hosted generation service. The game plays this locally in menus/pause at a low level and stops it during active combat, backgrounding and full-screen ads.

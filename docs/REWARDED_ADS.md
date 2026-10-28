@@ -1,12 +1,14 @@
 # M4 — optional rewarded advertising
 
+> **0.1.2 update:** the exact Godot 4.6.3 Poing native bridge is now packaged and an offline export shim replaces the upstream editor installer. No AdMob account or publisher IDs exist yet, so live requests remain disabled. Test/production configuration and account prerequisites are documented in [ADS_SETUP.md](ADS_SETUP.md). The menu's information action grants no credits. Older M4 installation/debug-only notes below are historical; the earned-only accounting/consent contracts remain applicable.
+
 ## Implemented and deliberately not claimed
 
 The existing offline game now has optional **Watch Ad / +50 WC** offers in Arsenal and campaign map, a provider abstraction, an editor-only callback simulator, a conditional Android test adapter, persistent installation-wide limits, and crash-recoverable reward accounting. Combat, campaign rewards, research prices and the existing M3 no-ad progression path are unchanged.
 
-**No real advertisement has been verified on Android.** Godot 4.6.3 Android build presets and offline APK/AAB export tools are now available; see [Android build preparation](ANDROID_RELEASE.md). There is still no installed ad plugin, matching native ads AAR, Android device validation or AdMob consent-message configuration. Normal editor/desktop runs and release exports cannot show real ads. The default offer is disabled and explains that offline play remains available.
+**No real advertisement has been verified on Android.** Godot 4.6.3 Android build presets and offline APK/AAB export tools are now available; see [Android build preparation](ANDROID_RELEASE.md). The exact Godot 4.6.3 native ads AAR is now checksum-verified and packaged. Android device validation and publisher AdMob consent-message configuration remain outstanding. The default provider is disabled; its menu action explains availability without granting a reward.
 
-The optional native adapter currently permits **Android debug builds with official Google test IDs only**, after its explicit configuration/compliance gates. Release monetization requires separate publisher/backend/privacy work and an intentional release-provider implementation. Do not remove debug/test gates merely to publish a store build.
+The native adapter now supports explicit Android test and production modes behind publisher-owned App ID, matching manifest metadata and reviewed privacy/audience gates. Test mode always uses the official Google rewarded unit. Current configuration remains disabled; no account or IDs were invented. A completed UMP flow is required before initialization or load.
 
 ## Selected integration and verified API
 
@@ -37,7 +39,7 @@ The SDK `RewardedItem` exposes amount/type, **not an SSV transaction ID**. The s
 ## Architecture and flow
 
 - `scripts/ads/ad_adapter.gd`: load/show/earned/closed/failure/status signals; providers never write money.
-- `poing_admob_adapter.gd`: optional, dynamically loaded pinned APIs; absent SDK files never cause unresolved scene dependencies. Configuration in `data/advertising.json` defaults disabled/unreviewed and accepts official test IDs only. It refreshes consent before its first ad request per app process, initializes only after required consent handling, never preloads at startup and never requests an ad after privacy changes without another voluntary Watch action.
+- `poing_admob_adapter.gd`: optional, dynamically loaded pinned APIs; absent SDK files never cause unresolved scene dependencies. Configuration in `data/advertising.json` defaults disabled/unreviewed; explicit test mode uses the official rewarded test unit and production mode requires a publisher-owned unit. It refreshes consent before its first ad request per app process, initializes only after required consent handling, never preloads at startup and never requests an ad after privacy changes without another voluntary Watch action.
 - `mock_ad_adapter.gd`: editor/debug desktop simulator. Both entry points and adapter installation require `OS.has_feature("editor") && OS.is_debug_build() && !OS.has_feature("android")`. A JSON flag, Android debug export or release custom feature cannot enable it through the game's normal paths.
 - `RewardedAdsManager`: autoload after existing services, explicit menu context, one loading/presentation session at a time, earned callback ownership, real-time cooldown/timeout, optional pending-save retry.
 - `rewarded_store.gd`: installation-wide validated version-1 write-ahead journal in `user://rewarded_ads.json`, independent of campaign reset.
@@ -88,14 +90,9 @@ In Godot's editor, set the same user argument in Project → Project Settings �
 
 See [M4 validation](m4/VALIDATION.md) for completed commands, counts and native frames. The existing full regression/earned-budget campaign still proves a viable **no-ad** path.
 
-## Android official-test integration still required
+## Current Android installation and account setup
 
-1. Install **Godot AdMob v5.1.0**, preserve its MIT/license notices, and review upstream/native Google SDK terms. It is intentionally not vendored/enabled by this task; no binary was available to validate here.
-2. Install exact Godot 4.6.3 export templates and the Godot Android Gradle build template. Configure supported JDK/SDK/build tools/keystore locally. Do not commit keys, credentials, SDK caches or generated build directories. Follow upstream Android template instructions; use binaries built against 4.6.3, not the source's default 4.7.0 fallback.
-3. Enable the upstream editor plugin; install matching Android native core/ads AARs through its documented AdMob Manager. The actual project-setting key is **`admob/general/android/app_id`** (verified in source), under Project Settings → Admob → General → Android. Keep it equal to Google's sample App ID **`ca-app-pub-3940256099942544~3347511713`**. Keep rewarded test unit **`ca-app-pub-3940256099942544/5224354917`**. The adapter rejects other IDs and release builds.
-4. Review the audience and privacy configuration; supply a real publisher policy URL. Google owns the sample App ID: a publisher cannot configure its own Privacy & messaging message for that ID. If UMP cannot obtain the required form with the sample app, keep ads unavailable; never skip consent to make a test ad show. Full publisher-specific UMP testing needs an owned AdMob App ID, documented SDK test-device/consent debug setup and an intentional extension of this strict sample-App-ID adapter while retaining the official rewarded test unit. That account-specific work is not completed here. Only then enable this project's Android test adapter with `enabled=true`, `compliance_reviewed=true`, `audience="reviewed_adult_only"`, and a reviewed HTTPS `privacy_policy_url`. This gate is not a substitute for lawful consent or a general public age determination. Underage/child/mixed-audience advertising is disabled in this implementation.
-5. Add required network/SDK permissions and inspect the merged Android manifest; use the plugin exporter for App ID metadata. Include `data/*.json` in exports. Verify optional SDK failures do not prevent launch or offline gameplay. If upstream registration auto-initializes any SDK before consent, correct/disable it before shipping; our adapter itself only initializes after handling consent.
-6. On real Android hardware use official test ads. Verify EEA/UK/Switzerland consent scenarios, unavailable/offline/error cases, earned versus dismissal ordering, background/resume, actual touch controls, reward persistence, daily limits and release simulation exclusion. Rebuild after SDK updates; source API checks alone do not prove binary compatibility.
+The runtime and exact native-template bridge are now installed by `python3 tools/setup_android.py` with a pinned SHA-256. The custom export plugin packages Android only and never downloads or mutates settings during editor startup. See [ADS_SETUP.md](ADS_SETUP.md) for provenance, public account identifiers, required owner configuration and test/production activation. Device consent/ad-flow validation and the publisher's privacy/audience decisions remain external prerequisites; signing alone does not activate ads.
 
 ## Privacy, children and Google Play release obligations
 

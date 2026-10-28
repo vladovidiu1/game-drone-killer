@@ -13,16 +13,49 @@ var current := ""
 var initialized := false
 var consent_checked := false
 
+func configuration_issue() -> String:
+ if not bool(config.get("enabled",false)) or str(config.get("mode","disabled")) == "disabled":
+  return "Optional ads are not activated in this version. Offline play remains available."
+ if config.get("mode") not in ["test","production"]:
+  return "Advertising configuration is unavailable."
+ if not bool(config.get("compliance_reviewed",false)) or config.get("audience") != "reviewed_adult_only" or not str(config.get("privacy_policy_url","")).begins_with("https://"):
+  return "Advertising privacy setup is incomplete. Offline play remains available."
+ var app_id := str(config.get("android_app_id",""))
+ var pattern := RegEx.new()
+ pattern.compile("^ca-app-pub-[0-9]{16}~[0-9]{10}$")
+ if pattern.search(app_id) == null or app_id == "ca-app-pub-3940256099942544~3347511713":
+  return "Advertising app registration is incomplete."
+ if str(ProjectSettings.get_setting("admob/general/android/app_id","")) != app_id:
+  return "Advertising build configuration is incomplete."
+ if config.mode == "production":
+  pattern.compile("^ca-app-pub-[0-9]{16}/[0-9]{10}$")
+  var unit := str(config.get("android_rewarded_id",""))
+  if pattern.search(unit) == null or unit.begins_with("ca-app-pub-3940256099942544/"):
+   return "Rewarded advertising registration is incomplete."
+ return ""
+
+func unavailable_reason() -> String:
+ var issue := configuration_issue()
+ if not issue.is_empty():
+  return issue
+ if not OS.has_feature("android"):
+  return "Optional ads are available on Android only."
+ return "Advertising service is unavailable. Offline play remains available."
+
 func available() -> bool:
- # Development integration only. Release monetization remains deliberately gated.
- return OS.has_feature("android") and OS.is_debug_build() and bool(config.enabled) and bool(config.compliance_reviewed) and config.audience == "reviewed_adult_only" and str(config.privacy_policy_url).begins_with("https://") and config.android_rewarded_test_id == TEST_UNIT and config.android_app_test_id == "ca-app-pub-3940256099942544~3347511713" and ProjectSettings.get_setting("admob/general/android/app_id","") == config.android_app_test_id and ResourceLoader.exists(ROOT+"api/MobileAds.gd") and Engine.has_singleton("PoingGodotAdMob") and Engine.has_singleton("PoingGodotAdMobConsentInformation") and Engine.has_singleton("PoingGodotAdMobUserMessagingPlatform")
+ # Explicit test/production modes require publisher-owned registration and fresh
+ # UMP handling. No mock reward or sample-app consent bypass exists in exports.
+ return configuration_issue().is_empty() and OS.has_feature("android") and ResourceLoader.exists(ROOT+"api/MobileAds.gd") and Engine.has_singleton("PoingGodotAdMob") and Engine.has_singleton("PoingGodotAdMobConsentInformation") and Engine.has_singleton("PoingGodotAdMobUserMessagingPlatform")
+
+func rewarded_unit() -> String:
+ return str(config.get("android_rewarded_id","")) if config.get("mode") == "production" else TEST_UNIT
 
 func api(path: String) -> GDScript:
  return load(ROOT+path) as GDScript
 
 func prepare(token: String) -> void:
  if not available():
-  failed.emit(token,"AdMob Android test integration is not configured. Offline play is available.")
+  failed.emit(token,unavailable_reason())
   return
  current = token
  mobile = api("api/MobileAds.gd")
@@ -81,7 +114,7 @@ func initialize_and_load(token: String) -> void:
 func load_ad(token: String) -> void:
  if current != token:
   return
- status.emit("Loading official Google test ad…")
+ status.emit("Loading official Google test ad…" if config.get("mode") != "production" else "Loading optional rewarded ad…")
  var listener: RefCounted = api("api/listeners/RewardedAdLoadCallback.gd").new()
  listener.set("on_ad_failed_to_load",func(_error): fail_current(token,"Ad load failed. Continue offline."))
  listener.set("on_ad_loaded",func(loaded):
@@ -91,7 +124,7 @@ func load_ad(token: String) -> void:
   ad = loaded
   ad_loaded.emit(token))
  callbacks.append(listener)
- api("api/RewardedAdLoader.gd").new().call("load",TEST_UNIT,api("api/core/AdRequest.gd").new(),listener)
+ api("api/RewardedAdLoader.gd").new().call("load",rewarded_unit(),api("api/core/AdRequest.gd").new(),listener)
 
 func present(token: String) -> void:
  if current != token or ad == null:

@@ -6,3 +6,5 @@
 /android/.build_version
 *.keystore
 *.jks
+
+/addons/admob/android/bin/ads/libs/

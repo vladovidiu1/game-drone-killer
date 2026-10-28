@@ -9,6 +9,9 @@ signal status(text: String)
 func available() -> bool:
  return false
 
+func unavailable_reason() -> String:
+ return "Ads unavailable. Offline campaign remains available."
+
 func prepare(token: String) -> void:
  failed.emit(token,"Ads unavailable. Offline campaign remains available.")
 

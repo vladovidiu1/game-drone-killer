@@ -1,0 +1,16 @@
+# Android 0.1.2 / versionCode 3
+
+- Added Night Watch, an original 48-second stereo ambient loop under the asset MIT notice. It is stored locally (about 179 KiB), uses stream playback at -18 dB, and never stacks multiple music players. Music is eligible in menus/pause, stops during active combat/backgrounding/full-screen ads, and has an independent persistent Settings switch. Master mute/volume remain authoritative. Existing settings acquire the default without losing progress or other preferences.
+- Packaged the checksum-verified Poing 5.1.0 native ads/core bridge for exactly Godot 4.6.3. The editor uses an offline Android-only export shim and never installs iOS/mediation binaries or implicit mocks. The AAB includes real SDK/native plugin classes and manifest registration, not just a GDScript placeholder.
+- The owner confirmed that no AdMob account or IDs exist. Configuration therefore remains disabled/unreviewed, with no invented publisher identity, policy URL or age choice. The inactive offer is now accessible as an information dialog and grants no credits. Actual ad loading/monetization remains blocked by the missing account/IDs/privacy setup described in ADS_SETUP.md.
+- Explicit future test/production modes require an owned App ID matching export metadata, reviewed privacy/audience settings and fresh UMP handling. Test mode uses the official Google rewarded unit; production requires the publisher's own unit. Earned-only receipts, quotas, crash recovery and offline campaign progression are preserved.
+
+## Verification evidence
+
+- `tests/menu_audio_ads.tscn`: 23 checks; separate-process settings verification: 3 checks. Exercises old/invalid settings, real Ogg/loop/volume, actual Battle pause/resume, focus/ad/mute transitions, campaign-reset settings preservation and clickable unconfigured ad information without rewards.
+- `tests/rewarded_ads.tscn` and fresh-process verification: 97 + 6 checks; existing real adapter flow against documented SDK test doubles: 17 checks. These do not claim real Google ad delivery or Android device testing.
+- `tests/menu_audio_ads_capture.tscn` under X11/Compatibility/Mesa: native touch toggles music, opens/closes the actual ad-information dialog and leaves credits unchanged. Zero failures. These are desktop-rendered fixtures, not phone screenshots.
+- Actual ALSA software mixer probe: menu peak 0.051001, combat 0, paused 0.067315, full-screen-ad state 0, background 0. Local decoding/playback and silence transitions were observed; phone speaker/audio-route behavior is still a device check.
+- Bundletool validates the unsigned ARM64 AAB. Manifest inspection confirms versionCode 3, native rewarded/consent plugin registration and sample App ID placeholder; compiled dex contains the real native bridge and Google SDK; bundled advertising JSON remains disabled and contains no publisher ID. Imported loop audio is present in the bundle.
+
+Run `./tests/run_checks.sh` for the full regression/earned-budget campaign. Regenerate the original music only with `python3 tools/build_menu_music.py` (numpy/ffmpeg); ordinary setup/build uses the checked-in asset. Keep signing keys outside Git. Signing does not supply an AdMob account or change the disabled runtime configuration.

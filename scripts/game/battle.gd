@@ -366,6 +366,7 @@ func close_build_mode() -> void:
 
 func set_paused(value: bool) -> void:
  paused = value
+ AudioManager.set_battle_paused(value)
  if value and is_instance_valid(player_controls):
   player_controls.clear()
   close_build_mode()

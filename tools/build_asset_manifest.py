@@ -19,7 +19,7 @@ for name, entry in g3_imports.items():
  originals[name] = (entry['purpose'],entry['output'],entry['panels'],entry['status'])
 items=[]
 for path in sorted(assets.rglob('*')):
- if not path.is_file() or path.suffix not in ['.png','.svg','.ttf','.tres','.gdshader','.json'] or path.name=='manifest.json':continue
+ if not path.is_file() or path.suffix not in ['.png','.svg','.ttf','.tres','.gdshader','.json','.ogg'] or path.name=='manifest.json':continue
  relative=path.relative_to(assets).as_posix()
  dimensions=None
  frames=1
@@ -49,6 +49,9 @@ for path in sorted(assets.rglob('*')):
   else:
    license='Bitstream Vera / DejaVu licenses; ui/fonts/DejaVu-LICENSE.txt'
    source='Unmodified Debian DejaVu font distribution'
+ elif path.suffix=='.ogg':
+  source='Original composition and synthesis; tools/build_menu_music.py'
+  purpose='Night Watch: quiet 48-second menu/pause ambient loop, 80 BPM'
  elif relative=='ui/frontline_theme.tres':source='tools/build_visual_theme.py'
  elif relative=='ui/campaign_layout.json':source='tools/build_strategic_map.py'
  items.append(dict(filename=relative,purpose=purpose,required_dimensions=dimensions,animation_frames=frames,frame_semantics='Six independent objects, not animation frames' if relative=='drones/combat_atlas.png' else 'Sequential 3 by 2 frames' if relative=='effects/explosion_atlas.png' else 'Independent environment/prop atlas cells, not animation' if relative.startswith('environment/') and '_atlas' in relative else 'Static or parameter-driven',art_direction='Modern military sci-fi 2.5D; restrained charcoal/steel/cyan; upper-left baked light where applicable',source_or_generation_method=source,license=license,integration_status=status,sha256=hashlib.sha256(path.read_bytes()).hexdigest()))

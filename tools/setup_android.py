@@ -150,6 +150,7 @@ def main():
     if Path('/etc/ssl/certs/java/cacerts').exists():
         settings += 'systemProp.javax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts\n'
     (gradle_home / 'gradle.properties').write_text(settings)
+    subprocess.run(['python3', str(ROOT / 'tools/setup_admob.py')], check=True)
     print('Android export prerequisites prepared. Only the debug key was generated; no release key was created.')
 
 

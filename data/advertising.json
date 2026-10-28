@@ -7,5 +7,8 @@
   "audience": "unreviewed",
   "privacy_policy_url": "",
   "android_app_test_id": "ca-app-pub-3940256099942544~3347511713",
-  "android_rewarded_test_id": "ca-app-pub-3940256099942544/5224354917"
+  "android_rewarded_test_id": "ca-app-pub-3940256099942544/5224354917",
+  "mode": "disabled",
+  "android_app_id": "",
+  "android_rewarded_id": ""
 }

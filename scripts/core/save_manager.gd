@@ -5,7 +5,7 @@ const SETTINGS_PATH := "user://settings.json"
 const PERFORMANCE := preload("res://scripts/core/mission_performance.gd")
 const VERSION := 3
 const FLOORS := [1,5,10,15,20]
-const DEFAULT_SETTINGS := {"tutorial_status":"unseen","volume":0.6,"muted":false,"reduced_motion":false,"reduced_environment_effects":false,"reduced_effects":false,"effects_quality":"medium","effects_smoke":true,"effects_debris":true,"effects_lighting":true,"effects_shake":true}
+const DEFAULT_SETTINGS := {"tutorial_status":"unseen","volume":0.6,"muted":false,"music_enabled":true,"reduced_motion":false,"reduced_environment_effects":false,"reduced_effects":false,"effects_quality":"medium","effects_smoke":true,"effects_debris":true,"effects_lighting":true,"effects_shake":true}
 var catalog: Dictionary = preload("res://scripts/core/economy_config.gd").progression()
 var state: Dictionary = {}
 var settings: Dictionary = DEFAULT_SETTINGS.duplicate()
@@ -163,7 +163,7 @@ func validate_settings(value: Variant) -> Dictionary:
  var volume: Variant = source.get("volume")
  if (volume is int or volume is float) and is_finite(float(volume)):
   result.volume = clampf(float(volume),0.0,1.0)
- for key in ["muted","reduced_motion","reduced_environment_effects","reduced_effects","effects_smoke","effects_debris","effects_lighting","effects_shake"]:
+ for key in ["muted","music_enabled","reduced_motion","reduced_environment_effects","reduced_effects","effects_smoke","effects_debris","effects_lighting","effects_shake"]:
   if source.get(key) is bool:
    result[key] = source[key]
  if source.get("effects_quality") is String and source.effects_quality in ["low","medium","high"]:

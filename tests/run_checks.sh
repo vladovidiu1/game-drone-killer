@@ -42,6 +42,8 @@ run_check res://tests/economy.tscn -- --verify-economy
 run_check res://tests/rewarded_ads.tscn
 run_check res://tests/rewarded_ads.tscn -- --verify-ads
 run_check res://tests/admob_contract.tscn
+run_check res://tests/menu_audio_ads.tscn
+run_check res://tests/menu_audio_ads.tscn -- --verify-menu-audio
 FRONTLINE_CHECK_TIMEOUT=180 run_check res://tests/weapon_research.tscn
 run_check res://tests/weapon_research.tscn -- --verify-weapons
 

@@ -55,6 +55,7 @@ func _clear(next: String) -> void:
   tutorial_overlay.queue_free()
   tutorial_overlay = null
  RewardedAdsManager.set_context(next)
+ AudioManager.set_context(next)
  if is_instance_valid(outro):
   outro.queue_free()
   outro = null
@@ -200,6 +201,16 @@ func _settings() -> void:
   AudioManager.apply_settings()
   SaveManager.save_settings())
  col.add_child(mute)
+ var music := UI.button("",func(): pass)
+ music.toggle_mode = true
+ music.button_pressed = bool(SaveManager.settings.get("music_enabled",true))
+ music.text = "Menu music: "+("ON" if music.button_pressed else "OFF")
+ music.toggled.connect(func(value: bool):
+  music.text = "Menu music: "+("ON" if value else "OFF")
+  SaveManager.settings.music_enabled = value
+  AudioManager.apply_settings()
+  SaveManager.save_settings())
+ col.add_child(music)
  col.add_child(UI.button("Test sound",func(): AudioManager.cue(true)))
  col.add_child(UI.button("Replay Tutorial",_replay_tutorial))
  var reduced := UI.button("Reduced environment effects",func(): pass)

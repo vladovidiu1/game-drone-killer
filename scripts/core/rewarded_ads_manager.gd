@@ -32,6 +32,8 @@ func _ready() -> void:
  if simulate:
   message = "EDITOR SIMULATION / Optional ad callbacks; no real advertising."
  install_adapter(provider)
+ changed.connect(_sync_music)
+ _sync_music()
 
 func install_adapter(provider: Node) -> void:
  adapter = provider
@@ -74,6 +76,7 @@ func cooldown_remaining() -> int:
 
 func offer() -> Dictionary:
  var reason := ""
+ var setup_required := false
  if not SaveManager.has_campaign():
   reason = "Start a campaign first."
  elif store.blocked:
@@ -82,6 +85,9 @@ func offer() -> Dictionary:
   reason = "Saving earned reward…" if phase == "pending" else "Loading ad…" if phase == "loading" else "Ad in progress…"
  elif not foreground or context not in ["map","arsenal"]:
   reason = "Optional ads are available only in campaign menus."
+ elif not adapter.available():
+  reason = adapter.unavailable_reason()
+  setup_required = true
  elif not clock_safe():
   reason = "Clock change detected; ad rewards unavailable."
  elif remaining() == 0:
@@ -90,9 +96,7 @@ func offer() -> Dictionary:
   reason = "Next optional ad in %ds." % cooldown_remaining()
  elif store.data.transactions.size() >= STORE.MAX_RECORDS:
   reason = "Ad history full; offline campaign remains available."
- elif not adapter.available():
-  reason = "Ads unavailable. Offline campaign remains available."
- return {"enabled":reason.is_empty(),"reason":reason,"amount":int(CONFIG.values.rewarded_ads.reward),"remaining":remaining(),"limit":int(CONFIG.values.rewarded_ads.daily_limit),"message":message,"phase":phase}
+ return {"setup_required":setup_required,"enabled":reason.is_empty(),"reason":reason,"amount":int(CONFIG.values.rewarded_ads.reward),"remaining":remaining(),"limit":int(CONFIG.values.rewarded_ads.daily_limit),"message":message,"phase":phase}
 
 func set_context(value: String) -> void:
  context = value
@@ -240,6 +244,7 @@ func _closed(id: String) -> void:
   return
  presentation_token = ""
  if phase == "pending":
+  changed.emit()
   return
  if phase == "showing_rewarded":
   phase = "idle"
@@ -278,3 +283,6 @@ func _notification(what: int) -> void:
 func _process(_delta: float) -> void:
  if phase == "loading" and clock.monotonic_msec()-request_ticks > int(CONFIG.values.rewarded_ads.load_timeout_seconds)*1000:
   _failed(active_token,"Ad request timed out. Offline gameplay remains available.")
+
+func _sync_music() -> void:
+ AudioManager.set_ad_playing(not presentation_token.is_empty())

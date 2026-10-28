@@ -5,9 +5,18 @@ var player: AudioStreamPlayer
 var combat_players: Dictionary = {}
 var combat_streams: Dictionary = {}
 var last_cue: Dictionary = {}
+const MENU_MUSIC := preload("res://assets/audio/night_watch.ogg")
+var music_player: AudioStreamPlayer
+var music_context := "menu"
+var battle_paused := false
+var foreground := true
+var ad_playing := false
 
 func _ready() -> void:
  player = _voice(-2.0)
+ music_player = _voice(-18.0)
+ music_player.max_polyphony = 1
+ music_player.stream = MENU_MUSIC
  apply_settings()
 
 func _voice(level: float) -> AudioStreamPlayer:
@@ -21,6 +30,7 @@ func _voice(level: float) -> AudioStreamPlayer:
 func apply_settings() -> void:
  AudioServer.set_bus_mute(0, bool(SaveManager.settings.muted))
  AudioServer.set_bus_volume_db(0, linear_to_db(maxf(0.001, float(SaveManager.settings.volume))))
+ _sync_music()
 
 func cue(victory: bool) -> void:
  if AudioServer.get_driver_name() == "Dummy":
@@ -65,3 +75,41 @@ func combat_cue(kind: String) -> void:
   combat_players[kind] = new_voice
  var voice: AudioStreamPlayer = combat_players[kind]
  voice.play()
+
+func set_context(value: String) -> void:
+ music_context = value
+ battle_paused = false
+ _sync_music()
+
+func set_battle_paused(value: bool) -> void:
+ if music_context == "game":
+  battle_paused = value
+  _sync_music()
+
+func set_ad_playing(value: bool) -> void:
+ ad_playing = value
+ _sync_music()
+
+func music_allowed() -> bool:
+ return foreground and not ad_playing and bool(SaveManager.settings.get("music_enabled",true)) and not bool(SaveManager.settings.muted) and float(SaveManager.settings.volume) > 0 and (music_context != "game" or battle_paused)
+
+func _sync_music() -> void:
+ if not is_instance_valid(music_player):
+  return
+ if not music_allowed():
+  music_player.stream_paused = true
+  return
+ # Dummy has no real audio consumer. Preserve semantic state without queuing audio.
+ if AudioServer.get_driver_name() == "Dummy":
+  return
+ if not music_player.playing:
+  music_player.play()
+ music_player.stream_paused = false
+
+func _notification(what: int) -> void:
+ if what in [NOTIFICATION_APPLICATION_FOCUS_OUT,NOTIFICATION_APPLICATION_PAUSED]:
+  foreground = false
+  _sync_music()
+ elif what in [NOTIFICATION_APPLICATION_FOCUS_IN,NOTIFICATION_APPLICATION_RESUMED]:
+  foreground = true
+  _sync_music()
