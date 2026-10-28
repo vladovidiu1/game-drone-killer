@@ -290,3 +290,7 @@ All 25 maps now label western/central/eastern roles and selected elevated positi
 Night Watch is an original, royalty-free ambient synthesizer loop distributed with the project under the asset MIT notice. It plays quietly in menus and while paused, stops during active combat/backgrounding/full-screen ads, and has an independent Settings → Menu music switch. Master volume/mute remain authoritative.
 
 The exact Godot 4.6.3 Poing AdMob native bridge is now packaged. Publisher IDs are configured in TEST mode; privacy/audience review is incomplete, so ads remain inactive; the offer opens an information dialog rather than an unexplained disabled button. See [the account/setup steps](docs/ADS_SETUP.md). No mock ad rewards are enabled in Android exports. Signing the AAB does not activate advertising.
+
+### Official Android app icon
+
+The publisher-supplied military drone/red-reticle artwork is configured for standard, adaptive and themed Android launcher icons. The separate 512 px RGB [Play Store PNG](assets/branding/google_play_icon_512.png) is ready for manual upload. See [mask previews](docs/branding/icon_preview.png) and [exact files/configuration/validation](docs/ANDROID_APP_ICON.md). Gameplay, advertising settings, package identity and signing configuration are unchanged.

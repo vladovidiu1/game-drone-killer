@@ -27,7 +27,12 @@ for path in sorted(assets.rglob('*')):
  license='MIT; assets/ASSET_LICENSE.md'
  status='Integrated'
  purpose=relative.rsplit('/',1)[-1].split('.')[0].replace('_',' ')
- if path.suffix=='.png':
+ if path.suffix=='.png' and relative.startswith('branding/'):
+  payload=path.read_bytes();dimensions=list(struct.unpack('>II',payload[16:24]))
+  source='Publisher-supplied final drone/reticle artwork; image-edited layer masters in docs/branding/source; tools/build_app_icons.sh'
+  license='Publisher-supplied branding; original artwork rights retained; assets/branding/NOTICE.md'
+  status='Manual Google Play upload asset' if relative=='branding/google_play_icon_512.png' else 'Integrated official Android launcher layer'
+ elif path.suffix=='.png':
   payload=path.read_bytes();dimensions=list(struct.unpack('>II',payload[16:24]));purpose,identifier,frames,status=originals[relative]
   source='OpenAI image generation, original prompt; output '+identifier+'; assets/source/GENERATION.md'
   license='Generated project output under applicable OpenAI terms; assets/ASSET_LICENSE.md'

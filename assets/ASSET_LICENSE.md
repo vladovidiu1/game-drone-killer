@@ -34,3 +34,7 @@ M2 adds six original authored SVG projectile technical illustrations under the p
 ## Original menu music
 
 `audio/night_watch.ogg` (Night Watch, 48 seconds, 80 BPM) is an original project-authored ambient synthesizer composition, not a recording sampled from a third-party song. Composition, synthesis source and recording are supplied under the MIT license above, with no royalties or external attribution requirement beyond retaining that notice. Its reproducible source is `tools/build_menu_music.py`; it uses only mathematical oscillators, with no downloaded samples or hosted generation service. The game plays this locally in menus/pause at a low level and stops it during active combat, backgrounding and full-screen ads.
+
+## Official application branding
+
+The drone/red-reticle artwork used by `branding/*.png` was supplied by the publisher for this application. Its original rights are retained; the project-authored vector/music MIT notice above does not relicense the supplied artwork. The icon variants preserve the supplied design, with assisted corner extension/background isolation and technical launcher-layer preparation. Source provenance is documented in `branding/NOTICE.md` and `docs/ANDROID_APP_ICON.md`.
