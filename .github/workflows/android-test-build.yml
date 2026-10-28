@@ -59,9 +59,9 @@ jobs:
           drone-killer-unsigned.aab is ARM64 and UNSIGNED. It requires the publisher's upload signature before Google Play accepts it.
           SHA256SUMS contains the artifact checksums. No production signing keys or passwords are included.
 
-          AAB structure was checked. Version 0.1.4 (versionCode 5) includes the official drone/red-reticle launcher icons, menu/pause music and final Android UMP/rewarded flow with actual SDK canRequestAds checks and diagnostics. Publisher AdMob IDs are configured in TEST mode. Ads remain inactive until privacy/audience requirements are completed; no production ads are requested. Gameplay, package identifier and signing credentials are preserved. Physical Android device validation remains required.
+          AAB structure was checked. Version 0.1.5 (versionCode 6) includes the official drone/red-reticle launcher icons, menu/pause music and final Android UMP/rewarded flow with actual SDK canRequestAds checks and diagnostics. Publisher AdMob IDs are configured in TEST mode. The publisher confirmed the supported adult-only audience, privacy review, AdMob messaging and Play declarations. TEST advertising is activated, but actual UMP canRequestAds permission is still required before initialization, load or display. Only Google’s official rewarded test unit is requested; no production ads are requested. Gameplay, package identifier and signing credentials are preserved. Physical Android device validation remains required.
           NOTES
           gh release create "$tag" drone-killer-unsigned.aab SHA256SUMS advertising-validation.json \
             --target "$GITHUB_SHA" --prerelease \
-            --title "Android 0.1.4 — UMP and rewarded ad integration (unsigned AAB)" \
+            --title "Android 0.1.5 — activated TEST rewarded ads (unsigned AAB)" \
             --notes-file "$RUNNER_TEMP/android-release-notes.md"

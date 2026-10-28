@@ -85,7 +85,7 @@ func run() -> void:
  check(OS.has_feature("editor") and OS.is_debug_build(),"simulation tests run in debug editor executable")
  check(not ads.adapter.available(),"native SDK absent: provider fails closed")
  var shipping: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/advertising.json"))
- check(not shipping.enabled and not shipping.compliance_reviewed and shipping.audience == "unreviewed","release configuration starts disabled and unreviewed")
+ check(shipping.mode == "test" and shipping.enabled and shipping.compliance_reviewed and shipping.privacy_messaging_configured and shipping.audience == "reviewed_adult_only","Publisher-confirmed build is eligible only for reviewed TEST advertising")
  check(shipping.android_rewarded_test_id == "ca-app-pub-3940256099942544/5224354917" and shipping.android_app_test_id == "ca-app-pub-3940256099942544~3347511713","only official Google Android test identifiers")
  var old_cooldown: int = CONFIG.values.rewarded_ads.cooldown_seconds
  CONFIG.values.rewarded_ads.cooldown_seconds = 0

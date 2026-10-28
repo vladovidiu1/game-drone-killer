@@ -1,4 +1,4 @@
-# Android rewarded ads — 0.1.4 / versionCode 5
+# Android rewarded ads — 0.1.5 / versionCode 6
 
 The real Poing Studios Godot AdMob **5.1.0** bridge for **Godot 4.6.3** is integrated. Gradle resolves **Google Mobile Ads Next-Gen 1.4.0** and **UMP 4.0.0**. These are real Android libraries, not an editor mock. No actual advertisement has been displayed/verified on a physical Android device during this implementation.
 
@@ -11,22 +11,23 @@ The real Poing Studios Godot AdMob **5.1.0** bridge for **Godot 4.6.3** is integ
 | Stored production rewarded unit (never requested in TEST) | `ca-app-pub-3787873725289108/8579720139` |
 | Mode | `test` |
 | Actual TEST loader unit | `ca-app-pub-3940256099942544/5224354917` |
-| `enabled` | `false` |
-| `compliance_reviewed` | `false` |
-| `audience` | `unreviewed` |
+| `enabled` | `true` |
+| `compliance_reviewed` | `true` |
+| `audience` | `reviewed_adult_only` |
 | `privacy_policy_url` | `https://vladovidiu1.github.io/game-drone-killer/privacy.html` |
-| `privacy_messaging_configured` | `false` |
+| `privacy_messaging_configured` | `true` |
 
-**Test-ad serving remains blocked by unverified publisher privacy/audience prerequisites.** Signing or installing the AAB does not activate advertising. The policy URL was supplied by the publisher and its source was inspected in `docs/privacy.html`; direct public-page retrieval was blocked by this environment (HTTP tunnel 403), so public reachability still needs a browser check. No adult audience or privacy review has been invented. The application remains playable offline, and the available Ad information action explains the blocker without granting a reward.
+**TEST advertising is activated based on the publisher's confirmation.** On 2026-10-28, after the documented prerequisites and supported adult-only configuration were explained, the publisher stated “am confirmat tot” and requested the completed AAB. This confirms the documented supported audience, applicable published AdMob messages, public privacy policy and completed Play privacy/audience declarations for this configuration. The flags record the publisher's confirmation; they are not an independent audit of AdMob or Play Console. No console access or successful physical ad display is claimed.
 
-## Minimum external actions
+The real policy URL was supplied by the publisher and its source is `docs/privacy.html`. Direct retrieval from this environment was blocked by the network proxy; publication/content confirmation is supplied by the publisher. No URL was invented. The stored production unit is never requested in TEST mode.
 
-1. Open the supplied policy URL in a private browser window and confirm it is publicly accessible without login. The configured policy source `docs/privacy.html` identifies Pintilie Vlad Ovidiu and the provided contact email. The app-specific supplemental draft in [PRIVACY_POLICY_DRAFT.md](PRIVACY_POLICY_DRAFT.md) records actual SDK/storage/reward details for publisher review; a draft alone is not a reviewed public policy.
-2. Confirm the **actual target age audience** from Play Console → **App content → Target audience and content**. This build supports reviewed adult-only advertising; it does not implement mixed/child audience handling. A content rating is not an audience declaration. Do not select adult-only unless it matches the app and the real declaration.
-3. In **AdMob → Privacy & messaging**, select this application, supply the real policy URL, configure and publish applicable messages (European regulations for EEA/UK/Switzerland distribution, US-state regulations and other applicable regions). IDs alone do not create consent messages. Server-side form delivery still must be tested; a local flag cannot verify the console.
-4. Complete/update Play Console **Privacy policy**, **Contains ads**, **Data safety**, and target audience declarations against the actual SDKs/build. Google's SDK can process information during consent even without displaying an ad; “test” does not mean “no collection.” No extra mediation partner or game analytics backend is configured.
-5. After those facts are confirmed/reviewed, configure `data/advertising.json`: real `privacy_policy_url`, the supported confirmed `audience="reviewed_adult_only"`, `privacy_messaging_configured=true`, `compliance_reviewed=true`, `enabled=true`. **Keep `mode="test"`** and both supplied IDs unchanged. The URL is configured, but activation flags remain false/unreviewed while age-audience and messaging/review facts are unconfirmed. Activation requires a rebuilt AAB; if the real audience includes children/mixed ages, additional implementation/review is required instead.
-6. Sign the unsigned AAB with the existing upload key, upload to Internal Testing using a versionCode above every code already uploaded, and perform the physical checklist below. This version uses code **5**, above the previous repository build's **4**. If a higher code was uploaded independently, increase it before uploading.
+## Build, signing and remaining device checks
+
+- No further local configuration prerequisite blocks TEST advertising. **UMP must still allow the request on the Android device**; missing/unresolved consent, unavailable server messages, network errors and a false `canRequestAds()` result still block initialization/load/display. Enabling the configuration does not bypass any of these runtime checks.
+- This build uses **0.1.5 / versionCode 6**, above the previous repository build's 5. The package, save paths, reward/economy and existing signing setup are unchanged. If a higher code was uploaded independently, select a higher code before uploading.
+- The cloud has **no publisher upload keystore or release signing credentials**. The delivered AAB is **unsigned and cannot be uploaded to Play as-is**. Sign it locally on Windows with the **same existing upload key** already used for the app; do not generate a replacement key. See [existing-key signing](ANDROID_RELEASE.md#sign-the-current-aab-with-the-existing-upload-key-windows).
+- Upload the signed result to Internal Testing. Execute the physical Android checklist below. Google Play processing/pre-launch checks and an observed Test Ad remain device/console validation, not claims made by this build.
+- Keep `mode="test"` and the official Google rewarded test unit. This is not a production-advertising release. A future change in audience, policy, messaging or SDK behavior requires renewed review; disable advertising if those prerequisites cease to hold.
 
 ## Actual runtime flow
 
@@ -65,8 +66,14 @@ Use a build signed with the same existing key; preserve installed saves and do n
 
 Do not report a real test ad as working until this device checklist has been executed and observed.
 
-## Evidence for this build
+## Previous implementation validation (0.1.4)
 
 On 2026-10-28 the complete `tests/run_checks.sh` runner passed, including the connected full-campaign/restart/comparison suites (260 + 31 + 11 checks). Reward accounting/restart passed 103 + 6 checks. The final focused AdMob contract run passed 35 checks, including real GDScript error/status types and fail-closed JNI availability; it uses SDK doubles for callbacks and does not display ads. The final unsigned 0.1.4/code 5 AAB passed bundletool and the native manifest/DEX/configuration validator. Existing signing-key file content was verified unchanged. `advertising-validation.json` is published with the GitHub AAB and explicitly records activation blockers and the absence of physical-device ad verification.
 
-No display server is available in this cloud session, so graphical UI captures and physical Android consent/advertisement tests were not run. The runtime/gameplay suites use isolated save directories; no installed user saves were reset. Native class presence and methods do not establish that AdMob server-side messaging or the JNI/ad flow has executed successfully on a phone.
+No display server was available during those checks, so graphical UI captures and physical Android consent/advertisement tests were not run. The runtime/gameplay suites use isolated save directories; no installed user saves were reset. Native class presence and methods do not establish that AdMob server-side messaging or the JNI/ad flow has executed successfully on a phone.
+
+## Activation-build validation
+
+For 0.1.5/code 6 only the confirmed activation flags, Android version and release documentation change. Runtime UMP, callback validation, gameplay and save code remain unchanged from the fully tested 0.1.4 implementation. Targeted isolated-save Godot import/startup, rewarded/restart, AdMob contract and menu/restart checks passed for the activated configuration, along with actual unsigned AAB export and native manifest/DEX/configuration validation. The native report confirms `advertising_enabled=true`, `advertising_mode="test"` and no configuration activation blockers; physical Android ad verification remains false until observed on a device.
+
+Activated build results: 103 rewarded + 6 restart checks, 35 AdMob contract checks, 23 menu/audio + 3 restart checks passed without engine errors. The actual unsigned AAB passed bundletool and native DEX/manifest/configuration validation with TEST enabled and an empty configuration-blocker list. No release key was available; no upload signature or physical ad display is claimed.

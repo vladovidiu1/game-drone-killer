@@ -2,14 +2,14 @@
   "plugin": "Poing Studios Godot AdMob",
   "plugin_version": "5.1.0",
   "plugin_commit": "615974e9f66921a54e3c71c33db0856bdbf19d13",
-  "enabled": false,
-  "compliance_reviewed": false,
-  "audience": "unreviewed",
+  "enabled": true,
+  "compliance_reviewed": true,
+  "audience": "reviewed_adult_only",
   "privacy_policy_url": "https://vladovidiu1.github.io/game-drone-killer/privacy.html",
   "android_app_test_id": "ca-app-pub-3940256099942544~3347511713",
   "android_rewarded_test_id": "ca-app-pub-3940256099942544/5224354917",
   "mode": "test",
   "android_app_id": "ca-app-pub-3787873725289108~4168159841",
   "android_rewarded_id": "ca-app-pub-3787873725289108/8579720139",
-  "privacy_messaging_configured": false
+  "privacy_messaging_configured": true
 }

@@ -245,7 +245,7 @@ Manual device checks: test 16:9 and tall landscape displays, cutout margins, lef
 
 ## Android builds and Google Play
 
-Android export presets and reproducible build helpers are available. See [Android build and Play Console instructions](docs/ANDROID_RELEASE.md) for the test APK, signed upload AAB, private upload key creation, and release checklist. The package is `com.vladovidiu.dronekiller`, version `0.1.4` (code 5), minimum API 24 and target API 36. Real Android device validation and Play Console setup remain required before publication.
+Android export presets and reproducible build helpers are available. See [Android build and Play Console instructions](docs/ANDROID_RELEASE.md) for the test APK, signed upload AAB, private upload key creation, and release checklist. The package is `com.vladovidiu.dronekiller`, version `0.1.5` (code 6), minimum API 24 and target API 36. Real Android device validation and Play Console setup remain required before publication.
 
 ## Intentionally unfinished
 
@@ -289,7 +289,7 @@ All 25 maps now label western/central/eastern roles and selected elevated positi
 
 Night Watch is an original, royalty-free ambient synthesizer loop distributed with the project under the asset MIT notice. It plays quietly in menus and while paused, stops during active combat/backgrounding/full-screen ads, and has an independent Settings → Menu music switch. Master volume/mute remain authoritative.
 
-The exact Godot 4.6.3 Poing AdMob native bridge is now packaged. Publisher IDs and the supplied public privacy-policy URL are configured in TEST mode; actual UMP canRequestAds and Next-Gen initialization checks are implemented. Audience/messaging review is incomplete, so ads remain inactive; the offer opens an information dialog rather than an unexplained disabled button. See [the account/setup steps](docs/ADS_SETUP.md). No mock ad rewards are enabled in Android exports. Signing the AAB does not activate advertising.
+The exact Godot 4.6.3 Poing AdMob native bridge is now packaged. Publisher IDs and the supplied public privacy-policy URL are configured in TEST mode; actual UMP canRequestAds and Next-Gen initialization checks are implemented. The publisher has confirmed the supported adult-only audience, privacy review, messaging and Play declarations, so TEST advertising is activated; UMP must still permit each request. The offer starts the actual Android test-ad flow when eligible and explains unavailable native/configuration cases. See [the account/setup steps](docs/ADS_SETUP.md). No mock ad rewards are enabled in Android exports. Use the existing upload key to sign the unsigned AAB. Production ad requests remain disabled by TEST mode.
 
 ### Official Android app icon
 

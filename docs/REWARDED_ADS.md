@@ -1,6 +1,6 @@
 # M4 — optional rewarded advertising
 
-> **0.1.4 update:** actual Poing 5.1.0 / Godot 4.6.3 native libraries, Next-Gen 1.4.0 and UMP 4.0.0 are packaged. Publisher IDs and the supplied privacy-policy URL are configured in TEST mode. Audience/messaging review still gates activation. See [current configuration, native verification and device checklist](ADS_SETUP.md). The real UMP `canRequestAds()` bridge and Next-Gen initialization enum correction are now implemented. No device ad display has been claimed. Older M4 installation notes below are historical; earned-only accounting remains applicable.
+> **0.1.5 update:** the publisher confirmed the documented supported adult-only audience, AdMob messaging and privacy/Play declarations. TEST advertising is activated using the real publisher App ID, supplied policy URL and official Google rewarded test unit. Actual UMP canRequestAds permission remains mandatory. See [current configuration, native verification and device checklist](ADS_SETUP.md). Older disabled/unreviewed setup notes below are historical; earned-only accounting and runtime consent checks remain applicable. No physical Android advertisement display is claimed.
 
 ## Implemented and deliberately not claimed
 

@@ -1,6 +1,6 @@
 # Android test build and Google Play preparation
 
-Package: `com.vladovidiu.dronekiller` (confirmed by the publisher). Version: `0.1.2`, Android version code `3`. Godot: standard 4.6.3 stable, Compatibility renderer. Minimum Android API 24 (Android 7), target/compile API 36. Offline gameplay has no account, backend or purchase requirement. The pinned Google Mobile Ads/UMP bridge is included but the provider is disabled because no publisher account/IDs/privacy configuration exist; this build must not be described as monetized. See ADS_SETUP.md.
+Package: `com.vladovidiu.dronekiller` (confirmed by the publisher). Version: `0.1.5`, Android version code `6`. Godot: standard 4.6.3 stable, Compatibility renderer. Minimum Android API 24 (Android 7), target/compile API 36. Offline gameplay has no account, backend or purchase requirement. The pinned Google Mobile Ads/UMP bridge is included, and publisher-confirmed TEST advertising is activated. Only the official Google rewarded test unit is requested after actual UMP permission; this is not a production monetization release. See ADS_SETUP.md.
 
 ## Build in the cloud environment
 
@@ -22,16 +22,20 @@ adb install -r drone-killer-test.apk
 
 The unsigned AAB is a build-validation artifact, **not uploadable to Google Play**. The Play presets use ARM64. APK/AAB files, Gradle outputs, SDK caches and signing keys are excluded from Git. Download artifacts from the prepared environment before discarding it. Keep the debug key if you want later debug APKs to update the same installation; a different key requires uninstalling first, which can remove saves. Production signing will also differ from this debug APK.
 
-## Create the upload key and signed AAB
+## Sign the current AAB with the existing upload key (Windows)
 
-For this new Play application, create an upload key locally in a private backed-up directory, not inside the repository. Use a password manager and keep a separate protected backup. Do not send the key or password in chat, commit them, or reuse the debug key.
+The publisher already signs this app locally. **Use the same existing upload key and alias; do not generate a new key.** No private release key/password is available in the cloud, so the downloadable artifact is unsigned. Keep the key and password private; do not send them in chat or commit them.
 
-```sh
-keytool -genkeypair -v -keystore /private/path/drone-killer-upload.jks \
-  -alias upload -keyalg RSA -keysize 3072 -validity 10000
+With a JDK installed, open a terminal in the download directory. Replace the example path and alias with the existing key's actual values; the password is requested interactively:
+
+```powershell
+jarsigner -keystore "C:\cale\cheia-ta-existenta.jks" -signedjar "drone-killer-signed.aab" "drone-killer-unsigned.aab" ALIASUL_TAU
+jarsigner -verify "drone-killer-signed.aab"
 ```
 
-This prompts for the password and publisher identity. Use the same store/key password for Godot's export support. In a trusted local shell or secret-capable CI, provide `GODOT_ANDROID_KEYSTORE_RELEASE_PATH`, `GODOT_ANDROID_KEYSTORE_RELEASE_USER=upload` and `GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD` without putting passwords in shell history. Then:
+Upload **drone-killer-signed.aab**, not the unsigned input, to the existing app's Internal Testing track. The new artifact uses versionCode 6. This local signing step does not change its TEST advertising configuration or package/save identifiers.
+
+For a signed export in a trusted local build environment, provide `GODOT_ANDROID_KEYSTORE_RELEASE_PATH`, `GODOT_ANDROID_KEYSTORE_RELEASE_USER` (your existing alias), and `GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD` securely without putting passwords in shell history. Then:
 
 ```sh
 bash tools/export_android.sh release

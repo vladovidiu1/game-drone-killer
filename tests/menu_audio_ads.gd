@@ -58,7 +58,7 @@ func run() -> void:
  check(not SaveManager.settings.music_enabled,"Campaign reset preserves music preference")
  RewardedAdsManager.set_context("map")
  var balance: int = SaveManager.state.credits
- check(not RewardedAdsManager.offer().enabled and RewardedAdsManager.offer().setup_required,"Missing account remains unavailable instead of inventing ad access")
+ check(not RewardedAdsManager.offer().enabled and RewardedAdsManager.offer().setup_required,"Absent Android SDK remains unavailable instead of inventing ad access")
  var offer := preload("res://scripts/ui/rewarded_ad_offer.gd").new()
  add_child(offer)
  await settle()
@@ -73,7 +73,7 @@ func run() -> void:
  offer.queue_free()
  var provider := preload("res://scripts/ads/poing_admob_adapter.gd").new()
  add_child(provider)
- check(not provider.configuration_issue().is_empty(),"Default ad configuration fails closed")
+ check(provider.configuration_issue().is_empty() and not provider.available(),"Confirmed TEST configuration passes setup checks but never fakes an Android SDK in the editor")
  provider.config = {"enabled":true,"mode":"test","audience":"reviewed_adult_only","compliance_reviewed":true,"privacy_messaging_configured":true,"privacy_policy_url":"https://example.com/privacy","android_app_id":"ca-app-pub-3940256099942544~3347511713"}
  check(not provider.configuration_issue().is_empty(),"Google sample app cannot pretend to own a publisher consent message")
  check(provider.rewarded_unit() == provider.TEST_UNIT,"Test mode uses official Google rewarded test unit")

@@ -1,6 +1,6 @@
 # DRONE KILLER: FRONTLINE — privacy policy draft
 
-**Supplemental implementation-specific draft; not publisher approval.** The publisher supplied `https://vladovidiu1.github.io/game-drone-killer/privacy.html`; its current source is `docs/privacy.html`. The operator/contact below come from that page. Review remaining `[PUBLISHER: …]` fields and merge any needed details into the actual published policy. This draft does not replace the public page. The app keeps ads inactive until the outstanding publisher prerequisites are confirmed.
+**Supplemental implementation-specific draft; not publisher approval.** The publisher supplied `https://vladovidiu1.github.io/game-drone-killer/privacy.html`; its current source is `docs/privacy.html`. The operator/contact below come from that page. Review remaining `[PUBLISHER: …]` fields and merge any needed details into the actual published policy. This draft does not replace the public page. The publisher has now confirmed the documented supported audience, messaging and privacy prerequisites; TEST advertising is activated while actual UMP permission is still required.
 
 Effective date: **October 28, 2026 (current supplied public policy)**
 
@@ -50,4 +50,4 @@ When UMP requires privacy options, the campaign menu's **Ad privacy choices** ac
 
 ## Publisher configuration before activation
 
-Publish the completed policy, enter its real URL in `data/advertising.json`, publish applicable messages in **AdMob → Privacy & messaging**, and complete matching Play Console **Privacy policy**, **Target audience and content**, **Data safety** and **Contains ads** declarations. Confirm the actual age audience and perform the privacy review before setting activation flags. The actual supplied URL is configured. Age-audience/messaging/compliance fields have not been marked reviewed without confirmation.
+Publish the completed policy, enter its real URL in `data/advertising.json`, publish applicable messages in **AdMob → Privacy & messaging**, and complete matching Play Console **Privacy policy**, **Target audience and content**, **Data safety** and **Contains ads** declarations. Confirm the actual age audience and perform the privacy review before setting activation flags. The actual supplied URL is configured. On 2026-10-28 the publisher confirmed the documented supported adult-only audience, messaging and privacy/Play declarations; the corresponding configuration flags are activated based on that confirmation. This supplemental draft is not an independent legal audit.
